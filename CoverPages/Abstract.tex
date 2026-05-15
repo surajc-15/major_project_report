@@ -1,21 +1,15 @@
-\addcontentsline{toc}{chapter}{Abstract}\vspace{-1cm}
+\addcontentsline{toc}{chapter}{Abstract}
+\vspace{-1cm}
+
 %Border
 \begin{tikzpicture}[remember picture, overlay]
   \draw[line width = 4pt] ($(current page.north west) + (0.75in,-0.75in)$) rectangle ($(current page.south east) + (-0.75in,0.75in)$);
 \end{tikzpicture}
 
+Trade-Based Money Laundering (TBML) has become a major challenge in modern financial systems due to the increasing complexity and scale of global trade transactions. Conventional anti-money laundering systems primarily rely on rule-based monitoring and traditional machine learning techniques, which are often inadequate for identifying hidden transactional dependencies and evolving laundering strategies. These approaches suffer from limitations such as high false positive rates, poor relational learning capability, and reduced scalability in large financial networks. To address these issues, this report presents a Federated Heterogeneous Graph Neural Network (HGNN) framework for real-time TBML detection capable of modeling complex trade relationships while preserving institutional data privacy.
 
-Highlights of significant contributions: One page with 3 to 4 paragraphs\\
+The primary objective of this work is to develop a scalable and privacy-preserving TBML detection architecture using graph-based deep learning methodologies. The proposed framework represents financial ecosystems as heterogeneous graphs consisting of entities such as accounts, importers, exporters, transactions, and trade documents. Graph Attention Network (GAT)-based convolutional layers are employed to learn structural and semantic relationships between interconnected entities for effective anomaly detection. Federated learning mechanisms are incorporated to facilitate collaborative model training across distributed financial institutions without centralized data sharing. The computational framework includes graph construction, feature extraction, node embedding generation, suspicious activity classification, and real-time risk score prediction.
 
-Paragraph 1: Importance and relevance of Topic, reported issues and limitations of the topic in performance or computation etc, issues involved in those limitations, need for addressing those issues and a short note on how that is addressed in this report.
-
-
-Paragraph 2: Objectives of this work, short note on algebraic methods used and formulations achieved, computational procedures developed. \gls{ic}.
-
-
-Paragraph 3: Description of simulation procedure including SW tools used and choice of test cases. Short note on results achieved and significant highlights of improvements if any in terms of percentage , for example the architecture presented in this report shows 22 \% improve in power consumption as compared to the previously reported articles.
-\gls{ic}
-
-Paragraph 4: The last para needed only if emulation (after simulation) or Hardware developed to validate simulation results in para 3. 
+The proposed system is implemented using Python, PyTorch Geometric, FastAPI, Memgraph, PostgreSQL, and React.js. Experimental evaluation is carried out on simulated TBML datasets containing both legitimate and suspicious trade transactions. Performance analysis is conducted using standard classification metrics including accuracy, precision, recall, and F1-score. The experimental results indicate that the proposed framework effectively captures hidden laundering patterns and improves fraud detection capability when compared with conventional machine learning approaches. The architecture further supports scalable deployment, reduced false positive rates, and efficient real-time monitoring of high-volume trade transactions.
 
 \pagebreak

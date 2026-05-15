@@ -1,19 +1,66 @@
-\chapter{Introduction to Analog and Digital converters}
-Every chapter should start with an introduction paragraph. This paragraph should brief about the flow of the chapter. This introduction can be limited within 4 to 5 sentences. The chapter heading should be appropriately modified (a sample heading is shown for this chapter). But don't start the introduction paragraph in the chapters like "This chapter deals with....". Instead you should bring in the highlights of the chapter in the introduction paragraph.
+\chapter{Introduction to Trade-Based Money Laundering}
 
-\section[Introduction]{\textbf{Introduction}}
-The title of the project can be introduced in this section. This section should neatly elaborate the context of the project, the relevance of the area chosen and the title. You can bring a brief history and arrive at the title of the project. Use appropriate number of paragraphs within this section. 
+The rapid growth of international trade and digital financial infrastructure has significantly increased the complexity of monitoring global financial transactions. Alongside economic globalization, financial institutions are facing increasingly sophisticated forms of illicit financial activities that exploit weaknesses in conventional Anti-Money Laundering (AML) systems. Among these, Trade-Based Money Laundering (TBML) has emerged as one of the most challenging financial crimes due to its ability to conceal illegal fund transfers within legitimate trade operations. The distributed and interconnected nature of modern trade ecosystems necessitates intelligent, scalable, and privacy-preserving analytical frameworks capable of identifying hidden transactional relationships in real time.
 
-You are allowed to use figures or diagrams which can help in introducing the topic acknowledging the source. For example , if you are introducing a particular topic, an appropriate figure can be used. The figure should be referenced in the text as Figure. \ref{fig:universe} 
-\begin{figure}[htb]
+\begin{quote}
+\itshape
+``For financial institutions, TBML is uniquely challenging because illicit funds are embedded within legitimate trade transactions, leaving traditional AML controls blind to the risks.''
+
+\vspace{0.2cm}
+
+\hfill -- Dr. Sebastian Hetzler, IMTF Co-CEO \cite{imtf_tbml_scale}
+\end{quote}
+
+As highlighted in the above statement, Trade-Based Money Laundering exploits the complexity of international commerce by embedding illicit financial flows within apparently legitimate trade transactions. This significantly limits the effectiveness of conventional compliance systems that primarily rely on isolated transaction monitoring and static rule-based verification mechanisms.
+
+%========================================================
+\section[Overview of Trade-Based Money Laundering]{\textbf{Overview of Trade-Based Money Laundering}}
+%========================================================
+
+Trade-Based Money Laundering (TBML) refers to the process of disguising the proceeds of crime and transferring value through legitimate international trade transactions in an attempt to legitimize illicit financial activities \cite{fatf_tbml_2020}. Criminal organizations exploit weaknesses in global trade systems using techniques such as over-invoicing, under-invoicing, phantom shipments, duplicate invoicing, and falsification of trade documentation. Since these activities are embedded within normal commercial operations involving multiple intermediaries, jurisdictions, and financial entities, identifying suspicious transactional behavior becomes highly challenging for regulatory agencies and financial institutions.
+
+The scale and economic impact of money laundering have increased considerably with the expansion of global commerce and digital financial ecosystems. According to the United Nations Office on Drugs and Crime (UNODC), money laundering accounts for nearly 2\% to 5\% of the global Gross Domestic Product (GDP), corresponding to approximately \$800 billion to \$2 trillion annually \cite{unodc_ml_overview}. Furthermore, Europol reports that despite extensive regulatory frameworks and compliance procedures, global authorities successfully intercept less than 1\% of illicit financial flows \cite{europol_financial_crime}. These statistics highlight the growing sophistication of modern laundering networks and the limitations of existing monitoring infrastructures.
+
+As financial institutions adopt stricter Know-Your-Customer (KYC) regulations and transaction surveillance systems, criminal organizations increasingly rely on TBML mechanisms to avoid direct cash movement and bypass conventional banking controls. Reports published by Global Financial Integrity indicate that trade misinvoicing and related TBML activities account for nearly 87\% of illicit financial flows originating from developing economies \cite{gfi_illicit_flows}. Similarly, industry analyses estimate that approximately \$1.6 trillion to \$2 trillion in illicit value is concealed annually within legitimate trade invoices and commercial documentation \cite{imtf_tbml_scale}. These findings demonstrate the critical role of international trade channels in enabling large-scale financial crime.
+
+%========================================================
+% TABLE
+%========================================================
+\begin{table}[H]
 \centering
-	\includegraphics[scale=1]{Figures/universe}	
-	\caption{Sample picture of universe }
-	\label{fig:universe}
-\end{figure}
+\caption{Key Statistics Related to Global Trade-Based Financial Crime}
+\label{tab:tbml_stats}
 
-These guidelines are provided to formally expose you to the various ethical and technical issues involved in writing up your work and the format you are required to adhere to while submitting your project report.
+\renewcommand{\arraystretch}{1.3}
 
+\begin{tabular}{p{10cm} p{3cm}}
+\toprule
+
+\textbf{Financial Crime Metric} & \textbf{Estimated Value} \\
+
+\midrule
+
+Global GDP associated with money laundering annually & 2\% -- 5\% \\
+
+Estimated annual TBML economic volume & \$1.6T -- \$2.0T \\
+
+Illicit flows linked to trade misinvoicing in developing economies & 87\% \\
+
+Global interception rate of illicit financial flows & \textless 1\% \\
+
+Reduction in false positive alerts using AI-driven monitoring systems & Up to 40\% \\
+
+\bottomrule
+
+\end{tabular}
+
+\end{table}
+
+Conventional Anti-Money Laundering systems primarily depend on rule-based monitoring engines, predefined transaction thresholds, and manual auditing processes. Although these approaches are capable of identifying isolated suspicious transactions, they often fail to capture hidden relational dependencies among entities involved in coordinated laundering operations. Modern TBML networks operate through interconnected ecosystems involving importers, exporters, logistics providers, shell companies, offshore entities, and financial intermediaries distributed across multiple jurisdictions. Since traditional machine learning models analyze transactions independently, they are unable to effectively model structural relationships and behavioral interactions embedded within large-scale financial networks.
+
+Recent advancements in Graph Neural Networks (GNNs) and federated learning have introduced new opportunities for intelligent financial fraud detection. Graph-based learning techniques enable financial ecosystems to be represented as interconnected graphs where entities such as accounts, organizations, transactions, and trade documents are modeled as nodes and edges. Such graph representations allow deep learning systems to capture hidden transactional patterns and anomalous structural relationships that are difficult to identify using conventional machine learning approaches. In addition, federated learning facilitates collaborative model training across distributed financial institutions without requiring centralized sharing of sensitive customer data, thereby ensuring privacy preservation and regulatory compliance.
+
+This project proposes a Federated Heterogeneous Graph Neural Network (HGNN) framework for real-time detection of Trade-Based Money Laundering activities. The proposed system integrates heterogeneous graph construction, Graph Attention Network (GAT)-based learning, federated intelligence, and real-time analytics to improve fraud detection capability in large-scale financial environments. The framework leverages technologies such as PyTorch Geometric, Memgraph, FastAPI, PostgreSQL, and React.js to develop a scalable and privacy-preserving AML platform capable of identifying suspicious transactional behavior across distributed trade ecosystems.
 \section[Literature Review]{\textbf{Literature Review}}
 
 A literature review is a text of a scholarly paper, which includes the current knowledge including substantive findings, as well as theoretical and methodological contributions to a particular topic. Literature reviews are secondary sources, and do not report new or original experimental work. Most often associated with academic-oriented literature, such reviews are found in academic journals, and are not to be confused with book reviews that may also appear in the same publication. Literature reviews are a basis for research in nearly every academic field . A narrow-scope literature review may be included as part of a peer-reviewed journal article presenting new research, serving to situate the current study within the body of the relevant literature and to provide context for the reader. In such a case, the review usually precedes the methodology and results sections of the work.
