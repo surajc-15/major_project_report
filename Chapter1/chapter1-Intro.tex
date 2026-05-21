@@ -87,13 +87,11 @@ Jiani Fan, Lwin Khin Shar, Ruichen Zhang, Ziyao Liu, Wenzhuo Yang, Dusit Niyato,
 
 Morten Hjelholt Jensen and Alexandros Iosifidis \cite{Jensen2023} investigated the use of statistical analysis and supervised machine learning algorithms for financial anomaly detection. Their study evaluated models such as Logistic Regression, Random Forests, and Gradient Boosting techniques for suspicious transaction classification. Experimental results showed improved detection capability compared to static rule-based approaches. Nevertheless, the proposed methods analyzed transactions independently and lacked the ability to capture relational dependencies among interconnected financial entities involved in coordinated laundering operations.
 
-Jinlong Song, Zhen Guo, Yutian Lei, and Minghao Zhao \cite{Song2026TCSS} proposed a dimension expansion framework for learning hidden money laundering activities within transaction networks. The framework enhanced transaction representations by integrating neighboring account information and contextual interaction features. The study demonstrated that relational feature aggregation improves the detection of concealed laundering patterns across financial networks. However, the model depended heavily on manually engineered relational features and lacked scalability for distributed cross-institutional financial environments.
+Jinlong Song, Zhen Guo, Yutian Lei, and Minghao Zhao \cite{Song2026} proposed a dimension expansion framework for learning hidden money laundering activities within transaction networks. The framework enhanced transaction representations by integrating neighboring account information and contextual interaction features. The study demonstrated that relational feature aggregation improves the detection of concealed laundering patterns across financial networks. However, the model depended heavily on manually engineered relational features and lacked scalability for distributed cross-institutional financial environments.
 
-In another study, Jinlong Song, Haoran Chen, Peng Xu, and Minghao Zhao \cite{Song2025TIFS} introduced a Social Attention Graph Neural Network framework for detecting illicit accounts in blockchain transaction systems. The proposed architecture transformed transaction ecosystems into graph structures and utilized attention-based graph learning mechanisms for anomaly classification. The study demonstrated that Graph Neural Networks outperform conventional machine learning models in identifying suspicious transactional behavior. However, the framework focused primarily on cryptocurrency transaction ecosystems and did not address invoice-level trade manipulations or heterogeneous commercial trade relationships associated with TBML activities.
+In another study, Jinlong Song, Haoran Chen, Peng Xu, and Minghao Zhao \cite{Illicit2025} introduced a Social Attention Graph Neural Network framework for detecting illicit accounts in blockchain transaction systems. The proposed architecture transformed transaction ecosystems into graph structures and utilized attention-based graph learning mechanisms for anomaly classification. The study demonstrated that Graph Neural Networks outperform conventional machine learning models in identifying suspicious transactional behavior. However, the framework focused primarily on cryptocurrency transaction ecosystems and did not address invoice-level trade manipulations or heterogeneous commercial trade relationships associated with TBML activities.
 
 Xiang Li, Zhen Wang, Yong Zhou, and Lei Zhang \cite{Li2025} proposed a Multi-View Graph-Based Hierarchical Representation Learning framework for organized money laundering group detection. Their work utilized multiple graph perspectives and hierarchical embedding mechanisms to identify coordinated laundering communities within financial transaction networks. Experimental findings demonstrated improved graph representation capability for identifying hidden laundering structures. However, the framework relied on predefined graph meta-path relationships and centralized graph repositories, limiting its applicability in privacy-sensitive financial environments.
-
-Luca Ferretti, Francesco Bianchi, Andrea Romano, and Matteo Ferrara \cite{Ferretti2025} explored the application of Graph Convolutional Networks (GCNs) and Graph Attention Networks (GATs) for cryptocurrency transaction classification in AML systems. Their research highlighted the effectiveness of graph-based architectures in improving anomaly detection accuracy and identifying hidden transactional relationships. Although the proposed models achieved superior classification performance, the framework suffered from limited interpretability and scalability when applied to heterogeneous financial ecosystems involving multiple entity types.
 
 Eren Gezici and Emre Sefer \cite{Gezici2025} proposed AMLPD, an unsupervised Anti-Money Laundering detection framework utilizing Personalized PageRank and graph diffusion techniques for deep vertex representation learning. The framework effectively captured hidden graph structures without requiring labeled datasets and demonstrated strong anomaly detection capability in sparse financial networks. However, the absence of supervised optimization mechanisms resulted in increased false positive classifications within highly imbalanced financial transaction datasets.
 
@@ -104,47 +102,121 @@ Jongmin Koo, Hyun Park, and Seungwoo Kim \cite{Koo2024} proposed an autoencoder-
 The literature survey indicates a clear transition from conventional rule-based AML systems toward machine learning, graph neural networks, and intelligent graph analytics for financial crime detection. Existing studies demonstrate that graph-based architectures significantly improve the ability to identify hidden transactional relationships and coordinated laundering structures compared to traditional machine learning techniques. However, several limitations remain insufficiently addressed, including heterogeneous graph modeling, real-time transaction analysis, institutional privacy preservation, and scalability across distributed financial environments. Most existing approaches either rely on centralized transaction repositories or focus primarily on banking or cryptocurrency transaction datasets without effectively modeling the complex trade relationships associated with Trade-Based Money Laundering activities.
 
 Furthermore, many existing AML frameworks process financial transactions in isolation and fail to capture the interconnected dependencies among importers, exporters, shell entities, logistics providers, and trade documents distributed across multiple jurisdictions. The absence of privacy-preserving collaborative intelligence mechanisms further limits the practical deployment of such systems in real-world financial ecosystems where direct sharing of sensitive transactional data is restricted by regulatory policies. In addition, limited focus has been given to integrating heterogeneous graph learning, federated intelligence, and real-time anomaly detection within a unified Anti-Money Laundering framework. These research gaps highlight the need for an intelligent, scalable, and privacy-preserving architecture capable of modeling complex trade ecosystems while supporting collaborative real-time TBML detection across distributed financial institutions.
-\subsubsection{\textbf{Plagiarism}}
 
-To use someone else's exact words without quotation marks and appropriate credit, or to use the unique ideas of someone else without acknowledgement, is known as plagiarism. In publishing, plagiarism is illegal; in other circumstances, it is, at the least, unethical. You may quote or paraphrase the words or ideas of another if you document your source. Although you need not enclose the paraphrased material in quotation marks, you must document the source. 
 
-Paraphrased ideas are taken from someone else whether or not the words are identical. Paraphrasing a passage without citing the source is permissible only when the information paraphrased is common knowledge in a field. (Common knowledge refers to historical, scientific, geographical, technical, and other type of information on a topic readily available in handbooks, manuals, atlases and other references). 
-
-\subsubsection{How to add Reference}
-Use \texttt{Jabref} which will help in adding the reference in a separate file, from which one can use \verb|\citep\{\}| command to add reference. A sample, referring to a textbook would look something like this,\cite{Razavi2000}.
-
+%========================================================
 \section[Motivation]{\textbf{Motivation}}
+%========================================================
 
-Brief the motivation of selecting your project title. You can elaborate the challenges in the specific area, relevance and importance of the chosen topic. 
+The work, \textit{``Federated Heterogeneous Graph Neural Networks for Real-Time Detection of Trade-Based Money Laundering''}, was chosen to address the increasing complexity of financial crimes within modern global trade ecosystems through the development of an intelligent and privacy-preserving fraud detection framework. Conventional Anti-Money Laundering (AML) systems primarily rely on rule-based monitoring and isolated transaction analysis methods that are often ineffective in identifying hidden relationships and coordinated laundering activities distributed across interconnected financial networks. Although such systems are widely deployed in banking environments, they generate high false positive rates, require extensive manual investigation, and face significant challenges in detecting sophisticated Trade-Based Money Laundering (TBML) activities in real time.
 
-\section[Problem statement]{\textbf{Problem statement}}
+The proposed work aims to overcome these limitations by developing a Federated Heterogeneous Graph Neural Network framework capable of modeling complex transactional relationships among financial entities while preserving institutional privacy. The integration of heterogeneous graph learning, graph attention mechanisms, and federated intelligence enables collaborative fraud analysis without direct sharing of sensitive transactional data across organizations. In addition, the framework supports automated Suspicious Transaction Report (STR) generation and dashboard-based visualization for real-time fraud monitoring and compliance analysis, demonstrating the feasibility of scalable and AI-driven Anti-Money Laundering systems for modern financial environments.
+%========================================================
+\section[Problem Statement]{\textbf{Problem Statement}}
+%========================================================
 
-Define the problem statement in this section, in one paragraph.
+Existing Anti-Money Laundering (AML) systems primarily rely on rule-based monitoring and isolated transactional analysis, making them ineffective in detecting complex Trade-Based Money Laundering (TBML) activities and hidden financial relationships. In addition, privacy and regulatory constraints restrict collaborative fraud detection across financial institutions. Therefore, there is a need for a scalable and privacy-preserving framework capable of modeling interconnected financial data and accurately identifying suspicious transactional behavior in real time.
 
 \section[Objectives]{\textbf{Objectives}}
+
 The objectives of the project are
+
 \begin{enumerate}
-\item To design a pipelined ADC for audio frequency range
-\item List all the objectives in the above format , starting with "To"
-\item Limit the number of objectives to a maximum of three
+    \item To develop a Federated Heterogeneous Graph Neural Network framework for real-time detection of Trade-Based Money Laundering activities.
+    
+    \item To model complex transactional relationships among financial entities using heterogeneous graph representation and graph attention mechanisms.
+    
+    \item To generate Suspicious Transaction Reports (STRs) for identified fraudulent transactions to support financial investigation and compliance processes.
+    
+    \item To design an interactive dashboard for visualization of fraud predictions, transaction analysis, and real-time monitoring of suspicious activities.
 \end{enumerate}
-
+%========================================================
 \section[Brief Methodology of the project]{\textbf{Brief Methodology of the project}}
-Discuss about the methodology you identified to execute the objectives of your project in brief. Methodology is a system of practices, techniques, procedures, and rules used to execute a particular project. You can elaborate the methodology in a later chapter. Here you can present in the form of a flow diagram and explain the methodology in a paragraph.
+%========================================================
 
-\section[Assumptions made / Constraints of the project]{\textbf{Assumptions made / Constraints of the project}}
+The proposed methodology focuses on developing a privacy-preserving and graph-based framework for real-time Trade-Based Money Laundering (TBML) detection. Initially, financial transaction data, trade records, customer information, and entity relationships are collected and preprocessed to remove inconsistencies and prepare structured datasets for analysis. The processed data is then transformed into a heterogeneous graph structure where entities such as accounts, organizations, invoices, and transactions are represented as interconnected nodes and edges.
 
-List the assumptions made for the execution of the project in this section. You can also elaborate on the major constraints of the project. This section should clearly state under what conditions your project is valid. It is mandatory to have this section in your project report.
+Graph Attention-based learning mechanisms are employed to capture hidden relational dependencies and suspicious transactional patterns within the financial ecosystem. To preserve institutional privacy, federated learning is integrated into the framework, enabling collaborative model training across distributed financial environments without direct sharing of sensitive transactional data. The detected suspicious activities are further utilized for automated Suspicious Transaction Report (STR) generation and visualization through an interactive dashboard for real-time monitoring and fraud analysis.
 
-\section[Organization of the report]{\textbf{Organization of the report}}
+\vspace{0.4cm}
 
-This report is organized as follows. Write the discussions in each chapter. A sample is as follows.
+\begin{figure}[H]
+\centering
+
+\IfFileExists{./Figures/methodology.png}
+{
+    \includegraphics[
+        width=\textwidth,
+        height=0.8\textheight,
+        keepaspectratio
+    ]{./Figures/methodology.png}
+}
+{
+    \fbox{
+        \parbox[c][0.8\textheight][c]{0.95\textwidth}{
+            \centering
+            \Large Methodology Diagram Placeholder
+        }
+    }
+}
+
+\caption{Proposed Methodology for TBML Detection}
+\label{fig:methodology}
+
+\end{figure}
+
+%========================================================
+\section[Assumptions and Constraints of the Work]{\textbf{Assumptions and Constraints of the Work}}
+%========================================================
+
+\subsection*{Assumptions}
+
 \begin{itemize}
-\item Chapter 2 discusses the fundamentals of ADC and the performance parameters for evaluation.
-\item Chapter 3 discusses .
-\item Chapter 4 discusses .
-\item Chapter 5 discusses .
-\item Chapter 6 discusses .
+    \item The financial transaction records, trade invoices, and customer-related information used for analysis are assumed to be sufficiently structured, consistent, and preprocessed for effective model training and evaluation.
+    
+    \item It is assumed that participating financial institutions maintain similar transactional formats and standardized trade-related attributes required for graph construction and suspicious activity analysis.
+    
+    \item The generated financial datasets are assumed to contain sufficient normal and suspicious transactional patterns necessary for learning hidden behavioral relationships associated with Trade-Based Money Laundering activities.
+    
+    \item It is assumed that heterogeneous graph representations can effectively model relationships among accounts, organizations, transactions, invoices, and trade entities for identifying suspicious financial behavior.
 \end{itemize}
 
+\subsection*{Constraints}
+
+\begin{itemize}
+    \item Limited access to real-world Trade-Based Money Laundering datasets due to institutional privacy regulations and confidentiality policies may affect the diversity of transactional data used for evaluation.
+    
+    \item Large-scale graph construction and real-time transaction analysis may increase computational complexity and memory requirements during fraud detection operations.
+    
+    \item The performance of the proposed framework depends significantly on the quality, completeness, and accuracy of the financial data available for model training and testing.
+    
+    \item The proposed framework is validated primarily under controlled academic and experimental conditions and may require additional optimization for large-scale industrial deployment.
+\end{itemize}
+
+\vspace{4.4cm}
+%========================================================
+\section[Organization of the Report]{\textbf{Organization of the Report}}
+%========================================================
+
+This report is organized as follows.
+
+\begin{itemize}
+
+    \item Chapter 2 discusses the theoretical concepts related to Anti-Money Laundering systems, Trade-Based Money Laundering, Graph Neural Networks, heterogeneous graph learning, and federated learning techniques used in the proposed work.
+    
+    \item Chapter 3 discusses the Software Requirement Specification (SRS) of the proposed system, including functional requirements, performance requirements, software and hardware requirements, and system constraints.
+    
+    \item Chapter 4 discusses the high-level architecture and overall system design of the proposed framework, including workflow diagrams, system components, dashboard architecture, and data flow representation.
+    
+    \item Chapter 5 discusses the detailed design of the proposed system, including graph construction methodology, fraud detection modules, STR generation workflow, and dashboard integration.
+    
+    \item Chapter 6 discusses the implementation details of the proposed framework, including dataset preprocessing, graph generation, backend integration, model development, and dashboard implementation.
+    
+    \item Chapter 7 discusses the testing and validation procedures performed on the proposed system, including functional testing, fraud prediction analysis, dashboard testing, and model evaluation techniques.
+    
+    \item Chapter 8 discusses the experimental results and performance evaluation of the proposed framework using various fraud detection metrics and comparative analysis.
+    
+    \item Chapter 9 discusses the conclusion of the proposed work, existing limitations, and possible future enhancements for improving the framework.
+
+\end{itemize}
 

@@ -1,10 +1,43 @@
-\chapter{Theory and Fundamentals of Analog to Digital converter}
+\chapter{Theory and Fundamentals of Project}
 
-Every chapter should start with an introduction paragraph. This paragraph should brief about the flow of the chapter. This introduction can be limited within 4 to 5 sentences. The chapter heading should be appropriately modified (a sample heading is shown for this chapter). But don't start the introduction paragraph in the chapters 2 to end with "This chapter deals with....". Instead you should bring in the highlights of the chapter in the introduction paragraph.
+Developing an intelligent framework for Trade-Based Money Laundering detection requires a strong foundation in financial crime analysis, graph theory, and machine learning techniques. This chapter presents the fundamental concepts associated with Trade-Based Money Laundering, Graph Neural Networks, Graph Attention mechanisms, heterogeneous graph representation, and federated learning. The chapter further discusses the computational principles involved in relational transaction modeling, privacy-preserving learning, and real-time fraud analytics. These concepts collectively form the theoretical foundation for the proposed fraud detection framework.
 
-\section{Contents of this chapter}
+%========================================================
+\section[Trade-Based Money Laundering (TBML)]{\textbf{Trade-Based Money Laundering (TBML)}}
+%========================================================
 
-This chapter should discuss about the prerequisite learnings before the execution of the project. Organise and elaborate the theory and necessary fundamentals required for the execution of the project. You can use \verb|\subsections| and \verb|subsubsections| in this chapter.
+\gls{tbml} is a sophisticated form of financial crime in which illicit funds are transferred and concealed through seemingly legitimate international trade activities. Unlike conventional laundering methods that primarily depend on direct financial transactions, TBML exploits import-export systems, trade invoices, shipping documents, and cross-border commercial operations to disguise the movement of illegal funds. Due to the increasing implementation of strict \gls{aml} regulations and \gls{kyc} policies, criminal organizations have increasingly shifted toward trade-oriented laundering mechanisms that are comparatively difficult to detect using traditional monitoring systems.
+
+The complexity of modern global trade ecosystems, combined with the involvement of multiple financial entities and transactional relationships, has made TBML detection a major challenge for financial institutions and regulatory agencies. Consequently, intelligent analytical techniques capable of identifying hidden transactional dependencies and suspicious financial behavior have become increasingly important in modern Anti-Money Laundering systems.
+
+%========================================================
+\subsection[Introduction to TBML]{\textbf{Introduction to TBML}}
+%========================================================
+
+Trade-Based Money Laundering primarily involves the manipulation of international trade transactions to illegally transfer value between entities located across different countries. Criminal organizations often misuse trade documentation, invoice values, shipment quantities, and commercial agreements to move illicit funds while making the transactions appear legitimate within global financial systems. Since these laundering activities are embedded within regular import-export operations, identifying suspicious behavior becomes highly challenging for financial institutions and regulatory agencies.
+
+In many TBML operations, colluding buyers and sellers intentionally manipulate the declared value of traded goods to transfer illegal financial assets across borders. Techniques such as over invoicing, under invoicing, phantom shipments, and multiple invoicing are commonly used to conceal the movement of illicit proceeds. Such laundering mechanisms exploit the complexity and high transactional volume of international trade systems, making traditional rule-based Anti-Money Laundering approaches comparatively ineffective in detecting hidden financial relationships.
+
+\vspace{0.4cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{./Figures/tbmlcycle.png}
+
+\caption{Trade-Based Money Laundering through trade misinvoicing and open-account transactions}
+\label{fig:tbml_cycle}
+
+\end{figure}
+
+\vspace{-0.2cm}
+
+\noindent
+\textit{Source: Adapted from ``The Role of Misinvoicing in the Money Laundering Cycle,'' 
+\href{https://www.researchgate.net/figure/TBML-through-Open-Account-Transactions_fig1_370021180}{ResearchGate}.}
+
+\vspace{0.3cm}
+
+Figure~\ref{fig:tbml_cycle} illustrates a typical Trade-Based Money Laundering workflow involving collusion between exporters and importers across different jurisdictions.
+
 \section{Contents of this chapter}
 If a specific programming language is required for the project, a section can be allotted in this chapter to discuss it. 
 \section{Contents of this chapter}
