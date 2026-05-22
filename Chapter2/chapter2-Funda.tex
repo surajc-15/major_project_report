@@ -87,33 +87,90 @@ Another major challenge involves institutional privacy and regulatory compliance
 If a specific programming language is required for the project, a section can be allotted in this chapter to discuss it. 
 \section{Federated Learning}
 Tools used could be another possible section to discuss about the software tools used in the work. 
+
+
+
+
+
+
+
+
+%========================================================
 \section{User Interface}
-The details in this chapter can be added in consultation with the project guide. For an internship based projects, subsections can be modified accordingly. 
+%========================================================
 
-\section{Use of Acronyms and Glossaries}
-Acronyms are nothing but the short form of regular repeated word. Say for example, you have a repeat word "Integrated Circuits" and you want to use a short form for it as "IC". For which you have to first define the word and use it wherever you wanted to refer it.
+Modern financial monitoring platforms increasingly rely on scalable web application technologies to support real-time transaction analysis, fraud monitoring, and interactive visualization of financial activities. The rapid growth of digital banking and online financial services has significantly increased the demand for responsive, secure, and data-driven monitoring systems capable of handling large volumes of transactional information efficiently. Consequently, modern Anti-Money Laundering systems employ component-based web architectures and client-server communication models to provide efficient user interaction and real-time analytical capabilities.
 
-First, let's look at the definition, which has to be entered in \texttt{Glossaries.tex} under \texttt{CoverPages} directory.
-\begin{verbatim}
-%\newacronym{<Ref>}{<Short-Form>}{<Expanded word>}
-\newacronym{ic}{IC}{Integrated Circuits}
-\end{verbatim}
-In order to use the defined acronym, use the commands \verb|\gls{<Ref>}| as shown below
+Advanced frontend frameworks and backend service architectures play a critical role in enabling modular application development, dynamic rendering, secure authentication, and seamless integration with fraud detection engines. Such technologies support the visualization of suspicious transactional activities, alert generation, role-based access control, and automated compliance workflows within financial institutions. The integration of scalable user interface technologies with intelligent analytical systems further enhances operational efficiency and supports real-time financial crime investigation processes.
 
-As an example, call the definition with \verb|\gls{ic}| and the outcome of it is reflected as, \gls{ic}.
+%========================================================
+\subsection[Modern Web Application Frameworks]{\textbf{Modern Web Application Frameworks}}
+%========================================================
 
-Note: For the First time, the expanded form appears along with the Short-form definition inside parenthesis. But when the \verb|\gls{}| is repeated, only Short-form appears inside the parenthesis.
+Modern web application frameworks provide the architectural foundation required for developing scalable, responsive, and interactive software systems. Traditional web applications primarily relied on static page rendering and tightly coupled server-side architectures, which limited dynamic user interaction and real-time data processing capabilities. In contrast, modern frameworks adopt component-based and asynchronous rendering approaches that improve application scalability, maintainability, and user experience within large-scale distributed systems.
 
-Now, let's look at the definition of symbols. Follow the syntax to define the symbol first, inside \texttt{Glossaries.tex} under \texttt{CoverPages} directory.
-\begin{verbatim}
-%\newglossaryentry{<Ref>}{name=<Symbol>, description={<description about the symbol>}, type=<List type>}
-\newglossaryentry{rc}{name=$\tau$, description={Time constant}, type=symbolList}
-\end{verbatim}
+Frontend frameworks such as React.js enable the development of reusable and modular user interface components capable of dynamically updating application states without requiring complete page reloads. Such frameworks employ virtual Document Object Model (DOM) mechanisms and state-driven rendering principles to efficiently manage user interactions and real-time data visualization. This architectural approach significantly improves responsiveness and enables scalable dashboard development for data-intensive applications such as financial monitoring systems.
 
-As an example, the rate of change is defined with \verb|\gls{rc}| and the outcome of it is reflected as, the rate of change is defined with \gls{rc}.
+Server-side rendering and hybrid rendering frameworks such as Next.js further enhance modern web application performance by combining client-side interactivity with optimized server-side content delivery. These frameworks support efficient routing, dynamic data fetching, and improved application scalability while reducing rendering overhead for large-scale systems. Consequently, modern web application frameworks have become an essential foundation for building secure, scalable, and real-time financial monitoring platforms.
 
-\vspace{0.75cm}
+%========================================================
+\subsection[Component Lifecycle and Reactivity]{\textbf{Component Lifecycle and Reactivity}}
+%========================================================
 
- \textbf{The chapters should not end with figures, instead bring the paragraph explaining about the figure at the end followed by a summary paragraph.}
+Modern web application frameworks employ reactive rendering mechanisms to dynamically synchronize the user interface with application data and user interactions. In component-based architectures such as React and Next.js, the user interface continuously responds to changes in application state, backend responses, and client-side events. This reactive behavior enables efficient rendering of dynamic content while improving scalability, responsiveness, and maintainability within large-scale financial monitoring systems.
 
-After elaborating the various sections of the chapter (From Chapter 2 onwards), a summary paragraph should be written discussing the highlights of that particular chapter. This summary paragraph should not be numbered separately. This paragraph should connect the present chapter to the next chapter.
+The component lifecycle in modern React and Next.js applications generally follows a sequence of rendering, interaction, updating, and cleanup stages. These stages collectively manage how components are initialized, rendered, updated, and removed during application execution. The overall lifecycle flow can be summarized as follows:
+
+\begin{itemize}
+
+\item \textbf{Server-Side Rendering:}  
+Initially, application components are rendered within the server environment where data fetching and content generation are performed before transmitting the rendered output to the client browser. This approach improves initial loading performance and reduces unnecessary client-side computational overhead.
+
+\item \textbf{Hydration and Client Initialization:}  
+After the rendered HTML content reaches the client browser, React hydrates the interface by attaching event listeners and enabling interactive functionalities within client-side components. During this stage, local states, dynamic properties, and asynchronous operations are initialized for user interaction.
+
+\item \textbf{Reactive State Updates:}  
+As users interact with the application, component states and properties continuously change according to system events and backend responses. React employs Virtual DOM reconciliation mechanisms to compare interface changes and selectively update only the affected components instead of re-rendering the complete application interface.
+
+\item \textbf{Re-rendering and Synchronization:}  
+Whenever state transitions occur, the framework dynamically re-renders the modified components and synchronizes the updated data with the user interface. This reactive rendering process enables real-time visualization of financial transactions, fraud alerts, and monitoring analytics within Anti-Money Laundering dashboards.
+
+\item \textbf{Unmounting and Resource Cleanup:}  
+When components are removed from the active interface, allocated resources, subscriptions, and temporary states are released to maintain application stability and efficient memory utilization.
+
+\end{itemize}
+
+Such lifecycle management principles are essential in modern financial monitoring platforms where continuous transactional updates, alert generation, and real-time analytical visualization must be processed efficiently while ensuring scalable and responsive user interaction.
+
+
+
+%========================================================
+\subsection[Data Visualization and Monitoring Dashboards]{\textbf{Data Visualization and Monitoring Dashboards}}
+%========================================================
+
+Understanding the theoretical aspects of data visualization is important for analyzing large volumes of financial transactions and interpreting suspicious transactional behavior within real-time monitoring systems. Visualization of analytical outputs enables financial institutions and compliance analysts to identify fraud patterns, transaction anomalies, risk distributions, and suspicious entity relationships more efficiently when compared with conventional tabular analysis methods. Interactive monitoring dashboards further improve situational awareness by enabling continuous observation of fraud alerts, transaction flows, and compliance activities without interrupting real-time analytical processes.
+
+This work conceptualizes financial monitoring and fraud visualization through a web-based dashboard architecture developed using modern frontend technologies and analytical visualization frameworks:
+
+\begin{itemize}
+
+\item \textbf{Nextjs} is employed as the frontend framework for developing responsive and modular user interface components capable of supporting scalable financial monitoring applications.
+
+\item \textbf{Recharts} is utilized for visualizing transactional analytics, fraud classifications, risk score distributions, and temporal financial trends through interactive line graphs, bar charts, pie charts, and statistical dashboards.
+
+\item \textbf{Role-based dashboard interfaces} enable controlled access to monitoring functionalities, fraud investigation workflows, Suspicious Transaction Report (STR) generation, and real-time alert visualization according to user privileges and institutional responsibilities.
+
+\item \textbf{Interactive analytical panels} support continuous monitoring of suspicious activities, transaction histories, and fraud prediction results generated by intelligent detection systems operating within the platform.
+
+\end{itemize}
+
+Modern visualization systems additionally support notification mechanisms, analytical filtering, and export functionalities that assist investigators and compliance officers in conducting financial analysis and generating compliance reports for further examination. The detailed implementation and integration of these visualization technologies within the proposed TBML detection framework are discussed further in the system implementation chapter.
+
+
+\section*{Summary}
+
+In this chapter, the theoretical foundations required for understanding the proposed Trade-Based Money Laundering detection framework were presented. The chapter began with an introduction to Trade-Based Money Laundering mechanisms and common laundering techniques, establishing the financial and transactional context in which illicit fund movement occurs within international trade ecosystems.
+
+The chapter further explored the challenges associated with detecting suspicious trade activities using conventional Anti-Money Laundering approaches. Concepts related to graph-based financial modeling, heterogeneous graph representation, Graph Neural Networks, Graph Attention mechanisms, and federated learning were discussed to provide the analytical and computational foundation required for intelligent and privacy-preserving fraud detection systems.
+
+Finally, the chapter introduced the concepts associated with modern financial monitoring interfaces, reactive web architectures, and real-time data visualization systems used for fraud analytics and compliance monitoring. The theoretical concepts discussed throughout this chapter provide the foundation for understanding the system architecture, implementation methodologies, and analytical workflows presented in the subsequent chapters.
