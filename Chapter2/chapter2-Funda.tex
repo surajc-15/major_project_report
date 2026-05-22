@@ -517,6 +517,201 @@ Despite its advantages, LSTM also has certain limitations:
 
 
 
+\section{Federated Learning}
+
+Federated Learning (FL) is a decentralized machine learning paradigm that enables multiple devices or organizations to collaboratively train a shared machine learning model without directly exchanging their raw data. Instead of transferring sensitive information to a centralized server, each participating client performs training locally on its own dataset and only shares model parameters such as weights and gradients with a central aggregation server. The server then combines these locally trained models to generate a global model that benefits from the collective knowledge of all participating clients.
+
+The primary objective of FL is to preserve data privacy while still enabling collaborative intelligence across distributed systems. This approach is especially beneficial in domains where sensitive information cannot be centrally stored due to privacy, legal, or organizational constraints. Unlike traditional distributed learning, where local datasets are assumed to be independent and identically distributed (i.i.d.) and approximately equal in size, FL operates effectively even when the datasets are heterogeneous, non-i.i.d., and unevenly distributed among clients.
+
+Another major distinction between federated learning and conventional distributed learning lies in the reliability and capability of participating nodes. In distributed learning, nodes are typically high-performance datacenters connected through high-speed communication networks. In contrast, FL environments commonly consist of mobile devices, IoT sensors, edge devices, or organizational servers that may have limited computational power, unstable network connectivity, and energy constraints. Consequently, federated systems must handle issues such as client dropouts, communication delays, and varying hardware capabilities.
+
+\subsection{Introduction}
+
+Artificial Intelligence (AI) and Machine Learning (ML) technologies have experienced tremendous growth in recent years due to advancements in computational resources, availability of large-scale datasets, and improvements in deep learning algorithms. These technologies are now widely used in domains such as healthcare, banking, cybersecurity, transportation, e-commerce, smart homes, and financial monitoring systems. However, the rapid growth of machine learning applications has also introduced major concerns related to data privacy, security, and regulatory compliance.
+
+Traditional machine learning systems generally rely on centralized training approaches where data collected from multiple users, institutions, or organizations is transferred to a centralized cloud server for model training. Although centralized learning often provides high model performance, it poses significant risks when handling sensitive and confidential information. In financial sectors, particularly in Trade-Based Money Laundering (TBML) detection systems, organizations such as banks, customs departments, shipping agencies, and financial institutions possess highly sensitive trade transaction records, invoice data, customer information, and cross-border payment details. Sharing such information with a centralized server may violate regulatory policies and expose organizations to security threats, financial fraud, and data breaches.
+
+Federated Learning provides an effective solution to these challenges by enabling collaborative model training without requiring direct sharing of raw trade data. In a TBML detection environment, each participating institution trains a local machine learning model using its own transaction datasets, suspicious trade patterns, invoice records, and customer activity logs. Instead of sending raw data to a central server, only the locally trained model parameters are shared with the aggregation server. The central server combines the local model updates to create a global model capable of identifying complex money laundering activities across multiple organizations while maintaining data confidentiality.
+
+FL has significantly improved privacy-preserving machine learning by ensuring that sensitive financial and trade-related information remains within the organization’s local infrastructure. This decentralized learning approach reduces the risks associated with centralized data storage and supports compliance with strict financial regulations and data protection laws such as GDPR, HIPAA, AML (Anti-Money Laundering) guidelines, and international financial monitoring standards.
+
+In the context of TBML, federated learning enables multiple banks and financial institutions to collaboratively detect suspicious trade activities such as:
+\begin{itemize}
+    \item Over-invoicing and under-invoicing of goods
+    \item Multiple invoicing fraud
+    \item Phantom shipments
+    \item Trade diversion schemes
+    \item Misrepresentation of product values
+    \item Abnormal cross-border transaction patterns
+\end{itemize}
+
+Since money laundering activities often span across multiple countries and organizations, no single institution possesses sufficient data to identify all fraudulent patterns independently. FL allows these institutions to benefit from collective intelligence while ensuring that confidential customer and transaction data never leaves their local systems.
+
+The overview of Federated Learning is shown in Fig.~\ref{fig:fl_overview}. An FL system generally consists of three primary stakeholders:
+\begin{enumerate}
+    \item The system owner or central learning coordinator
+    \item Contributor clients that locally train models using private datasets
+    \item User clients that utilize the final global model for prediction and analysis
+\end{enumerate}
+
+The hardware infrastructure of FL systems mainly includes:
+\begin{enumerate}
+    \item Central aggregation servers
+    \item Client devices or organizational servers
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/FL_0.png}
+    \caption{General Outlook of Federated Learning}
+    \label{fig:fl_overview}
+\end{figure}
+\textit{Source: Adapted from ``Principles and Components of Federated Learning Architectures" 
+\href{https://arxiv.org/html/2502.05273v1}{Arxiv}."}
+
+Google originally introduced the concept of Federated Learning in 2016 through its Gboard mobile keyboard application, where multiple Android devices collaboratively improved typing prediction models without sharing private user text data. Since then, FL has emerged as a powerful paradigm for privacy-preserving collaborative learning across multiple industries.
+
+In the field of Trade-Based Money Laundering detection, FL can revolutionize financial fraud analysis by enabling collaborative anomaly detection across banks, customs agencies, insurance companies, and regulatory authorities. Financial institutions can jointly train machine learning models to detect suspicious trading behavior, shell company activities, invoice manipulation, and hidden financial transactions while preserving customer confidentiality and organizational privacy.
+
+Federated Learning also provides substantial advantages in terms of communication efficiency and bandwidth optimization. Instead of continuously transferring massive financial datasets to centralized servers, only compact model updates are communicated between clients and the central server. This significantly reduces network overhead and operational costs while maintaining effective collaborative learning.
+
+Furthermore, FL supports regulatory compliance requirements in highly sensitive financial domains. Many countries enforce strict regulations that prevent cross-border sharing of customer financial information. Federated Learning addresses this challenge by allowing organizations to participate in global model training without exposing confidential transactional data.
+
+The fundamental operation of Federated Learning is based on two key processes:
+\begin{enumerate}
+    \item Local model training on client devices or institutional servers
+    \item Global model aggregation at the central server
+\end{enumerate}
+
+Each client trains a local model using its private dataset and periodically sends only the learned parameters to the aggregation server. The server combines the updates received from all participating clients using aggregation algorithms such as Federated Averaging (FedAvg) to generate an improved global model. This iterative training process continues until the model achieves satisfactory performance.
+
+The general workflow of Federated Learning is illustrated in Fig.~\ref{fig:fl_workflow}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/FL_1.png}
+    \caption{Federated Learning Workflows}
+    \label{fig:fl_workflow}
+\end{figure}
+
+Although Federated Learning provides major advantages in privacy preservation, communication efficiency, and collaborative intelligence, it also introduces several challenges. These include communication delays, heterogeneous client datasets, non-i.i.d. data distributions, client failures, model poisoning attacks, and secure aggregation complexities. Despite these challenges, FL remains one of the most promising approaches for secure and privacy-aware machine learning in financial fraud detection systems such as Trade-Based Money Laundering analysis.
+
+\subsection{Working of Federated Learning}
+
+The iterative process of Federated Learning is composed of a sequence of client-server interactions known as \textit{federated learning rounds}. In each round, the current global model is transmitted to selected client nodes, local training is performed independently on local datasets, and the generated local model updates are then aggregated to create an improved global model. This process continues iteratively until the desired model performance or convergence criteria are achieved.
+
+In a standard Federated Learning environment, a central server coordinates the training process while local client devices or organizational servers perform local computations based on the instructions provided by the central server. However, alternative decentralized approaches also exist where clients communicate directly with one another using peer-to-peer communication, gossip protocols, or consensus-based methodologies without relying on a centralized coordinator.
+
+Assuming one federated round corresponds to a single iteration of the collaborative learning process, the overall Federated Learning workflow can be summarized as follows.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/FL_2.png}
+    \caption{Federated Learning General Process in Central Orchestrator Setup}
+    \label{fig:fl_general_process}
+\end{figure}
+
+\textit{Source: Adapted from ``Federated Learning" 
+\href{https://en.wikipedia.org/wiki/Federated_learning}{Wikipedia}."}
+
+\begin{enumerate}
+    \item \textbf{Initialization:} \\
+    Based on the server requirements, an appropriate machine learning model such as linear regression, logistic regression, decision trees, neural networks, or boosting algorithms is selected and initialized. The client nodes are then activated and prepared to receive training instructions from the central server. In the context of Trade-Based Money Laundering (TBML), this initial model may be designed to detect suspicious trade transactions, abnormal invoice values, shell company activities, or hidden financial patterns.
+
+    \item \textbf{Client Selection:} \\
+    During each federated learning round, only a subset of participating clients is selected for training. The selected nodes receive the latest global model parameters from the server while the remaining clients remain idle until future rounds. In TBML systems, selected clients may include banks, customs agencies, financial institutions, shipping companies, or trade monitoring authorities that possess relevant transactional datasets.
+
+    \item \textbf{Configuration:} \\
+    The central server configures the local training process by specifying training parameters such as batch size, number of local epochs, learning rate, optimization method, and communication intervals. Each selected client then trains the received global model locally using its private datasets without sharing any raw transactional or customer information externally.
+
+    \item \textbf{Reporting and Aggregation:} \\
+    After completing local training, each client transmits only the trained model parameters or gradients to the central aggregation server. The server aggregates the received local models using algorithms such as Federated Averaging (FedAvg) to generate an updated global model. The server also manages issues such as disconnected clients, delayed updates, or failed communications before initiating the next federated round.
+
+    The Federated Averaging process can be mathematically represented as:
+
+    :contentReference[oaicite:0]{index=0}
+
+    where:
+    \begin{itemize}
+        \item $w_{t+1}$ represents the updated global model,
+        \item $w_k^{(t+1)}$ represents the locally trained model of client $k$,
+        \item $n_k$ represents the number of training samples at client $k$,
+        \item $n$ represents the total number of training samples across all clients.
+    \end{itemize}
+
+    \item \textbf{Termination:} \\
+    The federated training process continues iteratively until a predefined stopping criterion is satisfied. Common termination conditions include reaching a maximum number of communication rounds, achieving a target accuracy level, minimizing loss values, or obtaining stable model convergence. Once the training process is completed, the final aggregated model is deployed for prediction and analysis tasks.
+\end{enumerate}
+
+The workflow described above assumes synchronized model updates, where all participating clients complete local training before aggregation occurs. However, recent developments in Federated Learning have introduced asynchronous training approaches to address communication delays and varying computational capabilities among clients.
+
+In asynchronous Federated Learning, clients can send model updates independently without waiting for all other clients to complete training. This approach significantly improves scalability and efficiency in large-scale distributed environments. Furthermore, advanced techniques such as \textit{Split Learning} divide neural network computations across clients and servers, enabling intermediate neural network layers to be processed separately while reducing computational and communication overhead. Split learning can be applied during both training and inference phases in centralized as well as decentralized FL architectures.
+
+In Trade-Based Money Laundering detection systems, asynchronous FL is highly beneficial because participating institutions may operate in different geographical regions, possess different computational resources, and experience varying communication delays. The flexibility of asynchronous training allows continuous collaborative learning without requiring strict synchronization among all participating organizations.
+
+\subsection{Advantages of Federated Learning}
+
+Federated Learning provides several significant advantages over traditional centralized machine learning approaches, particularly in domains involving highly sensitive information such as Trade-Based Money Laundering detection, healthcare, finance, and cybersecurity.
+
+\begin{enumerate}
+    \item \textbf{Enhanced Data Privacy and Security:} \\
+    Since raw data never leaves the local client devices or organizational servers, sensitive trade records, customer information, financial transactions, and invoice details remain protected within institutional boundaries. This significantly reduces the risks of data leakage and unauthorized access.
+
+    \item \textbf{Regulatory Compliance:} \\
+    FL supports compliance with strict data protection regulations such as GDPR, HIPAA, AML guidelines, and financial privacy laws by eliminating the need for centralized storage of confidential data.
+
+    \item \textbf{Collaborative Intelligence Without Data Sharing:} \\
+    Multiple organizations can collaboratively build highly accurate machine learning models without directly exchanging sensitive information. In TBML systems, banks and financial institutions can jointly detect hidden laundering patterns while preserving customer confidentiality.
+
+    \item \textbf{Reduced Communication of Raw Data:} \\
+    Instead of transferring massive datasets across networks, only compact model parameters or gradients are exchanged between clients and the central server. This reduces network traffic and minimizes data transmission overhead.
+
+    \item \textbf{Scalability:} \\
+    Federated Learning can efficiently support a large number of distributed devices and organizations across geographically diverse environments.
+
+    \item \textbf{Improved Model Generalization:} \\
+    Since the global model learns from diverse datasets collected from multiple organizations and environments, it often achieves better generalization and robustness against unseen data patterns.
+
+    \item \textbf{Real-Time Learning at the Edge:} \\
+    FL enables continuous local learning on edge devices such as smartphones, IoT devices, and institutional servers without requiring permanent centralized connectivity.
+\end{enumerate}
+
+\subsection{Limitations of Federated Learning}
+
+Despite its advantages, Federated Learning also introduces several technical, statistical, and operational challenges.
+
+Federated Learning requires frequent communication between client nodes and the central server during the learning process. Therefore, it demands sufficient local computational power, memory capacity, and high-bandwidth communication networks to efficiently exchange machine learning model parameters. Although FL avoids transmitting raw datasets, the repeated exchange of model updates can still impose significant communication overhead, especially in large-scale systems.
+
+In practical environments, many participating devices such as smartphones, IoT devices, and edge systems are communication-constrained and often connected through unstable wireless networks such as Wi-Fi or mobile data connections. Consequently, standard FL mechanisms may not always be suitable without optimization techniques such as model compression, asynchronous communication, or adaptive client selection.
+
+Federated Learning also raises several important statistical and operational challenges:
+
+\begin{itemize}
+    \item \textbf{Data Heterogeneity:} Different clients may possess datasets with varying distributions, biases, and sizes, resulting in non-independent and non-identically distributed (non-i.i.d.) data.
+
+    \item \textbf{Temporal Heterogeneity:} The statistical distribution of local datasets may change over time due to evolving user behavior, financial patterns, or operational conditions.
+
+    \item \textbf{Interoperability Requirements:} Participating organizations must ensure compatibility between their datasets, data formats, and feature representations.
+
+    \item \textbf{Data Maintenance and Curation:} Local datasets often require regular cleaning, labeling, and updating to maintain model quality.
+
+    \item \textbf{Security Threats and Backdoor Attacks:} Since raw training data remains hidden, malicious clients may inject poisoned model updates or backdoor attacks into the global model.
+
+    \item \textbf{Bias Detection Challenges:} The absence of centralized access to training data makes it difficult to identify and mitigate hidden biases related to age, gender, location, or demographic factors.
+
+    \item \textbf{Node Failures and Communication Loss:} Partial or complete failure of participating clients can result in missing model updates and unstable global model convergence.
+
+    \item \textbf{Lack of Labeled Data:} Some clients may not possess properly annotated or labeled datasets, affecting local model quality.
+
+    \item \textbf{Heterogeneous Hardware Platforms:} Different client devices may have varying computational capabilities, operating systems, memory limitations, and processing speeds, complicating synchronized training.
+
+    \item \textbf{Complex Coordination Mechanisms:} Efficient coordination between multiple distributed clients and aggregation servers requires sophisticated communication and synchronization protocols.
+\end{itemize}
+
+Although Federated Learning presents several challenges, continuous advancements in secure aggregation, communication optimization, differential privacy, and decentralized learning architectures are rapidly improving the practicality and effectiveness of FL systems for large-scale real-world applications such as Trade-Based Money Laundering detection.
+
+
+
 
 
 %========================================================
