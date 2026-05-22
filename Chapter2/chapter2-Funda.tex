@@ -3,7 +3,7 @@
 Developing an intelligent framework for Trade-Based Money Laundering detection requires a strong foundation in financial crime analysis, graph theory, and machine learning techniques. This chapter presents the fundamental concepts associated with Trade-Based Money Laundering, Graph Neural Networks, Graph Attention mechanisms, heterogeneous graph representation, and federated learning. The chapter further discusses the computational principles involved in relational transaction modeling, privacy-preserving learning, and real-time fraud analytics. These concepts collectively form the theoretical foundation for the proposed fraud detection framework.
 
 %========================================================
-\section[Trade-Based Money Laundering (TBML)]{\textbf{Trade-Based Money Laundering (TBML)}}
+\section[Trade-Based Money Laundering ]{\textbf{Trade-Based Money Laundering }}
 %========================================================
 
 \gls{tbml} is a sophisticated form of financial crime in which illicit funds are transferred and concealed through seemingly legitimate international trade activities. Unlike conventional laundering methods that primarily depend on direct financial transactions, TBML exploits import-export systems, trade invoices, shipping documents, and cross-border commercial operations to disguise the movement of illegal funds. Due to the increasing implementation of strict \gls{aml} regulations and \gls{kyc} policies, criminal organizations have increasingly shifted toward trade-oriented laundering mechanisms that are comparatively difficult to detect using traditional monitoring systems.
@@ -38,11 +38,56 @@ In many TBML operations, colluding buyers and sellers intentionally manipulate t
 
 Figure~\ref{fig:tbml_cycle} illustrates a typical Trade-Based Money Laundering workflow involving collusion between exporters and importers across different jurisdictions.
 
+%========================================================
+\subsection[Common Techniques Used in TBML]{\textbf{Common Techniques Used in TBML}}
+%========================================================
+
+Trade-Based Money Laundering activities are generally performed through the manipulation of trade documentation, shipment details, pricing structures, and financial transactions associated with international trade operations. Criminal organizations exploit the complexity of global trade ecosystems to transfer illicit value across borders while making the transactions appear legitimate. Several laundering techniques are commonly used within modern trade systems to disguise the movement of illegal funds and avoid detection from financial monitoring authorities.
+
+%========================================================
+\subsubsection[Over Invoicing]{\textbf{Over Invoicing}}
+%========================================================
+
+Over invoicing is a laundering technique in which the value of exported or imported goods is intentionally declared higher than the actual market value. In this process, the buyer transfers an inflated payment amount to the seller, allowing excess funds to be moved across borders under the appearance of legitimate trade transactions. Criminal organizations use this technique to transfer illicit financial assets while avoiding suspicion from conventional banking systems.
+
+%========================================================
+\subsubsection[Under Invoicing]{\textbf{Under Invoicing}}
+%========================================================
+
+Under invoicing involves declaring a lower value for traded goods when compared to their actual market price. This technique allows the buyer or seller to secretly transfer additional financial value outside formal banking channels. Under invoicing is commonly used to evade taxes, conceal illegal profits, and facilitate hidden movement of illicit assets across jurisdictions.
+
+%========================================================
+\subsubsection[Multiple Invoicing]{\textbf{Multiple Invoicing}}
+%========================================================
+
+Multiple invoicing refers to the repeated use of the same trade invoice to justify several financial transactions for a single shipment of goods. By duplicating invoices across multiple banking channels or financial institutions, criminal entities can move large amounts of illicit funds while creating the appearance of legitimate trade payments. Detecting such duplicated transactional behavior is challenging in traditional rule-based monitoring systems.
+
+%========================================================
+\subsubsection[Phantom Shipments]{\textbf{Phantom Shipments}}
+%========================================================
+
+Phantom shipment laundering occurs when financial transactions are conducted for goods that are never actually shipped or delivered. Fraudulent trade documentation and fabricated shipping records are used to create the illusion of legitimate trade activity while transferring illicit funds between colluding entities. Since no physical goods are exchanged, identifying phantom shipment activities requires strong transactional verification and relational analysis mechanisms.
+
+%========================================================
+\subsubsection[Misrepresentation of Goods]{\textbf{Misrepresentation of Goods}}
+%========================================================
+
+Misrepresentation of goods involves intentionally providing false descriptions regarding the type, quantity, quality, or category of traded products within commercial documents and invoices. Criminal organizations use this technique to manipulate trade valuations and conceal suspicious financial activities under legitimate business transactions. Such inconsistencies are difficult to identify using isolated transactional analysis methods due to the large volume and diversity of international trade operations.
+
+%========================================================
+\subsection[Challenges in Detecting TBML]{\textbf{Challenges in Detecting TBML}}
+%========================================================
+
+Detecting \gls{tbml} activities is highly challenging due to the complexity and interconnected nature of modern international trade ecosystems. Unlike conventional financial fraud, TBML transactions are often embedded within legitimate commercial operations, making suspicious activities difficult to distinguish from regular trade behavior. Criminal organizations exploit multiple jurisdictions, shell companies, intermediaries, and layered transactional structures to conceal the movement of illicit funds within normal trade systems.
+
+Traditional \gls{aml} systems primarily depend on rule-based monitoring approaches and isolated transactional analysis techniques. Although these systems are capable of identifying predefined suspicious patterns, they often fail to capture hidden relational dependencies among entities involved in large-scale trade networks. The increasing volume of cross-border financial transactions and evolving laundering strategies further reduce the effectiveness of conventional fraud detection mechanisms.
+
+Another major challenge involves institutional privacy and regulatory compliance constraints associated with financial data sharing. Many organizations are unable to directly exchange sensitive transactional information due to confidentiality policies and legal restrictions. Consequently, modern TBML detection systems require intelligent, scalable, and privacy-preserving analytical frameworks capable of modeling complex financial relationships while supporting real-time fraud detection within large trade ecosystems.
 \section{Algorithms Used}
 If a specific programming language is required for the project, a section can be allotted in this chapter to discuss it. 
 \section{Federated Learning}
 Tools used could be another possible section to discuss about the software tools used in the work. 
-\section{Contents of this chapter}
+\section{User Interface}
 The details in this chapter can be added in consultation with the project guide. For an internship based projects, subsections can be modified accordingly. 
 
 \section{Use of Acronyms and Glossaries}
