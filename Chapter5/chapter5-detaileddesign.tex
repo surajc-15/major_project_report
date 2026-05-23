@@ -7,6 +7,19 @@ The detailed design of the proposed TBML detection framework focuses on the inte
 %========================================================
 \section[Structure Chart]{\textbf{Structure Chart}}
 %========================================================
+The structure chart of the proposed TBML detection framework illustrates the hierarchical organization of the major functional modules operating within the system. The framework is divided into frontend, backend, fraud detection, federated learning, database, and compliance layers to support scalable financial monitoring and intelligent fraud analysis within distributed Anti-Money Laundering environments.
+
+The frontend layer provides dashboard interfaces, transaction monitoring services, risk visualization, and STR management functionalities for institutional users. Backend services coordinate API communication, transaction processing, authentication workflows, and access control operations between frontend interfaces and analytical modules. The fraud detection layer incorporates Hybrid HGNN--LSTM components responsible for graph-based analysis, temporal transaction modeling, feature fusion, and risk classification.
+
+The federated learning layer enables privacy-preserving collaborative model training and global model synchronization between participating institutions. Database services manage transactional storage, graph relationships, audit logs, and compliance-related records, while the compliance layer supports STR generation, regulatory reporting, email notifications, and monitoring operations. The overall structural organization of the proposed TBML detection framework is illustrated in Figure~\ref{fig:structure_chart}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.95\textheight]{Figures/tbml_final_academic_structure_chart.png}
+    \caption{Structure Chart of the Proposed TBML Detection Framework}
+    \label{fig:structure_chart}
+\end{figure}
+
+The structure chart illustrates the modular organization and interaction between analytical, monitoring, storage, and compliance-oriented services within the proposed framework. This modular design approach improves scalability, maintainability, service integration, and efficient coordination between frontend interfaces, backend analytical services, and distributed fraud detection environments.
 
 
 %========================================================
@@ -42,7 +55,24 @@ The detailed design of the proposed TBML detection framework focuses on the inte
 \subsection[Dashboard and Monitoring Module]{\textbf{Dashboard and Monitoring Module}}
 %========================================================
 
+%========================================================
+\section[Sequence Diagram for TBML Detection Workflow]{\textbf{Sequence Diagram for TBML Detection Workflow}}
+%========================================================
 
+The sequence diagram illustrates the dynamic interaction between the major system components involved in transaction monitoring, graph-based fraud analysis, federated learning, and compliance alert generation within the proposed TBML detection framework. The workflow begins when the monitoring dashboard initiates a transaction monitoring request through the banking environment. Transaction events are streamed and forwarded to the graph construction module where heterogeneous graph structures and analytical features are generated for fraud analysis.
+
+The generated graph data is processed by the Hybrid HGNN--LSTM analytical model to perform graph representation learning and temporal transaction analysis. Local model updates generated during training are transmitted to the federated learning server where global aggregation and model synchronization are performed using federated averaging mechanisms. The updated global model is subsequently utilized by the detection engine to perform fraud inference, generate risk classifications, and identify suspicious transactional behavior.
+
+Once suspicious activity is detected, the STR and notification service generates compliance reports and triggers alert notifications for institutional monitoring environments. The overall interaction flow between the major components of the proposed TBML detection framework is illustrated in Figure~\ref{fig:sequence_diagram}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/sequencediagram.png}
+    \caption{Sequence Diagram for TBML Detection Workflow}
+    \label{fig:sequence_diagram}
+\end{figure}
+
+The sequence diagram demonstrates the coordinated interaction between frontend interfaces, transaction streaming services, analytical modules, federated learning environments, and compliance reporting systems operating within the proposed framework. Such coordinated workflows enable scalable real-time fraud detection, privacy-preserving collaborative learning, and efficient Anti-Money Laundering monitoring operations.
 %========================================================
 \section[Database Schema Design]{\textbf{Database Schema Design}}
 %========================================================
