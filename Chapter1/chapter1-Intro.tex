@@ -115,8 +115,10 @@ The proposed work aims to overcome these limitations by developing a Federated H
 \section[Problem Statement]{\textbf{Problem Statement}}
 %========================================================
 
-Existing Anti-Money Laundering (AML) systems primarily rely on rule-based monitoring and isolated transactional analysis, making them ineffective in detecting complex Trade-Based Money Laundering (TBML) activities and hidden financial relationships. In addition, privacy and regulatory constraints restrict collaborative fraud detection across financial institutions. Therefore, there is a need for a scalable and privacy-preserving framework capable of modeling interconnected financial data and accurately identifying suspicious transactional behavior in real time.
+Existing AML systems rely on rule-based monitoring and isolated transaction analysis, limiting their ability to detect complex Trade-Based Money Laundering (TBML) and hidden financial networks. Privacy and regulatory constraints further hinder collaborative fraud detection across institutions. Hence, a scalable and privacy-preserving framework is needed to model interconnected financial data and detect suspicious activities in real time.
 
+
+\vspace{0.4cm}
 \section[Objectives]{\textbf{Objectives}}
 
 The objectives of the project are
@@ -140,30 +142,128 @@ Graph Attention-based learning mechanisms are employed to capture hidden relatio
 
 \vspace{0.4cm}
 
-\begin{figure}[H]
+\begin{figure}[!t]
 \centering
-
-\IfFileExists{./Figures/methodology.png}
-{
-    \includegraphics[
-        width=\textwidth,
-        height=0.8\textheight,
-        keepaspectratio
-    ]{./Figures/methodology.png}
-}
-{
-    \fbox{
-        \parbox[c][0.8\textheight][c]{0.95\textwidth}{
-            \centering
-            \Large Methodology Diagram Placeholder
-        }
+\resizebox{0.92\columnwidth}{!}{
+\begin{tikzpicture}[
+    node distance=0.7cm,
+    >=Stealth,
+    thick,
+    workflow/.style={
+        draw,
+        rounded corners=5pt,
+        minimum width=9.2cm,
+        minimum height=1.7cm,
+        align=center,
+        font=\small,
+        line width=0.7pt,
+        fill=gray!3,
+        inner sep=6pt
     }
-}
+]
 
+% ==========================================================
+% DATA INGESTION
+% ==========================================================
+\node[workflow] (kafka) {
+\textbf{Real-Time Stream Ingestion} \\[3pt]
+\footnotesize
+Continuous ingestion of heterogeneous financial transaction metadata \\ 
+and trade documentation via distributed Apache Kafka pipelines.
+};
+
+% ==========================================================
+% GRAPH PROJECTION
+% ==========================================================
+\node[workflow, below=of kafka] (memgraph) {
+\textbf{Stateful Heterogeneous Graph Projection} \\[3pt]
+\footnotesize
+Dynamic mapping of financial entities and directed relationships into \\ 
+a stateful Memgraph database using Cypher-based query logic.
+};
+
+% ==========================================================
+% SUBGRAPH EXTRACTION
+% ==========================================================
+\node[workflow, below=of memgraph] (ego) {
+\textbf{Localized Multi-Hop Subgraph Extraction} \\[3pt]
+\footnotesize
+Extraction of targeted 3-hop transactional ego-graphs for capturing \\ 
+higher-order dependencies and intermediary laundering paths.
+};
+
+% ==========================================================
+% INFERENCE
+% ==========================================================
+\node[workflow, below=of ego] (hgnn) {
+\textbf{Multimodal Hybrid Model Inference} \\[3pt]
+\footnotesize
+Late-fusion of GATv2 structural embeddings, LSTM temporal behavioral \\ 
+patterns, and MLP-based tabular trade feature representations.
+};
+
+% ==========================================================
+% FEDERATED LEARNING
+% ==========================================================
+\node[workflow, below=of hgnn] (fed) {
+\textbf{Federated Collaborative Optimization} \\[3pt]
+\footnotesize
+Decentralized model training using the FedAvg strategy to enable \\ 
+global intelligence sharing without exposing sensitive local data.
+};
+
+% ==========================================================
+% AUDIT LOGGING
+% ==========================================================
+\node[workflow, below=of fed] (audit) {
+\textbf{Relational Persistence and Compliance Audit} \\[3pt]
+\footnotesize
+Storage of high-fidelity risk scores and automated STR metadata in \\ 
+PostgreSQL for regulatory reporting and audit traceability.
+};
+
+% ==========================================================
+% CONNECTIONS
+% ==========================================================
+\draw[->] (kafka) -- (memgraph);
+\draw[->] (memgraph) -- (ego);
+\draw[->] (ego) -- (hgnn);
+\draw[->] (hgnn) -- (fed);
+\draw[->] (fed) -- (audit);
+
+\end{tikzpicture}
+}
 \caption{Proposed Methodology for TBML Detection}
 \label{fig:methodology}
-
 \end{figure}
+
+
+
+
+% \begin{figure}[H]
+% \centering
+
+% \IfFileExists{./Figures/methodology.png}
+% {
+%     \includegraphics[
+%         width=\textwidth,
+%         height=0.8\textheight,
+%         keepaspectratio
+%     ]{./Figures/methodology.png}
+% }
+% {
+%     \fbox{
+%         \parbox[c][0.8\textheight][c]{0.95\textwidth}{
+%             \centering
+%             \Large Methodology Diagram Placeholder
+%         }
+%     }
+% }
+
+% \caption{Proposed Methodology for TBML Detection}
+% \label{fig:methodology}
+
+% \end{figure}
 
 %========================================================
 \section[Assumptions and Constraints of the Work]{\textbf{Assumptions and Constraints of the Work}}
