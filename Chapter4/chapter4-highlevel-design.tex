@@ -1,0 +1,112 @@
+%========================================================
+\chapter{High Level Design}
+%========================================================
+The design of the proposed Trade-Based Money Laundering detection framework focuses on developing a scalable, privacy-preserving, and intelligent financial monitoring system capable of analyzing complex transactional relationships within large-scale trade ecosystems. Since modern TBML activities involve interconnected financial entities, cross-border transactions, and evolving laundering strategies, the proposed framework integrates graph-based analytical models, federated learning mechanisms, and real-time monitoring services to support efficient fraud detection and compliance management. This chapter presents the major design considerations, architectural strategies, overall system architecture, and data flow mechanisms associated with the proposed fraud detection framework.
+%========================================================
+\section[Design Considerations]{\textbf{Design Considerations}}
+%========================================================
+
+The design of the proposed TBML detection framework is influenced by multiple operational, analytical, and security-related factors associated with large-scale financial monitoring systems. Since Trade-Based Money Laundering activities involve interconnected financial entities, cross-border transactions, and hidden transactional dependencies, the system architecture must support scalable analytical processing, secure institutional collaboration, and efficient graph-based fraud analysis. The major design considerations associated with the proposed framework are discussed in the following subsections.
+
+
+%========================================================
+\subsection[General Considerations]{\textbf{General Considerations}}
+%========================================================
+
+The proposed framework is designed to support intelligent monitoring and analysis of large-scale financial transactions within distributed institutional environments. Since suspicious laundering activities often involve interconnected accounts, organizations, invoices, and transactional relationships, the system utilizes graph-based representation mechanisms to model hidden financial dependencies more effectively than conventional relational approaches. The framework additionally supports real-time transaction processing and scalable analytical operations to manage continuously growing financial datasets.
+
+Security and privacy preservation also represent important considerations within the proposed system architecture. Financial institutions operate under strict regulatory policies that restrict unauthorized access and direct sharing of sensitive transactional information. Consequently, the framework incorporates secure authentication mechanisms, role-based access control, and federated learning strategies to support protected institutional collaboration and privacy-preserving fraud analysis.
+
+The system is additionally designed using a modular architecture to simplify integration, maintenance, and future scalability of analytical services. Independent modules associated with transaction monitoring, graph construction, fraud detection, compliance reporting, and dashboard visualization operate collaboratively within the overall monitoring framework while maintaining architectural flexibility for future enhancements.
+
+
+%========================================================
+\subsection[Development Methods]{\textbf{Development Methods}}
+%========================================================
+
+The proposed TBML detection framework is developed using a modular and iterative development methodology to support scalable system integration and continuous refinement of analytical functionalities. Individual system components including transaction monitoring services, graph construction pipelines, fraud detection models, federated learning environments, and dashboard interfaces are developed and tested independently before integration within the complete monitoring framework.
+
+The development process additionally incorporates incremental model evaluation and experimental refinement to improve fraud detection performance and analytical reliability. Graph-based machine learning models are trained using processed transactional datasets, while frontend and backend services are integrated through API-based communication mechanisms to support real-time interaction between monitoring modules and analytical services.
+
+Version control and collaborative development practices are utilized throughout the implementation process to manage backend services, machine learning workflows, frontend interfaces, and analytical configurations efficiently. This modular development methodology simplifies debugging, testing, maintenance, and future enhancement of the proposed fraud detection framework.
+
+%========================================================
+\section[Architectural Strategies]{\textbf{Architectural Strategies}}
+%========================================================
+
+The architectural strategies adopted in the proposed TBML detection framework focus on supporting scalable financial transaction analysis, secure institutional collaboration, and efficient interaction between analytical services and monitoring interfaces. The framework integrates graph-based fraud detection models, backend analytical services, real-time dashboards, and distributed learning mechanisms within a unified monitoring environment. The major architectural strategies associated with the proposed framework are discussed in the following subsections.
+
+
+%========================================================
+\subsection[Programming Language]{\textbf{Programming Language}}
+%========================================================
+
+The proposed TBML detection framework primarily utilizes Python for backend services, graph processing, machine learning workflows, and analytical computations. Python was selected due to its extensive support for deep learning libraries, graph analytical frameworks, and federated learning environments. Libraries such as PyTorch, PyTorch Geometric, and Flower are utilized for implementing graph neural network models and distributed learning mechanisms within the fraud detection framework.
+
+The frontend monitoring dashboard is developed using Next.js and React.js to support responsive user interface development and real-time analytical visualization. JavaScript and TypeScript are utilized for implementing dashboard components, transaction monitoring interfaces, and compliance management services. FastAPI is additionally integrated to support API-based communication between frontend dashboards, backend services, and machine learning modules.
+
+
+%========================================================
+\subsection[System Integration Architecture]{\textbf{System Integration Architecture}}
+%========================================================
+
+The proposed framework follows a modular client-server and service-oriented integration architecture to support coordinated interaction between analytical modules, backend services, and frontend monitoring interfaces. The fraud detection models, transaction monitoring services, authentication modules, and compliance reporting components operate as independent services while maintaining synchronized communication through backend APIs and shared database environments.
+
+The machine learning modules responsible for graph processing and fraud prediction operate independently from the frontend monitoring dashboard. Processed fraud predictions, transaction classifications, and generated Suspicious Transaction Reports are synchronized through backend services to support real-time visualization and compliance management within the monitoring environment. This modular integration strategy simplifies scalability, maintenance, and future extension of the proposed framework.
+
+
+%========================================================
+\subsection[Data Storage Management]{\textbf{Data Storage Management}}
+%========================================================
+
+The proposed TBML detection framework utilizes both relational and graph-based database systems to support efficient financial data management and analytical processing. PostgreSQL is utilized for storing structured transactional records, authentication information, compliance-related data, and generated Suspicious Transaction Reports. The relational database environment supports secure storage and efficient retrieval of operational monitoring information within the framework.
+
+Memgraph is utilized as the graph database environment for storing interconnected financial entities and transactional relationships. Accounts, organizations, invoices, and transactions are represented as graph nodes and edges to support relational fraud analysis and graph neural network processing. The combined relational and graph-based storage strategy improves scalability, analytical flexibility, and efficient synchronization between backend analytical services and monitoring dashboards.
+
+%========================================================
+\section[Overall System Architecture]{\textbf{Overall System Architecture}}
+%========================================================
+
+The overall architecture of the proposed TBML detection framework is designed to support intelligent financial transaction monitoring, graph-based fraud analysis, federated learning, and automated compliance reporting within distributed institutional environments. The framework integrates transaction processing services, heterogeneous graph construction mechanisms, machine learning-based fraud detection modules, and real-time monitoring interfaces to identify suspicious transactional relationships associated with Trade-Based Money Laundering activities.
+
+The architecture begins with multiple input sources including banking systems, trade systems, and external financial data providers. Raw transactional records, trade-related documents, KYC information, and institutional monitoring logs are initially processed within the transaction processing module. This stage performs data ingestion, validation, cleansing, normalization, and structured event generation to prepare the data for analytical processing.
+
+The processed data is subsequently transformed into heterogeneous graph structures within the graph construction module. Financial entities such as accounts, organizations, invoices, and transactions are represented as interconnected nodes and edges to capture hidden financial dependencies and suspicious transactional patterns. The generated graph structures consist of node features, edge relationships, and connectivity information required for graph-based machine learning operations.
+
+The fraud detection layer incorporates a Hybrid Graph Neural Network branch for relational analysis and a temporal learning branch for capturing sequential transaction behavior. These analytical modules process graph structures and institutional transaction sequences to learn complex laundering patterns associated with suspicious activities. The outputs generated from these models are combined to improve fraud representation learning and transaction risk prediction accuracy.
+
+To preserve institutional privacy and regulatory compliance, the framework integrates a federated learning environment in which participating institutions perform localized model training without directly sharing sensitive financial information. Local model updates generated within institutional environments are transmitted to the global aggregation module, where the updates are combined to construct an improved global fraud detection model while maintaining privacy-preserving collaborative learning.
+
+The updated global model is utilized within the inference and risk scoring module to classify suspicious transactions and generate fraud risk scores. Transactions identified as potentially suspicious are forwarded to the compliance management environment for alert generation, Suspicious Transaction Report creation, and regulatory integration support. The overall architecture of the proposed TBML detection framework is illustrated in Figure~\ref{fig:overall_architecture}.
+
+\begin{figure}[H]
+    \centering
+    \fbox{
+        \includegraphics[width=0.98\textwidth]{Figures/overall_architecture.jpg}
+    }
+    \caption{Overall Architecture of the Proposed TBML Detection Framework}
+    \label{fig:overall_architecture}
+\end{figure}
+
+%========================================================
+\section[Data Flow Diagrams]{\textbf{Data Flow Diagrams}}
+%========================================================
+
+%========================================================
+\subsection[Data Flow Diagram Level 0]{\textbf{Data Flow Diagram Level 0}}
+%========================================================
+
+
+%========================================================
+\subsection[Data Flow Diagram Level 1]{\textbf{Data Flow Diagram Level 1}}
+%========================================================
+
+
+%========================================================
+\subsection[Data Flow Diagram Level 2]{\textbf{Data Flow Diagram Level 2}}
+%========================================================
+
+
+%========================================================
+\section*{Summary}
+%========================================================
