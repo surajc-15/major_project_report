@@ -86,38 +86,19 @@ Another major challenge involves institutional privacy and regulatory compliance
 
 
 \section{Algorithms Used}
+This section presents the major algorithms and deep learning techniques used in the proposed system for traffic prediction and autonomous vehicle navigation. The project combines graph-based learning and sequential modeling approaches to effectively analyze complex traffic patterns and temporal dependencies. Graph Attention Network v2 (GATv2) is utilized to capture spatial relationships between connected road networks through dynamic attention mechanisms, while Long Short-Term Memory (LSTM) is employed to learn temporal traffic variations and long-term sequential dependencies. Together, these algorithms improve traffic prediction accuracy, congestion analysis, and intelligent decision-making within the proposed framework.
+
 \subsection{Graph Attention Network v2 (GATv2)}
+
+Graph Attention Network v2 (GATv2) is a Graph Neural Network (GNN) architecture that uses a dynamic attention mechanism to learn relationships between connected nodes in graph data. It improves feature aggregation by automatically identifying the importance of neighboring nodes. GATv2 is widely used in applications such as traffic prediction, recommendation systems, and autonomous vehicle navigation.
 
 \subsubsection{Introduction}
 
-Graph Attention Network v2 (GATv2) is an advanced Graph Neural Network (GNN) architecture designed to improve the attention mechanism used in graph-based deep learning models. It was introduced as an enhancement over the original Graph Attention Network (GAT) to overcome the limitation of static attention and provide a more expressive and dynamic way of learning relationships between nodes in a graph.
-
-GATv2 enables the model to automatically determine the importance of neighboring nodes while updating node representations. This makes it highly effective for applications such as:
-
-\begin{itemize}
-    \item Traffic prediction
-    \item Social network analysis
-    \item Recommendation systems
-    \item Molecular property prediction
-    \item Fraud detection
-    \item Autonomous vehicle navigation
-\end{itemize}
-
-Unlike traditional neural networks that work on Euclidean data such as images or sequences, GATv2 is specifically designed to process graph-structured data where relationships between entities are represented as nodes and edges.
+Graph Attention Network v2 (GATv2) is an advanced Graph Neural Network (GNN) architecture designed for learning on graph-structured data using a dynamic attention mechanism. It improves upon the original GAT model by overcoming the limitation of static attention and enabling better learning of relationships between connected nodes. GATv2 automatically identifies the importance of neighboring nodes during feature aggregation, making it highly effective for applications such as traffic prediction, recommendation systems, social network analysis, fraud detection, and autonomous vehicle navigation.
 
 \subsubsection{Fundamental Concept of GATv2}
 
-The primary objective of GATv2 is to learn node embeddings by aggregating information from neighboring nodes using an attention mechanism.
-
-For a node \(i\), the model computes:
-
-\begin{enumerate}
-    \item Which neighboring nodes are important
-    \item How much importance each neighbor should receive
-    \item A weighted combination of neighboring features
-\end{enumerate}
-
-This process allows the network to dynamically focus on the most relevant neighbors.
+The primary objective of GATv2 is to generate node embeddings by aggregating information from neighboring nodes using a dynamic attention mechanism. For each node, the model learns which neighboring nodes are important and assigns suitable attention weights before combining their features.
 
 \subsubsection{Architecture and Working of GATv2}
 
@@ -130,102 +111,61 @@ The overall architecture and workflow of GATv2 are shown in Figure 1.1.
     \label{fig:gatv2_architecture}
 \end{figure}
 
-The architecture of GATv2 consists of multiple stages including input graph processing, feature transformation, attention computation, normalization, neighbor aggregation, multi-head attention, and prediction generation. Each stage plays a significant role in learning effective graph representations.
+The architecture of GATv2 consists of graph input processing, feature transformation, attention computation, normalization, neighbor aggregation, multi-head attention, and prediction generation.
 
-\paragraph{Step 1: Input Graph}
+\paragraph{Step 1: Input Graph:}
 
-The process begins with a graph consisting of nodes, edges, and node feature vectors. Each node contains a feature vector representing its properties.
-
-Mathematically, the node feature vector is represented as:
+The process begins with a graph containing nodes, edges, and node feature vectors. Each node feature vector is represented as:
 
 \[
 h_i \in \mathbb{R}^{F}
 \]
 
-where:
-\begin{itemize}
-    \item \(h_i\) represents the feature vector of node \(i\)
-    \item \(F\) represents the number of input features
-\end{itemize}
+where \(h_i\) denotes the feature vector of node \(i\) and \(F\) represents the number of input features. In traffic prediction systems, nodes may represent road intersections while edges represent road connectivity.
 
-In traffic prediction systems, nodes may represent road intersections while edges represent road connectivity. Features may include traffic density, vehicle speed, congestion level, and signal timing information.
+\paragraph{Step 2: Linear Transformation:}
 
-\paragraph{Step 2: Linear Transformation}
-
-The input node features are transformed using a learnable weight matrix to extract higher-level representations.
+The input node features are transformed using a learnable weight matrix:
 
 \[
 z_i = Wh_i
 \]
 
-where:
-\begin{itemize}
-    \item \(W\) is the learnable weight matrix
-    \item \(h_i\) is the original node feature
-    \item \(z_i\) is the transformed feature representation
-\end{itemize}
+where \(W\) is the learnable weight matrix and \(z_i\) is the transformed feature representation. This transformation improves feature learning before attention computation.
 
-This transformation helps the network learn useful combinations of input features and improves feature representation before attention computation.
+\paragraph{Step 3: Attention Score Computation:}
 
-\paragraph{Step 3: Attention Score Computation}
-
-The attention mechanism is the core component of GATv2. For every connected pair of nodes \((i,j)\), the model computes an attention score representing the importance of neighboring node \(j\) to node \(i\).
-
-The attention mechanism is given by:
+For every connected node pair \((i,j)\), the attention score is computed as:
 
 \[
 e_{ij}=a^{T}\text{LeakyReLU}\left(W[h_i \Vert h_j]\right)
 \]
 
-where:
-\begin{itemize}
-    \item \(h_i\) and \(h_j\) are node feature vectors
-    \item \([h_i \Vert h_j]\) represents concatenation
-    \item \(W\) is the learnable weight matrix
-    \item \(a\) is the learnable attention vector
-    \item \(e_{ij}\) is the unnormalized attention score
-\end{itemize}
+where \(a\) is the learnable attention vector and \(e_{ij}\) represents the attention score between neighboring nodes.
 
-This mechanism dynamically determines the importance of neighboring nodes.
+\paragraph{Step 4: Softmax Normalization:}
 
-\paragraph{Step 4: Softmax Normalization}
-
-The attention scores are normalized using the softmax function to convert them into probability values.
+The attention scores are normalized using the softmax function:
 
 \[
 \alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k \in \mathcal{N}(i)} \exp(e_{ik})}
 \]
 
-where:
-\begin{itemize}
-    \item \(\alpha_{ij}\) is the normalized attention coefficient
-    \item \(\mathcal{N}(i)\) represents the neighboring nodes of node \(i\)
-\end{itemize}
+where \(\alpha_{ij}\) denotes the normalized attention coefficient and \(\mathcal{N}(i)\) represents the neighboring nodes of node \(i\).
 
-This normalization ensures that the attention coefficients sum to 1 and represent the relative importance of neighboring nodes.
+\paragraph{Step 5: Neighbor Aggregation:}
 
-\paragraph{Step 5: Neighbor Aggregation}
-
-The neighboring node features are aggregated using weighted summation based on the attention coefficients.
+The neighboring node features are aggregated using weighted summation:
 
 \[
 h_i^{\prime} = \sum_{j \in \mathcal{N}(i)} \alpha_{ij}Wh_j
 \]
 
-where:
-\begin{itemize}
-    \item \(h_i^{\prime}\) is the updated node representation
-    \item \(\alpha_{ij}\) is the attention coefficient
-    \item \(Wh_j\) is the transformed neighboring feature
-\end{itemize}
+where \(h_i^{\prime}\) is the updated node representation.
 
-This step allows important neighbors to contribute more significantly to the updated node embedding.
+\paragraph{Step 6: Multi-Head Attention:}
 
-\paragraph{Step 6: Multi-Head Attention}
-
-GATv2 uses multiple attention heads operating in parallel. Each attention head learns different relationships and feature interactions within the graph.
-
-The multi-head attention mechanism is represented as:
+GATv2 employs multiple attention heads operating in parallel:
 
 \[
 h_i^{\prime} =
@@ -237,79 +177,37 @@ h_i^{\prime} =
 \right)
 \]
 
-where:
-\begin{itemize}
-    \item \(K\) is the number of attention heads
-    \item \(\sigma\) is the activation function
-    \item \(\Vert\) denotes concatenation
-\end{itemize}
+where \(K\) represents the number of attention heads and \(\Vert\) denotes concatenation. Multi-head attention improves representation learning and robustness.
 
-Multi-head attention improves learning capability by capturing multiple feature relationships simultaneously.
+\paragraph{Step 7: Output Layer and Prediction:}
 
-\paragraph{Step 7: Output Layer and Prediction}
-
-The final node embeddings generated by the attention layers are passed to the output layer for downstream tasks such as:
-\begin{itemize}
-    \item Node classification
-    \item Graph classification
-    \item Link prediction
-    \item Regression tasks
-\end{itemize}
-
-The learned node embeddings contain rich structural and semantic information that helps improve prediction accuracy.
+The final node embeddings are passed to the output layer for tasks such as node classification, graph classification, link prediction, and regression.
 
 \subsubsection{Advantages of GATv2}
 
-The major advantages of GATv2 are as follows:
-
-\begin{itemize}
-    \item Dynamic attention mechanism enables adaptive neighbor importance learning.
-    
-    \item Improved expressiveness compared to the original GAT architecture.
-    
-    \item Automatically identifies important neighboring nodes without manual feature engineering.
-    
-    \item Multi-head attention improves robustness and representation learning.
-    
-    \item Performs effectively on irregular graph-structured data.
-    
-    \item Suitable for applications such as traffic prediction, recommendation systems, and autonomous navigation.
-\end{itemize}
+GATv2 provides a dynamic attention mechanism that improves feature aggregation and representation learning compared to the original GAT architecture. It automatically identifies important neighboring nodes, performs effectively on irregular graph data, and improves robustness through multi-head attention, making it highly suitable for traffic prediction and autonomous navigation applications.
 
 \subsubsection{Limitations of GATv2}
 
-Despite its advantages, GATv2 also has certain limitations:
+Despite its advantages, GATv2 requires high computational and memory resources due to attention computations on large graphs. Training time increases with graph size, and deep GATv2 architectures may suffer from over-smoothing and scalability issues for extremely large datasets.
 
-\begin{itemize}
-    \item Computational complexity increases for large-scale graphs.
-    
-    \item Requires higher memory consumption due to attention computations.
-    
-    \item Training time increases with the number of nodes and edges.
-    
-    \item Deep GATv2 architectures may suffer from over-smoothing problems.
-    
-    \item Scalability becomes challenging for extremely large graph datasets.
-\end{itemize}
 \subsubsection{GATv2 vs GAT}
 
-Graph Attention Network v2 (GATv2) was introduced as an improvement over the original Graph Attention Network (GAT) to overcome the limitation of static attention mechanisms. Although both architectures use attention-based aggregation for graph representation learning, GATv2 provides a more expressive and dynamic attention mechanism.
+Graph Attention Network v2 (GATv2) was introduced as an improvement over the original Graph Attention Network (GAT) to overcome the limitation of static attention mechanisms. While both architectures use attention-based aggregation for graph representation learning, GATv2 provides a more expressive and adaptive attention mechanism.
 
-In the original GAT architecture, the ranking of neighboring nodes becomes fixed after the linear transformation step. This limitation reduces the flexibility of the model in learning complex relationships between nodes. The attention mechanism in GAT is given by:
+In the original GAT architecture, the attention mechanism is defined as:
 
 \[
 e_{ij} = \text{LeakyReLU}\left(a^{T}[Wh_i \Vert Wh_j]\right)
 \]
 
-In GATv2, the order of operations is modified to make the attention mechanism dynamic and more expressive:
+In GATv2, the order of operations is modified as:
 
 \[
 e_{ij}=a^{T}\text{LeakyReLU}\left(W[h_i \Vert h_j]\right)
 \]
 
-This modification enables the attention scores to depend dynamically on both source and neighboring nodes, allowing the model to learn more meaningful node relationships.
-
-The major differences between GAT and GATv2 are summarized in Table \ref{tab:gat_vs_gatv2}.
+This modification allows the attention scores to dynamically depend on both source and neighboring nodes, improving feature interaction learning and representation capability.
 
 \begin{table}[H]
 \centering
@@ -321,288 +219,140 @@ The major differences between GAT and GATv2 are summarized in Table \ref{tab:gat
 \hline
 Attention Type & Static Attention & Dynamic Attention \\
 \hline
-Neighbor Ranking & Fixed after transformation & Changes dynamically based on node context \\
+Neighbor Ranking & Fixed & Context-dependent \\
 \hline
 Expressiveness & Limited & More expressive \\
 \hline
-Feature Interaction & Moderate & Improved feature interaction learning \\
+Flexibility & Lower & Higher \\
 \hline
-Learning Capability & Lower compared to GATv2 & Better representation learning \\
-\hline
-Performance & Good & Improved performance on many graph tasks \\
-\hline
-Flexibility & Less flexible & More adaptive and flexible \\
+Performance & Good & Improved on many graph tasks \\
 \hline
 \end{tabular}
 \end{table}
 
-GATv2 is preferred over GAT because it provides a more powerful and adaptive attention mechanism capable of learning complex graph relationships more effectively. The dynamic attention mechanism allows the model to assign different importance values to neighboring nodes depending on the context of the current node. This improves feature aggregation, representation learning, and prediction accuracy.
-
-Due to these advantages, GATv2 is widely preferred in modern graph-based applications such as traffic prediction, autonomous vehicle navigation, recommendation systems, and social network analysis.
-
+GATv2 is preferred over GAT because its dynamic attention mechanism enables better learning of complex graph relationships, resulting in improved feature aggregation, representation learning, and prediction accuracy in graph-based applications.
 
 \subsection{Long Short-Term Memory (LSTM)}
 
 \subsubsection{Introduction to LSTM}
 
-Shortly after the first Elman-style Recurrent Neural Networks (RNNs) were trained using backpropagation, researchers observed a major limitation in learning long-term dependencies. This problem mainly occurred because of:
+Long Short-Term Memory (LSTM) is an advanced Recurrent Neural Network (RNN) architecture designed to learn long-term dependencies in sequential data. It was introduced to overcome the vanishing gradient problem faced by traditional RNNs through the use of memory cells and gating mechanisms. LSTM can selectively remember, update, and forget information, making it highly effective for applications such as traffic prediction, speech recognition, natural language processing, and time-series forecasting.
 
-\begin{itemize}
-    \item Vanishing gradients
-    \item Exploding gradients
-\end{itemize}
+\subsubsection{Fundamental Concept of LSTM}
 
-Although gradient clipping could help reduce exploding gradients, handling vanishing gradients required a more advanced solution. To solve this issue, Hochreiter and Schmidhuber introduced the Long Short-Term Memory (LSTM) architecture in 1997.
+The primary objective of LSTM is to preserve important sequential information over long time intervals using memory cells and gating mechanisms. The architecture controls information flow through input, forget, and output gates, enabling efficient learning of temporal dependencies.
 
-Unlike standard RNNs, where each recurrent node simply passes information to the next time step, LSTMs introduce a special structure called a memory cell. This memory cell maintains an internal state that allows information to persist over many time steps without vanishing.
+\subsubsection{Architecture and Working of LSTM}
 
-The key idea behind LSTM is the ability to:
-
-\begin{itemize}
-    \item Remember important information
-    \item Forget irrelevant information
-    \item Control the flow of information through gates
-\end{itemize}
-
-This enables LSTMs to learn long-term sequential dependencies effectively.
-
-\subsubsection{Gated Memory Cell}
-
-Each memory cell is equipped with an internal state and a number of multiplicative gates that determine whether:
-\begin{enumerate}
-    \item A given input should impact the internal state (the input gate),
-    \item The internal state should be flushed to 0 (the forget gate), and
-    \item The internal state of a given neuron should be allowed to impact the cell’s output (the output gate).
-\end{enumerate}
-
-\subsubsection{Gated Hidden State}
-
-The key distinction between vanilla RNNs and LSTMs is that the latter support gating of the hidden state. This means that we have dedicated mechanisms for when a hidden state should be updated and also for when it should be reset. These mechanisms are learned and they address the concerns listed above. For instance, if the first token is of great importance we will learn not to update the hidden state after the first observation. Likewise, we will learn to skip irrelevant temporary observations. Last, we will learn to reset the latent state whenever needed. We discuss this in detail below.
+The overall workflow of LSTM consists of gate computation, memory cell update, and hidden state generation.
 
 \subsubsection{Input Gate, Forget Gate, and Output Gate}
 
-The data feeding into the LSTM gates are the input at the current time step and the hidden state of the previous time step, as illustrated in Fig.~10.1.1. Three fully connected layers with sigmoid activation functions compute the values of the input, forget, and output gates. As a result of the sigmoid activation, all values of the three gates are in the range of $(0,1)$.
-
-Additionally, we require an input node, typically computed with a \texttt{tanh} activation function. Intuitively, the input gate determines how much of the input node’s value should be added to the current memory cell internal state. The forget gate determines whether to keep the current value of the memory or flush it. The output gate determines whether the memory cell should influence the output at the current time step.
+At each time step, the current input and previous hidden state are used to compute the input, forget, and output gates using sigmoid activation functions. These gates regulate information flow into and out of the memory cell.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{Figures/LSTM_0}
-    \caption{Computing the input gate, the forget gate, and the output gate in an LSTM model}
+    \includegraphics[width=0.65\textwidth]{Figures/LSTM_0}
+    \caption{Computing the input gate, forget gate, and output gate in an LSTM model}
     \label{fig:lstm_gates}
 \end{figure}
 
-Mathematically, suppose that there are $h$ hidden units, the batch size is $n$, and the number of inputs is $d$. Thus, the input is $\mathbf{X}_t \in \mathbb{R}^{n \times d}$ and the hidden state of the previous time step is $\mathbf{H}_{t-1} \in \mathbb{R}^{n \times h}$.
+The gates are mathematically represented as:
 
-Correspondingly, the gates at time step $t$ are defined as follows: the input gate is $\mathbf{I}_t \in \mathbb{R}^{n \times h}$, the forget gate is $\mathbf{F}_t \in \mathbb{R}^{n \times h}$, and the output gate is $\mathbf{O}_t \in \mathbb{R}^{n \times h}$. They are calculated as follows:
-
-\begin{equation}
+\[
 \begin{aligned}
-\mathbf{I}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{\textrm{xi}} + \mathbf{H}_{t-1} \mathbf{W}_{\textrm{hi}} + \mathbf{b}_{\textrm{i}}),\\
-\mathbf{F}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{\textrm{xf}} + \mathbf{H}_{t-1} \mathbf{W}_{\textrm{hf}} + \mathbf{b}_{\textrm{f}}),\\
-\mathbf{O}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{\textrm{xo}} + \mathbf{H}_{t-1} \mathbf{W}_{\textrm{ho}} + \mathbf{b}_{\textrm{o}})
+\mathbf{I}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{xi} + \mathbf{H}_{t-1}\mathbf{W}_{hi} + \mathbf{b}_i)\\
+\mathbf{F}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{xf} + \mathbf{H}_{t-1}\mathbf{W}_{hf} + \mathbf{b}_f)\\
+\mathbf{O}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{xo} + \mathbf{H}_{t-1}\mathbf{W}_{ho} + \mathbf{b}_o)
 \end{aligned}
-\end{equation}
+\]
 
-where $\mathbf{W}_{\textrm{xi}}, \mathbf{W}_{\textrm{xf}}, \mathbf{W}_{\textrm{xo}} \in \mathbb{R}^{d \times h}$ and $\mathbf{W}_{\textrm{hi}}, \mathbf{W}_{\textrm{hf}}, \mathbf{W}_{\textrm{ho}} \in \mathbb{R}^{h \times h}$ are weight parameters and $\mathbf{b}_{\textrm{i}}, \mathbf{b}_{\textrm{f}}, \mathbf{b}_{\textrm{o}} \in \mathbb{R}^{1 \times h}$ are bias parameters.
-
-Note that broadcasting is triggered during the summation. We use sigmoid functions to map the input values to the interval $(0,1)$.
+where \(\mathbf{I}_t\), \(\mathbf{F}_t\), and \(\mathbf{O}_t\) represent the input, forget, and output gates respectively, while \(\mathbf{X}_t\) and \(\mathbf{H}_{t-1}\) denote the current input and previous hidden state.
 
 \subsubsection{Input Node}
 
-Next we design the memory cell. Since we have not specified the action of the various gates yet, we first introduce the input node $\tilde{\mathbf{C}}_t \in \mathbb{R}^{n \times h}$. Its computation is similar to that of the three gates described above, but uses a \texttt{tanh} function with a value range for $(-1,1)$ as the activation function. This leads to the following equation at time step $t$:
+The candidate memory information is computed using the \texttt{tanh} activation function as:
 
-\begin{equation}
-\tilde{\mathbf{C}}_t = \textrm{tanh}(\mathbf{X}_t \mathbf{W}_{\textrm{xc}} + \mathbf{H}_{t-1} \mathbf{W}_{\textrm{hc}} + \mathbf{b}_{\textrm{c}})
-\end{equation}
+\[
+\tilde{\mathbf{C}}_t = \tanh(\mathbf{X}_t\mathbf{W}_{xc} + \mathbf{H}_{t-1}\mathbf{W}_{hc} + \mathbf{b}_c)
+\]
 
-where $\mathbf{W}_{\textrm{xc}} \in \mathbb{R}^{d \times h}$ and $\mathbf{W}_{\textrm{hc}} \in \mathbb{R}^{h \times h}$ are weight parameters and $\mathbf{b}_{\textrm{c}} \in \mathbb{R}^{1 \times h}$ is a bias parameter.
-
-A quick illustration of the input node is shown in Fig.~10.1.2.
+where \(\tilde{\mathbf{C}}_t\) represents the candidate memory state.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{Figures/LSTM_1}
+    \includegraphics[width=0.65\textwidth]{Figures/LSTM_1}
     \caption{Computing the input node in an LSTM model}
     \label{fig:lstm_input_node}
 \end{figure}
 
 \subsubsection{Memory Cell Internal State}
 
-In LSTMs, the input gate $\mathbf{I}_t$ governs how much we take new data into account via $\tilde{\mathbf{C}}_t$ and the forget gate $\mathbf{F}_t$ addresses how much of the old cell internal state $\mathbf{C}_{t-1} \in \mathbb{R}^{n \times h}$ we retain. Using the Hadamard (elementwise) product operator $\odot$ we arrive at the following update equation:
+The memory cell state is updated using the forget gate and input gate as:
 
-\begin{equation}
+\[
 \mathbf{C}_t = \mathbf{F}_t \odot \mathbf{C}_{t-1} + \mathbf{I}_t \odot \tilde{\mathbf{C}}_t
-\end{equation}
+\]
 
-If the forget gate is always 1 and the input gate is always 0, the memory cell internal state $\mathbf{C}_{t-1}$ will remain constant forever, passing unchanged to each subsequent time step. However, input gates and forget gates give the model the flexibility of being able to learn when to keep this value unchanged and when to perturb it in response to subsequent inputs.
-
-In practice, this design alleviates the vanishing gradient problem, resulting in models that are much easier to train, especially when facing datasets with long sequence lengths.
-
-We thus arrive at the flow diagram in Fig.~10.1.3.
+where \(\mathbf{C}_t\) represents the updated memory cell state and \(\odot\) denotes element-wise multiplication. This mechanism helps preserve important long-term information while discarding irrelevant data.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{Figures/LSTM_2}
+    \includegraphics[width=0.65\textwidth]{Figures/LSTM_2}
     \caption{Computing the memory cell internal state in an LSTM model}
     \label{fig:lstm_memory_cell}
 \end{figure}
 
 \subsubsection{Hidden State}
 
-Last, we need to define how to compute the output of the memory cell, i.e., the hidden state $\mathbf{H}_t \in \mathbb{R}^{n \times h}$, as seen by other layers. This is where the output gate comes into play.
+The hidden state output is computed as:
 
-In LSTMs, we first apply \texttt{tanh} to the memory cell internal state and then apply another point-wise multiplication, this time with the output gate. This ensures that the values of $\mathbf{H}_t$ are always in the interval $(-1,1)$:
-
-\begin{equation}
+\[
 \mathbf{H}_t = \mathbf{O}_t \odot \tanh(\mathbf{C}_t)
-\end{equation}
+\]
 
-Whenever the output gate is close to 1, we allow the memory cell internal state to impact the subsequent layers uninhibited, whereas for output gate values close to 0, we prevent the current memory from impacting other layers of the network at the current time step.
-
-Note that a memory cell can accrue information across many time steps without impacting the rest of the network (as long as the output gate takes values close to 0), and then suddenly impact the network at a subsequent time step as soon as the output gate flips from values close to 0 to values close to 1.
-
-Fig.~10.1.4 has a graphical illustration of the data flow.
+where \(\mathbf{H}_t\) represents the hidden state at time step \(t\). The output gate controls how much information from the memory cell is passed to the next layer.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{Figures/LSTM_3}
+    \includegraphics[width=0.65\textwidth]{Figures/LSTM_3}
     \caption{Computing the hidden state in an LSTM model}
     \label{fig:lstm_hidden_state}
 \end{figure}
 
 \subsubsection{Advantages of LSTM}
 
-The major advantages of LSTM are as follows:
-
-\begin{itemize}
-    \item LSTM effectively solves the vanishing gradient problem faced by traditional Recurrent Neural Networks (RNNs).
-    
-    \item It can learn long-term dependencies and preserve information over extended sequence lengths.
-    
-    \item The gating mechanism enables selective memory retention and controlled information flow.
-    
-    \item LSTM performs well on sequential and time-series data.
-    
-    \item It is highly effective in applications such as natural language processing, speech recognition, machine translation, traffic prediction, and stock market forecasting.
-    
-    \item The memory cell architecture allows important information to persist across multiple time steps.
-    
-    \item LSTM networks are more stable and easier to train compared to vanilla RNNs.
-\end{itemize}
+LSTM effectively solves the vanishing gradient problem and learns long-term sequential dependencies using memory cells and gating mechanisms. It performs efficiently on sequential and time-series data and is widely used in applications such as traffic prediction, speech recognition, machine translation, and forecasting.
 
 \subsubsection{Limitations of LSTM}
 
-Despite its advantages, LSTM also has certain limitations:
+Despite its advantages, LSTM is computationally expensive due to multiple gates and memory operations. Training requires higher computational resources and longer execution time, and performance may decrease for extremely long sequences or insufficient training data.
 
-\begin{itemize}
-    \item LSTM networks are computationally expensive due to the presence of multiple gates and memory cells.
-    
-    \item Training LSTM models requires high computational power and longer training time.
-    
-    \item The architecture is more complex compared to traditional RNNs.
-    
-    \item LSTMs require a large amount of training data for better generalization.
-    
-    \item They may suffer from overfitting when trained on small datasets.
-    
-    \item Parallel processing is difficult because sequential data must be processed step-by-step.
-    
-    \item For extremely long sequences, performance may still degrade despite improved memory retention.
-\end{itemize}
-
-\textit{Source: Adapted from ``Dive into Deep Learning,Long Short-Term Memory \href{https://d2l.ai/chapter_recurrent-modern/lstm.html?utm_source=chatgpt.com}{(LSTM)}."}
-
-\vspace{0.3cm}
-
-
+\textit{Source: Adapted from ``Dive into Deep Learning, Long Short-Term Memory \href{https://d2l.ai/chapter_recurrent-modern/lstm.html?utm_source=chatgpt.com}{(LSTM)}."}
 
 \section{Federated Learning}
 
-Federated Learning (FL) is a decentralized machine learning paradigm that enables multiple devices or organizations to collaboratively train a shared machine learning model without directly exchanging their raw data. Instead of transferring sensitive information to a centralized server, each participating client performs training locally on its own dataset and only shares model parameters such as weights and gradients with a central aggregation server. The server then combines these locally trained models to generate a global model that benefits from the collective knowledge of all participating clients.
-
-The primary objective of FL is to preserve data privacy while still enabling collaborative intelligence across distributed systems. This approach is especially beneficial in domains where sensitive information cannot be centrally stored due to privacy, legal, or organizational constraints. Unlike traditional distributed learning, where local datasets are assumed to be independent and identically distributed (i.i.d.) and approximately equal in size, FL operates effectively even when the datasets are heterogeneous, non-i.i.d., and unevenly distributed among clients.
-
-Another major distinction between federated learning and conventional distributed learning lies in the reliability and capability of participating nodes. In distributed learning, nodes are typically high-performance datacenters connected through high-speed communication networks. In contrast, FL environments commonly consist of mobile devices, IoT sensors, edge devices, or organizational servers that may have limited computational power, unstable network connectivity, and energy constraints. Consequently, federated systems must handle issues such as client dropouts, communication delays, and varying hardware capabilities.
-
+Federated Learning (FL) is a decentralized machine learning approach where multiple devices or organizations collaboratively train a shared model without exchanging raw data. Each client performs local training on its own dataset and shares only model parameters with a central server, enabling privacy-preserving collaborative learning across distributed environments.
 \subsection{Introduction}
 
-Artificial Intelligence (AI) and Machine Learning (ML) technologies have experienced tremendous growth in recent years due to advancements in computational resources, availability of large-scale datasets, and improvements in deep learning algorithms. These technologies are now widely used in domains such as healthcare, banking, cybersecurity, transportation, e-commerce, smart homes, and financial monitoring systems. However, the rapid growth of machine learning applications has also introduced major concerns related to data privacy, security, and regulatory compliance.
+Traditional machine learning systems rely on centralized training, where data from multiple users or organizations is collected and stored on a central server for model development. Although effective, this approach raises significant concerns related to data privacy, security, and regulatory compliance. Federated Learning addresses these challenges by enabling collaborative model training without sharing confidential or sensitive data.
 
-Traditional machine learning systems generally rely on centralized training approaches where data collected from multiple users, institutions, or organizations is transferred to a centralized cloud server for model training. Although centralized learning often provides high model performance, it poses significant risks when handling sensitive and confidential information. In financial sectors, particularly in Trade-Based Money Laundering (TBML) detection systems, organizations such as banks, customs departments, shipping agencies, and financial institutions possess highly sensitive trade transaction records, invoice data, customer information, and cross-border payment details. Sharing such information with a centralized server may violate regulatory policies and expose organizations to security threats, financial fraud, and data breaches.
-
-Federated Learning provides an effective solution to these challenges by enabling collaborative model training without requiring direct sharing of raw trade data. In a TBML detection environment, each participating institution trains a local machine learning model using its own transaction datasets, suspicious trade patterns, invoice records, and customer activity logs. Instead of sending raw data to a central server, only the locally trained model parameters are shared with the aggregation server. The central server combines the local model updates to create a global model capable of identifying complex money laundering activities across multiple organizations while maintaining data confidentiality.
-
-FL has significantly improved privacy-preserving machine learning by ensuring that sensitive financial and trade-related information remains within the organization’s local infrastructure. This decentralized learning approach reduces the risks associated with centralized data storage and supports compliance with strict financial regulations and data protection laws such as GDPR, HIPAA, AML (Anti-Money Laundering) guidelines, and international financial monitoring standards.
-
-In the context of TBML, federated learning enables multiple banks and financial institutions to collaboratively detect suspicious trade activities such as:
-\begin{itemize}
-    \item Over-invoicing and under-invoicing of goods
-    \item Multiple invoicing fraud
-    \item Phantom shipments
-    \item Trade diversion schemes
-    \item Misrepresentation of product values
-    \item Abnormal cross-border transaction patterns
-\end{itemize}
-
-Since money laundering activities often span across multiple countries and organizations, no single institution possesses sufficient data to identify all fraudulent patterns independently. FL allows these institutions to benefit from collective intelligence while ensuring that confidential customer and transaction data never leaves their local systems.
-
-The overview of Federated Learning is shown in Fig.~\ref{fig:fl_overview}. An FL system generally consists of three primary stakeholders:
-\begin{enumerate}
-    \item The system owner or central learning coordinator
-    \item Contributor clients that locally train models using private datasets
-    \item User clients that utilize the final global model for prediction and analysis
-\end{enumerate}
-
-The hardware infrastructure of FL systems mainly includes:
-\begin{enumerate}
-    \item Central aggregation servers
-    \item Client devices or organizational servers
-\end{enumerate}
-
+In Trade-Based Money Laundering (TBML) detection systems, organizations such as banks and financial institutions can locally train models using transaction records and suspicious trade patterns while sharing only model parameters with a central server. Introduced by Google in 2016 for Gboard applications, Federated Learning has emerged as an important privacy-preserving approach for distributed machine learning systems.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{Figures/FL_0.png}
     \caption{General Outlook of Federated Learning}
     \label{fig:fl_overview}
 \end{figure}
+
 \textit{Source: Adapted from ``Principles and Components of Federated Learning Architectures" 
-\href{https://arxiv.org/html/2502.05273v1}{Arxiv}."}
+\href{https://arxiv.org/html/2502.05273v1}{Arxiv}.}
 
-Google originally introduced the concept of Federated Learning in 2016 through its Gboard mobile keyboard application, where multiple Android devices collaboratively improved typing prediction models without sharing private user text data. Since then, FL has emerged as a powerful paradigm for privacy-preserving collaborative learning across multiple industries.
-
-In the field of Trade-Based Money Laundering detection, FL can revolutionize financial fraud analysis by enabling collaborative anomaly detection across banks, customs agencies, insurance companies, and regulatory authorities. Financial institutions can jointly train machine learning models to detect suspicious trading behavior, shell company activities, invoice manipulation, and hidden financial transactions while preserving customer confidentiality and organizational privacy.
-
-Federated Learning also provides substantial advantages in terms of communication efficiency and bandwidth optimization. Instead of continuously transferring massive financial datasets to centralized servers, only compact model updates are communicated between clients and the central server. This significantly reduces network overhead and operational costs while maintaining effective collaborative learning.
-
-Furthermore, FL supports regulatory compliance requirements in highly sensitive financial domains. Many countries enforce strict regulations that prevent cross-border sharing of customer financial information. Federated Learning addresses this challenge by allowing organizations to participate in global model training without exposing confidential transactional data.
-
-The fundamental operation of Federated Learning is based on two key processes:
-\begin{enumerate}
-    \item Local model training on client devices or institutional servers
-    \item Global model aggregation at the central server
-\end{enumerate}
-
-Each client trains a local model using its private dataset and periodically sends only the learned parameters to the aggregation server. The server combines the updates received from all participating clients using aggregation algorithms such as Federated Averaging (FedAvg) to generate an improved global model. This iterative training process continues until the model achieves satisfactory performance.
-
-The general workflow of Federated Learning is illustrated in Fig.~\ref{fig:fl_workflow}.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{Figures/FL_1.png}
-    \caption{Federated Learning Workflows}
-    \label{fig:fl_workflow}
-\end{figure}
-
-Although Federated Learning provides major advantages in privacy preservation, communication efficiency, and collaborative intelligence, it also introduces several challenges. These include communication delays, heterogeneous client datasets, non-i.i.d. data distributions, client failures, model poisoning attacks, and secure aggregation complexities. Despite these challenges, FL remains one of the most promising approaches for secure and privacy-aware machine learning in financial fraud detection systems such as Trade-Based Money Laundering analysis.
+Federated Learning also reduces communication overhead because only compact model updates are exchanged instead of complete datasets. This makes FL suitable for large-scale distributed environments involving mobile devices, IoT systems, edge devices, and financial institutions.
 
 \subsection{Working of Federated Learning}
 
-The iterative process of Federated Learning is composed of a sequence of client-server interactions known as \textit{federated learning rounds}. In each round, the current global model is transmitted to selected client nodes, local training is performed independently on local datasets, and the generated local model updates are then aggregated to create an improved global model. This process continues iteratively until the desired model performance or convergence criteria are achieved.
-
-In a standard Federated Learning environment, a central server coordinates the training process while local client devices or organizational servers perform local computations based on the instructions provided by the central server. However, alternative decentralized approaches also exist where clients communicate directly with one another using peer-to-peer communication, gossip protocols, or consensus-based methodologies without relying on a centralized coordinator.
-
-Assuming one federated round corresponds to a single iteration of the collaborative learning process, the overall Federated Learning workflow can be summarized as follows.
+Federated Learning operates through iterative client-server interactions known as federated rounds. During each round, the central server distributes the current global model to selected clients, local training is performed independently on local datasets, and the updated model parameters are aggregated to generate an improved global model.
 
 \begin{figure}[H]
     \centering
@@ -612,106 +362,50 @@ Assuming one federated round corresponds to a single iteration of the collaborat
 \end{figure}
 
 \textit{Source: Adapted from ``Federated Learning" 
-\href{https://en.wikipedia.org/wiki/Federated_learning}{Wikipedia}."}
+\href{https://en.wikipedia.org/wiki/Federated_learning}{Wikipedia}.}
 
-\begin{enumerate}
-    \item \textbf{Initialization:} \\
-    Based on the server requirements, an appropriate machine learning model such as linear regression, logistic regression, decision trees, neural networks, or boosting algorithms is selected and initialized. The client nodes are then activated and prepared to receive training instructions from the central server. In the context of Trade-Based Money Laundering (TBML), this initial model may be designed to detect suspicious trade transactions, abnormal invoice values, shell company activities, or hidden financial patterns.
+\paragraph{Step 1: Initialization}
 
-    \item \textbf{Client Selection:} \\
-    During each federated learning round, only a subset of participating clients is selected for training. The selected nodes receive the latest global model parameters from the server while the remaining clients remain idle until future rounds. In TBML systems, selected clients may include banks, customs agencies, financial institutions, shipping companies, or trade monitoring authorities that possess relevant transactional datasets.
+An initial machine learning model is selected and initialized at the central server. Client devices or institutional servers are then prepared to participate in local training.
 
-    \item \textbf{Configuration:} \\
-    The central server configures the local training process by specifying training parameters such as batch size, number of local epochs, learning rate, optimization method, and communication intervals. Each selected client then trains the received global model locally using its private datasets without sharing any raw transactional or customer information externally.
+\paragraph{Step 2: Client Selection}
 
-    \item \textbf{Reporting and Aggregation:} \\
-    After completing local training, each client transmits only the trained model parameters or gradients to the central aggregation server. The server aggregates the received local models using algorithms such as Federated Averaging (FedAvg) to generate an updated global model. The server also manages issues such as disconnected clients, delayed updates, or failed communications before initiating the next federated round.
+During each federated round, only a subset of clients is selected for training. These clients receive the latest global model parameters from the server.
 
-    The Federated Averaging process can be mathematically represented as:
+\paragraph{Step 3: Local Training}
 
-    :contentReference[oaicite:0]{index=0}
+Each selected client trains the received model locally using its private dataset without sharing raw transactional or customer information.
 
-    where:
-    \begin{itemize}
-        \item $w_{t+1}$ represents the updated global model,
-        \item $w_k^{(t+1)}$ represents the locally trained model of client $k$,
-        \item $n_k$ represents the number of training samples at client $k$,
-        \item $n$ represents the total number of training samples across all clients.
-    \end{itemize}
+\paragraph{Step 4: Reporting and Aggregation}
 
-    \item \textbf{Termination:} \\
-    The federated training process continues iteratively until a predefined stopping criterion is satisfied. Common termination conditions include reaching a maximum number of communication rounds, achieving a target accuracy level, minimizing loss values, or obtaining stable model convergence. Once the training process is completed, the final aggregated model is deployed for prediction and analysis tasks.
-\end{enumerate}
+After local training, clients send only model parameters or gradients to the aggregation server. The server combines these updates using aggregation algorithms such as Federated Averaging (FedAvg).
 
-The workflow described above assumes synchronized model updates, where all participating clients complete local training before aggregation occurs. However, recent developments in Federated Learning have introduced asynchronous training approaches to address communication delays and varying computational capabilities among clients.
+The Federated Averaging process is represented as:
 
-In asynchronous Federated Learning, clients can send model updates independently without waiting for all other clients to complete training. This approach significantly improves scalability and efficiency in large-scale distributed environments. Furthermore, advanced techniques such as \textit{Split Learning} divide neural network computations across clients and servers, enabling intermediate neural network layers to be processed separately while reducing computational and communication overhead. Split learning can be applied during both training and inference phases in centralized as well as decentralized FL architectures.
+\[
+w_{t+1} = \sum_{k=1}^{K} \frac{n_k}{n} w_k^{(t+1)}
+\]
 
-In Trade-Based Money Laundering detection systems, asynchronous FL is highly beneficial because participating institutions may operate in different geographical regions, possess different computational resources, and experience varying communication delays. The flexibility of asynchronous training allows continuous collaborative learning without requiring strict synchronization among all participating organizations.
+where \(w_{t+1}\) represents the updated global model, \(w_k^{(t+1)}\) denotes the local model of client \(k\), \(n_k\) represents the number of training samples at client \(k\), and \(n\) denotes the total number of training samples across all clients.
+
+\paragraph{Step 5: Termination}
+
+The federated training process continues iteratively until the desired accuracy, convergence criteria, or maximum communication rounds are achieved.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/FL_1.png}
+    \caption{Federated Learning Workflows}
+    \label{fig:fl_workflow}
+\end{figure}
 
 \subsection{Advantages of Federated Learning}
 
-Federated Learning provides several significant advantages over traditional centralized machine learning approaches, particularly in domains involving highly sensitive information such as Trade-Based Money Laundering detection, healthcare, finance, and cybersecurity.
-
-\begin{enumerate}
-    \item \textbf{Enhanced Data Privacy and Security:} \\
-    Since raw data never leaves the local client devices or organizational servers, sensitive trade records, customer information, financial transactions, and invoice details remain protected within institutional boundaries. This significantly reduces the risks of data leakage and unauthorized access.
-
-    \item \textbf{Regulatory Compliance:} \\
-    FL supports compliance with strict data protection regulations such as GDPR, HIPAA, AML guidelines, and financial privacy laws by eliminating the need for centralized storage of confidential data.
-
-    \item \textbf{Collaborative Intelligence Without Data Sharing:} \\
-    Multiple organizations can collaboratively build highly accurate machine learning models without directly exchanging sensitive information. In TBML systems, banks and financial institutions can jointly detect hidden laundering patterns while preserving customer confidentiality.
-
-    \item \textbf{Reduced Communication of Raw Data:} \\
-    Instead of transferring massive datasets across networks, only compact model parameters or gradients are exchanged between clients and the central server. This reduces network traffic and minimizes data transmission overhead.
-
-    \item \textbf{Scalability:} \\
-    Federated Learning can efficiently support a large number of distributed devices and organizations across geographically diverse environments.
-
-    \item \textbf{Improved Model Generalization:} \\
-    Since the global model learns from diverse datasets collected from multiple organizations and environments, it often achieves better generalization and robustness against unseen data patterns.
-
-    \item \textbf{Real-Time Learning at the Edge:} \\
-    FL enables continuous local learning on edge devices such as smartphones, IoT devices, and institutional servers without requiring permanent centralized connectivity.
-\end{enumerate}
+Federated Learning improves data privacy and security by ensuring that raw data remains within local devices or organizations. It supports regulatory compliance, enables collaborative intelligence without direct data sharing, reduces communication overhead, and improves model generalization using diverse distributed datasets. FL is also scalable and supports real-time learning on edge devices and organizational servers.
 
 \subsection{Limitations of Federated Learning}
 
-Despite its advantages, Federated Learning also introduces several technical, statistical, and operational challenges.
-
-Federated Learning requires frequent communication between client nodes and the central server during the learning process. Therefore, it demands sufficient local computational power, memory capacity, and high-bandwidth communication networks to efficiently exchange machine learning model parameters. Although FL avoids transmitting raw datasets, the repeated exchange of model updates can still impose significant communication overhead, especially in large-scale systems.
-
-In practical environments, many participating devices such as smartphones, IoT devices, and edge systems are communication-constrained and often connected through unstable wireless networks such as Wi-Fi or mobile data connections. Consequently, standard FL mechanisms may not always be suitable without optimization techniques such as model compression, asynchronous communication, or adaptive client selection.
-
-Federated Learning also raises several important statistical and operational challenges:
-
-\begin{itemize}
-    \item \textbf{Data Heterogeneity:} Different clients may possess datasets with varying distributions, biases, and sizes, resulting in non-independent and non-identically distributed (non-i.i.d.) data.
-
-    \item \textbf{Temporal Heterogeneity:} The statistical distribution of local datasets may change over time due to evolving user behavior, financial patterns, or operational conditions.
-
-    \item \textbf{Interoperability Requirements:} Participating organizations must ensure compatibility between their datasets, data formats, and feature representations.
-
-    \item \textbf{Data Maintenance and Curation:} Local datasets often require regular cleaning, labeling, and updating to maintain model quality.
-
-    \item \textbf{Security Threats and Backdoor Attacks:} Since raw training data remains hidden, malicious clients may inject poisoned model updates or backdoor attacks into the global model.
-
-    \item \textbf{Bias Detection Challenges:} The absence of centralized access to training data makes it difficult to identify and mitigate hidden biases related to age, gender, location, or demographic factors.
-
-    \item \textbf{Node Failures and Communication Loss:} Partial or complete failure of participating clients can result in missing model updates and unstable global model convergence.
-
-    \item \textbf{Lack of Labeled Data:} Some clients may not possess properly annotated or labeled datasets, affecting local model quality.
-
-    \item \textbf{Heterogeneous Hardware Platforms:} Different client devices may have varying computational capabilities, operating systems, memory limitations, and processing speeds, complicating synchronized training.
-
-    \item \textbf{Complex Coordination Mechanisms:} Efficient coordination between multiple distributed clients and aggregation servers requires sophisticated communication and synchronization protocols.
-\end{itemize}
-
-Although Federated Learning presents several challenges, continuous advancements in secure aggregation, communication optimization, differential privacy, and decentralized learning architectures are rapidly improving the practicality and effectiveness of FL systems for large-scale real-world applications such as Trade-Based Money Laundering detection.
-
-
-
+Despite its advantages, Federated Learning introduces challenges such as communication delays, high computational requirements, non-i.i.d. data distributions, client failures, synchronization issues, and security threats such as model poisoning and backdoor attacks. Variations in client hardware capabilities and unstable network connections can also affect training efficiency and global model convergence.
 
 
 %========================================================

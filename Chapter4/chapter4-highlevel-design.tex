@@ -92,21 +92,51 @@ The updated global model is utilized within the inference and risk scoring modul
 \section[Data Flow Diagrams]{\textbf{Data Flow Diagrams}}
 %========================================================
 
+A Data Flow Diagram (DFD) is a graphical representation used to illustrate the movement of data within a system and the interactions between processes, external entities, and data repositories. DFDs provide a structured visualization of how information enters, is processed, stored, and transferred throughout a system architecture. In the proposed Federated Heterogeneous Graph Neural Network (HGNN)-Based Trade-Based Money Laundering (TBML) Detection System, DFDs are utilized to model the overall workflow of transaction acquisition, graph construction, federated learning, fraud analysis, and alert generation. The hierarchical decomposition of the system into Level 0, Level 1, and Level 2 diagrams enables a detailed understanding of the operational flow, subsystem interactions, and data processing mechanisms involved in real-time AML analytics. The diagrams presented in this section are designed using the Yourdon and De Marco DFD methodology to ensure standardized representation and structured system decomposition.
+
 %========================================================
 \subsection[Data Flow Diagram Level 0]{\textbf{Data Flow Diagram Level 0}}
 %========================================================
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/DFD_Level_0.png}
+    \caption{Level 0 Data Flow Diagram}
+    \label{fig:dfd_level0}
+\end{figure}
+
+Figure 4.2 illustrates the Level 0 Data Flow Diagram of the proposed Federated HGNN-Based TBML Detection System. The diagram provides a high-level contextual representation of the complete system as a single process interacting with external entities including Financial Institutions, Federated Client Nodes, AML Analysts, and Trade Data Sources. Financial institutions provide transaction records, customer information, invoice metadata, and trade-related details to the system for analysis. Trade data sources contribute import-export records and shipment information required for transaction validation and graph construction. Federated client nodes exchange encrypted local model updates and receive aggregated global model parameters during distributed training. The system processes these inputs to generate fraud alerts, risk predictions, AML reports, and suspicious activity notifications for compliance teams and financial analysts. The Level 0 DFD establishes the overall system boundary and illustrates the primary flow of information involved in distributed TBML detection and real-time financial fraud analytics.
 
 %========================================================
 \subsection[Data Flow Diagram Level 1]{\textbf{Data Flow Diagram Level 1}}
 %========================================================
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/DFD_Level_1.png}
+    \caption{Level 1 Data Flow Diagram}
+    \label{fig:dfd_level1}
+\end{figure}
+
+Figure 4.3 presents the Level 1 Data Flow Diagram of the proposed TBML detection framework by decomposing the primary system into multiple functional processes. The architecture consists of modules including Data Collection, Data Preprocessing, Heterogeneous Graph Construction, Federated Learning Engine, HGNN Fraud Detection, and Alert and Monitoring Dashboard. The Data Collection module acquires raw transactional records and customer information from financial institutions, which are subsequently cleaned and transformed within the preprocessing stage to generate structured financial features. These processed features are utilized by the graph construction engine to build heterogeneous graph representations stored within the graph database. The federated learning engine performs distributed collaborative model training using encrypted local updates received from federated client nodes while maintaining institutional data privacy. The trained HGNN model is then employed by the fraud detection engine to identify suspicious transactional patterns, calculate fraud scores, and generate anomaly alerts. Finally, the monitoring dashboard enables AML analysts and compliance teams to perform investigations, visualize transaction graphs, and access risk assessment reports for real-time anti-money laundering operations.
 
 %========================================================
 \subsection[Data Flow Diagram Level 2]{\textbf{Data Flow Diagram Level 2}}
 %========================================================
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/DFD_Level_2.png}
+    \caption{Level 2 Data Flow Diagram}
+    \label{fig:dfd_level2}
+\end{figure}
+
+Figure 4.4 illustrates the Level 2 Data Flow Diagram representing the internal decomposition of the HGNN Fraud Detection module within the proposed system. The process begins with Data Integration and Validation, where trade invoice records, shipment details, and transactional metadata are verified and filtered for inconsistencies. The validated information is then processed through Entity Resolution and Feature Extraction to identify relational attributes and generate contextual financial features required for graph-based learning. Subsequently, the Heterogeneous Graph Generation process constructs interconnected financial transaction graphs representing entities, accounts, invoices, and trade relationships. The HGNN Inference and Risk Scoring module applies graph neural network-based learning to calculate anomaly scores and identify suspicious transactional behavior. The resulting outputs are further processed through Anomaly Detection and Classification, followed by Alert Generation and Prioritization to rank suspicious activities according to calculated risk severity. Finally, the Result Aggregation and Reporting module generates consolidated fraud summaries, suspicious activity alerts, and analytical reports that are forwarded to the Alert and Monitoring Dashboard for investigation and compliance analysis. The Level 2 DFD provides a detailed representation of the internal analytical workflow employed by the proposed federated graph intelligence framework for real-time TBML detection.
+
 
 %========================================================
 \section{Summary}
 %========================================================
+This chapter presented the high-level design of the proposed Federated Heterogeneous Graph Neural Network (HGNN)-Based Trade-Based Money Laundering (TBML) Detection Framework. The design considerations focused on scalability, privacy preservation, modularity, real-time transaction monitoring, and secure institutional collaboration within distributed financial environments. The chapter also discussed the development methodology, architectural strategies, programming technologies, and system integration mechanisms utilized for implementing graph-based fraud analysis, federated learning, and compliance monitoring services.
+
+The overall system architecture demonstrated the integration of transaction processing modules, heterogeneous graph construction, hybrid graph neural network models, federated collaborative learning, and compliance reporting environments for intelligent TBML detection. Additionally, the chapter presented the Level 0, Level 1, and Level 2 Data Flow Diagrams to illustrate the movement of financial data, internal analytical workflows, graph-based fraud detection processes, and alert generation mechanisms within the proposed framework. These architectural components collectively establish a scalable, privacy-aware, and intelligent monitoring system for real-time anti-money laundering analysis.
