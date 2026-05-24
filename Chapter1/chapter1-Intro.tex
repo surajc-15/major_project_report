@@ -1,6 +1,6 @@
 \chapter{Introduction to Trade-Based Money Laundering}
 
-The rapid growth of international trade and digital financial infrastructure has significantly increased the complexity of monitoring global financial transactions. Alongside economic globalization, financial institutions are facing increasingly sophisticated forms of illicit financial activities that exploit weaknesses in conventional Anti-Money Laundering (AML) systems. Among these, Trade-Based Money Laundering (TBML) has emerged as one of the most challenging financial crimes due to its ability to conceal illegal fund transfers within legitimate trade operations. The distributed and interconnected nature of modern trade ecosystems necessitates intelligent, scalable, and privacy-preserving analytical frameworks capable of identifying hidden transactional relationships in real time.
+International trade and digital finance have made global transactions faster, but also harder to monitor. Criminals increasingly exploit this complexity to move illicit value through legitimate trade activity, exposing the limits of conventional Anti-Money Laundering (AML) systems. Trade-Based Money Laundering (TBML) is especially difficult to detect because the suspicious activity is hidden inside normal commercial exchanges. This creates a clear need for intelligent, scalable, and privacy-preserving methods that can uncover hidden transactional relationships in real time.
 
 \begin{quote}
 \itshape
@@ -11,21 +11,21 @@ The rapid growth of international trade and digital financial infrastructure has
 \hfill -- Dr. Sebastian Hetzler, IMTF Co-CEO \cite{imtf_tbml_scale}
 \end{quote}
 
-As highlighted in the above statement, Trade-Based Money Laundering exploits the complexity of international commerce by embedding illicit financial flows within apparently legitimate trade transactions. This significantly limits the effectiveness of conventional compliance systems that primarily rely on isolated transaction monitoring and static rule-based verification mechanisms.
+TBML works by blending illicit financial flows into ordinary trade transactions, which reduces the effectiveness of rule-based compliance checks and isolated transaction monitoring.
 
 %========================================================
 \section[Overview of Trade-Based Money Laundering]{\textbf{Overview of Trade-Based Money Laundering}}
 %========================================================
 
-Trade-Based Money Laundering (TBML) is defined as the process of disguising the proceeds of crime and transferring value through legitimate international trade transactions in an attempt to legitimize illicit financial activities \cite{fatf_tbml_2020}. Unlike conventional money laundering mechanisms that rely on direct movement of funds, TBML conceals illegal financial flows within normal commercial trade operations such as import-export activities, invoice settlements, and cross-border transactions. Due to the involvement of multiple intermediaries, financial institutions, customs agencies, and international jurisdictions, identifying suspicious trade behavior becomes significantly difficult for conventional Anti-Money Laundering systems.
+Trade-Based Money Laundering (TBML) refers to disguising the proceeds of crime through legitimate international trade transactions \cite{fatf_tbml_2020}. Instead of moving money directly, TBML hides illegal value inside import-export activities, invoice settlements, and cross-border trade records. Because these transactions involve multiple intermediaries, institutions, and jurisdictions, conventional AML systems struggle to identify suspicious patterns reliably.
 
 %========================================================
 \subsection[Global Financial Crime Scenario]{\textbf{Global Financial Crime Scenario}}
 %========================================================
 
-The increasing volume of international trade and cross-border financial transactions has considerably complicated the process of monitoring illicit financial activities. According to the United Nations Office on Drugs and Crime (UNODC), money laundering activities account for nearly 2\% to 5\% of the global Gross Domestic Product (GDP), corresponding to approximately \$800 billion to \$2 trillion annually \cite{unodc_ml_overview}. Despite the deployment of large-scale compliance frameworks and transaction monitoring systems, Europol reports that global authorities successfully intercept less than 1\% of illicit financial flows \cite{europol_financial_crime}. These statistics indicate the growing sophistication of modern laundering networks and the limitations of existing monitoring infrastructures.
+The growth of cross-border trade has made illicit activity harder to spot in normal financial flows. The United Nations Office on Drugs and Crime (UNODC) estimates that money laundering accounts for nearly 2\% to 5\% of global GDP, or about \$800 billion to \$2 trillion annually \cite{unodc_ml_overview}. Europol also reports that authorities intercept less than 1\% of illicit financial flows \cite{europol_financial_crime}. These figures show how quickly laundering networks are evolving and why traditional monitoring tools are no longer enough.
 
-The large-scale movement of goods, services, and financial assets across international markets creates an environment where illicit transactions can be concealed within legitimate commercial activities. As financial institutions continue to strengthen Know-Your-Customer (KYC) regulations and banking surveillance systems, criminal organizations increasingly exploit trade ecosystems to bypass conventional financial monitoring mechanisms.
+As goods, services, and financial assets move across borders, criminal actors can hide suspicious transactions inside legitimate trade activity. Even as banks strengthen Know-Your-Customer (KYC) controls and transaction surveillance, TBML continues to exploit gaps in conventional monitoring.
 
 \begin{table}[H]
 \centering
@@ -61,19 +61,17 @@ Reduction in false positive alerts using AI-driven monitoring systems & Up to 40
 \subsection[Trade-Based Money Laundering]{\textbf{Trade-Based Money Laundering}}
 %========================================================
 
-Trade-Based Money Laundering enables criminal organizations to transfer illicit value through apparently legitimate trade transactions while avoiding direct movement of cash. Common TBML techniques include over-invoicing, under-invoicing, multiple invoicing, false description of goods, phantom shipments, and the use of shell entities to manipulate commercial trade records. Since these activities are embedded within genuine trade operations involving multiple organizations and jurisdictions, detecting suspicious transactional behavior becomes highly complex for financial institutions and regulatory agencies.
+TBML allows criminal organizations to move illicit value through trade while avoiding direct cash movement. Common techniques include over-invoicing, under-invoicing, multiple invoicing, false goods descriptions, phantom shipments, and shell entities that distort trade records. Because these actions are spread across real trade operations, they are difficult for regulators and financial institutions to detect.
 
-Reports published by Global Financial Integrity indicate that trade misinvoicing and related TBML activities account for nearly 87\% of illicit financial flows originating from developing economies \cite{gfi_illicit_flows}. Similarly, industry analyses estimate that approximately \$1.6 trillion to \$2 trillion in illicit value is concealed annually within trade invoices and commercial documentation \cite{imtf_tbml_scale}. These findings demonstrate the growing dependence of organized criminal networks on international trade systems for laundering illicit financial assets.
+Global Financial Integrity reports that trade misinvoicing and related TBML activity account for nearly 87\% of illicit financial flows from developing economies \cite{gfi_illicit_flows}. Industry estimates also suggest that about \$1.6 trillion to \$2 trillion in illicit value is hidden each year within trade invoices and commercial documents \cite{imtf_tbml_scale}. Together, these findings show how heavily organized crime depends on the international trade system.
 
 %========================================================
 \subsection[Problem Area]{\textbf{Problem Area}}
 %========================================================
 
-Conventional Anti-Money Laundering systems primarily rely on rule-based monitoring frameworks, predefined transaction thresholds, and manual auditing procedures for identifying suspicious financial activities. Although such approaches are effective in detecting isolated anomalies, they often fail to identify hidden relationships among entities involved in coordinated laundering operations. Modern TBML networks operate through interconnected ecosystems involving importers, exporters, shell companies, offshore entities, logistics providers, and financial intermediaries distributed across multiple jurisdictions, making detection significantly more challenging.
+Conventional AML systems usually depend on rules, fixed thresholds, and manual review. While these methods can detect isolated anomalies, they often miss the connected relationships that define coordinated laundering activity. TBML networks bring together importers, exporters, shell companies, offshore entities, logistics providers, and financial intermediaries across multiple jurisdictions, which makes detection even harder.
 
-Traditional machine learning approaches further suffer from limitations associated with isolated transaction analysis and lack of relational understanding. Since financial transactions are processed independently, existing systems are unable to effectively capture structural interactions and behavioral dependencies hidden within large-scale trade networks. As a result, conventional AML systems frequently generate high false positive rates, increased compliance overhead, and delayed investigation processes.
-
-Another major challenge involves institutional privacy and regulatory compliance constraints. Financial organizations are often unable to share sensitive transactional data across institutions due to strict legal and regulatory restrictions. Consequently, centralized fraud detection architectures become impractical in real-world banking environments. These limitations highlight the need for intelligent, scalable, and privacy-preserving analytical frameworks capable of effectively identifying suspicious transactional behavior across distributed financial ecosystems.
+Traditional machine learning methods also fall short because they treat transactions as independent events. As a result, they miss structural relationships, produce many false positives, and slow down investigations. A further challenge is privacy: institutions cannot freely share sensitive transactional data, which makes centralized detection impractical. These gaps make a strong case for scalable, privacy-preserving analytics that can model distributed financial ecosystems.
 
 
 
@@ -81,41 +79,39 @@ Another major challenge involves institutional privacy and regulatory compliance
 \section[Literature Review]{\textbf{Literature Review}}
 %========================================================
 
-The increasing complexity of global financial systems and the rapid growth of international trade have motivated extensive research in Anti-Money Laundering (AML) and Trade-Based Money Laundering (TBML) detection systems. Conventional AML frameworks primarily relied on rule-based transaction monitoring and manual auditing procedures to identify suspicious financial activities. However, the emergence of interconnected financial ecosystems, cross-border trade mechanisms, and sophisticated laundering strategies has significantly reduced the effectiveness of traditional approaches. Consequently, recent research has increasingly focused on integrating machine learning, graph analytics, and distributed intelligence techniques into modern AML systems.
+The growth of global finance has led to a large body of AML and TBML research. Earlier work focused on rule-based monitoring, but newer studies increasingly use machine learning, graph analytics, and distributed learning to detect hidden patterns in financial data. This shift is important because TBML does not usually appear as a single suspicious transfer; instead, it is spread across invoices, counterparties, shipping records, account movements, and commercial relationships. For that reason, recent literature has moved from isolated transaction screening toward methods that can model interactions between entities and uncover structural patterns in the wider financial network.
 
-Jiani Fan, Lwin Khin Shar, Ruichen Zhang, Ziyao Liu, Wenzhuo Yang, Dusit Niyato, and Kwok-Yan Lam \cite{Fan2026} presented a comprehensive survey on deep learning-based Anti-Money Laundering frameworks for mobile financial systems. The study explored the application of Convolutional Neural Networks (CNNs), Recurrent Neural Networks (RNNs), and Graph Neural Networks (GNNs) for transaction anomaly detection and proposed a Context-Risk-Predict framework for improving AML intelligence. The authors demonstrated that deep learning architectures significantly improve predictive performance compared to conventional rule-based systems. However, the framework primarily focused on centralized transaction processing environments and did not address institutional privacy constraints or distributed financial data challenges.
+Jiani Fan, Lwin Khin Shar, Ruichen Zhang, Ziyao Liu, Wenzhuo Yang, Dusit Niyato, and Kwok-Yan Lam \cite{Fan2026} surveyed deep learning methods for AML and showed that CNNs, RNNs, and GNNs can improve anomaly detection. Their survey is useful because it presents how learning-based techniques can extract richer patterns than fixed rules alone, especially in environments with large transaction volumes. At the same time, the work remained centered on centralized data processing, which makes it less suitable for institutions that cannot share sensitive records directly. This limitation is especially relevant in TBML scenarios, where data from multiple organizations may be needed to understand the full laundering chain.
 
-Morten Hjelholt Jensen and Alexandros Iosifidis \cite{Jensen2023} investigated the use of statistical analysis and supervised machine learning algorithms for financial anomaly detection. Their study evaluated models such as Logistic Regression, Random Forests, and Gradient Boosting techniques for suspicious transaction classification. Experimental results showed improved detection capability compared to static rule-based approaches. Nevertheless, the proposed methods analyzed transactions independently and lacked the ability to capture relational dependencies among interconnected financial entities involved in coordinated laundering operations.
+Rasmus Ingemann Tuffveson Jensen and Alexandros Iosifidis \cite{Jensen2023} evaluated standard machine learning models for financial anomaly detection, including Logistic Regression, Random Forests, and Gradient Boosting methods. Their results showed that traditional supervised models can outperform static rule-based approaches when the data is well prepared and labeled. However, the study still treated transactions largely as independent events. In practice, laundering activity is often distributed across connected accounts, counterparties, and repeated trade interactions, so a purely transaction-level view can miss the broader relational structure.
 
-Jinlong Song, Zhen Guo, Yutian Lei, and Minghao Zhao \cite{Song2026} proposed a dimension expansion framework for learning hidden money laundering activities within transaction networks. The framework enhanced transaction representations by integrating neighboring account information and contextual interaction features. The study demonstrated that relational feature aggregation improves the detection of concealed laundering patterns across financial networks. However, the model depended heavily on manually engineered relational features and lacked scalability for distributed cross-institutional financial environments.
+Jie Song, Sijia Zhang, Junghoon Park, Yu Gu, and Ge Yu \cite{Song2026} proposed a dimension expansion framework for learning hidden money laundering activities within transaction networks. The method strengthened transaction representation by combining neighboring account information with contextual interaction features, which is a useful step toward graph-aware fraud detection. The study showed that incorporating relational information can improve the detection of concealed laundering behavior across financial networks. Even so, the approach still relied on manually engineered features, which can reduce flexibility when the structure of the network changes or when the system must operate across distributed institutions.
 
-In another study, Jinlong Song, Haoran Chen, Peng Xu, and Minghao Zhao \cite{Illicit2025} introduced a Social Attention Graph Neural Network framework for detecting illicit accounts in blockchain transaction systems. The proposed architecture transformed transaction ecosystems into graph structures and utilized attention-based graph learning mechanisms for anomaly classification. The study demonstrated that Graph Neural Networks outperform conventional machine learning models in identifying suspicious transactional behavior. However, the framework focused primarily on cryptocurrency transaction ecosystems and did not address invoice-level trade manipulations or heterogeneous commercial trade relationships associated with TBML activities.
+In another study, Jie Song, Sijia Zhang, Pengyi Zhang, Junghoon Park, Yu Gu, and Ge Yu \cite{Illicit2025} introduced a Social Attention Graph Neural Network framework for detecting illicit accounts in blockchain transaction systems. Their work demonstrated the value of attention mechanisms in highlighting the most informative neighbors during graph learning. It also reinforced the idea that graph neural networks can outperform traditional machine learning models in suspicious-account detection. However, the study was focused on blockchain transactions rather than trade documents or invoice-based laundering, so it does not fully address the heterogeneous relationships that appear in TBML cases.
 
-Xiang Li, Zhen Wang, Yong Zhou, and Lei Zhang \cite{Li2025} proposed a Multi-View Graph-Based Hierarchical Representation Learning framework for organized money laundering group detection. Their work utilized multiple graph perspectives and hierarchical embedding mechanisms to identify coordinated laundering communities within financial transaction networks. Experimental findings demonstrated improved graph representation capability for identifying hidden laundering structures. However, the framework relied on predefined graph meta-path relationships and centralized graph repositories, limiting its applicability in privacy-sensitive financial environments.
+Zhong Li, Xueting Yang, and Changjun Jiang \cite{Li2025} proposed a Multi-View Graph-Based Hierarchical Representation Learning framework for organized money laundering group detection. Their use of multiple graph views helped identify coordinated laundering communities and showed that hierarchical graph representations can capture more than simple pairwise links. The work is valuable because it moves beyond flat feature vectors and models fraud as a collaborative activity. Still, the approach depended on predefined graph relations and centralized repositories, which can limit use in privacy-sensitive environments where institutions must keep their own data local.
 
-Eren Gezici and Emre Sefer \cite{Gezici2025} proposed AMLPD, an unsupervised Anti-Money Laundering detection framework utilizing Personalized PageRank and graph diffusion techniques for deep vertex representation learning. The framework effectively captured hidden graph structures without requiring labeled datasets and demonstrated strong anomaly detection capability in sparse financial networks. However, the absence of supervised optimization mechanisms resulted in increased false positive classifications within highly imbalanced financial transaction datasets.
+Abdul Haluk Batur Gezici and Emre Sefer \cite{Gezici2025} proposed AMLPD, an unsupervised Anti-Money Laundering detection framework based on Personalized PageRank and graph diffusion. This work is important because it reduces dependence on labeled data, which is often expensive and incomplete in real banking systems. The method was able to capture hidden graph structure in sparse financial networks and demonstrated that unsupervised learning can be practical for anomaly detection. However, the lack of supervised optimization also led to more false positives, which can increase the workload of compliance teams and reduce trust in the system.
 
-Mohammad Karim, Tariq Hassan, and Sameer Ali \cite{Karim2024} investigated scalable semi-supervised graph learning architectures for large-scale financial transaction monitoring. Their study evaluated models such as SkipGCN and EvolveGCN for node classification within AML transaction graphs. Experimental results demonstrated efficient scalability and improved anomaly detection performance in large graph repositories. Nevertheless, the framework assumed centralized access to financial transaction graphs and did not address institutional privacy and regulatory constraints associated with collaborative fraud detection systems.
+Md. Rezaul Karim, Felix Hermsen, Sisay Adugna Chala, Paola De Perthuis, and Avikarsha Mandal \cite{Karim2024} investigated scalable semi-supervised graph learning architectures for large-scale financial transaction monitoring. Their evaluation of SkipGCN and EvolveGCN showed that graph learning can scale to bigger transaction datasets while still preserving useful classification performance. This makes the work relevant for real-world fraud monitoring systems that must handle large volumes of records. Even so, the framework assumed centralized graph access and did not directly solve the privacy and regulatory challenges that arise when multiple institutions need to collaborate.
 
-Jongmin Koo, Hyun Park, and Seungwoo Kim \cite{Koo2024} proposed an autoencoder-based suspicious transaction detection framework using Risk-Based Approaches (RBA) for banking systems. The proposed model reduced anomaly detection complexity by learning latent transactional representations from financial datasets. Although the framework improved internal banking surveillance efficiency, it focused primarily on point anomalies associated with individual accounts and failed to model interconnected laundering relationships distributed across complex trade ecosystems.
+Kyungmo Koo, Minyoung Park, and Byungun Yoon \cite{Koo2024} proposed an autoencoder-based suspicious transaction detection framework using Risk-Based Approaches (RBA) for banking systems. Their model reduced detection complexity by learning compact latent representations of transactions and showed that autoencoder-based methods can support internal banking surveillance. The study is useful because it highlights a lighter-weight alternative to more complex graph models. However, it primarily focused on point anomalies at the account level and did not capture the interconnected laundering relationships that are typical in complex trade ecosystems.
 
-The literature survey indicates a clear transition from conventional rule-based AML systems toward machine learning, graph neural networks, and intelligent graph analytics for financial crime detection. Existing studies demonstrate that graph-based architectures significantly improve the ability to identify hidden transactional relationships and coordinated laundering structures compared to traditional machine learning techniques. However, several limitations remain insufficiently addressed, including heterogeneous graph modeling, real-time transaction analysis, institutional privacy preservation, and scalability across distributed financial environments. Most existing approaches either rely on centralized transaction repositories or focus primarily on banking or cryptocurrency transaction datasets without effectively modeling the complex trade relationships associated with Trade-Based Money Laundering activities.
-
-Furthermore, many existing AML frameworks process financial transactions in isolation and fail to capture the interconnected dependencies among importers, exporters, shell entities, logistics providers, and trade documents distributed across multiple jurisdictions. The absence of privacy-preserving collaborative intelligence mechanisms further limits the practical deployment of such systems in real-world financial ecosystems where direct sharing of sensitive transactional data is restricted by regulatory policies. In addition, limited focus has been given to integrating heterogeneous graph learning, federated intelligence, and real-time anomaly detection within a unified Anti-Money Laundering framework. These research gaps highlight the need for an intelligent, scalable, and privacy-preserving architecture capable of modeling complex trade ecosystems while supporting collaborative real-time TBML detection across distributed financial institutions.
+Overall, the literature shows a clear shift from rule-based AML toward graph-based and learning-based approaches. Even so, important gaps remain in heterogeneous graph modeling, real-time analysis, privacy-preserving collaboration, and scalability across distributed financial environments. Most existing methods either rely on centralized datasets or focus on banking and cryptocurrency scenarios instead of the trade relationships that define TBML. These gaps motivate an architecture that combines heterogeneous graph learning, federated intelligence, and real-time detection in one framework.
 
 
 %========================================================
 \section[Motivation]{\textbf{Motivation}}
 %========================================================
 
-The work, \textit{``Federated Heterogeneous Graph Neural Networks for Real-Time Detection of Trade-Based Money Laundering''}, was chosen to address the increasing complexity of financial crimes within modern global trade ecosystems through the development of an intelligent and privacy-preserving fraud detection framework. Conventional Anti-Money Laundering (AML) systems primarily rely on rule-based monitoring and isolated transaction analysis methods that are often ineffective in identifying hidden relationships and coordinated laundering activities distributed across interconnected financial networks. Although such systems are widely deployed in banking environments, they generate high false positive rates, require extensive manual investigation, and face significant challenges in detecting sophisticated Trade-Based Money Laundering (TBML) activities in real time.
+The work, \textit{``Federated Heterogeneous Graph Neural Networks for Real-Time Detection of Trade-Based Money Laundering''}, was selected to address the growing complexity of financial crime in modern trade ecosystems. Conventional AML systems often rely on rule-based checks and isolated transaction analysis, which makes them less effective at identifying coordinated laundering patterns spread across connected financial networks. In practice, this leads to more false positives, more manual review, and weaker detection of sophisticated TBML activity.
 
-The proposed work aims to overcome these limitations by developing a Federated Heterogeneous Graph Neural Network framework capable of modeling complex transactional relationships among financial entities while preserving institutional privacy. The integration of heterogeneous graph learning, graph attention mechanisms, and federated intelligence enables collaborative fraud analysis without direct sharing of sensitive transactional data across organizations. In addition, the framework supports automated Suspicious Transaction Report (STR) generation and dashboard-based visualization for real-time fraud monitoring and compliance analysis, demonstrating the feasibility of scalable and AI-driven Anti-Money Laundering systems for modern financial environments.
+This project addresses those limitations by combining heterogeneous graph learning with federated intelligence to model transaction relationships while preserving institutional privacy. By using graph attention mechanisms and collaborative training across organizations, the framework supports fraud detection without sharing sensitive transactional data directly. It also adds automated Suspicious Transaction Report (STR) generation and dashboard-based monitoring to support real-time compliance analysis.
 %========================================================
 \section[Problem Statement]{\textbf{Problem Statement}}
 %========================================================
 
-Existing AML systems rely on rule-based monitoring and isolated transaction analysis, limiting their ability to detect complex Trade-Based Money Laundering (TBML) and hidden financial networks. Privacy and regulatory constraints further hinder collaborative fraud detection across institutions. Hence, a scalable and privacy-preserving framework is needed to model interconnected financial data and detect suspicious activities in real time.
+Existing AML systems rely on rules and isolated transaction analysis, which limits their ability to detect TBML and hidden financial networks. Privacy and regulatory constraints also make cross-institution collaboration difficult. A scalable and privacy-preserving framework is therefore needed to model interconnected financial data and detect suspicious activity in real time.
 
 
 \vspace{0.4cm}
@@ -136,134 +132,31 @@ The objectives of the project are
 \section[Brief Methodology of the project]{\textbf{Brief Methodology of the project}}
 %========================================================
 
-The proposed methodology focuses on developing a privacy-preserving and graph-based framework for real-time Trade-Based Money Laundering (TBML) detection. Initially, financial transaction data, trade records, customer information, and entity relationships are collected and preprocessed to remove inconsistencies and prepare structured datasets for analysis. The processed data is then transformed into a heterogeneous graph structure where entities such as accounts, organizations, invoices, and transactions are represented as interconnected nodes and edges.
-
-Graph Attention-based learning mechanisms are employed to capture hidden relational dependencies and suspicious transactional patterns within the financial ecosystem. To preserve institutional privacy, federated learning is integrated into the framework, enabling collaborative model training across distributed financial environments without direct sharing of sensitive transactional data. The detected suspicious activities are further utilized for automated Suspicious Transaction Report (STR) generation and visualization through an interactive dashboard for real-time monitoring and fraud analysis.
-
-\vspace{0.4cm}
-
-\begin{figure}[!t]
+The proposed methodology builds a privacy-preserving graph-based framework for real-time TBML detection. Financial transaction data, trade records, customer information, and entity relationships are first collected and cleaned to create structured analysis datasets. These records are then converted into a heterogeneous graph where accounts, organizations, invoices, and transactions are linked as nodes and edges.
+\begin{figure}[H]
 \centering
-\resizebox{0.92\columnwidth}{!}{
-\begin{tikzpicture}[
-    node distance=0.7cm,
-    >=Stealth,
-    thick,
-    workflow/.style={
-        draw,
-        rounded corners=5pt,
-        minimum width=9.2cm,
-        minimum height=1.7cm,
-        align=center,
-        font=\small,
-        line width=0.7pt,
-        fill=gray!3,
-        inner sep=6pt
-    }
-]
 
-% ==========================================================
-% DATA INGESTION
-% ==========================================================
-\node[workflow] (kafka) {
-\textbf{Real-Time Stream Ingestion} \\[3pt]
-\footnotesize
-Continuous ingestion of heterogeneous financial transaction metadata \\ 
-and trade documentation via distributed Apache Kafka pipelines.
-};
-
-% ==========================================================
-% GRAPH PROJECTION
-% ==========================================================
-\node[workflow, below=of kafka] (memgraph) {
-\textbf{Stateful Heterogeneous Graph Projection} \\[3pt]
-\footnotesize
-Dynamic mapping of financial entities and directed relationships into \\ 
-a stateful Memgraph database using Cypher-based query logic.
-};
-
-% ==========================================================
-% SUBGRAPH EXTRACTION
-% ==========================================================
-\node[workflow, below=of memgraph] (ego) {
-\textbf{Localized Multi-Hop Subgraph Extraction} \\[3pt]
-\footnotesize
-Extraction of targeted 3-hop transactional ego-graphs for capturing \\ 
-higher-order dependencies and intermediary laundering paths.
-};
-
-% ==========================================================
-% INFERENCE
-% ==========================================================
-\node[workflow, below=of ego] (hgnn) {
-\textbf{Multimodal Hybrid Model Inference} \\[3pt]
-\footnotesize
-Late-fusion of GATv2 structural embeddings, LSTM temporal behavioral \\ 
-patterns, and MLP-based tabular trade feature representations.
-};
-
-% ==========================================================
-% FEDERATED LEARNING
-% ==========================================================
-\node[workflow, below=of hgnn] (fed) {
-\textbf{Federated Collaborative Optimization} \\[3pt]
-\footnotesize
-Decentralized model training using the FedAvg strategy to enable \\ 
-global intelligence sharing without exposing sensitive local data.
-};
-
-% ==========================================================
-% AUDIT LOGGING
-% ==========================================================
-\node[workflow, below=of fed] (audit) {
-\textbf{Relational Persistence and Compliance Audit} \\[3pt]
-\footnotesize
-Storage of high-fidelity risk scores and automated STR metadata in \\ 
-PostgreSQL for regulatory reporting and audit traceability.
-};
-
-% ==========================================================
-% CONNECTIONS
-% ==========================================================
-\draw[->] (kafka) -- (memgraph);
-\draw[->] (memgraph) -- (ego);
-\draw[->] (ego) -- (hgnn);
-\draw[->] (hgnn) -- (fed);
-\draw[->] (fed) -- (audit);
-
-\end{tikzpicture}
+\IfFileExists{./Figures/methodology.png}
+{
+    \includegraphics[
+        width=\textwidth,
+        height=0.8\textheight,
+        keepaspectratio
+    ]{./Figures/methodology.png}
 }
+{
+    \fbox{
+        \parbox[c][0.8\textheight][c]{0.95\textwidth}{
+            \centering
+            \Large Methodology Diagram Placeholder
+        }
+    }
+}
+
 \caption{Proposed Methodology for TBML Detection}
 \label{fig:methodology}
 \end{figure}
-
-
-
-
-% \begin{figure}[H]
-% \centering
-
-% \IfFileExists{./Figures/methodology.png}
-% {
-%     \includegraphics[
-%         width=\textwidth,
-%         height=0.8\textheight,
-%         keepaspectratio
-%     ]{./Figures/methodology.png}
-% }
-% {
-%     \fbox{
-%         \parbox[c][0.8\textheight][c]{0.95\textwidth}{
-%             \centering
-%             \Large Methodology Diagram Placeholder
-%         }
-%     }
-% }
-
-% \caption{Proposed Methodology for TBML Detection}
-% \label{fig:methodology}
-
-% \end{figure}
+Graph attention mechanisms are used to capture hidden relationships and suspicious behavioral patterns within the financial ecosystem. Federated learning is then added so that institutions can train collaboratively without exposing sensitive local data. The detected suspicious activities are finally used to generate STRs and support real-time monitoring through an interactive dashboard.
 
 %========================================================
 \section[Assumptions and Constraints of the Work]{\textbf{Assumptions and Constraints of the Work}}

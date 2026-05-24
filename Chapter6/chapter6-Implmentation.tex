@@ -2,16 +2,14 @@
 \chapter{Implementation}
 %========================================================
 
-This chapter presents the implementation details of the proposed FedGAT-TBML framework including real-time transaction streaming, heterogeneous graph construction, hybrid HGNN--LSTM-based fraud detection, federated learning integration, and dashboard-based compliance monitoring. The framework is implemented using Apache Kafka, Memgraph, PostgreSQL, PyTorch Geometric, Flower, FastAPI, and Next.js to support scalable real-time Trade-Based Money Laundering detection and distributed Anti-Money Laundering monitoring operations.
+This chapter describes the implementation of the FedGAT-TBML framework: real-time transaction streaming, heterogeneous graph construction, a hybrid HGNN--LSTM detector, federated learning, and a dashboard for compliance monitoring. The system is implemented using Apache Kafka, Memgraph, PostgreSQL, PyTorch Geometric, Flower, FastAPI, and Next.js to enable scalable, real-time TBML detection.
 
 
 %========================================================
 \section[Programming Language and Framework Selection]{\textbf{Programming Language and Framework Selection}}
 %========================================================
 
-The proposed TBML detection framework is implemented using multiple programming languages, machine learning frameworks, backend services, and streaming technologies to support distributed real-time fraud detection and compliance monitoring operations. Python is utilized for backend analytical services, graph construction, Kafka transaction processing, federated learning, and Hybrid HGNN--LSTM model implementation due to its extensive support for machine learning and graph-processing libraries. PyTorch Geometric is utilized for graph neural network implementation, while the Flower framework supports distributed federated learning and FedAvg-based global model aggregation across participating institutional clients.
-
-The frontend monitoring environment is implemented using Next.js, TypeScript, and Tailwind CSS to support modular dashboard development, transaction visualization, STR management, and compliance monitoring workflows. FastAPI is utilized for REST API development and communication between dashboard services and analytical environments, whereas Apache Kafka supports asynchronous transaction streaming and event-driven processing. Memgraph is utilized for heterogeneous graph management and relationship analysis, while PostgreSQL supports centralized transaction logging, fraud monitoring records, dashboard synchronization, and institutional audit management operations.
+The implementation primarily uses Python for backend services and model training (PyTorch + PyTorch Geometric — e.g., \texttt{GATv2Conv} for graph attention), Flower for federated orchestration (custom \texttt{FedAvg} strategy), and Apache Kafka for durable streaming. Frontend and UI services use Next.js, TypeScript and Tailwind; FastAPI provides REST endpoints. Memgraph stores heterogeneous transaction graphs and PostgreSQL holds audit logs and STR records. Services are containerized with Docker for reproducible deployment.
 
 %========================================================
 \section[Platform Selection]{\textbf{Platform Selection}}
@@ -25,9 +23,7 @@ The implementation utilizes Docker-based isolated runtime environments for Kafka
 \section[Code Conventions]{\textbf{Code Conventions}}
 %========================================================
 
-The proposed TBML detection framework follows standardized coding conventions to maintain implementation consistency, modularity, and scalability across frontend services, backend analytical modules, and distributed learning environments. The implementation adopts a modular service-oriented architecture where transaction streaming services, graph analytics, federated learning modules, dashboard interfaces, and compliance workflows are organized according to functional responsibilities to improve maintainability and service integration.
-
-Consistent naming structures, modular API organization, centralized configuration management, and reusable utility services are utilized throughout the implementation to simplify debugging, runtime monitoring, and backend communication workflows. Logging mechanisms and structured service separation additionally improve audit traceability, distributed synchronization, and operational monitoring across the real-time fraud detection environment.
+The codebase follows concise, practical conventions to improve readability and maintenance. Python modules and functions use \texttt{snake\_case}; classes and UI components use \texttt{PascalCase}. Examples of graph entities and relationships include \texttt{(:Account)}, \texttt{(:Transaction)}, \texttt{(:Document)} and \texttt{[:SENDS]}, \texttt{[:TO]}, \texttt{[:HAS\_DOC]}. REST endpoints follow clear, resource-oriented naming (e.g., \texttt{/api/transactions/\{id\}/score}). Configuration is managed via \texttt{.env} files, logging uses structured JSON logs, and type hints plus docstrings are used where helpful.
 
 %========================================================
 \subsection[Naming Conventions]{\textbf{Naming Conventions}}
@@ -56,8 +52,7 @@ Logging mechanisms are integrated throughout transaction streaming services, gra
 %========================================================
 \section[Difficulties Encountered and Strategies Used to Tackle Them]{\textbf{Difficulties Encountered and Strategies Used to Tackle Them}}
 %========================================================
-
-
+Implementation challenges included noisy and imbalanced labels, large graph sizes and memory constraints, streaming latency, and privacy-preserving coordination across institutional clients. Mitigations applied in the implementation include class rebalancing and targeted data augmentation for scarce labels, subgraph sampling and mini-batching to control memory, Kafka buffering and asynchronous consumers to reduce end-to-end latency, and Flower with secure aggregation and containerized deployments (Docker) to isolate client environments while enabling federated training.
 
 
 %========================================================
