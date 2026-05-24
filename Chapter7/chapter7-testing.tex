@@ -327,7 +327,26 @@ The Playwright automation workflow successfully validated sequential execution o
 \subsection[Concurrent Database Scalability and API Performance Analysis]{\textbf{Concurrent Database Scalability and API Performance Analysis}}
 %========================================================
 
-Concurrent database scalability testing was conducted to evaluate PostgreSQL synchronization stability, dashboard query performance, fraud-filtering latency, and STR retrieval response consistency under increasing institutional user loads. The benchmarking workflow was implemented using Prisma ORM and Next.js backend services, where each simulated user executed five continuous transactional requests during concurrent dashboard-access operations. Connection pooling mechanisms were additionally configured with a maximum limit of 15 active database connections to regulate concurrent query execution, maintain synchronization stability, and prevent backend resource exhaustion during high-volume transactional workloads. The testing workflow further measured request throughput, API response latency, database synchronization consistency, and reliable transaction persistence across distributed compliance-monitoring environments.
+Concurrent database scalability testing was conducted to evaluate PostgreSQL synchronization stability, dashboard query performance, fraud-filtering latency, and STR retrieval response consistency under increasing institutional user loads. The benchmarking workflow was implemented using Prisma ORM and Next.js backend services, where each simulated institutional user executed five continuous transactional requests during concurrent dashboard-access operations. Controlled concurrency execution was implemented using batched asynchronous request propagation with pooled PostgreSQL database connections and a maximum limit of 15 active concurrent connections to regulate transactional synchronization, prevent backend resource exhaustion, and maintain stable query-execution behavior during high-volume monitoring workloads.
+
+Latency benchmarking was performed by capturing request-initiation and response-completion timestamps during concurrent API execution workflows. For each transactional request, the benchmarking workflow first recorded the request initiation timestamp using \texttt{startTime = performance.now()}, followed by asynchronous API request execution and backend-response synchronization. Upon successful completion of the transactional request, the response-completion timestamp was recorded using \texttt{endTime = performance.now()}, and the operational latency was computed using \texttt{latency = endTime - startTime}. Concurrent workload execution was implemented using parallel asynchronous request propagation, where multiple simulated institutional users executed simultaneous dashboard and compliance-query operations under controlled concurrency constraints.
+
+Average latency measurements represented the mean response time observed across all successful transactional requests, while P95 latency measurements captured upper-bound response behavior experienced by 95\% of requests during peak synchronization conditions. The benchmarking workflow additionally evaluated request throughput, API synchronization consistency, transaction persistence reliability, and stable PostgreSQL query execution across distributed compliance-monitoring environments.
+
+The benchmarking metrics were computed using the following operational latency equations:
+
+\begin{equation}
+L_{\text{avg}} =
+\frac{1}{N}
+\sum_{i=1}^{N}
+(T_{\text{response}_i} - T_{\text{request}_i})
+\end{equation}
+
+\begin{equation}
+L_{95} =
+\operatorname{Percentile}_{95}(L_1, L_2, \dots, L_N)
+\end{equation}
+
 \renewcommand{\arraystretch}{1.3}
 
 \begin{table}[H]
@@ -348,7 +367,8 @@ Concurrent database scalability testing was conducted to evaluate PostgreSQL syn
 
 \renewcommand{\arraystretch}{1}
 
-The dashboard transaction retrieval workflow maintained stable query performance and successful request execution across increasing institutional user loads. Average latency represents the mean response time observed during concurrent dashboard-query execution, while P95 latency represents the upper-bound response behavior experienced by 95\% of transactional requests during peak workload conditions. The benchmarking results demonstrated stable dashboard synchronization performance and reliable PostgreSQL query execution even under high-volume concurrent monitoring operations. Consistent 100\% request success rates across all user loads additionally validated stable backend synchronization, successful transaction persistence, and reliable API-level execution throughout distributed dashboard-access workflows.
+The dashboard transaction retrieval workflow demonstrated stable query scalability and consistent dashboard-rendering performance across increasing institutional user loads. Average latency values remained nearly constant between 50 and 500 concurrent users, indicating efficient PostgreSQL query execution, optimized transactional indexing, and stable backend synchronization during high-frequency dashboard-access operations. The relatively low variation between average and P95 latency measurements further indicated predictable response behavior and controlled query-execution overhead under concurrent transactional workloads.
+
 \renewcommand{\arraystretch}{1.3}
 
 \begin{table}[H]
@@ -369,7 +389,7 @@ The dashboard transaction retrieval workflow maintained stable query performance
 
 \renewcommand{\arraystretch}{1}
 
-The fraud-transaction filtering workflow maintained stable analytical response behavior and successful request execution during concurrent dashboard-query operations. Average latency measurements indicated efficient fraud-state retrieval performance during filtered transaction-access workflows, while P95 latency measurements captured upper-bound synchronization delays occurring during peak analytical processing conditions. The benchmarking results demonstrated reliable fraud-record filtering, stable API synchronization, and successful retrieval of institution-specific transaction datasets across increasing concurrent monitoring workloads. Although response latency increased under 500-user workloads, the framework preserved complete transactional consistency and maintained 100\% successful request execution throughout distributed fraud-monitoring operations.
+The fraud-transaction filtering workflow demonstrated efficient analytical-query execution and stable institution-specific transaction retrieval during concurrent dashboard operations. Lower average latency values under moderate workloads indicated optimized fraud-state filtering and indexed transactional query execution across backend analytical services. Increased P95 latency under 500-user workloads indicated temporary synchronization overhead during peak concurrent analytical filtering operations; however, the framework maintained complete request reliability, stable API synchronization, and consistent fraud-state propagation throughout distributed monitoring workflows.
 
 \renewcommand{\arraystretch}{1.3}
 
@@ -391,8 +411,12 @@ The fraud-transaction filtering workflow maintained stable analytical response b
 
 \renewcommand{\arraystretch}{1}
 
-The STR compliance retrieval workflow demonstrated stable synchronization behavior and successful report-access consistency across concurrent institutional query operations. STR retrieval workflows exhibited comparatively higher response latency due to complex compliance-report aggregation, multi-table relational joins, transaction-history synchronization, and regulator-side metadata retrieval operations executed during report generation and dashboard-access workflows. 
+The STR compliance retrieval workflow exhibited comparatively higher response latency due to computationally intensive compliance-report aggregation, multi-table relational joins, transaction-history synchronization, and regulator-side metadata retrieval operations executed during report-generation workflows. The progressive reduction in average latency as concurrent workloads increased indicated improved query-plan stabilization, optimized relational-query execution, and more efficient pooled database synchronization during sustained transactional processing. Additionally, repeated execution of compliance-retrieval operations enabled PostgreSQL shared-buffer and query-cache utilization for frequently accessed transactional rows and relational metadata, thereby reducing disk-access overhead and improving subsequent query-response performance under continuous concurrent workloads. Despite the increased computational overhead associated with compliance-report aggregation and relational join operations, the framework maintained stable request consistency and complete request success rates across distributed regulatory monitoring environments.
 
-The average latency values represented overall response consistency during concurrent STR-access operations, while P95 latency measurements captured peak synchronization delays occurring during large-scale compliance-query execution. Despite the computational overhead associated with relational join processing and compliance-report aggregation, the framework maintained complete request success rates and stable operational consistency across distributed regulatory monitoring environments.
 
+The conducted testing workflows validated the synchronization reliability, operational stability, and execution consistency of the proposed TBML detection framework across distributed monitoring environments. The testing results confirmed stable backend communication, reliable transactional synchronization, controlled API response behavior, and successful workflow execution across graph-processing, federated analytical inference, dashboard synchronization, and compliance-management services. Concurrent scalability validation additionally demonstrated stable PostgreSQL query execution and controlled latency characteristics under increasing institutional workloads.
+
+
+%========================================================
 \section[Model Performance Validation]{\textbf{Model Performance Validation}}
+%========================================================
