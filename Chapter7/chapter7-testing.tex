@@ -1,0 +1,398 @@
+%========================================================
+\chapter[Software Testing]{\textbf{Software Testing}}
+%========================================================
+%========================================================
+\chapter[Software Testing]{\textbf{Software Testing}}
+%========================================================
+
+This chapter presents the software testing and validation procedures carried out for the proposed TBML detection framework including backend analytical services, distributed transaction-processing pipelines, heterogeneous graph-construction environments, federated analytical synchronization, dashboard-based compliance monitoring, authentication workflows, and institutional investigation operations. The chapter discusses the unit testing, integration testing, and end-to-end system validation workflows performed across the implemented analytical and monitoring environments to ensure reliable execution, synchronization stability, and operational consistency within the proposed framework.
+%========================================================
+\section[Testing Environment]{\textbf{Testing Environment}}
+%========================================================
+
+The testing process was conducted in a controlled development environment consisting of Python 3.11, PyTorch, PyTorch Geometric, Apache Kafka, Memgraph, PostgreSQL, and Flower federated learning services operating within isolated virtual environments created using \texttt{venv}. Frontend monitoring interfaces were implemented and validated using Next.js, TypeScript, Tailwind CSS, Prisma ORM, Zustand state management, and JWT-based authentication workflows.
+
+The testing workflow additionally utilized Playwright-based browser automation for validating protected dashboard routes, institutional transaction workflows, STR generation pipelines, and compliance-monitoring interfaces. Database synchronization latency, transaction propagation consistency, backend API communication, and distributed fraud-inference workflows were validated under controlled institutional transaction loads to ensure reliable execution across distributed analytical environments.
+
+%========================================================
+\section[Unit Testing]{\textbf{Unit Testing}}
+%========================================================
+
+Each backend analytical service, dashboard workflow, authentication mechanism, and database synchronization component was independently tested to validate correctness, boundary handling, synchronization stability, and operational consistency before integration into the complete TBML detection framework.
+%========================================================
+\subsection[Unit Testing of Authentication and RBAC Module]{\textbf{Unit Testing of Authentication and RBAC Module}}
+%========================================================
+
+The authentication and role-based access control environment was independently validated to ensure secure user authentication, authorization management, middleware-driven route protection, credential verification, and institutional role isolation across banking and regulatory dashboard interfaces. The testing workflow additionally verified protected API access, invalid credential handling, unauthorized route restrictions, and role-specific dashboard rendering across distributed monitoring environments.
+\renewcommand{\arraystretch}{1.3}
+
+\begin{table}[H]
+\centering
+\caption{Unit Testing of Authentication and RBAC Module}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{4.2cm}|p{9cm}|}
+\hline
+\textbf{Serial Number of Test Case} & 1.1 \\ \hline
+\textbf{Name of Test Case} & Protected Dashboard Access Validation \\ \hline
+\textbf{Feature being Tested} & Authentication and Authorization Validation \\ \hline
+\textbf{Description} & Validate protected route access, JWT verification, and role-based authorization \\ \hline
+\textbf{Sample Input} & Invalid JWT session and unauthorized user request \\ \hline
+\textbf{Expected Output} & Unauthorized access denied with authentication error response \\ \hline
+\textbf{Actual Output} & Invalid sessions blocked and unauthorized users redirected successfully \\ \hline
+\textbf{Remarks} & Successful test \\ \hline
+\end{tabular}
+\end{table}
+
+Middleware-driven session validation successfully enforced protected route isolation and role-specific dashboard authorization across institutional monitoring environments. The testing workflow validated JWT token verification, session-expiration handling, credential validation, protected API access control, and middleware-based authorization checks across banking and regulator dashboards. Invalid credentials, unauthorized API requests, expired authentication sessions, and direct access attempts to protected routes were correctly rejected using backend access-control policies before protected resources were rendered. The authentication workflow additionally verified successful role mapping for \texttt{BANK\_USER} and  \texttt{ADMIN} entities to ensure secure dashboard isolation and controlled access to institutional fraud-monitoring operations.
+
+%========================================================
+\subsection[Unit Testing of Kafka Transaction Streaming]{\textbf{Unit Testing of Kafka Transaction Streaming}}
+%========================================================
+
+The Kafka transaction streaming environment was independently tested to validate asynchronous transaction publishing, real-time event synchronization, payload integrity validation, and downstream analytical communication across distributed backend services. The testing workflow additionally verified message delivery consistency, topic-based transaction propagation, malformed payload handling, and reliable synchronization between Kafka producer and consumer services operating within the proposed framework.
+
+
+\begin{table}[H]
+\centering
+\caption{Unit Testing of Kafka Transaction Streaming}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{4.2cm}|p{9cm}|}
+\hline
+\textbf{Serial Number of Test Case} & 1.2 \\ \hline
+\textbf{Name of Test Case} & Publish Valid SWIFT Transaction \\ \hline
+\textbf{Feature being Tested} & Kafka Event Streaming and Message Synchronization \\ \hline
+\textbf{Description} & Validate transaction publishing and topic-based event synchronization \\ \hline
+\textbf{Sample Input} & JSON transaction payload containing sender, receiver, amount, and trade metadata \\ \hline
+\textbf{Expected Output} & Transaction published into \texttt{incoming\_swift\_messages} topic successfully \\ \hline
+\textbf{Actual Output} & Transaction streamed and synchronized successfully across Kafka services \\ \hline
+\textbf{Remarks} & Successful test \\ \hline
+\end{tabular}
+\end{table}
+
+The Kafka streaming module successfully validated asynchronous transaction publishing and backend event synchronization across distributed analytical services. Producer and consumer services maintained reliable message propagation and transaction consistency during continuous event-stream processing operations. Invalid payload structures, malformed transaction metadata, and incomplete financial events were correctly rejected through backend validation workflows before downstream graph-processing and fraud-inference operations were initiated.
+
+%========================================================
+\subsection[Unit Testing of Graph Construction Module]{\textbf{Unit Testing of Graph Construction Module}}
+%========================================================
+
+The heterogeneous graph-construction environment was independently tested to validate transactional node generation, relationship mapping, multi-entity graph synchronization, and Cypher-based ingestion workflows within the Memgraph analytical environment. The testing workflow additionally verified graph consistency, entity-link generation, transaction propagation accuracy, and downstream graph availability for Hybrid HGNN--LSTM analytical inference operations.
+
+\begin{table}[H]
+\centering
+\caption{Unit Testing of Graph Construction Module}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{4.2cm}|p{9cm}|}
+\hline
+\textbf{Serial Number of Test Case} & 1.3 \\ \hline
+\textbf{Name of Test Case} & Heterogeneous Graph Entity Generation \\ \hline
+\textbf{Feature being Tested} & Memgraph Graph Construction and Relationship Mapping \\ \hline
+\textbf{Description} & Validate transactional node generation and graph relationship synchronization \\ \hline
+\textbf{Sample Input} & Valid SWIFT transaction payload with account, trade, and document metadata \\ \hline
+\textbf{Expected Output} & Graph nodes and transactional relationships created successfully within Memgraph \\ \hline
+\textbf{Actual Output} & Heterogeneous graph entities and multi-hop relationships generated successfully \\ \hline
+\textbf{Remarks} & Successful test \\ \hline
+\end{tabular}
+\end{table}
+
+The graph-construction workflow successfully generated heterogeneous transactional graphs within the Memgraph environment using Cypher-based ingestion and relationship-mapping operations. Graph entities including \texttt{(:Account)}, \texttt{(:Transaction)}, and \texttt{(:Document)} were correctly synchronized with transactional relationships such as \texttt{[:SENDS]}, \texttt{[:TO]}, and \texttt{[:HAS\_DOC]} during continuous event-stream processing. The testing workflow additionally validated graph consistency, entity-link integrity, and multi-hop transactional connectivity required for downstream subgraph extraction and graph-based fraud inference operations within the proposed framework.
+
+%========================================================
+\subsection[Unit Testing of STR Generation Workflow]{\textbf{Unit Testing of STR Generation Workflow}}
+%========================================================
+
+The STR generation workflow was independently tested to validate suspicious transaction report generation, compliance-record synchronization, fraud-case escalation, and regulator-side notification propagation across distributed institutional monitoring environments. The testing workflow additionally verified report persistence, transaction-metadata preservation, audit consistency, and downstream synchronization between banking dashboards and regulator-facing compliance interfaces.
+
+
+\begin{table}[H]
+\centering
+\caption{Unit Testing of STR Generation Workflow}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{4.2cm}|p{9cm}|}
+\hline
+\textbf{Serial Number of Test Case} & 1.4 \\ \hline
+\textbf{Name of Test Case} & Suspicious Transaction Report Generation \\ \hline
+\textbf{Feature being Tested} & STR Generation and Compliance Synchronization \\ \hline
+\textbf{Description} & Validate fraud escalation and regulator-side STR synchronization workflow \\ \hline
+\textbf{Sample Input} & Fraud-classified transaction selected from institutional monitoring dashboard \\ \hline
+\textbf{Expected Output} & STR record generated and synchronized into regulator compliance environment \\ \hline
+\textbf{Actual Output} & STR generated, persisted, and synchronized successfully across monitoring services \\ \hline
+\textbf{Remarks} & Successful test \\ \hline
+\end{tabular}
+\end{table}
+
+
+The STR workflow successfully validated automated fraud-report generation, PostgreSQL audit synchronization, and regulator-side notification propagation across distributed institutional environments. Generated STR records correctly preserved transaction metadata, fraud classifications, institutional identifiers, and investigation references during downstream compliance synchronization operations. The testing workflow additionally verified successful dashboard synchronization, report persistence, and controlled propagation of suspicious transaction alerts between banking institutions and regulatory monitoring interfaces operating within the proposed framework.
+
+%========================================================
+\subsection[Unit Testing of Notification Workflow]{\textbf{Unit Testing of Notification Workflow}}
+%========================================================
+
+The notification synchronization environment was independently tested to validate fraud-alert propagation, institutional notification delivery, compliance-event synchronization, and regulator-side alert visibility across distributed monitoring interfaces. The testing workflow additionally verified notification persistence, dashboard update consistency, backend event propagation, and synchronization between banking and regulatory compliance environments during fraud escalation operations.
+
+
+\begin{table}[H]
+\centering
+\caption{Unit Testing of Notification Workflow}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{4.2cm}|p{9cm}|}
+\hline
+\textbf{Serial Number of Test Case} & 1.5 \\ \hline
+\textbf{Name of Test Case} & Fraud Alert and Compliance Notification Propagation \\ \hline
+\textbf{Feature being Tested} & Notification Synchronization and Alert Delivery \\ \hline
+\textbf{Description} & Validate fraud-alert propagation across banking and regulator monitoring environments \\ \hline
+\textbf{Sample Input} & Generated STR record linked to fraud-classified transaction \\ \hline
+\textbf{Expected Output} & Compliance alerts synchronized into regulator-facing dashboard interfaces \\ \hline
+\textbf{Actual Output} & Fraud notifications propagated and synchronized successfully \\ \hline
+\textbf{Remarks} & Successful test \\ \hline
+\end{tabular}
+\end{table}
+
+
+The notification workflow successfully validated fraud-alert propagation, institutional investigation updates, and STR lifecycle synchronization across distributed compliance-monitoring environments. Backend event-processing services maintained reliable notification delivery and dashboard synchronization during fraud escalation operations between banking institutions and regulatory authorities. The testing workflow additionally verified notification persistence, regulator-side alert visibility, and consistent compliance-state propagation across protected monitoring interfaces operating within the proposed framework.
+
+
+
+%========================================================
+\section[Integration Testing]{\textbf{Integration Testing}}
+%========================================================
+
+Integration testing was conducted to validate the interaction, synchronization consistency, and workflow stability between distributed analytical services, graph-processing environments, fraud inference pipelines, dashboard-rendering systems, and regulatory compliance workflows operating within the proposed TBML detection framework.
+
+%========================================================
+\subsection[Integration Testing of Kafka and Memgraph Pipeline]{\textbf{Integration Testing of Kafka and Memgraph Pipeline}}
+%========================================================
+
+This integration test validated end-to-end synchronization between Kafka-based transaction streaming services and the heterogeneous graph-construction environment operating within Memgraph. The testing workflow additionally verified event-stream consistency, transaction propagation reliability, graph-ingestion stability, and downstream synchronization between distributed backend services.
+
+\renewcommand{\arraystretch}{1.3}
+
+\begin{table}[H]
+\centering
+\caption{Integration Testing of Kafka and Memgraph Pipeline}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{4.2cm}|p{9cm}|}
+\hline
+\textbf{Serial Number of Test Case} & 2.1 \\ \hline
+\textbf{Name of Test Case} & Transaction Stream and Graph Synchronization Workflow \\ \hline
+\textbf{Feature being Tested} & Kafka Event Propagation and Memgraph Synchronization \\ \hline
+\textbf{Description} & Validate transaction-stream synchronization and heterogeneous graph generation \\ \hline
+\textbf{Sample Input} & Valid Kafka transaction payload with trade metadata and KYC attributes \\ \hline
+\textbf{Expected Output} & Transactional graph entities and relationships generated successfully within Memgraph \\ \hline
+\textbf{Actual Output} & Kafka events synchronized and heterogeneous graph generated successfully \\ \hline
+\textbf{Remarks} & Successful test \\ \hline
+\end{tabular}
+\end{table}
+
+\renewcommand{\arraystretch}{1}
+
+The integration workflow successfully validated asynchronous transaction propagation between Kafka producer-consumer services and Memgraph graph-ingestion environments. Streamed SWIFT transaction events were reliably synchronized into graph-processing pipelines without transactional inconsistency or event-loss during continuous backend processing operations. The testing workflow additionally verified stable graph synchronization, multi-entity relationship generation, and downstream availability of transactional subgraphs required for graph-based analytical inference within the proposed framework.
+
+
+%========================================================
+\subsection[Integration Testing of Fraud Prediction and Dashboard Synchronization]{\textbf{Integration Testing of Fraud Prediction and Dashboard Synchronization}}
+%========================================================
+
+This integration test validated synchronization between fraud-prediction services, PostgreSQL audit environments, and role-based monitoring dashboards operating within the proposed TBML framework. The testing workflow additionally verified database persistence, dashboard synchronization consistency, and real-time rendering of fraud-classified transactions.
+
+\renewcommand{\arraystretch}{1.3}
+
+\begin{table}[H]
+\centering
+\caption{Integration Testing of Fraud Prediction and Dashboard Synchronization}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{4.2cm}|p{9cm}|}
+\hline
+\textbf{Serial Number of Test Case} & 2.3 \\ \hline
+\textbf{Name of Test Case} & Fraud Prediction and Dashboard Rendering Workflow \\ \hline
+\textbf{Feature being Tested} & PostgreSQL Synchronization and Dashboard Visualization \\ \hline
+\textbf{Description} & Validate fraud-prediction synchronization into institutional monitoring dashboards \\ \hline
+\textbf{Sample Input} & Fraud-classified transaction generated from analytical inference pipeline \\ \hline
+\textbf{Expected Output} & Fraud transaction persisted and rendered successfully within dashboard interfaces \\ \hline
+\textbf{Actual Output} & Dashboard synchronization completed successfully with valid fraud-state rendering \\ \hline
+\textbf{Remarks} & Successful test \\ \hline
+\end{tabular}
+\end{table}
+
+\renewcommand{\arraystretch}{1}
+
+Fraud-prediction records, transaction metadata, and institutional risk classifications were successfully synchronized into centralized PostgreSQL audit environments before being rendered through protected dashboard interfaces. Dashboard synchronization workflows maintained consistent fraud-state propagation and real-time transaction visibility across distributed institutional monitoring services. The testing workflow additionally validated backend persistence consistency, dashboard update reliability, and secure rendering of fraud-monitoring data across role-specific compliance environments.
+
+%========================================================
+\subsection[Integration Testing of STR Generation Workflow]{\textbf{Integration Testing of STR Generation Workflow}}
+%========================================================
+
+This integration test validated the complete workflow between institutional fraud verification, STR generation services, regulator-side synchronization, and compliance-notification propagation operating within distributed monitoring environments. The testing workflow additionally verified fraud escalation consistency, report persistence, and synchronized regulator visibility across institutional compliance pipelines.
+
+The STR synchronization workflow successfully validated fraud escalation, compliance-report generation, regulator-side dashboard synchronization, and distributed notification propagation across institutional monitoring environments. Generated STR records consistently preserved fraud classifications, investigation metadata, institutional identifiers, and audit references during downstream compliance-processing operations. The testing workflow additionally verified successful propagation of compliance alerts and synchronized visibility of suspicious transaction reports across banking and regulatory monitoring interfaces.
+
+\renewcommand{\arraystretch}{1.3}
+
+\begin{table}[H]
+\centering
+\caption{Integration Testing of STR Generation Workflow}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{4.2cm}|p{9cm}|}
+\hline
+\textbf{Serial Number of Test Case} & 2.4 \\ \hline
+\textbf{Name of Test Case} & Fraud Escalation and STR Compliance Workflow \\ \hline
+\textbf{Feature being Tested} & STR Lifecycle Management and Compliance Synchronization \\ \hline
+\textbf{Description} & Validate fraud escalation and regulator-side STR synchronization workflow \\ \hline
+\textbf{Sample Input} & Fraud transaction escalated by institutional administrator \\ \hline
+\textbf{Expected Output} & STR generated and synchronized successfully within regulator compliance dashboard \\ \hline
+\textbf{Actual Output} & Fraud escalation and STR synchronization completed successfully \\ \hline
+\textbf{Remarks} & Successful test \\ \hline
+\end{tabular}
+\end{table}
+
+\renewcommand{\arraystretch}{1}
+
+
+%========================================================
+\subsection[Integration Testing of Authentication and Protected Dashboard Rendering]{\textbf{Integration Testing of Authentication and Protected Dashboard Rendering}}
+%========================================================
+
+This integration test validated synchronization between JWT-based authentication services, middleware-driven authorization guards, protected API routes, and role-specific dashboard-rendering environments operating within the proposed framework. The testing workflow additionally verified secure session propagation, authorization consistency, and protected resource accessibility across institutional monitoring interfaces.
+
+Middleware-driven authentication workflows successfully validated session authorization, protected route synchronization, secure API accessibility, and institutional role isolation across distributed monitoring interfaces. Dashboard-rendering operations correctly enforced role-specific access-control policies for \texttt{BANK\_USER}, \texttt{ADMIN}, and \texttt{REGULATOR} entities during backend synchronization workflows. The testing workflow additionally verified invalid-session rejection, unauthorized route restrictions, and secure propagation of authenticated dashboard resources across institutional compliance-monitoring environments.
+\renewcommand{\arraystretch}{1.3}
+
+\begin{table}[H]
+\centering
+\caption{Integration Testing of Authentication and Protected Dashboard Rendering}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{4.2cm}|p{9cm}|}
+\hline
+\textbf{Serial Number of Test Case} & 2.5 \\ \hline
+\textbf{Name of Test Case} & Authenticated Dashboard Access and Rendering Workflow \\ \hline
+\textbf{Feature being Tested} & Session Validation and Role-Based Dashboard Authorization \\ \hline
+\textbf{Description} & Validate authenticated dashboard rendering and protected route authorization \\ \hline
+\textbf{Sample Input} & Valid JWT-authenticated institutional user session \\ \hline
+\textbf{Expected Output} & Authorized dashboard rendered successfully based on institutional role \\ \hline
+\textbf{Actual Output} & Protected dashboard rendered successfully with valid role authorization \\ \hline
+\textbf{Remarks} & Successful test \\ \hline
+\end{tabular}
+\end{table}
+
+\renewcommand{\arraystretch}{1}
+
+%========================================================
+\section[System Testing]{\textbf{System Testing}}
+%========================================================
+
+System testing was conducted to validate the operational stability, concurrent transaction-handling capability, database synchronization performance, and workflow-level response consistency of the proposed TBML detection framework under distributed institutional monitoring environments. The testing workflow focused on browser-based end-to-end validation, protected dashboard execution, concurrent PostgreSQL scalability analysis, API response-time benchmarking, and operational latency evaluation across fraud-monitoring and compliance-management services.
+
+%========================================================
+\subsection[Browser Automation and Workflow Validation]{\textbf{Browser Automation and Workflow Validation}}
+%========================================================
+
+Browser-based end-to-end validation was performed using Playwright automation workflows executed within Chromium testing environments. The testing workflow validated protected dashboard rendering, role-based authentication, STR lifecycle execution, fraud-notification propagation, compliance-action synchronization, and institutional transaction visibility restrictions across distributed frontend and backend services. All automated workflow executions completed successfully without unauthorized access, synchronization failure, or dashboard inconsistency during operational validation.
+
+\renewcommand{\arraystretch}{1.3}
+
+\begin{table}[H]
+\centering
+\caption{Browser Automation and Workflow Validation Results}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{7cm}|p{4cm}|}
+\hline
+\textbf{Workflow Validation} & \textbf{Status} \\ \hline
+Admin Authentication and Dashboard Rendering & Successful \\ \hline
+Fraud Case Retrieval and STR Visibility & Successful \\ \hline
+GET\_DOCUMENTS Compliance Workflow & Successful \\ \hline
+FREEZE\_ACCOUNT Regulatory Workflow & Successful \\ \hline
+Fraud Verdict Marking Workflow & Successful \\ \hline
+Bank User STR Generation Workflow & Successful \\ \hline
+Fraud Notification Propagation Workflow & Successful \\ \hline
+Protected Route and RBAC Validation & Successful \\ \hline
+Institutional Transaction Visibility Restriction & Successful \\ \hline
+Sign-In Page Smoke Testing & Successful \\ \hline
+\end{tabular}
+\end{table}
+
+\renewcommand{\arraystretch}{1}
+
+The Playwright automation workflow successfully validated sequential execution of institutional fraud-monitoring operations across protected dashboard environments. Browser automation additionally verified secure session persistence, API synchronization consistency, workflow-level authorization enforcement, and stable dashboard rendering across \texttt{ADMIN} and \texttt{BANK\_USER} operational environments. The testing workflow further confirmed successful STR generation, fraud escalation, regulator-side compliance synchronization, and distributed notification propagation across automated end-to-end execution workflows.
+
+%========================================================
+\subsection[Concurrent Database Scalability and API Performance Analysis]{\textbf{Concurrent Database Scalability and API Performance Analysis}}
+%========================================================
+
+Concurrent database scalability testing was conducted to evaluate PostgreSQL synchronization stability, dashboard query performance, fraud-filtering latency, and STR retrieval response consistency under increasing institutional user loads. The benchmarking workflow was implemented using Prisma ORM and Next.js backend services, where each simulated user executed five continuous transactional requests during concurrent dashboard-access operations. Connection pooling mechanisms were additionally configured with a maximum limit of 15 active database connections to regulate concurrent query execution, maintain synchronization stability, and prevent backend resource exhaustion during high-volume transactional workloads. The testing workflow further measured request throughput, API response latency, database synchronization consistency, and reliable transaction persistence across distributed compliance-monitoring environments.
+\renewcommand{\arraystretch}{1.3}
+
+\begin{table}[H]
+\centering
+\caption{Dashboard Transaction Retrieval Scalability Analysis}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{2.6cm}|p{2.4cm}|p{2.8cm}|p{2.8cm}|p{2.2cm}|}
+\hline
+\textbf{Concurrent Users} & \textbf{Total Requests} & \textbf{Avg Latency (ms)} & \textbf{P95 Latency (ms)} & \textbf{Success Rate} \\ \hline
+10 & 50 & 297.33 & 884.28 & 100\% \\ \hline
+50 & 250 & 156.05 & 174.75 & 100\% \\ \hline
+100 & 500 & 159.99 & 181.30 & 100\% \\ \hline
+250 & 1250 & 158.53 & 176.99 & 100\% \\ \hline
+500 & 2500 & 162.14 & 180.72 & 100\% \\ \hline
+\end{tabular}
+\end{table}
+
+\renewcommand{\arraystretch}{1}
+
+The dashboard transaction retrieval workflow maintained stable query performance and successful request execution across increasing institutional user loads. Average latency represents the mean response time observed during concurrent dashboard-query execution, while P95 latency represents the upper-bound response behavior experienced by 95\% of transactional requests during peak workload conditions. The benchmarking results demonstrated stable dashboard synchronization performance and reliable PostgreSQL query execution even under high-volume concurrent monitoring operations. Consistent 100\% request success rates across all user loads additionally validated stable backend synchronization, successful transaction persistence, and reliable API-level execution throughout distributed dashboard-access workflows.
+\renewcommand{\arraystretch}{1.3}
+
+\begin{table}[H]
+\centering
+\caption{Fraud Transaction Filtering Scalability Analysis}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{2.6cm}|p{2.4cm}|p{2.8cm}|p{2.8cm}|p{2.2cm}|}
+\hline
+\textbf{Concurrent Users} & \textbf{Total Requests} & \textbf{Avg Latency (ms)} & \textbf{P95 Latency (ms)} & \textbf{Success Rate} \\ \hline
+10 & 50 & 159.58 & 174.04 & 100\% \\ \hline
+50 & 250 & 158.15 & 181.58 & 100\% \\ \hline
+100 & 500 & 147.56 & 170.37 & 100\% \\ \hline
+250 & 1250 & 148.18 & 164.58 & 100\% \\ \hline
+500 & 2500 & 263.80 & 731.88 & 100\% \\ \hline
+\end{tabular}
+\end{table}
+
+\renewcommand{\arraystretch}{1}
+
+The fraud-transaction filtering workflow maintained stable analytical response behavior and successful request execution during concurrent dashboard-query operations. Average latency measurements indicated efficient fraud-state retrieval performance during filtered transaction-access workflows, while P95 latency measurements captured upper-bound synchronization delays occurring during peak analytical processing conditions. The benchmarking results demonstrated reliable fraud-record filtering, stable API synchronization, and successful retrieval of institution-specific transaction datasets across increasing concurrent monitoring workloads. Although response latency increased under 500-user workloads, the framework preserved complete transactional consistency and maintained 100\% successful request execution throughout distributed fraud-monitoring operations.
+
+\renewcommand{\arraystretch}{1.3}
+
+\begin{table}[H]
+\centering
+\caption{STR Compliance Report Retrieval Scalability Analysis}
+\vspace{0.2cm}
+
+\begin{tabular}{|p{2.6cm}|p{2.4cm}|p{2.8cm}|p{2.8cm}|p{2.2cm}|}
+\hline
+\textbf{Concurrent Users} & \textbf{Total Requests} & \textbf{Avg Latency (ms)} & \textbf{P95 Latency (ms)} & \textbf{Success Rate} \\ \hline
+10 & 50 & 2694.21 & 7311.50 & 100\% \\ \hline
+50 & 250 & 2101.61 & 4791.52 & 100\% \\ \hline
+100 & 500 & 856.39 & 2149.27 & 100\% \\ \hline
+250 & 1250 & 467.03 & 600.67 & 100\% \\ \hline
+500 & 2500 & 465.62 & 596.76 & 100\% \\ \hline
+\end{tabular}
+\end{table}
+
+\renewcommand{\arraystretch}{1}
+
+The STR compliance retrieval workflow demonstrated stable synchronization behavior and successful report-access consistency across concurrent institutional query operations. STR retrieval workflows exhibited comparatively higher response latency due to complex compliance-report aggregation, multi-table relational joins, transaction-history synchronization, and regulator-side metadata retrieval operations executed during report generation and dashboard-access workflows. 
+
+The average latency values represented overall response consistency during concurrent STR-access operations, while P95 latency measurements captured peak synchronization delays occurring during large-scale compliance-query execution. Despite the computational overhead associated with relational join processing and compliance-report aggregation, the framework maintained complete request success rates and stable operational consistency across distributed regulatory monitoring environments.
+
+\section[Model Performance Validation]{\textbf{Model Performance Validation}}

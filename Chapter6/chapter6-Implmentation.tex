@@ -1,20 +1,169 @@
+%========================================================
 \chapter{Implementation}
-Every chapter should start with an introduction paragraph. This paragraph should brief about the flow of the chapter. This introduction can be limited within 4 to 5 sentences. The chapter heading should be appropriately modified (a sample heading is shown for this chapter). But don't start the introduction paragraph in the chapters like "This chapter deals with....". Instead you should bring in the highlights of the chapter in the introduction paragraph.
+%========================================================
 
-\section{Conclusion}
-This chapter should not contain an introduction paragraph like other chapters. You can directly write conclusion of the work done under this section. Typically this section can have 3 to 4 paragraphs. 
+This chapter presents the implementation details of the proposed FedGAT-TBML framework including real-time transaction streaming, heterogeneous graph construction, hybrid HGNN--LSTM-based fraud detection, federated learning integration, and dashboard-based compliance monitoring. The framework is implemented using Apache Kafka, Memgraph, PostgreSQL, PyTorch Geometric, Flower, FastAPI, and Next.js to support scalable real-time Trade-Based Money Laundering detection and distributed Anti-Money Laundering monitoring operations.
 
-First paragraph should bring in the scenario of the project and every objective should be explained here.
 
-Second paragraph should say how the objectives are implemented and achieved.
+%========================================================
+\section[Programming Language and Framework Selection]{\textbf{Programming Language and Framework Selection}}
+%========================================================
 
-Last paragraph should draw the conclusions from each objective with quantitative results, performance improvement etc. 
+The proposed TBML detection framework is implemented using multiple programming languages, machine learning frameworks, backend services, and streaming technologies to support distributed real-time fraud detection and compliance monitoring operations. Python is utilized for backend analytical services, graph construction, Kafka transaction processing, federated learning, and Hybrid HGNN--LSTM model implementation due to its extensive support for machine learning and graph-processing libraries. PyTorch Geometric is utilized for graph neural network implementation, while the Flower framework supports distributed federated learning and FedAvg-based global model aggregation across participating institutional clients.
 
-\section{Future Scope}
-Briefly discuss the constraints and limitations of the project and state the possibilities of extending the work in future.
-\section{Learning Outcomes of the Project}
-\begin{itemize}
-\item List the learning outcomes here
-\item List a minimum of 5 learning outcomes
-\end{itemize}
+The frontend monitoring environment is implemented using Next.js, TypeScript, and Tailwind CSS to support modular dashboard development, transaction visualization, STR management, and compliance monitoring workflows. FastAPI is utilized for REST API development and communication between dashboard services and analytical environments, whereas Apache Kafka supports asynchronous transaction streaming and event-driven processing. Memgraph is utilized for heterogeneous graph management and relationship analysis, while PostgreSQL supports centralized transaction logging, fraud monitoring records, dashboard synchronization, and institutional audit management operations.
+
+%========================================================
+\section[Platform Selection]{\textbf{Platform Selection}}
+%========================================================
+
+The proposed TBML detection framework is developed within a Windows-based  environment consisting of interconnected frontend monitoring services and backend analytical infrastructures. The frontend platform manages authentication workflows, dashboard visualization, STR generation, regulatory monitoring, and institutional transaction management, while the backend analytical environment performs transaction streaming, graph generation, fraud inference, and federated model synchronization operations.
+
+The implementation utilizes Docker-based isolated runtime environments for Kafka services, graph databases, backend APIs, and federated learning modules to improve deployment consistency and distributed service orchestration. Memgraph is utilized for graph relationship management and transactional connectivity analysis, whereas PostgreSQL functions as the centralized synchronization database between analytical services and dashboard environments. Visual Studio Code and GitHub are utilized for collaborative development, source-code management, debugging, and version control operations throughout the implementation lifecycle.
+
+%========================================================
+\section[Code Conventions]{\textbf{Code Conventions}}
+%========================================================
+
+The proposed TBML detection framework follows standardized coding conventions to maintain implementation consistency, modularity, and scalability across frontend services, backend analytical modules, and distributed learning environments. The implementation adopts a modular service-oriented architecture where transaction streaming services, graph analytics, federated learning modules, dashboard interfaces, and compliance workflows are organized according to functional responsibilities to improve maintainability and service integration.
+
+Consistent naming structures, modular API organization, centralized configuration management, and reusable utility services are utilized throughout the implementation to simplify debugging, runtime monitoring, and backend communication workflows. Logging mechanisms and structured service separation additionally improve audit traceability, distributed synchronization, and operational monitoring across the real-time fraud detection environment.
+
+%========================================================
+\subsection[Naming Conventions]{\textbf{Naming Conventions}}
+%========================================================
+
+Naming conventions within the proposed framework are designed to remain semantically meaningful and aligned with domain-specific financial monitoring operations. Python variables, backend utility functions, Kafka services, and transaction-processing modules follow \texttt{snake\_case} conventions, whereas analytical classes, federated learning modules, and frontend components utilize \texttt{PascalCase} notation. REST API endpoints, transaction services, and graph-processing utilities are named according to their operational functionality to improve implementation readability and maintainability.
+
+Graph entities, transactional relationships, and database schemas additionally follow consistent naming conventions across graph and relational database environments. Examples include graph entities such as \texttt{(:Account)}, \texttt{(:Transaction)}, and \texttt{(:Document)}, along with transactional relationships including \texttt{[:SENDS]}, \texttt{[:TO]}, and \texttt{[:HAS\_DOC]} utilized throughout graph construction and fraud analysis operations.
+
+%========================================================
+\subsection[File Organization]{\textbf{File Organization}}
+%========================================================
+
+The proposed TBML detection framework follows a modular project structure where frontend monitoring services and backend analytical environments are maintained as interconnected distributed applications. The frontend environment contains dashboard interfaces, authentication services, STR management workflows, API handlers, reusable UI components, and regulatory monitoring modules implemented using the Next.js App Router architecture and TypeScript-based service organization.
+
+The backend analytical environment contains Kafka producers and consumers, graph construction services, Hybrid HGNN--LSTM model implementations, federated learning clients, inference pipelines, and database synchronization utilities responsible for real-time fraud analysis and transaction monitoring operations. Shared configuration files, utility services, logging environments, and centralized database connectors are additionally organized according to functional responsibilities to improve scalability, maintainability, and distributed service coordination across the proposed framework.
+
+%========================================================
+\subsection[Environment Configuration and Logging]{\textbf{Environment Configuration and Logging}}
+%========================================================
+
+Environment variables and runtime configurations are securely managed using centralized \texttt{.env} configuration files to prevent direct exposure of API credentials, Kafka broker addresses, database configurations, authentication tokens, and federated learning parameters within the codebase. Backend services including Kafka consumers, Memgraph connectors, PostgreSQL clients, and fraud inference pipelines are initialized during runtime to support centralized service configuration and distributed analytical synchronization.
+
+Logging mechanisms are integrated throughout transaction streaming services, graph-processing environments, federated learning modules, backend APIs, and fraud inference pipelines to support runtime monitoring, debugging, audit traceability, and compliance management operations. Fraud classifications, transaction verdicts, confidence scores, STR generation events, and institutional monitoring activities are additionally logged within PostgreSQL environments for dashboard synchronization and regulatory investigation workflows.
+
+%========================================================
+\section[Difficulties Encountered and Strategies Used to Tackle Them]{\textbf{Difficulties Encountered and Strategies Used to Tackle Them}}
+%========================================================
+
+
+
+
+%========================================================
+\section[System Implementation]{\textbf{System Implementation}}
+
+%========================================================
+
+The system implementation of the proposed TBML detection framework follows a distributed event-driven architecture integrating Kafka-based transaction streaming, heterogeneous graph generation, Hybrid HGNN--LSTM analytical processing, federated collaborative learning, real-time fraud inference, and dashboard-driven compliance monitoring. Backend analytical services, graph databases, inference pipelines, and frontend monitoring environments communicate through synchronized APIs, Kafka streams, and centralized PostgreSQL audit infrastructures to support scalable real-time Trade-Based Money Laundering detection and institutional monitoring operations.
+%========================================================
+\subsection[Kafka-Based Transaction Streaming]{\textbf{Kafka-Based Transaction Streaming}}
+%========================================================
+
+The proposed TBML detection framework utilizes Apache Kafka to support asynchronous transaction streaming and event-driven communication between distributed analytical services. A Kafka producer continuously generates synthetic SWIFT transaction payloads containing sender identifiers, receiver identifiers, transaction amounts, commodity information, trade quantities, price deviation scores, and weight-gap attributes before publishing them into the \texttt{incoming\_swift\_messages} topic for downstream analytical processing.
+
+Kafka consumer services continuously subscribe to the transaction stream and process incoming financial events in real time for graph generation and fraud inference operations. The consumer pipeline validates transaction payloads, constructs heterogeneous graph relationships within Memgraph, extracts multi-hop transactional subgraphs, and forwards graph tensors to the Hybrid HGNN--LSTM inference engine for downstream fraud prediction and PostgreSQL audit logging. The streaming architecture enables decoupled communication between frontend services, graph-processing environments, and distributed analytical modules operating within the proposed framework.
+
+
+%========================================================
+\subsection[Graph Construction and Feature Extraction]{\textbf{Graph Construction and Feature Extraction}}
+%========================================================
+
+The graph construction pipeline transforms streamed financial transactions into heterogeneous graph representations for downstream graph-based analytical processing. Incoming transaction payloads consumed from the \texttt{incoming\_swift\_messages} Kafka topic are processed using Cypher-based graph ingestion operations within Memgraph, where transactional entities and financial relationships are dynamically mapped into interconnected graph structures as illustrated in Figure~\ref{fig:memgraph_graph}.
+
+The generated graph schema consists of heterogeneous node entities including \texttt{(:Account)}, \texttt{(:Transaction)}, and \texttt{(:Document)} connected through relationships such as \texttt{[:SENDS]}, \texttt{[:TO]}, and \texttt{[:HAS\_DOC]}. The feature extraction pipeline subsequently performs constrained multi-hop subgraph traversal around the target transaction to generate node feature tensors, graph edge mappings, sequential transaction representations, and trade metadata tensors required for Hybrid HGNN--LSTM-based fraud inference operations.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Figures/memgraph_graph.png}
+    \caption{Heterogeneous financial transaction graph visualized within the Memgraph Lab environment.}
+    \label{fig:memgraph_graph}
+\end{figure}
+
+%========================================================
+\subsection[Hybrid HGNN--LSTM Analytical Implementation]{\textbf{Hybrid HGNN--LSTM Analytical Implementation}}
+%========================================================
+
+The proposed Hybrid HGNN--LSTM analytical module is implemented using PyTorch and PyTorch Geometric to perform graph-based fraud analysis, temporal transaction modeling, and trade metadata learning for intelligent TBML prediction. The implementation receives heterogeneous graph tensors generated from the Memgraph environment, including KYC node features, transactional edge relationships, sequential SWIFT transaction data, and trade deviation attributes before forwarding them into the analytical inference pipeline. The hybrid implementation combines graph attention learning, temporal sequence analysis, and trade feature fusion to improve fraud detection across interconnected financial transaction networks.
+
+The graph branch utilizes a three-layer \texttt{GATv2Conv} architecture with multi-head attention mechanisms to perform neighborhood aggregation and graph message passing across interconnected financial entities. The implemented graph layers process three-dimensional KYC node features including shell-company indicators, jurisdiction information, and dormant-account attributes to generate enriched graph embeddings. \textbf{The stacked graph attention layers improve two-hop transactional visibility and enable the model to identify hidden intermediary account relationships and suspicious transaction routing patterns associated with TBML activities.} ReLU activation functions and dropout regularization are integrated after each graph convolution layer to improve representation stability during federated training operations.
+
+The generated graph embeddings are aggregated using \texttt{global\_mean\_pool()} to construct graph-level contextual representations for downstream temporal analysis. The pooled graph context is fused with sequential SWIFT transaction features before being processed through the LSTM branch for temporal anomaly detection and sequential transaction behavior modeling. \textbf{The LSTM implementation captures repeated payment structures, abnormal transaction timing behavior, and cyclic financial movement patterns that cannot be identified using standalone graph-learning operations.}
+
+Trade-specific metadata including price deviation and cargo weight-gap attributes are independently processed using multilayer perceptron operations consisting of fully connected layers, Layer Normalization, ReLU activations, and dropout regularization mechanisms. The generated graph embeddings, temporal sequence representations, and trade feature vectors are fused within the final analytical layer before being forwarded into the dense classification module for fraud prediction. The final classification layer categorizes transactions into predefined classes including \texttt{CLEAN}, \texttt{WATCHLIST}, and \texttt{FRAUD}. Experimental evaluation demonstrated stable federated convergence and high fraud-class Precision--Recall performance across distributed institutional datasets. The overall implementation workflow of the proposed Hybrid HGNN--LSTM analytical module is illustrated in Figure~\ref{fig:hgnn_impl}.
+
+\begin{figure}[H]
+\centering
+
+\includegraphics[width=0.48\textwidth]{Figures/model1.png}
+\includegraphics[width=0.48\textwidth]{Figures/model2.png}
+
+\caption{Implementation workflow of the proposed Hybrid HGNN--LSTM analytical module.}
+
+\label{fig:hgnn_impl}
+
+\end{figure}
+
+%========================================================
+\subsection[Federated Learning Implementation]{\textbf{Federated Learning Implementation}}
+%========================================================
+
+The federated learning environment is implemented using the Flower federated learning framework to support distributed privacy-preserving fraud detection across multiple institutional clients. The implementation utilizes a centralized aggregation server and three participating institutional clients, where each client performs localized training of the proposed Hybrid HGNN--LSTM analytical model using institution-specific transaction graphs, sequential SWIFT transaction representations, and fraud classification labels without directly sharing sensitive financial records outside the local analytical environment.
+
+The centralized aggregation server implements a custom federated strategy by extending the \texttt{flwr.server.strategy.FedAvg} class and overriding the \texttt{aggregate\_fit()} operation for distributed parameter aggregation. During each federated communication round, locally trained model weights generated from participating institutional clients are transmitted to the aggregation server where the \texttt{FedAvg} algorithm performs parameter averaging across synchronized client updates to generate a globally optimized fraud detection model. The server initializes the Hybrid HGNN--LSTM analytical architecture using synchronized feature dimensions including three-dimensional KYC node features, one-dimensional SWIFT transaction attributes, two-dimensional trade metadata features, hidden embedding dimensions of size 32, and three-class fraud prediction outputs.
+
+The federated implementation performs ten synchronized communication rounds using complete client participation configurations including \texttt{fraction\_fit=1.0}, \texttt{min\_fit\_clients=3}, and \texttt{min\_available\_clients=3} to maintain stable distributed convergence across institutional environments. After the final aggregation round, the globally optimized model parameters are converted from Flower parameter streams into NumPy tensors using \texttt{parameters\_to\_ndarrays()} before being serialized and stored as \texttt{global\_model.npz} for downstream real-time fraud inference operations. \textbf{The implemented federated workflow enabled collaborative fraud learning, stable distributed convergence, and privacy-preserving analytical synchronization while maintaining complete institutional data isolation across participating financial organizations.}
+
+
+
+%========================================================
+\subsection[User Interface and Compliance Workflow Implementation]{\textbf{User Interface and Compliance Workflow Implementation}}
+%========================================================
+
+The user interface and compliance monitoring environment is implemented using Next.js, TypeScript, Tailwind CSS, Prisma ORM, Zustand state management, and PostgreSQL to support secure institutional fraud monitoring and centralized regulatory investigation workflows. The frontend architecture follows a modular service-oriented implementation consisting of protected dashboard routes, middleware-driven authentication guards, API handlers, Prisma-based database interaction layers, and role-specific monitoring interfaces synchronized with the federated analytical inference environment.
+
+%========================================================
+\subsubsection[Authentication and Role Validation Pipeline]{\textbf{Authentication and Role Validation Pipeline}}
+%========================================================
+
+The authentication workflow is implemented using JWT-based session authorization integrated with centralized middleware validation and protected route interception mechanisms. Incoming requests targeting protected dashboard routes are intercepted through middleware guards where session tokens are validated and mapped against predefined authorization scopes including \texttt{BANK\_ADMIN} and \texttt{REGULATOR}. The validated session context is subsequently propagated across frontend environments through centralized authentication providers and Zustand-backed session state management before protected dashboard components and compliance services are rendered within the client environment.
+
+%========================================================
+\subsubsection[Transaction Monitoring and Dashboard Rendering]{\textbf{Transaction Monitoring and Dashboard Rendering}}
+%========================================================
+
+Fraud predictions generated by the federated Hybrid HGNN--LSTM inference pipeline are synchronized into centralized PostgreSQL audit tables through backend transaction-processing services. Protected Next.js API handlers subsequently retrieve transaction classifications, fraud scores, STR metadata, and institutional monitoring information using Prisma query operations before dynamically rendering analytical outputs within role-specific dashboard interfaces. The banking administrator dashboard supports transaction filtering, fraud investigation workflows, watchlist escalation operations, and false-positive reclassification procedures through synchronized API-driven transaction state updates across centralized audit environments.
+
+%========================================================
+\subsubsection[STR Generation and Notification Workflow]{\textbf{STR Generation and Notification Workflow}}
+%========================================================
+
+Confirmed fraudulent transactions trigger Suspicious Transaction Report (STR) generation workflows implemented through secured API endpoints and PostgreSQL-backed audit synchronization services. Institutional administrators initiate STR generation requests through protected dashboard interfaces where transaction metadata, fraud classifications, investigation summaries, institutional remarks, and compliance status information are serialized and persisted into centralized STR audit tables. Generated STR records are subsequently propagated into regulator-facing monitoring environments through synchronized notification services and backend compliance-routing operations.
+
+%========================================================
+\subsubsection[Regulatory Investigation and Compliance Monitoring]{\textbf{Regulatory Investigation and Compliance Monitoring}}
+%========================================================
+
+The regulatory monitoring environment consumes institution-generated STR records, fraud-classified transaction histories, compliance metadata, and supporting analytical evidence through protected API routes and Prisma-based database interaction layers. Regulatory authorities can perform investigation workflows including document-verification requests, institutional inquiry procedures, transaction review operations, and account-freeze initiation requests through centralized compliance interfaces synchronized with backend audit environments. The implemented monitoring workflow enabled synchronized fraud prediction, institutional verification, STR lifecycle management, and centralized compliance monitoring within a unified real-time TBML analytical platform.
+
+
+%========================================================
+\section[Summary]{\textbf{Summary}}
+%========================================================
+
+This chapter presented the implementation workflow of the proposed TBML detection framework including Kafka-based transaction streaming, heterogeneous graph construction, Hybrid HGNN--LSTM analytical processing, federated collaborative learning, real-time fraud inference, and dashboard-driven compliance monitoring. The chapter discussed the implementation of distributed analytical services, graph-processing pipelines, federated parameter aggregation mechanisms, inference synchronization workflows, and centralized PostgreSQL audit environments operating within the proposed framework.
+
+The implementation chapter further demonstrated how graph attention learning, temporal transaction modeling, trade feature fusion, federated analytical synchronization, and role-based compliance monitoring are integrated within a unified real-time TBML detection environment. The subsequent chapter presents the experimental evaluation, performance analysis, federated convergence results, and monitoring outputs generated by the proposed TBML detection framework.
+
+
 

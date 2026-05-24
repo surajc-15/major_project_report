@@ -57,28 +57,123 @@ The transaction processing Module acts as the initial ingestion environment with
 The input data processed within this Module includes sender and receiver account identifiers, transaction amounts, commodity types, trade quantities, trade values, invoice details, transaction timestamps, and institutional monitoring attributes associated with financial activities. The collected transactional data is validated, normalized, and converted into structured transaction records to support reliable downstream analytical processing.
 
 The processed transaction events are published into Kafka streaming topics to enable asynchronous communication between backend services and analytical modules. The generated transaction streams serve as the primary input for graph construction, feature extraction, and graph-based fraud detection operations within the proposed framework.
-
-
 %========================================================
 \subsection[Graph Construction Module]{\textbf{Graph Construction Module}}
 %========================================================
 
-The graph construction module is responsible for transforming processed transaction streams into heterogeneous financial transaction graphs for graph-based analytical processing. This module receives validated transaction events from Kafka consumer services and models financial interactions between accounts, transactions, trade documents, and institutional entities within a connected graph environment.
+The graph construction module transforms processed transaction streams into heterogeneous financial transaction graphs for downstream graph-based analytical processing. The module receives validated transaction events from Kafka consumer services and models financial interactions between accounts, transactions, and trade documents within a connected graph environment.
 
-The generated graph schema consists of interconnected node entities including \texttt{(:Account)}, \texttt{(:Transaction)}, and \texttt{(:Document)} connected through graph relationships such as \texttt{[:SENDS]}, \texttt{[:TO]}, and \texttt{[:HAS\_DOC]}. These relationships represent sender-receiver interactions, transaction ownership, trade associations, and document linkages required for identifying hidden transactional dependencies associated with Trade-Based Money Laundering activities.
+The generated graph schema consists of interconnected node entities including \texttt{(:Account)}, \texttt{(:Transaction)}, and \texttt{(:Document)} connected through relationships such as \texttt{[:SENDS]}, \texttt{[:TO]}, and \texttt{[:HAS\_DOC]} as illustrated in Figure~\ref{fig:graph_schema}. The heterogeneous graph structure preserves transactional connectivity, intermediary account interactions, and trade-document relationships required for identifying hidden financial dependencies associated with Trade-Based Money Laundering activities.
 
-The module interacts with the Memgraph database to store graph structures, entity relationships, and transactional connectivity information required for downstream analytical learning. The generated graph features and relational representations are subsequently forwarded to the Hybrid HGNN--LSTM fraud detection module for graph-based fraud analysis and intelligent transaction classification.
+The module interacts with the Memgraph database to store graph structures, entity relationships, and transactional connectivity information required for downstream feature extraction and fraud analysis. The generated graph representations and extracted relational features are subsequently forwarded to the Hybrid HGNN--LSTM fraud detection module for intelligent transaction classification.
 
+\begin{figure}[t]
+\centering
+
+\begin{tikzpicture}[
+    node distance=3cm,
+    every node/.style={font=\scriptsize},
+    entity/.style={
+        draw=black,
+        thick,
+        rounded corners=8pt,
+        align=center,
+        minimum width=3cm,
+        minimum height=2.2cm
+    },
+    relation/.style={
+        -{Latex[length=2.5mm]},
+        thick
+    }
+]
+
+% ==========================================================
+% ACCOUNT NODE
+% ==========================================================
+
+\node[
+    entity,
+    fill=orange!25
+] (account)
+{
+\textbf{(:Account)}\\
+\rule{2.2cm}{0.3pt}\\
+account\_id\\
+jurisdiction\\
+is\_shell\\
+dorm\_days
+};
+
+% ==========================================================
+% TRANSACTION NODE
+% ==========================================================
+
+\node[
+    entity,
+    fill=red!20,
+    right=of account
+] (transaction)
+{
+\textbf{(:Transaction)}\\
+\rule{2.2cm}{0.3pt}\\
+txn\_id\\
+amount\\
+timestamp\\
+risk\_score
+};
+
+% ==========================================================
+% DOCUMENT NODE
+% ==========================================================
+
+\node[
+    entity,
+    fill=yellow!30,
+    above=of transaction
+] (document)
+{
+\textbf{(:Document)}\\
+\rule{2.2cm}{0.3pt}\\
+swift\_ref\\
+price\_deviation\\
+weight\_gap\\
+commodity
+};
+
+% ==========================================================
+% RELATIONSHIPS
+% ==========================================================
+
+\draw[relation]
+(account) to[bend left=18]
+node[midway, above] {\texttt{[:SENDS]}}
+(transaction);
+
+\draw[relation]
+(transaction) to[bend left=18]
+node[midway, below] {\texttt{[:TO]}}
+(account);
+
+\draw[relation]
+(transaction) --
+node[midway, right] {\texttt{[:HAS\_DOC]}}
+(document);
+
+\end{tikzpicture}
+
+\caption{Heterogeneous graph schema representing entity attributes and transactional relationships in the proposed TBML detection framework.}
+
+\label{fig:graph_schema}
+
+\end{figure}
 %========================================================
 \subsection[Hybrid HGNN--LSTM Fraud Detection Module]{\textbf{Hybrid HGNN--LSTM Fraud Detection Module}}
 %========================================================
+The Hybrid HGNN--LSTM fraud detection module performs graph-based representation learning and temporal transaction analysis within the proposed TBML detection framework. The module receives KYC node features, graph edge relationships, SWIFT transaction attributes, sequential transaction tensors, and trade metadata extracted from the heterogeneous financial graph for downstream analytical processing.
 
-The Hybrid HGNN--LSTM fraud detection module performs graph-based fraud analysis and temporal transaction modeling within the proposed TBML detection framework. The module receives KYC node features, transaction sequences, SWIFT edge attributes, and trade metadata generated from the graph construction environment for downstream analytical processing.
+The graph branch utilizes a three-layer GATv2 architecture to perform attention-based neighborhood aggregation and multi-hop message passing across interconnected financial entities. The stacked GATv2 layers improve two-hop neighborhood visibility and enable the model to capture hidden transactional relationships and intermediary account interactions associated with Trade-Based Money Laundering activities. The generated graph embeddings are globally pooled and fused with sequential transaction representations before being processed through the LSTM branch for temporal anomaly detection and transaction behavior analysis. In parallel, the trade branch processes trade-specific attributes including price deviation and weight gap scores using multilayer perceptron operations and feature normalization layers.
 
-The graph branch utilizes multi-layer GATv2 operations to perform neighborhood aggregation and graph attention learning across interconnected financial entities. In parallel, the temporal branch utilizes LSTM-based sequential modeling to analyze transaction sequences and identify abnormal temporal transaction behavior associated with suspicious financial activities. The trade branch processes trade metadata and institutional transaction attributes using multilayer perceptron operations and feature normalization mechanisms.
-
-The generated graph embeddings, temporal representations, and trade feature vectors are combined within the feature fusion layer for downstream fraud prediction and transaction risk analysis. The dense classification layer categorizes transactions into predefined classes including \texttt{CLEAN}, \texttt{WATCHLIST}, and \texttt{FRAUD}. The overall architecture of the proposed Hybrid HGNN--LSTM fraud detection module is illustrated in Figure~\ref{fig:hgnn_architecture}.
-
+The generated graph embeddings, temporal representations, and trade feature vectors are combined within the feature fusion layer for downstream fraud prediction and transaction risk analysis. The final dense classification layer categorizes transactions into predefined classes including \texttt{CLEAN}, \texttt{WATCHLIST}, and \texttt{FRAUD}. The overall architecture of the proposed Hybrid HGNN--LSTM fraud detection module is illustrated in Figure~\ref{fig:hgnn_architecture}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/aimodel.png}
@@ -91,11 +186,9 @@ The generated graph embeddings, temporal representations, and trade feature vect
 %========================================================
 \subsection[Federated Learning Module]{\textbf{Federated Learning Module}}
 %========================================================
+The federated learning module enables privacy-preserving collaborative fraud detection across distributed financial institutions without directly sharing sensitive transactional data. Each participating institution performs local model training using institutional transaction graphs, transaction sequences, and fraud classification labels generated within the analytical environment. Independent federated clients maintain isolated training environments and perform localized optimization of the Hybrid HGNN--LSTM model on institution-specific financial datasets.
 
-The federated learning module enables privacy-preserving collaborative fraud detection across distributed financial institutions without directly sharing sensitive transactional data. Each participating institution performs local model training using institutional transaction graphs, transaction sequences, and fraud classification labels generated within the analytical environment.
-
-The locally trained model parameters are periodically transmitted to the central aggregation server where the Federated Averaging (\texttt{FedAvg}) strategy combines local model updates to generate an optimized global fraud detection model. The aggregated global model is subsequently redistributed to participating institutions for continuous fraud detection and real-time analytical inference. The overall federated learning architecture of the proposed framework is illustrated in Figure~\ref{fig:federated_architecture}.
-
+The framework utilizes the Federated Averaging (\texttt{FedAvg}) strategy to aggregate distributed model parameters across participating institutions. During each federated communication round, locally trained model weights generated from individual institutional clients are transmitted to the central aggregation server where parameter averaging operations are performed to generate a globally optimized fraud detection model. The aggregated global model parameters are subsequently redistributed to participating institutions for synchronized fraud detection and continuous real-time analytical inference. The overall federated learning architecture of the proposed framework is illustrated in Figure~\ref{fig:federated_architecture}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.82\textwidth]{Figures/federated_architecture.png}
@@ -106,14 +199,14 @@ The locally trained model parameters are periodically transmitted to the central
 
 
 %========================================================
-\subsubsection[STR Generation and Notification Module]{\textbf{STR Generation and Notification Module}}
+\subsection[STR Generation and Notification Module]{\textbf{STR Generation and Notification Module}}
 %========================================================
 
 The STR generation and notification module is responsible for compliance reporting and fraud alert management within the proposed TBML detection framework. Transactions verified as fraudulent by authorized banking administrators are forwarded to this module for Suspicious Transaction Report (STR) generation and regulatory processing. The module generates STR reports containing transaction details, fraud classifications, trade metadata, institutional information, and investigation summaries associated with suspicious financial activities.
 
 The Groq API service is utilized for analytical summarization and automated assistance during compliance documentation generation. Generated STR reports are subsequently forwarded to regulatory monitoring authorities for investigation and enforcement procedures. The notification management environment coordinates fraud alerts and institutional communication workflows, while the Resend email service delivers notification emails, investigation alerts, and regulatory enforcement messages to banking institutions and regulatory authorities.
 %========================================================
-\subsubsection[Dashboard and Regulatory Monitoring Module]{\textbf{Dashboard and Regulatory Monitoring Module}}
+\subsection[Dashboard and Regulatory Monitoring Module]{\textbf{Dashboard and Regulatory Monitoring Module}}
 %========================================================
 
 The dashboard and regulatory monitoring module provides real-time transaction visualization, fraud monitoring, and institutional investigation functionalities within the proposed TBML detection framework. The monitoring dashboard displays transaction classifications, fraud alerts, risk scores, STR records, and analytical monitoring information generated by the fraud detection environment. Separate dashboard environments are maintained for banking administrators and regulatory authorities to support institution-level monitoring and centralized compliance management operations.
