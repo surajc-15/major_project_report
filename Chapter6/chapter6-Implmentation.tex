@@ -61,6 +61,33 @@ Implementation challenges included noisy and imbalanced labels, large graph size
 %========================================================
 
 The system implementation of the proposed TBML detection framework follows a distributed event-driven architecture integrating Kafka-based transaction streaming, heterogeneous graph generation, Hybrid HGNN--LSTM analytical processing, federated collaborative learning, real-time fraud inference, and dashboard-driven compliance monitoring. Backend analytical services, graph databases, inference pipelines, and frontend monitoring environments communicate through synchronized APIs, Kafka streams, and centralized PostgreSQL audit infrastructures to support scalable real-time Trade-Based Money Laundering detection and institutional monitoring operations.
+
+\subsection[Synthetic Dataset Synthesis]{\textbf{Methodology of Synthetic Dataset Synthesis}}
+
+The generation of the synthetic dataset is engineered to emulate the multi-modal complexities inherent in international trade finance. The process initializes by constructing a baseline network of financial entities—Accounts, Documents, and Transactions—governed by power-law distributions to simulate realistic institutional transaction volumes. Subsequent stages facilitate the injection of complex temporal patterns, commodity-specific price anomalies, and multi-currency layering effects, creating a high-fidelity environment for model training.
+
+The underlying implementation utilizes a modular pipeline that leverages the Pandas library for vectorized data manipulation and Memgraph for graph-structured persistence. Each transaction record is anchored to its corresponding trade documentation through a schema-aligned bridge, ensuring that the structural connectivity required for Graph Neural Network (GNN) feature extraction is preserved. By integrating temporal constraints and noise-injection modules, the pipeline creates a realistic representation of financial behaviors, ranging from standard legitimate interactions to camouflaged, high-velocity laundering topologies.
+
+\subsection[Adversarial Refinement for Dataset Fidelity]{\textbf{Adversarial Refinement for Dataset Fidelity}}
+
+To ensure the framework develops generalized representations rather than relying on heuristic shortcuts, the synthetic generation process underwent significant adversarial refinement. The following modifications were implemented to enhance the dataset's empirical realism and mitigate unintended machine learning biases:
+
+\begin{enumerate}
+    \item \textbf{Price Multiplier Dynamics:} Replaced static price multipliers with Gaussian Mixture Models (GMMs) and stochastic blending, ensuring 30\% of fraudulent trades mimic normal market pricing to prevent simple threshold detection.
+    \item \textbf{Elimination of Feature Bias:} Removed the \textit{port\_log\_status} field to prevent "ground truth leakage," compelling the GNN to perform holistic structural analysis rather than relying on explicit categorical tags.
+    \item \textbf{KYC/Dormancy Engineering:} Implemented overlapping dormancy windows and noise injection to create realistic feature distributions, ensuring dormancy periods serve as contributing factors rather than binary identifiers.
+    \item \textbf{Universal Topology Injection:} Applied complex graph topologies (e.g., Cycles, Fan-In, Gather-Scatter) across all transaction classes to eliminate "Guilty by Shape" bias.
+    \item \textbf{Refined Pattern Classification:} Removed label-based tags (LEGIT/SUSPICIOUS) and introduced "No\_Pattern" as a valid structural classification, decoupling structural role from risk label.
+    \item \textbf{Temporal Realism:} Anchored the dataset to a one-year production horizon (Dec 2024--Dec 2025) and enforced realistic time-horizons (Clean: 1--4 weeks; Fraud: 3--6 months).
+    \item \textbf{Scale-Free Network Topology:} Introduced a Pareto/Zipf distribution to simulate "Whale" nodes, creating high-throughput backgrounds that camouflage fraudulent structural patterns.
+    \item \textbf{Log-Normal Transaction Amounts:} Modeled transaction values using a Log-Normal distribution to replicate real-world financial distributions, moving away from uniform, synthetic-sounding values.
+    \item \textbf{Multi-Hop Structural Integrity:} Enforced rigorous, rule-based generation for multi-hop topologies to maintain structural consistency across the graph.
+    \item \textbf{FX Settlement/Currency-Jump Awareness:} Incorporated multi-currency flows and FX spread monitoring to sensitize the model to TBML layering tactics.
+    \item \textbf{Stochastic Trade Price Blending:} Blended the distribution of illicit prices to remove detectable tabular shortcuts, compelling the model to utilize context-aware inference.
+    \item \textbf{Data Leakage Mitigation:} Systematically removed auxiliary flags that offered deterministic solutions to non-deterministic laundering challenges.
+    \item \textbf{Endurance-Based Simulation:} Refined the generation logic to ensure that multi-hop cycles represent sustained operational behaviors rather than instantaneous transactional artifacts.
+\end{enumerate}
+
 %========================================================
 \subsection[Kafka-Based Transaction Streaming]{\textbf{Kafka-Based Transaction Streaming}}
 %========================================================
