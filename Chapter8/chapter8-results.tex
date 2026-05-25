@@ -1,110 +1,161 @@
-\chapter{Results \& Discussions}
-Every chapter should start with an introduction paragraph. This paragraph should brief about the flow of the chapter. This introduction can be limited within 4 to 5 sentences. The chapter heading should be appropriately modified (a sample heading is shown for this chapter).But don't start the introduction paragraph in the chapters like "This chapter deals with....". Instead you should bring in the highlights of the chapter in the introduction paragraph.
-\section{Contents of this chapter}
-All the results obtained for your objectives should be discussed in this chapter. This chapter should contain the following sections as per the project.
-\begin{enumerate}
-\item Simulation results
-\item Experimental results
-\item Performance Comparison
-\item Inferences drawn from the results obtained
-\end{enumerate}
-All the figures should be properly explained by bringing the scenarios of the design done in the project. A detailed discussion of results obtained should be done in this chapter.
+%========================================================
+\chapter{Results and Discussion}
+%========================================================
 
-\section{Tables in thesis}
-\begin{itemize}
-	\item All Table Caption should be in Sentence Case, TNR 10 Pt. It should be of the Format:
-	\begin{itemize}
-		\item Table 1.1 Results of the experiment ….(Centered)
-	\end{itemize}
-	\item It should be cited as Table 1.1.
-	\item Caption should appear above the Table.
-	\item Table Header and the entries should be of Font TNR 10 Pt, Justified.
-	\item For wider Table, the page orientation can be Landscape.
-	\item For Larger Table, it can run to pages and the header should be repeated for each page of the Table.
-	\item Table must be adjusted to fit in the page and no single row is left out for a new page.	
-\end{itemize}
+This chapter presents the analytical outcomes and operational observations derived from experimental validation of the proposed federated Hybrid HGNN--LSTM framework for Trade-Based Money Laundering detection. Building upon the testing workflows discussed in Chapter 7, the following sections analyze the observed fraud-detection capability, federated learning stability, distributed synchronization behavior, and scalability characteristics of the deployed institutional monitoring framework.
 
-Sample Table \ref{c5:tab1} is given below for your reference,
+%========================================================
+\section[Overview of Experimental Outcomes]
+{\textbf{Overview of Experimental Outcomes}}
+%========================================================
 
-\begin{table}[htb]
-\fontsize{10}{12}\selectfont
-\caption{Country List}
-\label{c5:tab1}
-\begin{tabular}{|p{3cm}|c|c|c|}
-	%\hline
-	%\multicolumn{4}{|c|}{Country List} \\
-	\hline
-	\textbf{Country Name     or Area Name}& \textbf {ISO ALPHA 2 Code} & \textbf {ISO ALPHA 3 Code} & \textbf{ISO numeric Code}\\
-	\hline
-	\textbf{Afghanistan}   & AF    & AFG &   004\\\hline
-	\textbf{Aland Islands}&   AX  & ALA   & 248\\\hline
-	\textbf{Albania} & AL & ALB&  008\\\hline
-	\textbf{Algeria}    &DZ & DZA&  012\\\hline
-	\textbf{American Samoa}&   AS  & ASM&016\\\hline
-	\textbf{Andorra}& AD  & AND   & 020\\\hline
-	\textbf{Angola}& AO  & AGO& 024\\
-	\hline
+The experimental evaluation demonstrated stable fraud-classification capability, reliable federated convergence behavior, and effective distributed synchronization across heterogeneous institutional transaction environments. The proposed framework successfully maintained multi-class analytical consistency for \textit{Clean}, \textit{Watchlist}, and \textit{Fraud} transaction states while preserving institutional data isolation during federated optimization workflows.
+
+The distributed streaming and graph-processing architecture additionally enabled synchronized real-time transaction propagation, stable heterogeneous graph generation, and controlled dashboard-update behavior during concurrent monitoring workflows. System-level scalability evaluation further demonstrated stable PostgreSQL query execution, efficient transaction persistence, and controlled API response latency under increasing institutional monitoring workloads.
+
+%========================================================
+\section[Operational Performance Outcomes]
+{\textbf{Operational Performance Outcomes}}
+%========================================================
+
+The deployed monitoring framework demonstrated stable operational performance across distributed fraud-monitoring and compliance-management workflows. Dashboard transaction retrieval, fraud filtering, STR synchronization, and regulator-side compliance propagation maintained reliable execution consistency under concurrent institutional workloads. Table~\ref{tab:operational_metrics} summarizes the observed API-level operational response characteristics across major compliance workflows.
+
+\begin{table}[H]
+\centering
+\caption{Operational Workflow Performance Summary}
+\vspace{0.2cm}
+
+\renewcommand{\arraystretch}{1.3}
+
+\begin{tabular}{|p{4.5cm}|p{2.5cm}|p{2.8cm}|p{2.3cm}|}
+\hline
+\textbf{Workflow} & \textbf{Avg Response Time} & \textbf{Operational Observation} & \textbf{Status} \\ \hline
+
+Dashboard Transaction Retrieval
+& $\sim160$ ms
+& Stable under concurrent workloads
+& Successful \\ \hline
+
+Fraud Transaction Filtering
+& $\sim148$ ms
+& Controlled query latency during filtering
+& Successful \\ \hline
+
+STR Compliance Retrieval
+& $\sim466$ ms
+& Stable relational aggregation behavior
+& Successful \\ \hline
+
+STR Generation Workflow
+& $<1$ s
+& Successful compliance synchronization
+& Successful \\ \hline
+
+Notification Propagation
+& $<500$ ms
+& Stable regulator-side synchronization
+& Successful \\ \hline
+
+Federated Fraud Inference
+& $\sim1$--$2$ s
+& Stable graph-based analytical prediction
+& Successful \\ \hline
+
 \end{tabular}
+
+\renewcommand{\arraystretch}{1}
+
+\label{tab:operational_metrics}
 \end{table}
 
-%\begin{table}[htp]
-%\fontsize{10}{12}\selectfont
-%\centering
-%\caption{Data units, sources, and dates} \label{c5:tab2}
-%\begin{tabular}{| *4{>{\arraybackslash}m{1in}|} @{}m{0pt}@{}}
-%	\hline
-%	\textbf{Variable} & \textbf{Dates} & \textbf{Units} &
-%	\textbf{Source}  &\\[2ex] 
-%	\hline
-%	\textbf{Nominal Physical Capital Stock} & 1950-1990 & Billions
-%			US\$ & Nehru and Dhareshwar (1993) &\\[0ex]
-%	\hline
-%	\textbf{Total Population} & 1950-1990 & Billions & Nehru and
-%			Dhareshwar (1993) &\\[0ex]
-%	\hline
-%	\textbf{Nominal GDP} & 1950-1990 & Billions  US\$ & PWT &\\[5ex]
-%	\hline
-%	\textbf{Real GDP per capita} & 1950-1990 & 2005 US\$ per capita & PWT &\\[5ex]
-%	\hline
-%\end{tabular}
-%\end{table}
+As observed in Table~\ref{tab:operational_metrics}, dashboard synchronization and fraud-filtering workflows maintained comparatively low response latency during concurrent institutional workloads. The STR retrieval workflow exhibited comparatively higher latency due to computationally intensive relational joins, transaction-history aggregation, and compliance-report synchronization operations executed during report-generation workflows. However, stable response consistency and successful request execution were maintained across all monitored operational workflows.
 
-\section{Math equation in thesis}
-All equation should be written using equation editor or using an equivalent tool.
-\begin{itemize}
-	\item Equations should be numbered as : 1.1, 1.2 ...
-	\item Equation should be Centered, 12 Pt, TNR. 
-	\item Equation number should be right Justified
-	\item It should be cited as Eqn. 1.1.
-   \item If the sentence starts by citing an equation, then it should be written as Equation 1.1 For example, Equation 5.1 states the Pythagoras theorem.
+%========================================================
+\section[Graph-Based TBML Detection Capability]
+{\textbf{Graph-Based TBML Detection Capability}}
+%========================================================
 
-	
-\end{itemize}
+The graph-based analytical workflow demonstrated strong capability in learning hidden transactional dependencies and multi-hop entity relationships across heterogeneous institutional transaction environments. Unlike traditional rule-based AML systems that primarily depend on isolated transactional heuristics, the proposed framework leveraged heterogeneous graph construction to capture interconnected relationships between accounts, SWIFT transactions, trade metadata, compliance documents, and institutional entities during fraud-inference workflows.
 
-For example in Eqn. \ref{eqn:pythag thm}, The well known Pythagorean theorem $x^2 + y^2 = z^2$ was 
-proved to be invalid for other exponents. 
-Meaning the next equation has no integer solutions:
+The confusion-matrix evaluation discussed in Chapter 7 demonstrated that most classification overlap occurred between \textit{Watchlist} and \textit{Fraud} transaction states, while minimal propagation of fraudulent predictions into legitimate transactional categories was observed. This behavior validated the effectiveness of graph-topology learning for identifying suspicious transactional relationships without excessively escalating legitimate institutional transactions into fraud classifications during compliance-monitoring operations.
 
-\begin{equation}
-\label{eqn:pythag thm}
-	x^n + y^n = z^n
-\end{equation}
+%========================================================
+\section[Federated Learning Effectiveness]
+{\textbf{Federated Learning Effectiveness}}
+%========================================================
 
-The mass-energy equivalence is described by the famous equation in Eqn. \ref{eqn:mass-eng}
-\begin{equation}
-\label{eqn:mass-eng}
-	E=mc^2
-\end{equation}
+The federated analytical workflow demonstrated stable distributed convergence behavior across all participating institutional clients during iterative FedAvg synchronization operations. The convergence progression analyzed in Chapter 7 showed gradual stabilization of Accuracy, Precision, and Recall metrics during later federated communication rounds, thereby validating effective distributed parameter synchronization and stable institutional knowledge sharing during collaborative optimization workflows.
 
-discovered in 1905 by Albert Einstein. 
+Table~\ref{tab:federated_results} summarizes the observed federated analytical performance across distributed institutional clients after completion of iterative global aggregation workflows.
 
-\section{Interpretation of results}
+\begin{table}[H]
+\centering
+\caption{Federated Analytical Performance Summary}
+\vspace{0.2cm}
 
-\vspace{2.5cm}
+\renewcommand{\arraystretch}{1.3}
 
- \textbf{The chapters should not end with figures, instead bring the paragraph explaining about the figure at the end followed by a summary paragraph.}
+\begin{tabular}{|p{2.2cm}|p{2.2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\textbf{Institution} & \textbf{Transaction Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} \\ \hline
 
-After elaborating the various sections of the chapter (From Chapter 2 onwards), a summary paragraph should be written discussing the highlights of that particular chapter. This summary paragraph should not be numbered separately. This paragraph should connect the present chapter to the next chapter.
+BANKA
+& Fraud (2)
+& 0.96
+& 0.73
+& 0.83 \\ \hline
+
+BANKB
+& Fraud (2)
+& 0.98
+& 0.73
+& 0.84 \\ \hline
+
+BANKC
+& Fraud (2)
+& 0.98
+& 0.73
+& 0.84 \\ \hline
+
+\end{tabular}
+
+\renewcommand{\arraystretch}{1}
+
+\label{tab:federated_results}
+\end{table}
+
+As observed in Table~\ref{tab:federated_results}, the federated Hybrid HGNN--LSTM framework maintained high Fraud-class Precision across all participating institutional environments while preserving stable Recall characteristics during distributed analytical inference. The observed convergence stability additionally indicated that the proposed framework successfully generalized fraud-learning behavior across heterogeneous institutional transaction environments without requiring centralization of sensitive transactional datasets.
+
+%========================================================
+\section[Real-Time Monitoring and Compliance Outcomes]
+{\textbf{Real-Time Monitoring and Compliance Outcomes}}
+%========================================================
+
+The distributed transaction-monitoring workflow demonstrated stable real-time synchronization of institutional transaction streams across heterogeneous backend analytical services. Kafka-based asynchronous event propagation enabled continuous ingestion of SWIFT transactional payloads into downstream graph-construction and federated inference pipelines without interrupting institutional monitoring workflows.
+
+The automated STR generation and notification workflow additionally improved operational coordination between banking institutions and regulator-facing compliance environments. Fraud-classified transactional events were successfully transformed into structured compliance reports while preserving associated transaction histories, graph metadata, and institutional investigation references during distributed monitoring operations.
 
 
+%========================================================
+\section[Scalability and Infrastructure Observations]
+{\textbf{Scalability and Infrastructure Observations}}
+%========================================================
 
+Concurrent scalability evaluation demonstrated stable API response behavior and reliable PostgreSQL synchronization consistency under increasing institutional monitoring workloads. During dashboard transaction retrieval workflows, the framework maintained average response latencies near $156$--$162$ ms across concurrent workloads ranging from 50 to 500 users while sustaining complete request success rates throughout the evaluation process. Similarly, fraud-transaction filtering workflows maintained average response latency near $148$--$159$ ms under moderate concurrent workloads, thereby validating stable pooled-query execution and controlled backend synchronization during real-time monitoring operations.
+
+The STR compliance retrieval workflow exhibited comparatively higher computational latency due to relational joins, transaction-history aggregation, and regulator-side compliance synchronization executed during report-generation workflows. Initial average response latency near $2694$ ms during lower concurrent execution stages progressively reduced to nearly $466$ ms during higher concurrent workloads, thereby indicating improved query-plan stabilization, PostgreSQL shared-buffer utilization, and optimized relational-query execution during repeated compliance-retrieval operations. Despite occasional tail-latency spikes during high-concurrency execution stages, the infrastructure evaluation maintained stable request consistency and complete request success rates throughout distributed monitoring and compliance-management workflows.
+%========================================================
+\section[Comparative Architectural Advantages]
+{\textbf{Comparative Architectural Advantages}}
+%========================================================
+
+The proposed federated Hybrid HGNN--LSTM framework demonstrated several operational and analytical advantages over traditional rule-based AML monitoring systems. Conventional compliance frameworks primarily depend on manually engineered heuristics and isolated threshold-based transaction analysis, thereby limiting their capability to identify hidden multi-hop transactional relationships and evolving laundering topologies embedded within large-scale institutional trade networks.
+
+In contrast, the proposed framework enabled graph-based relational inference across interconnected transactional entities while simultaneously preserving institutional data isolation through decentralized federated synchronization. The integration of real-time streaming, distributed graph processing, federated optimization, and automated compliance orchestration therefore provided significantly improved operational monitoring capability compared to conventional static AML investigation workflows.
+
+%========================================================
+\section[Summary]
+{\textbf{Summary}}
+%========================================================
+
+The experimental outcomes and analytical observations validated the effectiveness of the proposed federated Hybrid HGNN--LSTM framework for distributed Trade-Based Money Laundering detection and compliance monitoring. The observed results demonstrated stable graph-based fraud inference, reliable federated convergence behavior, controlled scalability characteristics, and effective real-time synchronization across distributed institutional monitoring environments. The framework additionally achieved privacy-preserving collaborative learning without requiring centralization of sensitive transactional datasets, thereby validating its operational suitability for large-scale institutional compliance ecosystems.
