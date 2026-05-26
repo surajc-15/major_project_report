@@ -39,6 +39,7 @@
 \newcommand*{\@principal}{\texttt{\string\Principal} \texttt{currently not set. Please fix this.}}
 % Ver 3.8 : Check \DeanAcademics only if \IDPProject is used
 \newcommand*{\DeanAcademics}[1]{\gdef\@deanAcad{#1}}
+\newcommand*{\DeanCSE}[1]{\gdef\@deanCSE{#1}}
 \newcommand*{\VicePrincipal}[1]{\gdef\@vicePrincipal{#1}}
 % Ver 3.9 : For COE and 
 % QR code generator
@@ -188,6 +189,7 @@
 \ifIDP
 \newcommand*{\@deanAcad}{\texttt{\string\DeanAcademics} \texttt{currently not set. Please fix this.}}
 \fi
+\newcommand*{\@deanCSE}{\texttt{\string\DeanCSE} \texttt{currently not set. Please fix this.}}
 
 %%%To get the definitions out of package:
 \newcommand*{\printTitle}{\leavevmode\@title}
@@ -204,6 +206,7 @@
 \newcommand*{\printPrincipal}{\leavevmode\@principal}
 \newcommand*{\printVicePrincipal}{\leavevmode\@vicePrincipal}
 \newcommand*{\printDA}{\leavevmode\@deanAcad}
+\newcommand*{\printDC}{\leavevmode\@deanCSE}
 \newcommand*{\printHOD}{\leavevmode\@hod}
 %%Guide Name
 \newcommand*{\printGuideNameA}{\leavevmode\@guideNameA}
@@ -542,7 +545,7 @@
 \fi%\ifDTL
 \fi%\ifINT
 \par.
-\ifINT\vspace{3.0cm}\else\ifIDP\vspace{1cm}\else\ifGuideNameCUsed\vspace{0.125cm}\else\vspace{1cm}\fi\fi\fi
+\ifINT\vspace{3cm}\else\ifIDP\vspace{1cm}\else\ifGuideNameCUsed\vspace{0.125cm}\else\vspace{1cm}\fi\fi\fi
 \begin{center}% May be try use \vbox cmd for equal spacing, but I need to know the better location (lower)
 {\large\bfseries In partial fulfillment of the requirements for the degree of \par}
 \vspace{0.25cm}
@@ -1062,7 +1065,9 @@
   			\titleafterskip@pnr%
   			\thispagestyle{emptypg}%
   		}
-  		\pagebreak
+%  		\pagebreak
+  		\cleardoublepage
+%  		\pagebreak
       {%2nd page
       \@pgtwotrue\@pgonefalse
         \parindent\z@
