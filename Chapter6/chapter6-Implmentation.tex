@@ -50,7 +50,7 @@ Environment variables and runtime configurations are securely managed using cent
 Logging mechanisms are integrated throughout transaction streaming services, graph-processing environments, federated learning modules, backend APIs, and fraud inference pipelines to support runtime monitoring, debugging, audit traceability, and compliance management operations. Fraud classifications, transaction verdicts, confidence scores, STR generation events, and institutional monitoring activities are additionally logged within PostgreSQL environments for dashboard synchronization and regulatory investigation workflows.
 
 %========================================================
-\section[Difficulties Encountered and Strategies Used to Tackle Them]{\textbf{Difficulties Encountered and Strategies Used to Tackle Them}}
+\section[Difficulties Encountered and Strategies Used]{\textbf{Difficulties Encountered and Strategies Used to Tackle}}
 %========================================================
 Implementation challenges included noisy and imbalanced labels, large graph sizes and memory constraints, streaming latency, and privacy-preserving coordination across institutional clients. Mitigations applied in the implementation include class rebalancing and targeted data augmentation for scarce labels, subgraph sampling and mini-batching to control memory, Kafka buffering and asynchronous consumers to reduce end-to-end latency, and Flower with secure aggregation and containerized deployments (Docker) to isolate client environments while enabling federated training.
 
@@ -70,23 +70,38 @@ The underlying implementation utilizes a modular pipeline that leverages the Pan
 
 \subsection[Adversarial Refinement for Dataset Fidelity]{\textbf{Adversarial Refinement for Dataset Fidelity}}
 
-To ensure the framework develops generalized representations rather than relying on heuristic shortcuts, the synthetic generation process underwent significant adversarial refinement. The following modifications were implemented to enhance the dataset's empirical realism and mitigate unintended machine learning biases:
+To improve the realism of the synthetic dataset and reduce unintended learning biases, the data-generation pipeline was refined using multiple adversarial and statistically grounded modifications \cite{synthetic-tbml-framework}. These refinements were introduced to ensure that the fraud-detection framework learned meaningful transactional and structural behaviors instead of relying on simple heuristic shortcuts or deterministic patterns.
 
 \begin{enumerate}
-    \item \textbf{Price Multiplier Dynamics:} Replaced static price multipliers with Gaussian Mixture Models (GMMs) and stochastic blending, ensuring 30\% of fraudulent trades mimic normal market pricing to prevent simple threshold detection.
-    \item \textbf{Elimination of Feature Bias:} Removed the \textit{port\_log\_status} field to prevent "ground truth leakage," compelling the GNN to perform holistic structural analysis rather than relying on explicit categorical tags.
-    \item \textbf{KYC/Dormancy Engineering:} Implemented overlapping dormancy windows and noise injection to create realistic feature distributions, ensuring dormancy periods serve as contributing factors rather than binary identifiers.
-    \item \textbf{Universal Topology Injection:} Applied complex graph topologies (e.g., Cycles, Fan-In, Gather-Scatter) across all transaction classes to eliminate "Guilty by Shape" bias.
-    \item \textbf{Refined Pattern Classification:} Removed label-based tags (LEGIT/SUSPICIOUS) and introduced "No\_Pattern" as a valid structural classification, decoupling structural role from risk label.
-    \item \textbf{Temporal Realism:} Anchored the dataset to a one-year production horizon (Dec 2024--Dec 2025) and enforced realistic time-horizons (Clean: 1--4 weeks; Fraud: 3--6 months).
-    \item \textbf{Scale-Free Network Topology:} Introduced a Pareto/Zipf distribution to simulate "Whale" nodes, creating high-throughput backgrounds that camouflage fraudulent structural patterns.
-    \item \textbf{Log-Normal Transaction Amounts:} Modeled transaction values using a Log-Normal distribution to replicate real-world financial distributions, moving away from uniform, synthetic-sounding values.
-    \item \textbf{Multi-Hop Structural Integrity:} Enforced rigorous, rule-based generation for multi-hop topologies to maintain structural consistency across the graph.
-    \item \textbf{FX Settlement/Currency-Jump Awareness:} Incorporated multi-currency flows and FX spread monitoring to sensitize the model to TBML layering tactics.
-    \item \textbf{Stochastic Trade Price Blending:} Blended the distribution of illicit prices to remove detectable tabular shortcuts, compelling the model to utilize context-aware inference.
-    \item \textbf{Data Leakage Mitigation:} Systematically removed auxiliary flags that offered deterministic solutions to non-deterministic laundering challenges.
-    \item \textbf{Endurance-Based Simulation:} Refined the generation logic to ensure that multi-hop cycles represent sustained operational behaviors rather than instantaneous transactional artifacts.
+
+    \item \textbf{Price Multiplier Dynamics:} Static pricing rules were replaced with Gaussian Mixture Models (GMMs) and stochastic blending strategies so that a portion of fraudulent trades closely resembled legitimate market pricing behavior, thereby reducing simple threshold-based detection.
+
+    \item \textbf{Elimination of Feature Bias:} The \textit{port\_log\_status} attribute was removed to avoid direct label leakage and encourage the Graph Neural Network to learn relational and structural dependencies more holistically.
+
+    \item \textbf{KYC/Dormancy Engineering:} Overlapping dormancy periods and controlled noise injection were introduced to generate more realistic customer activity distributions rather than binary dormant/active identifiers.
+
+    \item \textbf{Universal Topology Injection:} Complex graph structures such as Cycles, Fan-In, and Gather-Scatter patterns were distributed across all transaction classes to prevent structural bias where certain graph shapes directly imply fraud.
+
+    \item \textbf{Refined Pattern Classification:} Explicit pattern tags such as LEGIT and SUSPICIOUS were removed, and a neutral \textit{No\_Pattern} category was introduced to separate structural topology from fraud labeling.
+
+    \item \textbf{Temporal Realism:} The dataset generation process was aligned to a realistic one-year operational timeline (Dec 2024--Dec 2025) with transaction durations modeled according to practical financial activity windows.
+
+    \item \textbf{Scale-Free Network Topology:} Pareto/Zipf-based node distributions were introduced to simulate high-volume institutional or ``Whale'' entities capable of masking suspicious transactional behavior within dense financial activity.
+
+    \item \textbf{Log-Normal Transaction Amounts:} Transaction values were generated using Log-Normal distributions to better reflect real-world financial transaction behavior instead of uniformly distributed synthetic amounts.
+
+    \item \textbf{Multi-Hop Structural Integrity:} Rule-based generation constraints were enforced across multi-hop transaction paths to maintain graph consistency and realistic financial relationship propagation.
+
+    \item \textbf{FX Settlement/Currency-Jump Awareness:} Multi-currency transactional flows and FX spread variations were incorporated to expose the framework to cross-border layering and TBML settlement patterns.
+
+    \item \textbf{Stochastic Trade Price Blending:} Illicit trade pricing distributions were blended with legitimate transactional behaviors to reduce detectable tabular shortcuts and encourage context-aware inference.
+
+    \item \textbf{Data Leakage Mitigation:} Auxiliary indicators capable of providing deterministic fraud identification were systematically removed to improve generalization during model training.
+
+    \item \textbf{Endurance-Based Simulation:} Multi-hop transactional cycles were modeled as sustained operational behaviors rather than isolated short-duration activities to improve structural realism within the generated financial graph.
+
 \end{enumerate}
+
 
 %========================================================
 \subsection[Kafka-Based Transaction Streaming]{\textbf{Kafka-Based Transaction Streaming}}
@@ -116,13 +131,11 @@ The generated graph schema consists of heterogeneous node entities including \te
 \subsection[Hybrid HGNN--LSTM Analytical Implementation]{\textbf{Hybrid HGNN--LSTM Analytical Implementation}}
 %========================================================
 
-The proposed Hybrid HGNN--LSTM analytical module is implemented using PyTorch and PyTorch Geometric to perform graph-based fraud analysis, temporal transaction modeling, and trade metadata learning for intelligent TBML prediction. The implementation receives heterogeneous graph tensors generated from the Memgraph environment, including KYC node features, transactional edge relationships, sequential SWIFT transaction data, and trade deviation attributes before forwarding them into the analytical inference pipeline. The hybrid implementation combines graph attention learning, temporal sequence analysis, and trade feature fusion to improve fraud detection across interconnected financial transaction networks.
+The proposed Hybrid HGNN--LSTM analytical module is implemented using PyTorch and PyTorch Geometric to perform graph-driven fraud analysis, temporal transaction modeling, and trade metadata learning for intelligent TBML detection. The implementation receives heterogeneous graph tensors generated from the Memgraph environment, including KYC node attributes, transactional edge relationships, sequential SWIFT transaction records, and trade-deviation features before forwarding them into the analytical inference pipeline. By combining graph attention learning with temporal sequence analysis and trade-feature fusion, the framework is capable of capturing both structural and behavioral fraud patterns across interconnected financial transaction networks.
 
-The graph branch utilizes a three-layer \texttt{GATv2Conv} architecture with multi-head attention mechanisms to perform neighborhood aggregation and graph message passing across interconnected financial entities. The implemented graph layers process three-dimensional KYC node features including shell-company indicators, jurisdiction information, and dormant-account attributes to generate enriched graph embeddings. \textbf{The stacked graph attention layers improve two-hop transactional visibility and enable the model to identify hidden intermediary account relationships and suspicious transaction routing patterns associated with TBML activities.} ReLU activation functions and dropout regularization are integrated after each graph convolution layer to improve representation stability during federated training operations.
+The graph-learning branch utilizes a three-layer \texttt{GATv2Conv} architecture with multi-head attention mechanisms to perform neighborhood aggregation and graph message passing across interconnected financial entities \cite{brody2022gatv2}. The implemented graph layers process KYC-related node attributes such as shell-company indicators, jurisdiction metadata, and dormant-account characteristics to generate enriched graph embeddings capable of exposing hidden intermediary relationships and suspicious transaction-routing behavior. ReLU activation functions and dropout regularization are integrated after each graph convolution layer to improve representation stability during federated training operations. The generated graph embeddings are then aggregated using \texttt{global\_mean\_pool()} and fused with sequential SWIFT transaction features before being processed through the LSTM branch for temporal anomaly detection and sequential transaction behavior modeling. The temporal branch captures repeated payment structures, abnormal transaction timing behavior, and cyclic financial movement patterns that are difficult to identify using standalone graph-learning approaches.
 
-The generated graph embeddings are aggregated using \texttt{global\_mean\_pool()} to construct graph-level contextual representations for downstream temporal analysis. The pooled graph context is fused with sequential SWIFT transaction features before being processed through the LSTM branch for temporal anomaly detection and sequential transaction behavior modeling. \textbf{The LSTM implementation captures repeated payment structures, abnormal transaction timing behavior, and cyclic financial movement patterns that cannot be identified using standalone graph-learning operations.}
-
-Trade-specific metadata including price deviation and cargo weight-gap attributes are independently processed using multilayer perceptron operations consisting of fully connected layers, Layer Normalization, ReLU activations, and dropout regularization mechanisms. The generated graph embeddings, temporal sequence representations, and trade feature vectors are fused within the final analytical layer before being forwarded into the dense classification module for fraud prediction. The final classification layer categorizes transactions into predefined classes including \texttt{CLEAN}, \texttt{WATCHLIST}, and \texttt{FRAUD}. Experimental evaluation demonstrated stable federated convergence and high fraud-class Precision--Recall performance across distributed institutional datasets. The overall implementation workflow of the proposed Hybrid HGNN--LSTM analytical module is illustrated in Figure~\ref{fig:hgnn_impl}.
+Trade-specific metadata such as price-deviation attributes and cargo weight-gap indicators are independently processed using multilayer perceptron operations consisting of fully connected layers, Layer Normalization, ReLU activations, and dropout regularization mechanisms. The generated graph embeddings, temporal sequence representations, and trade-feature vectors are fused within the final analytical layer before being forwarded into the dense classification module for fraud prediction. The final classification layer categorizes transactions into predefined classes including \texttt{CLEAN}, \texttt{WATCHLIST}, and \texttt{FRAUD}. Experimental evaluation demonstrated stable federated convergence and strong fraud-class Precision--Recall performance across distributed institutional datasets. The overall implementation workflow of the proposed Hybrid HGNN--LSTM analytical module is illustrated in Figure~\ref{fig:hgnn_impl}.
 
 \begin{figure}[H]
 \centering
@@ -136,6 +149,7 @@ Trade-specific metadata including price deviation and cargo weight-gap attribute
 
 \end{figure}
 
+
 %========================================================
 \subsection[Federated Learning Implementation]{\textbf{Federated Learning Implementation}}
 %========================================================
@@ -144,39 +158,38 @@ The federated learning environment is implemented using the Flower federated lea
 
 The centralized aggregation server implements a custom federated strategy by extending the \texttt{flwr.server.strategy.FedAvg} class and overriding the \texttt{aggregate\_fit()} operation for distributed parameter aggregation. During each federated communication round, locally trained model weights generated from participating institutional clients are transmitted to the aggregation server where the \texttt{FedAvg} algorithm performs parameter averaging across synchronized client updates to generate a globally optimized fraud detection model. The server initializes the Hybrid HGNN--LSTM analytical architecture using synchronized feature dimensions including three-dimensional KYC node features, one-dimensional SWIFT transaction attributes, two-dimensional trade metadata features, hidden embedding dimensions of size 32, and three-class fraud prediction outputs.
 
-The federated implementation performs ten synchronized communication rounds using complete client participation configurations including \texttt{fraction\_fit=1.0}, \texttt{min\_fit\_clients=3}, and \texttt{min\_available\_clients=3} to maintain stable distributed convergence across institutional environments. After the final aggregation round, the globally optimized model parameters are converted from Flower parameter streams into NumPy tensors using \texttt{parameters\_to\_ndarrays()} before being serialized and stored as \texttt{global\_model.npz} for downstream real-time fraud inference operations. \textbf{The implemented federated workflow enabled collaborative fraud learning, stable distributed convergence, and privacy-preserving analytical synchronization while maintaining complete institutional data isolation across participating financial organizations.}
-
+The federated implementation performs ten synchronized communication rounds using complete client participation configurations including \texttt{fraction\_fit=1.0}, \texttt{min\_fit\_clients=3}, and \texttt{min\_available\_clients=3} to maintain stable distributed convergence across institutional environments \cite{kennedy2025federated}. After the final aggregation round, the globally optimized model parameters are converted from Flower parameter streams into NumPy tensors using \texttt{parameters\_to\_ndarrays()} before being serialized and stored as \texttt{global\_model.npz} for downstream real-time fraud inference operations. The implemented federated workflow enabled collaborative fraud learning, stable distributed convergence, and privacy-preserving analytical synchronization while maintaining complete institutional data isolation across participating financial organizations.
 
 
 %========================================================
 \subsection[User Interface and Compliance Workflow Implementation]{\textbf{User Interface and Compliance Workflow Implementation}}
 %========================================================
 
-The user interface and compliance monitoring environment is implemented using Next.js, TypeScript, Tailwind CSS, Prisma ORM, Zustand state management, and PostgreSQL to support secure institutional fraud monitoring and centralized regulatory investigation workflows. The frontend architecture follows a modular service-oriented implementation consisting of protected dashboard routes, middleware-driven authentication guards, API handlers, Prisma-based database interaction layers, and role-specific monitoring interfaces synchronized with the federated analytical inference environment.
+The user interface and compliance-monitoring environment is implemented using Next.js, TypeScript, Tailwind CSS, Prisma ORM, Zustand state management, and PostgreSQL to support secure institutional fraud monitoring and centralized regulatory investigation workflows. The frontend architecture follows a modular service-oriented design consisting of protected dashboard routes, middleware-based authentication guards, API handlers, Prisma-powered database interaction layers, and role-specific monitoring interfaces integrated with the federated analytical inference environment.
 
 %========================================================
 \subsubsection[Authentication and Role Validation Pipeline]{\textbf{Authentication and Role Validation Pipeline}}
 %========================================================
 
-The authentication workflow is implemented using JWT-based session authorization integrated with centralized middleware validation and protected route interception mechanisms. Incoming requests targeting protected dashboard routes are intercepted through middleware guards where session tokens are validated and mapped against predefined authorization scopes including \texttt{BANK\_ADMIN} and \texttt{REGULATOR}. The validated session context is subsequently propagated across frontend environments through centralized authentication providers and Zustand-backed session state management before protected dashboard components and compliance services are rendered within the client environment.
+The authentication workflow is implemented using JWT-based session authorization combined with centralized middleware validation and protected route interception mechanisms. Incoming requests targeting protected dashboard routes are validated through middleware guards where session tokens are verified against predefined authorization scopes including \texttt{BANK\_ADMIN} and \texttt{REGULATOR}. Once validated, the session context is propagated across frontend environments through centralized authentication providers and Zustand-managed session states before protected dashboard components and compliance services are rendered within the client environment.
 
 %========================================================
 \subsubsection[Transaction Monitoring and Dashboard Rendering]{\textbf{Transaction Monitoring and Dashboard Rendering}}
 %========================================================
 
-Fraud predictions generated by the federated Hybrid HGNN--LSTM inference pipeline are synchronized into centralized PostgreSQL audit tables through backend transaction-processing services. Protected Next.js API handlers subsequently retrieve transaction classifications, fraud scores, STR metadata, and institutional monitoring information using Prisma query operations before dynamically rendering analytical outputs within role-specific dashboard interfaces. The banking administrator dashboard supports transaction filtering, fraud investigation workflows, watchlist escalation operations, and false-positive reclassification procedures through synchronized API-driven transaction state updates across centralized audit environments.
+Fraud predictions generated by the federated Hybrid HGNN--LSTM inference pipeline are synchronized into centralized PostgreSQL audit tables through backend transaction-processing services. Protected Next.js API handlers subsequently retrieve transaction classifications, fraud scores, STR metadata, and institutional monitoring information using Prisma query operations before dynamically rendering analytical outputs within role-specific dashboard interfaces. The banking administrator dashboard supports transaction filtering, fraud investigation workflows, watchlist escalation procedures, and false-positive reclassification operations through synchronized API-driven transaction state updates across centralized audit environments.
 
 %========================================================
 \subsubsection[STR Generation and Notification Workflow]{\textbf{STR Generation and Notification Workflow}}
 %========================================================
 
-Confirmed fraudulent transactions trigger Suspicious Transaction Report (STR) generation workflows implemented through secured API endpoints and PostgreSQL-backed audit synchronization services. Institutional administrators initiate STR generation requests through protected dashboard interfaces where transaction metadata, fraud classifications, investigation summaries, institutional remarks, and compliance status information are serialized and persisted into centralized STR audit tables. Generated STR records are subsequently propagated into regulator-facing monitoring environments through synchronized notification services and backend compliance-routing operations.
+Transactions classified as fraudulent trigger Suspicious Transaction Report (STR) generation workflows implemented through secured API endpoints and PostgreSQL-backed audit synchronization services. Institutional administrators initiate STR generation requests through protected dashboard interfaces where transaction metadata, fraud classifications, investigation summaries, institutional remarks, and compliance status information are serialized and stored within centralized STR audit tables. The generated STR records are subsequently propagated into regulator-facing monitoring environments through synchronized notification services and backend compliance-routing workflows.
 
 %========================================================
 \subsubsection[Regulatory Investigation and Compliance Monitoring]{\textbf{Regulatory Investigation and Compliance Monitoring}}
 %========================================================
 
-The regulatory monitoring environment consumes institution-generated STR records, fraud-classified transaction histories, compliance metadata, and supporting analytical evidence through protected API routes and Prisma-based database interaction layers. Regulatory authorities can perform investigation workflows including document-verification requests, institutional inquiry procedures, transaction review operations, and account-freeze initiation requests through centralized compliance interfaces synchronized with backend audit environments. The implemented monitoring workflow enabled synchronized fraud prediction, institutional verification, STR lifecycle management, and centralized compliance monitoring within a unified real-time TBML analytical platform.
+The regulatory monitoring environment consumes institution-generated STR records, fraud-classified transaction histories, compliance metadata, and supporting analytical evidence through protected API routes and Prisma-based database interaction layers. Regulatory authorities can perform investigation workflows including document-verification requests, institutional inquiry procedures, transaction review operations, and account-freeze initiation requests through centralized compliance interfaces synchronized with backend audit environments. The implemented monitoring workflow supports synchronized fraud prediction, institutional verification, STR lifecycle management, and centralized compliance monitoring within a unified real-time TBML analytical platform.
 
 
 %========================================================
