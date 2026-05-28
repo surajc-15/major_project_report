@@ -408,7 +408,9 @@ The fraud-transaction filtering workflow demonstrated efficient analytical-query
 
 \renewcommand{\arraystretch}{1}
 
-The STR compliance retrieval workflow exhibited comparatively higher response latency due to computationally intensive compliance-report aggregation, multi-table relational joins, transaction-history synchronization, and regulator-side metadata retrieval operations executed during report-generation workflows. The progressive reduction in average latency as concurrent workloads increased indicated improved query-plan stabilization, optimized relational-query execution, and more efficient pooled database synchronization during sustained transactional processing. Additionally, repeated execution of compliance-retrieval operations enabled PostgreSQL shared-buffer and query-cache utilization for frequently accessed transactional rows and relational metadata, thereby reducing disk-access overhead and improving subsequent query-response performance under continuous concurrent workloads. Despite the increased computational overhead associated with compliance-report aggregation and relational join operations, the framework maintained stable request consistency and complete request success rates across distributed regulatory monitoring environments.
+The STR compliance retrieval workflow exhibited comparatively higher latency due to compliance-report aggregation, transaction-history synchronization, regulator-side metadata retrieval, and multi-table relational query execution during report-generation operations. However, the gradual reduction in average latency under increasing concurrent workloads indicated improved PostgreSQL query stabilization, efficient pooled connection utilization, and optimized relational-query execution during sustained processing operations.
+
+Despite the additional computational overhead associated with compliance-report generation, the framework maintained stable request consistency and complete request success rates across distributed monitoring environments. The testing workflows validated reliable backend synchronization, controlled API response behavior, stable federated analytical execution, and consistent PostgreSQL query performance under increasing institutional workloads.
 
 
 The conducted testing workflows validated the synchronization reliability, operational stability, and execution consistency of the proposed TBML detection framework across distributed monitoring environments. The testing results confirmed stable backend communication, reliable transactional synchronization, controlled API response behavior, and successful workflow execution across graph-processing, federated analytical inference, dashboard synchronization, and compliance-management services. Concurrent scalability validation additionally demonstrated stable PostgreSQL query execution and controlled latency characteristics under increasing institutional workloads.
@@ -419,21 +421,22 @@ The conducted testing workflows validated the synchronization reliability, opera
 \section[Model Performance Evaluation]{\textbf{Model Performance Evaluation}}
 %========================================================
 
-The analytical performance of the proposed federated Hybrid HGNN--LSTM framework was evaluated across three distributed institutional clients (BANKA, BANKB, and BANKC) to validate fraud-classification capability, federated convergence stability, and distributed analytical consistency across heterogeneous transactional environments. The evaluation workflow analyzed multi-class prediction performance for \textit{Clean}, \textit{Watchlist}, and \textit{Fraud} transaction states using Precision, Recall, F1-Score, confusion-matrix validation, and Precision--Recall analytical benchmarking. Federated parameter synchronization was implemented using the FedAvg aggregation strategy, where global model parameters were iteratively aggregated across all participating institutional clients over 10 federated communication rounds.
+The proposed federated Hybrid HGNN--LSTM framework was evaluated across three distributed institutional clients (BANKA, BANKB, and BANKC) to validate fraud-classification capability and federated convergence stability across heterogeneous transactional environments. Multi-class prediction performance for \textit{Clean}, \textit{Watchlist}, and \textit{Fraud} transaction states was analyzed using Precision, Recall, F1-Score, confusion-matrix validation, and Precision--Recall benchmarking. Federated parameter synchronization was performed using the FedAvg aggregation strategy across 10 federated communication rounds.
 
-The transactional dataset was partitioned using a stratified temporal split strategy to preserve chronological separation between training and testing samples while maintaining class-level representation across minority fraud categories. Weighted cross-entropy optimization was additionally employed to mitigate severe class imbalance across fraudulent and watchlist transaction classes. Gradient clipping mechanisms were further integrated during local optimization workflows to prevent unstable parameter updates and exploding-gradient behavior during distributed federated convergence operations.
-
-Longitudinal federated convergence analysis was performed by monitoring macro Accuracy, Precision, and Recall metrics across iterative federated communication rounds for each participating institutional client. Precision--Recall evaluation was prioritized over standalone classification accuracy due to the highly imbalanced distribution of illicit transactional behavior within institutional transaction environments.
+The transactional dataset was partitioned using a stratified temporal split strategy to preserve chronological separation between training and testing samples while maintaining balanced representation across minority fraud categories. Weighted cross-entropy optimization and gradient clipping mechanisms were integrated to stabilize distributed training and address fraud-class imbalance during federated convergence operations. Precision--Recall evaluation was prioritized over standalone classification accuracy due to the highly imbalanced nature of illicit transactional behavior within institutional financial environments.
 
 %========================================================
 \subsection[Multi-Class Classification Performance]{\textbf{Multi-Class Classification Performance}}
 %========================================================
 
-Table~\ref{tab:model_performance} summarizes the final federated classification performance across all participating institutional environments after completion of 10 federated aggregation rounds.
+The final federated classification results obtained after 10 federated aggregation rounds across all participating institutional environments are summarized in Table~\ref{tab:model_performance}. The evaluation was conducted to analyze the framework’s ability to distinguish legitimate, suspicious, and fraudulent transactional behaviors across distributed institutional datasets under federated learning conditions. The obtained results additionally validated stable analytical convergence and consistent fraud-classification performance across all participating banking clients.
+
+
+The evaluation results demonstrated stable multi-class classification performance across all distributed institutional clients. Clean transactional states achieved near-perfect Precision and Recall, thereby minimizing false-positive propagation during large-scale monitoring operations. The Watchlist class maintained Recall values above $0.97$, indicating effective identification of suspicious transactional behavior requiring institutional review workflows.
 
 \begin{table}[H]
 \centering
-\caption{Federated Multi-Class Classification Performance Across Distributed Institutional Clients}
+\caption{Federated Multi-Class Classification Performance result}
 \vspace{0.2cm}
 
 \renewcommand{\arraystretch}{1.3}
@@ -464,9 +467,9 @@ Table~\ref{tab:model_performance} summarizes the final federated classification 
 \label{tab:model_performance}
 \end{table}
 
-As observed in Table~\ref{tab:model_performance}, the federated Hybrid HGNN--LSTM framework achieved highly stable multi-class classification performance across all participating institutional environments. Clean transactional states were classified with near-perfect Precision and Recall across all federated clients, thereby minimizing false-positive propagation during large-scale transactional monitoring operations. The Watchlist class demonstrated Recall values exceeding $0.97$, indicating effective identification of suspicious transactional behavior requiring institutional review and compliance investigation workflows.
 
-Fraud-class predictions maintained high Precision values between $0.96$ and $0.98$, thereby validating reliable identification of high-risk transactional behavior with limited false fraud escalation. Although Fraud Recall stabilized near $0.73$, the model successfully preserved strong fraud-discrimination capability despite highly imbalanced transactional distributions and complex multi-hop laundering topologies embedded within heterogeneous institutional transaction networks. The overall classification results additionally validated stable federated generalization across distributed institutional environments without requiring centralization of sensitive transactional datasets.
+Fraud-class predictions achieved Precision values between $0.96$ and $0.98$, validating reliable identification of high-risk transactional activity with limited false fraud escalation. Although Fraud Recall stabilized near $0.73$, the framework preserved strong fraud-discrimination capability despite highly imbalanced transactional distributions and complex multi-hop laundering structures. The overall results additionally validated stable federated generalization across distributed institutional environments without requiring centralized sharing of sensitive financial datasets.
+
 
 %========================================================
 \subsection[Federated Convergence Analysis]{\textbf{Federated Convergence Analysis}}
