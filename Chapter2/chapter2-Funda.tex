@@ -127,19 +127,18 @@ where \(h_i\) denotes the feature vector of node \(i\) and \(F\) represents the 
 
 The input node features are transformed using a learnable weight matrix:
 
-\[
+\begin{equation}
 z_i = Wh_i
-\]
-
+\end{equation}
 where \(W\) is the learnable weight matrix and \(z_i\) is the transformed feature representation. This transformation improves feature learning before attention computation.
 
 \paragraph{Step 3: Attention Score Computation:}
 
 For every connected node pair \((i,j)\), the attention score is computed as:
 
-\[
+\begin{equation}
 e_{ij}=a^{T}\text{LeakyReLU}\left(W[h_i \Vert h_j]\right)
-\]
+\end{equation}
 
 where \(a\) is the learnable attention vector and \(e_{ij}\) represents the attention score between neighboring nodes.
 
@@ -147,9 +146,9 @@ where \(a\) is the learnable attention vector and \(e_{ij}\) represents the atte
 
 The attention scores are normalized using the softmax function:
 
-\[
+\begin{equation}
 \alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k \in \mathcal{N}(i)} \exp(e_{ik})}
-\]
+\end{equation}
 
 where \(\alpha_{ij}\) denotes the normalized attention coefficient and \(\mathcal{N}(i)\) represents the neighboring nodes of node \(i\).
 
@@ -157,9 +156,9 @@ where \(\alpha_{ij}\) denotes the normalized attention coefficient and \(\mathca
 
 The neighboring node features are aggregated using weighted summation:
 
-\[
+\begin{equation}
 h_i^{\prime} = \sum_{j \in \mathcal{N}(i)} \alpha_{ij}Wh_j
-\]
+\end{equation}
 
 where \(h_i^{\prime}\) is the updated node representation.
 
@@ -167,7 +166,7 @@ where \(h_i^{\prime}\) is the updated node representation.
 
 GATv2 employs multiple attention heads operating in parallel:
 
-\[
+\begin{equation}
 h_i^{\prime} =
 \mathop{\Vert}_{k=1}^{K}
 \sigma
@@ -175,7 +174,7 @@ h_i^{\prime} =
 \sum_{j \in \mathcal{N}(i)}
 \alpha_{ij}^{(k)}W^{(k)}h_j
 \right)
-\]
+\end{equation}
 
 where \(K\) represents the number of attention heads and \(\Vert\) denotes concatenation. Multi-head attention improves representation learning and robustness.
 
@@ -197,15 +196,15 @@ Graph Attention Network v2 (GATv2) was introduced as an improvement over the ori
 
 In the original GAT architecture, the attention mechanism is defined as:
 
-\[
+\begin{equation}
 e_{ij} = \text{LeakyReLU}\left(a^{T}[Wh_i \Vert Wh_j]\right)
-\]
+\end{equation}
 
 In GATv2, the order of operations is modified as:
 
-\[
+\begin{equation}
 e_{ij}=a^{T}\text{LeakyReLU}\left(W[h_i \Vert h_j]\right)
-\]
+\end{equation}
 
 This modification allows the attention scores to dynamically depend on both source and neighboring nodes, improving feature interaction learning and representation capability.
 
@@ -259,13 +258,13 @@ At each time step, the current input and previous hidden state are used to compu
 
 The gates are mathematically represented as:
 
-\[
+\begin{equation}
 \begin{aligned}
 \mathbf{I}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{xi} + \mathbf{H}_{t-1}\mathbf{W}_{hi} + \mathbf{b}_i)\\
 \mathbf{F}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{xf} + \mathbf{H}_{t-1}\mathbf{W}_{hf} + \mathbf{b}_f)\\
 \mathbf{O}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{xo} + \mathbf{H}_{t-1}\mathbf{W}_{ho} + \mathbf{b}_o)
 \end{aligned}
-\]
+\end{equation}
 
 where \(\mathbf{I}_t\), \(\mathbf{F}_t\), and \(\mathbf{O}_t\) represent the input, forget, and output gates respectively, while \(\mathbf{X}_t\) and \(\mathbf{H}_{t-1}\) denote the current input and previous hidden state.
 
@@ -273,9 +272,9 @@ where \(\mathbf{I}_t\), \(\mathbf{F}_t\), and \(\mathbf{O}_t\) represent the inp
 
 The candidate memory information is computed using the \texttt{tanh} activation function as:
 
-\[
+\begin{equation}
 \tilde{\mathbf{C}}_t = \tanh(\mathbf{X}_t\mathbf{W}_{xc} + \mathbf{H}_{t-1}\mathbf{W}_{hc} + \mathbf{b}_c)
-\]
+\end{equation}
 
 where \(\tilde{\mathbf{C}}_t\) represents the candidate memory state.
 
@@ -290,9 +289,9 @@ where \(\tilde{\mathbf{C}}_t\) represents the candidate memory state.
 
 The memory cell state is updated using the forget gate and input gate as:
 
-\[
+\begin{equation}
 \mathbf{C}_t = \mathbf{F}_t \odot \mathbf{C}_{t-1} + \mathbf{I}_t \odot \tilde{\mathbf{C}}_t
-\]
+\end{equation}
 
 where \(\mathbf{C}_t\) represents the updated memory cell state and \(\odot\) denotes element-wise multiplication. This mechanism helps preserve important long-term information while discarding irrelevant data.
 
@@ -307,9 +306,9 @@ where \(\mathbf{C}_t\) represents the updated memory cell state and \(\odot\) de
 
 The hidden state output is computed as:
 
-\[
+\begin{equation}
 \mathbf{H}_t = \mathbf{O}_t \odot \tanh(\mathbf{C}_t)
-\]
+\end{equation}
 
 where \(\mathbf{H}_t\) represents the hidden state at time step \(t\). The output gate controls how much information from the memory cell is passed to the next layer.
 
@@ -382,9 +381,9 @@ After local training, clients send only model parameters or gradients to the agg
 
 The Federated Averaging process is represented as:
 
-\[
+\begin{equation}
 w_{t+1} = \sum_{k=1}^{K} \frac{n_k}{n} w_k^{(t+1)}
-\]
+\end{equation}
 
 where \(w_{t+1}\) represents the updated global model, \(w_k^{(t+1)}\) denotes the local model of client \(k\), \(n_k\) represents the number of training samples at client \(k\), and \(n\) denotes the total number of training samples across all clients.
 
