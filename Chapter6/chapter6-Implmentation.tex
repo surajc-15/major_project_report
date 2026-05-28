@@ -1,18 +1,22 @@
 %========================================================
-\chapter{Implementation}
+\chapter{Implementation and Testing of the Proposed TBML Detection Framework}
 %========================================================
 
 This chapter details the implementation of the FedGAT-TBML framework. It covers real-time transaction ingestion and streaming, construction and storage of heterogeneous transaction graphs, a hybrid HGNN--LSTM detector for sequence-aware graph inference, federated learning orchestration for privacy-preserving model updates, and a web dashboard for compliance monitoring and STR generation. The implementation leverages Apache Kafka for durable streaming, Memgraph for graph storage and queries, PostgreSQL for audit and STR records, PyTorch Geometric for graph neural network components (e.g., GATv2Conv), Flower for federated orchestration, FastAPI for backend services, and Next.js/TypeScript for the frontend.
 
+%========================================================
+\section{Implementation }
+%========================================================
+This section provides a comprehensive overview of the implementation of the proposed TBML detection framework, detailing the programming languages, frameworks, platforms, code conventions, system architecture, and the strategies employed to address implementation challenges. The implementation integrates real-time transaction streaming, heterogeneous graph construction, hybrid analytical modeling, federated learning coordination, and compliance monitoring within a unified platform for effective Trade-Based Money Laundering detection and institutional oversight.
 
 %========================================================
-\section[Programming Language and Framework Selection]{\textbf{Programming Language and Framework Selection}}
+\subsection[Programming Language and Framework Selection]{\textbf{Programming Language and Framework Selection}}
 %========================================================
 
 The implementation primarily uses Python for backend services and model training (PyTorch + PyTorch Geometric — e.g., \texttt{GATv2Conv} for graph attention), Flower for federated orchestration (custom \texttt{FedAvg} strategy), and Apache Kafka for durable streaming. Frontend and UI services use Next.js, TypeScript and Tailwind; FastAPI provides REST endpoints. Memgraph stores heterogeneous transaction graphs and PostgreSQL holds audit logs and STR records. Services are containerized with Docker for reproducible deployment.
 
 %========================================================
-\section[Platform Selection]{\textbf{Platform Selection}}
+\subsection[Platform Selection]{\textbf{Platform Selection}}
 %========================================================
 
 The proposed TBML detection framework is developed within a Windows-based  environment consisting of interconnected frontend monitoring services and backend analytical infrastructures. The frontend platform manages authentication workflows, dashboard visualization, STR generation, regulatory monitoring, and institutional transaction management, while the backend analytical environment performs transaction streaming, graph generation, fraud inference, and federated model synchronization operations.
@@ -20,13 +24,13 @@ The proposed TBML detection framework is developed within a Windows-based  envir
 The implementation utilizes Docker-based isolated runtime environments for Kafka services, graph databases, backend APIs, and federated learning modules to improve deployment consistency and distributed service orchestration. Memgraph is utilized for graph relationship management and transactional connectivity analysis, whereas PostgreSQL functions as the centralized synchronization database between analytical services and dashboard environments. Visual Studio Code and GitHub are utilized for collaborative development, source-code management, debugging, and version control operations throughout the implementation lifecycle.
 
 %========================================================
-\section[Code Conventions]{\textbf{Code Conventions}}
+\subsection[Code Conventions]{\textbf{Code Conventions}}
 %========================================================
 
 The codebase follows concise, practical conventions to improve readability and maintenance. Python modules and functions use \texttt{snake\_case}; classes and UI components use \texttt{PascalCase}. Examples of graph entities and relationships include \texttt{(:Account)}, \texttt{(:Transaction)}, \texttt{(:Document)} and \texttt{[:SENDS]}, \texttt{[:TO]}, \texttt{[:HAS\_DOC]}. REST endpoints follow clear, resource-oriented naming (e.g., \texttt{/api/transactions/\{id\}/score}). Configuration is managed via \texttt{.env} files, logging uses structured JSON logs, and type hints plus docstrings are used where helpful.
 
 %========================================================
-\subsection[Naming Conventions]{\textbf{Naming Conventions}}
+\subsubsection[Naming Conventions]{\textbf{Naming Conventions}}
 %========================================================
 
 Naming conventions within the proposed framework are designed to remain semantically meaningful and aligned with domain-specific financial monitoring operations. Python variables, backend utility functions, Kafka services, and transaction-processing modules follow \texttt{snake\_case} conventions, whereas analytical classes, federated learning modules, and frontend components utilize \texttt{PascalCase} notation. REST API endpoints, transaction services, and graph-processing utilities are named according to their operational functionality to improve implementation readability and maintainability.
@@ -34,7 +38,7 @@ Naming conventions within the proposed framework are designed to remain semantic
 Graph entities, transactional relationships, and database schemas additionally follow consistent naming conventions across graph and relational database environments. Examples include graph entities such as \texttt{(:Account)}, \texttt{(:Transaction)}, and \texttt{(:Document)}, along with transactional relationships including \texttt{[:SENDS]}, \texttt{[:TO]}, and \texttt{[:HAS\_DOC]} utilized throughout graph construction and fraud analysis operations.
 
 %========================================================
-\subsection[File Organization]{\textbf{File Organization}}
+\subsubsection[File Organization]{\textbf{File Organization}}
 %========================================================
 
 The proposed TBML detection framework follows a modular project structure where frontend monitoring services and backend analytical environments are maintained as interconnected distributed applications. The frontend environment contains dashboard interfaces, authentication services, STR management workflows, API handlers, reusable UI components, and regulatory monitoring modules implemented using the Next.js App Router architecture and TypeScript-based service organization.
@@ -42,7 +46,7 @@ The proposed TBML detection framework follows a modular project structure where 
 The backend analytical environment contains Kafka producers and consumers, graph construction services, Hybrid HGNN--LSTM model implementations, federated learning clients, inference pipelines, and database synchronization utilities responsible for real-time fraud analysis and transaction monitoring operations. Shared configuration files, utility services, logging environments, and centralized database connectors are additionally organized according to functional responsibilities to improve scalability, maintainability, and distributed service coordination across the proposed framework.
 
 %========================================================
-\subsection[Environment Configuration and Logging]{\textbf{Environment Configuration and Logging}}
+\subsubsection[Environment Configuration and Logging]{\textbf{Environment Configuration and Logging}}
 %========================================================
 
 Environment variables and runtime configurations are securely managed using centralized \texttt{.env} configuration files to prevent direct exposure of API credentials, Kafka broker addresses, database configurations, authentication tokens, and federated learning parameters within the codebase. Backend services including Kafka consumers, Memgraph connectors, PostgreSQL clients, and fraud inference pipelines are initialized during runtime to support centralized service configuration and distributed analytical synchronization.
@@ -50,13 +54,13 @@ Environment variables and runtime configurations are securely managed using cent
 Logging mechanisms are integrated throughout transaction streaming services, graph-processing environments, federated learning modules, backend APIs, and fraud inference pipelines to support runtime monitoring, debugging, audit traceability, and compliance management operations. Fraud classifications, transaction verdicts, confidence scores, STR generation events, and institutional monitoring activities are additionally logged within PostgreSQL environments for dashboard synchronization and regulatory investigation workflows.
 
 %========================================================
-\section[Difficulties Encountered and Strategies Used]{\textbf{Difficulties Encountered and Strategies Used to Tackle}}
+\subsection[Difficulties Encountered and Strategies Used]{\textbf{Difficulties Encountered and Strategies Used to Tackle}}
 %========================================================
 Implementation challenges included noisy and imbalanced labels, large graph sizes and memory constraints, streaming latency, and privacy-preserving coordination across institutional clients. Mitigations applied in the implementation include class rebalancing and targeted data augmentation for scarce labels, subgraph sampling and mini-batching to control memory, Kafka buffering and asynchronous consumers to reduce end-to-end latency, and Flower with secure aggregation and containerized deployments (Docker) to isolate client environments while enabling federated training.
 
 
 %========================================================
-\section[System Implementation]{\textbf{System Implementation}}
+\subsection[System Implementation]{\textbf{System Implementation}}
 
 %========================================================
 
@@ -68,7 +72,7 @@ The generation of the synthetic dataset is engineered to emulate the multi-modal
 
 The underlying implementation utilizes a modular pipeline that leverages the Pandas library for vectorized data manipulation and Memgraph for graph-structured persistence. Each transaction record is anchored to its corresponding trade documentation through a schema-aligned bridge, ensuring that the structural connectivity required for Graph Neural Network (GNN) feature extraction is preserved. By integrating temporal constraints and noise-injection modules, the pipeline creates a realistic representation of financial behaviors, ranging from standard legitimate interactions to camouflaged, high-velocity laundering topologies.
 
-\subsection[Adversarial Refinement for Dataset Fidelity]{\textbf{Adversarial Refinement for Dataset Fidelity}}
+\subsubsection[Adversarial Refinement for Dataset Fidelity]{\textbf{Adversarial Refinement for Dataset Fidelity}}
 
 To improve the realism of the synthetic dataset and reduce unintended learning biases, the data-generation pipeline was refined using multiple adversarial and statistically grounded modifications \cite{synthetic-tbml-framework}. These refinements were introduced to ensure that the fraud-detection framework learned meaningful transactional and structural behaviors instead of relying on simple heuristic shortcuts or deterministic patterns.
 
@@ -104,7 +108,7 @@ To improve the realism of the synthetic dataset and reduce unintended learning b
 
 
 %========================================================
-\subsection[Kafka-Based Transaction Streaming]{\textbf{Kafka-Based Transaction Streaming}}
+\subsubsection[Kafka-Based Transaction Streaming]{\textbf{Kafka-Based Transaction Streaming}}
 %========================================================
 
 The proposed TBML detection framework utilizes Apache Kafka to support asynchronous transaction streaming and event-driven communication between distributed analytical services. A Kafka producer continuously generates synthetic SWIFT transaction payloads containing sender identifiers, receiver identifiers, transaction amounts, commodity information, trade quantities, price deviation scores, and weight-gap attributes before publishing them into the \texttt{incoming\_swift\_messages} topic for downstream analytical processing.
@@ -128,7 +132,7 @@ The generated graph schema consists of heterogeneous node entities including \te
 \end{figure}
 
 %========================================================
-\subsection[Hybrid HGNN--LSTM Analytical Implementation]{\textbf{Hybrid HGNN--LSTM Analytical Implementation}}
+\subsubsection[Hybrid HGNN--LSTM Analytical Implementation]{\textbf{Hybrid HGNN--LSTM Analytical Implementation}}
 %========================================================
 
 The proposed Hybrid HGNN--LSTM analytical module is implemented using PyTorch and PyTorch Geometric to perform graph-driven fraud analysis, temporal transaction modeling, and trade metadata learning for intelligent TBML detection. The implementation receives heterogeneous graph tensors generated from the Memgraph environment, including KYC node attributes, transactional edge relationships, sequential SWIFT transaction records, and trade-deviation features before forwarding them into the analytical inference pipeline. By combining graph attention learning with temporal sequence analysis and trade-feature fusion, the framework is capable of capturing both structural and behavioral fraud patterns across interconnected financial transaction networks.
@@ -151,7 +155,7 @@ Trade-specific metadata such as price-deviation attributes and cargo weight-gap 
 
 
 %========================================================
-\subsection[Federated Learning Implementation]{\textbf{Federated Learning Implementation}}
+\subsubsection[Federated Learning Implementation]{\textbf{Federated Learning Implementation}}
 %========================================================
 
 The federated learning environment is implemented using the Flower federated learning framework to support distributed privacy-preserving fraud detection across multiple institutional clients. The implementation utilizes a centralized aggregation server and three participating institutional clients, where each client performs localized training of the proposed Hybrid HGNN--LSTM analytical model using institution-specific transaction graphs, sequential SWIFT transaction representations, and fraud classification labels without directly sharing sensitive financial records outside the local analytical environment.
@@ -168,13 +172,13 @@ The federated implementation performs ten synchronized communication rounds usin
 The user interface and compliance-monitoring environment is implemented using Next.js, TypeScript, Tailwind CSS, Prisma ORM, Zustand state management, and PostgreSQL to support secure institutional fraud monitoring and centralized regulatory investigation workflows. The frontend architecture follows a modular service-oriented design consisting of protected dashboard routes, middleware-based authentication guards, API handlers, Prisma-powered database interaction layers, and role-specific monitoring interfaces integrated with the federated analytical inference environment.
 
 %========================================================
-\subsubsection[Authentication and Role Validation Pipeline]{\textbf{Authentication and Role Validation Pipeline}}
+\subsubsubsection[Authentication and Role Validation Pipeline]{\textbf{Authentication and Role Validation Pipeline}}
 %========================================================
 
 The authentication workflow is implemented using JWT-based session authorization combined with centralized middleware validation and protected route interception mechanisms. Incoming requests targeting protected dashboard routes are validated through middleware guards where session tokens are verified against predefined authorization scopes including \texttt{BANK\_ADMIN} and \texttt{REGULATOR}. Once validated, the session context is propagated across frontend environments through centralized authentication providers and Zustand-managed session states before protected dashboard components and compliance services are rendered within the client environment.
 
 %========================================================
-\subsubsection[Transaction Monitoring and Dashboard Rendering]{\textbf{Transaction Monitoring and Dashboard Rendering}}
+\subsubsubsection[Transaction Monitoring and Dashboard Rendering]{\textbf{Transaction Monitoring and Dashboard Rendering}}
 %========================================================
 
 Fraud predictions generated by the federated Hybrid HGNN--LSTM inference pipeline are synchronized into centralized PostgreSQL audit tables through backend transaction-processing services. Protected Next.js API handlers subsequently retrieve transaction classifications, fraud scores, STR metadata, and institutional monitoring information using Prisma query operations before dynamically rendering analytical outputs within role-specific dashboard interfaces. The banking administrator dashboard supports transaction filtering, fraud investigation workflows, watchlist escalation procedures, and false-positive reclassification operations through synchronized API-driven transaction state updates across centralized audit environments.
@@ -186,13 +190,17 @@ Fraud predictions generated by the federated Hybrid HGNN--LSTM inference pipelin
 Transactions classified as fraudulent trigger Suspicious Transaction Report (STR) generation workflows implemented through secured API endpoints and PostgreSQL-backed audit synchronization services. Institutional administrators initiate STR generation requests through protected dashboard interfaces where transaction metadata, fraud classifications, investigation summaries, institutional remarks, and compliance status information are serialized and stored within centralized STR audit tables. The generated STR records are subsequently propagated into regulator-facing monitoring environments through synchronized notification services and backend compliance-routing workflows.
 
 %========================================================
-\subsubsection[Regulatory Investigation and Compliance Monitoring]{\textbf{Regulatory Investigation and Compliance Monitoring}}
+\subsubsubsection[Regulatory Investigation and Compliance Monitoring]{\textbf{Regulatory Investigation and Compliance Monitoring}}
 %========================================================
 
 The regulatory monitoring environment consumes institution-generated STR records, fraud-classified transaction histories, compliance metadata, and supporting analytical evidence through protected API routes and Prisma-based database interaction layers. Regulatory authorities can perform investigation workflows including document-verification requests, institutional inquiry procedures, transaction review operations, and account-freeze initiation requests through centralized compliance interfaces synchronized with backend audit environments. The implemented monitoring workflow supports synchronized fraud prediction, institutional verification, STR lifecycle management, and centralized compliance monitoring within a unified real-time TBML analytical platform.
 
+
+\section{Testing and Validation}
+This section provides a comprehensive overview of the testing and validation processes employed to ensure the correctness, reliability, and performance of the proposed TBML detection framework. It includes descriptions of the testing environment, unit testing strategies for individual components, integration testing for end-to-end workflow validation, performance evaluation under simulated transaction loads, and security assessments to validate access control mechanisms and data protection measures within the framework.
+
 %========================================================
-\section[Testing Environment]{\textbf{Testing Environment}}
+\subsection[Testing Environment]{\textbf{Testing Environment}}
 %========================================================
 
 The testing process was conducted in a controlled development environment consisting of Python 3.11, PyTorch, PyTorch Geometric, Apache Kafka, Memgraph, PostgreSQL, and Flower federated learning services operating within isolated virtual environments created using \texttt{venv}. Frontend monitoring interfaces were implemented and validated using Next.js, TypeScript, Tailwind CSS, Prisma ORM, Zustand state management, and JWT-based authentication workflows.
@@ -200,12 +208,12 @@ The testing process was conducted in a controlled development environment consis
 The testing workflow additionally utilized Playwright-based browser automation for validating protected dashboard routes, institutional transaction workflows, STR generation pipelines, and compliance-monitoring interfaces. Database synchronization latency, transaction propagation consistency, backend API communication, and distributed fraud-inference workflows were validated under controlled institutional transaction loads to ensure reliable execution across distributed analytical environments.
 
 %========================================================
-\section[Unit Testing]{\textbf{Unit Testing}}
+\subsection[Unit Testing]{\textbf{Unit Testing}}
 %========================================================
 
 Each backend analytical service, dashboard workflow, authentication mechanism, and database synchronization component was independently tested to validate correctness, boundary handling, synchronization stability, and operational consistency before integration into the complete TBML detection framework.
 %========================================================
-\subsection[Unit Testing of Authentication and RBAC Module]{\textbf{Unit Testing of Authentication and RBAC Module}}
+\subsubsection[Unit Testing of Authentication and RBAC Module]{\textbf{Unit Testing of Authentication and RBAC Module}}
 %========================================================
 
 The authentication and role-based access control environment was independently validated to ensure secure user authentication, authorization management, middleware-driven route protection, credential verification, and institutional role isolation across banking and regulatory dashboard interfaces. The testing workflow additionally verified protected API access, invalid credential handling, unauthorized route restrictions, and role-specific dashboard rendering across distributed monitoring environments.
@@ -213,7 +221,7 @@ The authentication and role-based access control environment was independently v
 
 \begin{table}[H]
 \centering
-\caption{Unit Testing of Authentication and RBAC Module}
+\caption{TC-001: Unit Testing of Authentication and RBAC Module}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
@@ -232,7 +240,7 @@ The authentication and role-based access control environment was independently v
 Middleware-driven session validation successfully enforced protected route isolation and role-specific dashboard authorization across institutional monitoring environments. The testing workflow validated JWT token verification, session-expiration handling, credential validation, protected API access control, and middleware-based authorization checks across banking and regulator dashboards. Invalid credentials, unauthorized API requests, expired authentication sessions, and direct access attempts to protected routes were correctly rejected using backend access-control policies before protected resources were rendered. The authentication workflow additionally verified successful role mapping for \texttt{BANK\_USER} and  \texttt{ADMIN} entities to ensure secure dashboard isolation and controlled access to institutional fraud-monitoring operations.
 
 %========================================================
-\subsection[Unit Testing of Kafka Transaction Streaming]{\textbf{Unit Testing of Kafka Transaction Streaming}}
+\subsubsection[Unit Testing of Kafka Transaction Streaming]{\textbf{Unit Testing of Kafka Transaction Streaming}}
 %========================================================
 
 The Kafka transaction streaming environment was independently tested to validate asynchronous transaction publishing, real-time event synchronization, payload integrity validation, and downstream analytical communication across distributed backend services. The testing workflow additionally verified message delivery consistency, topic-based transaction propagation, malformed payload handling, and reliable synchronization between Kafka producer and consumer services operating within the proposed framework.
@@ -240,7 +248,7 @@ The Kafka transaction streaming environment was independently tested to validate
 
 \begin{table}[H]
 \centering
-\caption{Unit Testing of Kafka Transaction Streaming}
+\caption{TC-002: Unit Testing of Kafka Transaction Streaming}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
@@ -259,14 +267,14 @@ The Kafka transaction streaming environment was independently tested to validate
 The Kafka streaming module successfully validated asynchronous transaction publishing and backend event synchronization across distributed analytical services. Producer and consumer services maintained reliable message propagation and transaction consistency during continuous event-stream processing operations. Invalid payload structures, malformed transaction metadata, and incomplete financial events were correctly rejected through backend validation workflows before downstream graph-processing and fraud-inference operations were initiated.
 
 %========================================================
-\subsection[Unit Testing of Graph Construction Module]{\textbf{Unit Testing of Graph Construction Module}}
+\subsubsection[Unit Testing of Graph Construction Module]{\textbf{Unit Testing of Graph Construction Module}}
 %========================================================
 
 The heterogeneous graph-construction environment was independently tested to validate transactional node generation, relationship mapping, multi-entity graph synchronization, and Cypher-based ingestion workflows within the Memgraph analytical environment. The testing workflow additionally verified graph consistency, entity-link generation, transaction propagation accuracy, and downstream graph availability for Hybrid HGNN--LSTM analytical inference operations.
 
 \begin{table}[H]
 \centering
-\caption{Unit Testing of Graph Construction Module}
+\caption{TC-003: Unit Testing of Graph Construction Module}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
@@ -285,7 +293,7 @@ The heterogeneous graph-construction environment was independently tested to val
 The graph-construction workflow successfully generated heterogeneous transactional graphs within the Memgraph environment using Cypher-based ingestion and relationship-mapping operations. Graph entities including \texttt{(:Account)}, \texttt{(:Transaction)}, and \texttt{(:Document)} were correctly synchronized with transactional relationships such as \texttt{[:SENDS]}, \texttt{[:TO]}, and \texttt{[:HAS\_DOC]} during continuous event-stream processing. The testing workflow additionally validated graph consistency, entity-link integrity, and multi-hop transactional connectivity required for downstream subgraph extraction and graph-based fraud inference operations within the proposed framework.
 
 %========================================================
-\subsection[Unit Testing of STR Generation Workflow]{\textbf{Unit Testing of STR Generation Workflow}}
+\subsubsection[Unit Testing of STR Generation Workflow]{\textbf{Unit Testing of STR Generation Workflow}}
 %========================================================
 
 The STR generation workflow was independently tested to validate suspicious transaction report generation, compliance-record synchronization, fraud-case escalation, and regulator-side notification propagation across distributed institutional monitoring environments. The testing workflow additionally verified report persistence, transaction-metadata preservation, audit consistency, and downstream synchronization between banking dashboards and regulator-facing compliance interfaces.
@@ -293,7 +301,7 @@ The STR generation workflow was independently tested to validate suspicious tran
 
 \begin{table}[H]
 \centering
-\caption{Unit Testing of STR Generation Workflow}
+\caption{TC-004: Unit Testing of STR Generation Workflow}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
@@ -313,7 +321,7 @@ The STR generation workflow was independently tested to validate suspicious tran
 The STR workflow successfully validated automated fraud-report generation, PostgreSQL audit synchronization, and regulator-side notification propagation across distributed institutional environments. Generated STR records correctly preserved transaction metadata, fraud classifications, institutional identifiers, and investigation references during downstream compliance synchronization operations. The testing workflow additionally verified successful dashboard synchronization, report persistence, and controlled propagation of suspicious transaction alerts between banking institutions and regulatory monitoring interfaces operating within the proposed framework.
 
 %========================================================
-\subsection[Unit Testing of Notification Workflow]{\textbf{Unit Testing of Notification Workflow}}
+\subsubsection[Unit Testing of Notification Workflow]{\textbf{Unit Testing of Notification Workflow}}
 %========================================================
 
 The notification synchronization environment was independently tested to validate fraud-alert propagation, institutional notification delivery, compliance-event synchronization, and regulator-side alert visibility across distributed monitoring interfaces. The testing workflow additionally verified notification persistence, dashboard update consistency, backend event propagation, and synchronization between banking and regulatory compliance environments during fraud escalation operations.
@@ -321,7 +329,7 @@ The notification synchronization environment was independently tested to validat
 
 \begin{table}[H]
 \centering
-\caption{Unit Testing of Notification Workflow}
+\caption{TC-005: Unit Testing of Notification Workflow}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
@@ -343,13 +351,13 @@ The notification workflow successfully validated fraud-alert propagation, instit
 
 
 %========================================================
-\section[Integration Testing]{\textbf{Integration Testing}}
+\subsection[Integration Testing]{\textbf{Integration Testing}}
 %========================================================
 
 Integration testing was conducted to validate the interaction, synchronization consistency, and workflow stability between distributed analytical services, graph-processing environments, fraud inference pipelines, dashboard-rendering systems, and regulatory compliance workflows operating within the proposed TBML detection framework.
 
 %========================================================
-\subsection[Integration Testing of Kafka and Memgraph Pipeline]{\textbf{Integration Testing of Kafka and Memgraph Pipeline}}
+\subsubsection[Integration Testing of Kafka and Memgraph Pipeline]{\textbf{Integration Testing of Kafka and Memgraph Pipeline}}
 %========================================================
 
 This integration test validated end-to-end synchronization between Kafka-based transaction streaming services and the heterogeneous graph-construction environment operating within Memgraph. The testing workflow additionally verified event-stream consistency, transaction propagation reliability, graph-ingestion stability, and downstream synchronization between distributed backend services.
@@ -358,7 +366,7 @@ This integration test validated end-to-end synchronization between Kafka-based t
 
 \begin{table}[H]
 \centering
-\caption{Integration Testing of Kafka and Memgraph Pipeline}
+\caption{TC-006: Integration Testing of Kafka and Memgraph Pipeline}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
@@ -380,7 +388,7 @@ The integration workflow successfully validated asynchronous transaction propaga
 
 
 %========================================================
-\subsection[Integration Testing of Fraud Prediction and Dashboard Synchronization]{\textbf{Integration Testing of Fraud Prediction and Dashboard Synchronization}}
+\subsubsection[Integration Testing of Fraud Prediction and Dashboard Synchronization]{\textbf{Integration Testing of Fraud Prediction and Dashboard Synchronization}}
 %========================================================
 
 This integration test validated synchronization between fraud-prediction services, PostgreSQL audit environments, and role-based monitoring dashboards operating within the proposed TBML framework. The testing workflow additionally verified database persistence, dashboard synchronization consistency, and real-time rendering of fraud-classified transactions.
@@ -389,7 +397,7 @@ This integration test validated synchronization between fraud-prediction service
 
 \begin{table}[H]
 \centering
-\caption{Integration Testing of Fraud Prediction and Dashboard Synchronization}
+\caption{TC-007: Integration Testing of Fraud Prediction and Dashboard Synchronization}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
@@ -410,7 +418,7 @@ This integration test validated synchronization between fraud-prediction service
 Fraud-prediction records, transaction metadata, and institutional risk classifications were successfully synchronized into centralized PostgreSQL audit environments before being rendered through protected dashboard interfaces. Dashboard synchronization workflows maintained consistent fraud-state propagation and real-time transaction visibility across distributed institutional monitoring services. The testing workflow additionally validated backend persistence consistency, dashboard update reliability, and secure rendering of fraud-monitoring data across role-specific compliance environments.
 
 %========================================================
-\subsection[Integration Testing of STR Generation Workflow]{\textbf{Integration Testing of STR Generation Workflow}}
+\subsubsection[Integration Testing of STR Generation Workflow]{\textbf{Integration Testing of STR Generation Workflow}}
 %========================================================
 
 This integration test validated the complete workflow between institutional fraud verification, STR generation services, regulator-side synchronization, and compliance-notification propagation operating within distributed monitoring environments. The testing workflow additionally verified fraud escalation consistency, report persistence, and synchronized regulator visibility across institutional compliance pipelines.
@@ -421,7 +429,7 @@ The STR synchronization workflow successfully validated fraud escalation, compli
 
 \begin{table}[H]
 \centering
-\caption{Integration Testing of STR Generation Workflow}
+\caption{TC-008: Integration Testing of STR Generation Workflow}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
@@ -441,7 +449,7 @@ The STR synchronization workflow successfully validated fraud escalation, compli
 
 
 %========================================================
-\subsection[Integration Testing of Authentication and Protected Dashboard Rendering]{\textbf{Integration Testing of Authentication and Protected Dashboard Rendering}}
+\subsubsection[Integration Testing of Authentication and Protected Dashboard Rendering]{\textbf{Integration Testing of Authentication and Protected Dashboard Rendering}}
 %========================================================
 
 This integration test validated synchronization between JWT-based authentication services, middleware-driven authorization guards, protected API routes, and role-specific dashboard-rendering environments operating within the proposed framework. The testing workflow additionally verified secure session propagation, authorization consistency, and protected resource accessibility across institutional monitoring interfaces.
@@ -451,7 +459,7 @@ Middleware-driven authentication workflows successfully validated session author
 
 \begin{table}[H]
 \centering
-\caption{Integration Testing of Authentication and Protected Dashboard Rendering}
+\caption{TC-009: Integration Testing of Authentication and Protected Dashboard Rendering}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
@@ -470,13 +478,13 @@ Middleware-driven authentication workflows successfully validated session author
 \renewcommand{\arraystretch}{1}
 
 %========================================================
-\section[System Testing]{\textbf{System Testing}}
+\subsection[System Testing]{\textbf{System Testing}}
 %========================================================
 
 System testing was conducted to validate the operational stability, concurrent transaction-handling capability, database synchronization performance, and workflow-level response consistency of the proposed TBML detection framework under distributed institutional monitoring environments. The testing workflow focused on browser-based end-to-end validation, protected dashboard execution, concurrent PostgreSQL scalability analysis, API response-time benchmarking, and operational latency evaluation across fraud-monitoring and compliance-management services.
 
 %========================================================
-\subsection[Browser Automation and Workflow Validation]{\textbf{Browser Automation and Workflow Validation}}
+\subsubsection[Browser Automation and Workflow Validation]{\textbf{Browser Automation and Workflow Validation}}
 %========================================================
 
 Browser-based end-to-end validation was performed using Playwright automation workflows executed within Chromium testing environments. The testing workflow validated protected dashboard rendering, role-based authentication, STR lifecycle execution, fraud-notification propagation, compliance-action synchronization, and institutional transaction visibility restrictions across distributed frontend and backend services. All automated workflow executions completed successfully without unauthorized access, synchronization failure, or dashboard inconsistency during operational validation.
@@ -485,7 +493,7 @@ Browser-based end-to-end validation was performed using Playwright automation wo
 
 \begin{table}[H]
 \centering
-\caption{Browser Automation and Workflow Validation Results}
+\caption{TC-010: Browser Automation and Workflow Validation Results}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{7cm}|p{4cm}|}
@@ -509,7 +517,7 @@ Sign-In Page Smoke Testing & Successful \\ \hline
 The Playwright automation workflow successfully validated sequential execution of institutional fraud-monitoring operations across protected dashboard environments. Browser automation additionally verified secure session persistence, API synchronization consistency, workflow-level authorization enforcement, and stable dashboard rendering across \texttt{ADMIN} and \texttt{BANK\_USER} operational environments. The testing workflow further confirmed successful STR generation, fraud escalation, regulator-side compliance synchronization, and distributed notification propagation across automated end-to-end execution workflows.
 
 %========================================================
-\subsection[Concurrent Database Scalability and API Performance Analysis]{\textbf{Concurrent Database Scalability and API Performance Analysis}}
+\subsubsection[Concurrent Database Scalability and API Performance Analysis]{\textbf{Concurrent Database Scalability and API Performance Analysis}}
 %========================================================
 
 Concurrent database scalability testing was conducted to evaluate PostgreSQL synchronization stability, dashboard query performance, fraud-filtering latency, and STR retrieval response consistency under increasing institutional user loads. The benchmarking workflow was implemented using Prisma ORM and Next.js backend services, where each simulated institutional user executed five continuous transactional requests during concurrent dashboard-access operations. Controlled concurrency execution was implemented using batched asynchronous request propagation with pooled PostgreSQL database connections and a maximum limit of 15 active concurrent connections to regulate transactional synchronization, prevent backend resource exhaustion, and maintain stable query-execution behavior during high-volume monitoring workloads.
@@ -536,7 +544,7 @@ L_{95} =
 
 \begin{table}[H]
 \centering
-\caption{Dashboard Transaction Retrieval Scalability Analysis}
+\caption{TC-011: Dashboard Transaction Retrieval Scalability Analysis}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{2.6cm}|p{2.4cm}|p{2.8cm}|p{2.8cm}|p{2.2cm}|}
@@ -558,7 +566,7 @@ The dashboard transaction retrieval workflow demonstrated stable query scalabili
 
 \begin{table}[H]
 \centering
-\caption{Fraud Transaction Filtering Scalability Analysis}
+\caption{TC-012: Fraud Transaction Filtering Scalability Analysis}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{2.6cm}|p{2.4cm}|p{2.8cm}|p{2.8cm}|p{2.2cm}|}
@@ -580,7 +588,7 @@ The fraud-transaction filtering workflow demonstrated efficient analytical-query
 
 \begin{table}[H]
 \centering
-\caption{STR Compliance Report Retrieval Scalability Analysis}
+\caption{TC-013: STR Compliance Report Retrieval Scalability Analysis}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{2.6cm}|p{2.4cm}|p{2.8cm}|p{2.8cm}|p{2.2cm}|}
@@ -606,7 +614,7 @@ The conducted testing workflows validated the synchronization reliability, opera
 
 
 %========================================================
-\section[Model Performance Evaluation]{\textbf{Model Performance Evaluation}}
+\subsection[Model Performance Evaluation]{\textbf{Model Performance Evaluation}}
 %========================================================
 
 The proposed federated Hybrid HGNN--LSTM framework was evaluated across three distributed institutional clients (BANKA, BANKB, and BANKC) to validate fraud-classification capability and federated convergence stability across heterogeneous transactional environments. Multi-class prediction performance for \textit{Clean}, \textit{Watchlist}, and \textit{Fraud} transaction states was analyzed using Precision, Recall, F1-Score, confusion-matrix validation, and Precision--Recall benchmarking. Federated parameter synchronization was performed using the FedAvg aggregation strategy across 10 federated communication rounds.
@@ -614,7 +622,7 @@ The proposed federated Hybrid HGNN--LSTM framework was evaluated across three di
 The transactional dataset was partitioned using a stratified temporal split strategy to preserve chronological separation between training and testing samples while maintaining balanced representation across minority fraud categories. Weighted cross-entropy optimization and gradient clipping mechanisms were integrated to stabilize distributed training and address fraud-class imbalance during federated convergence operations. Precision--Recall evaluation was prioritized over standalone classification accuracy due to the highly imbalanced nature of illicit transactional behavior within institutional financial environments.
 
 %========================================================
-\subsection[Multi-Class Classification Performance]{\textbf{Multi-Class Classification Performance}}
+\subsubsection[Multi-Class Classification Performance]{\textbf{Multi-Class Classification Performance}}
 %========================================================
 
 The final federated classification results obtained after 10 federated aggregation rounds across all participating institutional environments are summarized in Table~\ref{tab:model_performance}. The evaluation was conducted to analyze the framework’s ability to distinguish legitimate, suspicious, and fraudulent transactional behaviors across distributed institutional datasets under federated learning conditions. The obtained results additionally validated stable analytical convergence and consistent fraud-classification performance across all participating banking clients.
@@ -660,7 +668,7 @@ Fraud-class predictions achieved Precision values between $0.96$ and $0.98$, val
 
 
 %========================================================
-\subsection[Federated Convergence Analysis]{\textbf{Federated Convergence Analysis}}
+\subsubsection[Federated Convergence Analysis]{\textbf{Federated Convergence Analysis}}
 %========================================================
 
 The federated convergence workflow was evaluated using longitudinal Accuracy, Precision, and Recall progression analysis across iterative federated aggregation rounds. The convergence curves were generated independently for all participating institutional clients to validate distributed synchronization consistency and global-weight stabilization during federated optimization workflows.
@@ -747,7 +755,7 @@ As illustrated in Figure~\ref{fig:bankb_progression}, the BANKB institutional cl
 
 As illustrated in Figure~\ref{fig:bankc_progression}, the BANKC institutional client demonstrated comparatively stable federated convergence behavior across all communication rounds. The Accuracy, Precision, and Recall metrics progressively converged with minimal variance during later aggregation stages, thereby validating efficient federated synchronization and stable distributed optimization behavior. The convergence characteristics additionally confirmed successful global-model generalization across heterogeneous institutional transaction environments.
 %========================================================
-\subsection[Precision--Recall and Confusion Matrix Validation]{\textbf{Precision--Recall and Confusion Matrix Validation}}
+\subsubsection[Precision--Recall and Confusion Matrix Validation]{\textbf{Precision--Recall and Confusion Matrix Validation}}
 %========================================================
 
 Precision--Recall analytical validation and confusion-matrix evaluation were performed to analyze fraud-discrimination capability, minority-class detection behavior, and false-positive propagation across distributed institutional environments. Since fraudulent transactional behavior represented a significantly smaller proportion of the overall institutional transaction distribution, Precision--Recall evaluation provided a more operationally reliable assessment than standalone classification accuracy metrics.
