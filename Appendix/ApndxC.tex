@@ -1,34 +1,783 @@
-\chapter{Code}
-\section{First Appendix}
-You can use \texttt{tcblisting} for creating the code snippets. The following example illustrates how one can customize the \texttt{tcblisting} to achieve the \texttt{tcl} script. Similarly, one can use it for other programming language listing, including HDL.
+\chapter{Appendix}
 
-\begin{tcblisting}{listing only,colback=gray!10!white, breakable, boxsep=0pt,top=1mm,bottom=1mm,left=1mm,right=1mm,
+%========================================================
+\section{Hybrid HGNN--LSTM Model Implementation}
+%========================================================
+
+The following listing presents the implementation of the proposed Hybrid HGNN--LSTM analytical model developed using PyTorch and PyTorch Geometric for federated Trade-Based Money Laundering detection.
+
+\begin{tcblisting}{
+listing only,
+breakable,
+colback=gray!10!white,
+colframe=black!20,
+boxsep=1mm,
+left=1mm,
+right=1mm,
+top=1mm,
+bottom=1mm,
 listing options={
-language= tcl,
-basicstyle=\small\ttfamily, 
-otherkeywords={create_clock, set_clock_latency, set_input_delay, set_output_delay, set_load, set_max_fanout, set_fanout_load},
-keywordstyle=\color{blue}, 
-%keywordstyle=[2]{\color{red}},
+language=Python,
+basicstyle=\scriptsize\ttfamily,
+keywordstyle=\color{blue},
 commentstyle=\color{gray},
-backgroundcolor=\color{gray!25},
-%morekeywords=[2]{arg,pos},
-%moredelim=[is][\color{violet}]{''}{''},
-escapechar=!}}
-# Since our design has a clock with name clk, 
-## specify that name under [get_port ]
-create_clock -period 40 -waveform {0 20} [get_ports clk]
+stringstyle=\color{orange},
+showstringspaces=false,
+breaklines=true,
+tabsize=2
+}
+}
 
-# Setting a 'delay' on the clock:
-set_clock_latency 0.3 clk
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch_geometric.nn import GATv2Conv, global_mean_pool
 
-# Setting up constraints on your I/P and O/P pins
-set_input_delay 2.0 -clock clk [all_inputs]!\tikz[remember picture]\node[](c1){};!
-set_output_delay 1.65 -clock clk [all_outputs]!\tikz[remember picture]\node[](c2){};!
+class TBML_DetectionModel(nn.Module):
 
-# Set realistic 'loads' on each output pin
-set_load 0.1 [all_outputs]
+    def __init__(
+        self,
+        kyc_dim=3,
+        swift_dim=1,
+        trade_dim=2,
+        hidden_dim=32,
+        lstm_hidden=32,
+        classes=3
+    ):
 
-# Set 'maximum' fanin and fan-out for the input and output pins 
-set_max_fanout 1 [all_inputs]
-set_fanout_load 8 [all_outputs]      
+        super(TBML_DetectionModel, self).__init__()
+
+        # Graph Branch
+
+        self.gat1 = GATv2Conv(
+            in_channels=kyc_dim,
+            out_channels=hidden_dim,
+            heads=2,
+            concat=False
+        )
+
+        self.gat2 = GATv2Conv(
+            in_channels=hidden_dim,
+            out_channels=hidden_dim,
+            heads=2,
+            concat=False
+        )
+
+        self.gat3 = GATv2Conv(
+            in_channels=hidden_dim,
+            out_channels=hidden_dim,
+            heads=2,
+            concat=False
+        )
+
+        # Temporal Branch
+
+        self.lstm = nn.LSTM(
+            input_size=hidden_dim + swift_dim,
+            hidden_size=lstm_hidden,
+            batch_first=True
+        )
+
+        # Trade Branch
+
+        self.trade_mlp = nn.Sequential(
+
+            nn.Linear(trade_dim, 32),
+            nn.LayerNorm(32),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+
+            nn.Linear(32, 32),
+            nn.LayerNorm(32),
+            nn.ReLU()
+
+        )
+
+        # Fusion Classifier
+
+        self.classifier = nn.Sequential(
+
+            nn.Linear(lstm_hidden + 32, 64),
+            nn.LayerNorm(64),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+
+            nn.Linear(64, classes)
+
+        )
+
+    def forward(
+        self,
+        kyc_x,
+        edge_index,
+        swift_edge_attr,
+        seq_data,
+        trade_features
+    ):
+
+        # Graph Processing
+
+        if edge_index.size(1) == 0:
+
+            enriched_nodes = F.relu(
+                self.gat1(kyc_x, edge_index)
+            )
+
+        else:
+
+            x = F.dropout(
+                F.relu(self.gat1(kyc_x, edge_index)),
+                p=0.2,
+                training=self.training
+            )
+
+            x = F.dropout(
+                F.relu(self.gat2(x, edge_index)),
+                p=0.2,
+                training=self.training
+            )
+
+            enriched_nodes = F.dropout(
+                F.relu(self.gat3(x, edge_index)),
+                p=0.2,
+                training=self.training
+            )
+
+        # Graph Pooling
+
+        batch = torch.zeros(
+            enriched_nodes.size(0),
+            dtype=torch.long,
+            device=enriched_nodes.device
+        )
+
+        graph_context = global_mean_pool(
+            enriched_nodes,
+            batch
+        ).unsqueeze(1)
+
+        # Sequence Shape Correction
+
+        if seq_data.dim() == 4:
+            seq_data = seq_data.squeeze(0)
+
+        # Graph + Sequence Fusion
+
+        graph_context_expanded = graph_context.expand(
+            seq_data.size(0),
+            seq_data.size(1),
+            -1
+        )
+
+        combined_seq = torch.cat(
+            [seq_data, graph_context_expanded],
+            dim=-1
+        )
+
+        # Temporal Modeling
+
+        lstm_out, _ = self.lstm(combined_seq)
+
+        final_lstm_step = lstm_out[:, -1, :]
+
+        final_lstm_step = F.dropout(
+            final_lstm_step,
+            p=0.3,
+            training=self.training
+        )
+
+        # Trade Feature Processing
+
+        trade_emb = self.trade_mlp(trade_features)
+
+        # Final Fusion
+
+        fused_vector = torch.cat(
+            [final_lstm_step, trade_emb],
+            dim=1
+        )
+
+        return self.classifier(fused_vector)
+
+\end{tcblisting}
+
+
+%========================================================
+\section{Federated Learning Server Implementation}
+%========================================================
+
+The following listing presents the Flower-based federated server implementation used for distributed parameter aggregation and global model synchronization across institutional clients.
+
+\begin{tcblisting}{
+listing only,
+breakable,
+colback=gray!10!white,
+colframe=black!20,
+boxsep=1mm,
+left=1mm,
+right=1mm,
+top=1mm,
+bottom=1mm,
+listing options={
+language=Python,
+basicstyle=\scriptsize\ttfamily,
+keywordstyle=\color{blue},
+commentstyle=\color{gray},
+stringstyle=\color{orange},
+showstringspaces=false,
+breaklines=true,
+tabsize=2
+}
+}
+
+import numpy as numpy
+import flwr as flwr
+
+from model import TBML_DetectionModel
+
+
+class modelStrategy(flwr.server.strategy.FedAvg):
+
+    def aggregate_fit(
+        self,
+        curr_round,
+        results,
+        failures
+    ):
+
+        aggregated_weights, _ = super().aggregate_fit(
+            curr_round,
+            results,
+            failures
+        )
+
+        if aggregated_weights is not None and curr_round == 10:
+
+            print(
+                f"Saving global weights for round {curr_round}"
+            )
+
+            # Convert Flower parameters to NumPy arrays
+
+            aggregated_array = (
+                flwr.common.parameters_to_ndarrays(
+                    aggregated_weights
+                )
+            )
+
+            # Save aggregated global weights
+
+            numpy.savez(
+                "global_model.npz",
+                *aggregated_array
+            )
+
+            print(
+                "Global weights saved successfully"
+            )
+
+        return aggregated_weights, _
+
+
+if __name__ == "__main__":
+
+    print(
+        "Starting Flower server with custom strategy..."
+    )
+
+    # Initialize server-side model
+
+    model = TBML_DetectionModel(
+        kyc_dim=3,
+        swift_dim=1,
+        trade_dim=2,
+        hidden_dim=32,
+        lstm_hidden=32,
+        classes=3
+    )
+
+    # Convert model weights to Flower parameters
+
+    ndarrays = [
+
+        val.cpu().numpy()
+
+        for val in model.state_dict().values()
+
+    ]
+
+    initial_parameters = (
+        flwr.common.ndarrays_to_parameters(
+            ndarrays
+        )
+    )
+
+    # Federated aggregation strategy
+
+    strategy = modelStrategy(
+
+        fraction_fit=1.0,
+        min_fit_clients=3,
+        min_available_clients=3,
+        initial_parameters=initial_parameters
+
+    )
+
+    # Start Flower federated server
+
+    flwr.server.start_server(
+
+        server_address="0.0.0.0:8085",
+
+        config=flwr.server.ServerConfig(
+            num_rounds=10
+        ),
+
+        strategy=strategy
+
+    )
+
+\end{tcblisting}
+
+
+%========================================================
+\section{Federated Learning Client Implementation}
+%========================================================
+
+The following listing presents the Flower federated client implementation used for distributed institutional training, graph-based transaction processing, and federated evaluation within the proposed TBML detection framework.
+
+\begin{tcblisting}{
+listing only,
+breakable,
+colback=gray!10!white,
+colframe=black!20,
+boxsep=1mm,
+left=1mm,
+right=1mm,
+top=1mm,
+bottom=1mm,
+listing options={
+language=Python,
+basicstyle=\scriptsize\ttfamily,
+keywordstyle=\color{blue},
+commentstyle=\color{gray},
+stringstyle=\color{orange},
+showstringspaces=false,
+breaklines=true,
+tabsize=2
+}
+}
+
+import flwr as fl
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+from torch.utils.data import Dataset, DataLoader
+from torch_geometric.nn import GATv2Conv, global_mean_pool
+
+from neo4j import GraphDatabase
+from collections import OrderedDict, Counter
+
+import argparse
+import random
+import numpy as np
+
+from model import TBML_DetectionModel
+
+SEED = 42
+
+torch.manual_seed(SEED)
+np.random.seed(SEED)
+random.seed(SEED)
+
+# Client Configuration
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(
+    "--bank",
+    type=str,
+    required=True,
+    choices=['banka', 'bankb', 'bankc']
+)
+
+args = parser.parse_args()
+
+PORT_MAP = {
+
+    "banka": 4000,
+    "bankb": 4001,
+    "bankc": 4002
+
+}
+
+MEMGRAPH_URI = (
+    f"bolt://localhost:{PORT_MAP[args.bank]}"
+)
+
+MEMGRAPH_USER = ""
+MEMGRAPH_PASS = ""
+
+# Dataset Loader
+
+class MemgraphTBMLDataset(Dataset):
+
+    def __init__(
+        self,
+        uri,
+        user,
+        password,
+        transaction_ids
+    ):
+
+        self.driver = GraphDatabase.driver(
+            uri,
+            auth=(user, password)
+        )
+
+        self.transaction_ids = transaction_ids
+
+    def __len__(self):
+
+        return len(self.transaction_ids)
+
+    def __getitem__(self, idx):
+
+        target_msg_id = self.transaction_ids[idx]
+
+        query = """
+        MATCH (root:Transaction {id: $target_msg_id})
+        OPTIONAL MATCH (root)-[:HAS_DOC]->(trade:Document)
+
+        WITH root, trade
+
+        MATCH (root)-[r1]-(n1:Account)
+
+        WITH root, trade,
+             collect(r1) as edges1,
+             collect(n1) as nodes1
+
+        UNWIND nodes1 as n1
+
+        OPTIONAL MATCH (n1)-[r2]-(n2:Transaction)
+
+        WITH root, trade,
+             edges1,
+             nodes1,
+             collect(r2)[..50] as edges2,
+             collect(n2)[..50] as nodes2
+
+        WITH root, trade,
+             nodes1 + [x IN nodes2
+             WHERE x IS NOT NULL] AS all_nodes,
+
+             edges1 + [x IN edges2
+             WHERE x IS NOT NULL] AS all_edges
+
+        UNWIND all_nodes AS n
+        UNWIND all_edges AS r
+
+        RETURN root,
+               trade,
+               collect(distinct n) AS nodes,
+               collect(distinct r) AS edges
+        """
+
+        with self.driver.session() as session:
+
+            result = session.run(
+                query,
+                target_msg_id=target_msg_id
+            ).single()
+
+        root = result["root"]
+        trade = result["trade"]
+
+        all_nodes_dict = {
+
+            root.element_id: root
+
+        }
+
+        if trade:
+
+            all_nodes_dict[
+                trade.element_id
+            ] = trade
+
+        for n in result["nodes"]:
+
+            all_nodes_dict[
+                n.element_id
+            ] = n
+
+        nodes = list(all_nodes_dict.values())
+
+        node_to_idx = {}
+        kyc_features = []
+
+        for i, node in enumerate(nodes):
+
+            node_to_idx[node.element_id] = i
+
+            if "Account" in node.labels:
+
+                kyc = [
+
+                    float(node.get("is_shell", 0)),
+                    float(node.get("dorm_days", 0))/365.0,
+                    float(node.get("device_entropy", 0))
+
+                ]
+
+            else:
+
+                kyc = [0.0, 0.0, 0.0]
+
+            kyc_features.append(kyc)
+
+        kyc_x = torch.tensor(
+            kyc_features,
+            dtype=torch.float32
+        )
+
+        source_nodes = []
+        target_nodes = []
+
+        for edge in result["edges"]:
+
+            start_id = edge.start_node.element_id
+            end_id = edge.end_node.element_id
+
+            if start_id in node_to_idx and end_id in node_to_idx:
+
+                source_nodes.append(
+                    node_to_idx[start_id]
+                )
+
+                target_nodes.append(
+                    node_to_idx[end_id]
+                )
+
+        if len(source_nodes) == 0:
+
+            edge_index = torch.empty(
+                (2, 0),
+                dtype=torch.long
+            )
+
+        else:
+
+            edge_index = torch.tensor(
+                [source_nodes, target_nodes],
+                dtype=torch.long
+            )
+
+        raw_amount = np.log1p(
+            float(root.get("amount", 0))
+        )
+
+        swift_edge_attr = torch.tensor(
+            [[raw_amount]],
+            dtype=torch.float32
+        )
+
+        seq_data = swift_edge_attr.unsqueeze(0)
+
+        if trade:
+
+            trade_features = torch.tensor([
+
+                float(trade.get(
+                    "price_deviation", 0.0
+                )),
+
+                float(trade.get(
+                    "weight_gap_score", 0.0
+                ))
+
+            ], dtype=torch.float32)
+
+        else:
+
+            trade_features = torch.zeros(
+                2,
+                dtype=torch.float32
+            )
+
+        label = torch.tensor(
+            int(root.get("label", 0)),
+            dtype=torch.long
+        )
+
+        return (
+            kyc_x,
+            edge_index,
+            swift_edge_attr,
+            seq_data,
+            trade_features,
+            label
+        )
+
+# Federated Client
+
+class BankClient(fl.client.NumPyClient):
+
+    def __init__(
+        self,
+        model,
+        train_loader,
+        test_loader,
+        class_weights
+    ):
+
+        self.model = model
+
+        self.train_loader = train_loader
+        self.test_loader = test_loader
+
+        self.criterion = nn.CrossEntropyLoss(
+            weight=class_weights
+        )
+
+        self.optimizer = optim.Adam(
+            model.parameters(),
+            lr=0.001
+        )
+
+    def get_parameters(self, config):
+
+        return [
+
+            val.cpu().numpy()
+
+            for _, val in
+            self.model.state_dict().items()
+
+        ]
+
+    def set_parameters(self, parameters):
+
+        params_dict = zip(
+            self.model.state_dict().keys(),
+            parameters
+        )
+
+        state_dict = OrderedDict({
+
+            k: torch.tensor(v)
+
+            for k, v in params_dict
+
+        })
+
+        self.model.load_state_dict(
+            state_dict,
+            strict=True
+        )
+
+    def fit(self, parameters, config):
+
+        self.set_parameters(parameters)
+
+        self.model.train()
+
+        for epoch in range(1):
+
+            for (
+                kyc_x,
+                edge_index,
+                swift_edge_attr,
+                seq_data,
+                trade_features,
+                label
+
+            ) in self.train_loader:
+
+                kyc_x = kyc_x[0]
+                edge_index = edge_index[0]
+
+                swift_edge_attr = (
+                    swift_edge_attr[0]
+                )
+
+                label = label[0]
+
+                trade_features = (
+                    trade_features[0].unsqueeze(0)
+                )
+
+                self.optimizer.zero_grad()
+
+                logits = self.model(
+
+                    kyc_x,
+                    edge_index,
+                    swift_edge_attr,
+                    seq_data,
+                    trade_features
+
+                )
+
+                loss = self.criterion(
+                    logits,
+                    label.unsqueeze(0)
+                )
+
+                loss.backward()
+
+                torch.nn.utils.clip_grad_norm_(
+                    self.model.parameters(),
+                    max_norm=1.0
+                )
+
+                self.optimizer.step()
+
+        return (
+            self.get_parameters(config={}),
+            len(self.train_loader.dataset),
+            {}
+        )
+
+if __name__ == "__main__":
+
+    train_dataset = MemgraphTBMLDataset(
+        MEMGRAPH_URI,
+        MEMGRAPH_USER,
+        MEMGRAPH_PASS,
+        []
+    )
+
+    train_loader = DataLoader(
+        train_dataset,
+        batch_size=1,
+        shuffle=True
+    )
+
+    test_loader = DataLoader(
+        train_dataset,
+        batch_size=1,
+        shuffle=False
+    )
+
+    model = TBML_DetectionModel()
+
+    class_weights = torch.tensor(
+        [1.0, 1.0, 1.0],
+        dtype=torch.float32
+    )
+
+    client = BankClient(
+        model,
+        train_loader,
+        test_loader,
+        class_weights
+    )
+
+    fl.client.start_numpy_client(
+        server_address="127.0.0.1:8085",
+        client=client
+    )
+
 \end{tcblisting}

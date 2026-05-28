@@ -3,51 +3,52 @@
 %========================================================
 
 The proposed work successfully established a scalable and privacy-preserving federated graph-learning framework for intelligent Trade-Based Money Laundering detection across distributed institutional environments. The developed framework integrated heterogeneous graph construction, federated Hybrid HGNN--LSTM analytical inference, Apache Kafka-based transaction streaming, PostgreSQL-backed compliance orchestration, and regulator-facing monitoring synchronization within a unified operational architecture. Experimental evaluation demonstrated stable fraud-classification capability, reliable federated convergence behavior, and effective distributed synchronization across heterogeneous institutional transaction environments. The deployed framework achieved Fraud-class Precision values approaching $0.98$ while maintaining stable Recall characteristics during federated analytical inference workflows. Concurrent scalability evaluation additionally demonstrated stable dashboard retrieval latency near $156$--$162$ ms and controlled fraud-filtering response latency near $148$--$159$ ms during increasing institutional monitoring workloads. The overall analytical and operational outcomes validated the suitability of the proposed framework for scalable, real-time, and privacy-aware TBML detection across distributed institutional compliance ecosystems.
-
+```latex id="x5m8vk"
 %========================================================
 \section{Limitations}
 %========================================================
 
-Although the proposed framework demonstrated stable analytical performance and operational monitoring capability, several practical and infrastructural limitations remain within the current implementation. The experimental evaluation primarily relied on synthetically enriched transactional datasets due to restricted accessibility of institutionally verified TBML datasets containing real-world laundering annotations. Consequently, certain real-world laundering behaviors, cross-border transactional irregularities, and evolving trade manipulation strategies may not be fully represented within the current experimental environment.
+Although the proposed framework demonstrated stable analytical performance and reliable monitoring capability, certain practical and infrastructural limitations remain within the current implementation. The experimental evaluation primarily relied on synthetically enriched transactional datasets due to the limited availability of institutionally verified TBML datasets containing real-world laundering annotations. As a result, certain evolving laundering behaviors, cross-border transactional irregularities, and complex trade manipulation strategies may not be fully represented within the present experimental environment.
 
-The federated analytical workflow additionally introduced communication overhead during iterative parameter synchronization and distributed aggregation operations across institutional clients. As the number of participating banking environments increases, federated synchronization latency and distributed optimization complexity may proportionally increase during large-scale deployment scenarios. Similarly, heterogeneous graph-processing workflows involving significantly larger transactional environments may introduce additional computational overhead during high-volume multi-hop graph traversal and distributed inference operations.
+The federated analytical workflow additionally introduces communication overhead during distributed parameter synchronization and aggregation across participating institutional clients. As the number of banking environments increases, federated synchronization latency and distributed optimization complexity may proportionally increase during large-scale deployment scenarios. Similarly, graph-processing workflows involving significantly larger transactional environments may introduce additional computational overhead during high-volume multi-hop graph traversal and distributed inference operations.
 
-The current implementation further focuses primarily on fraud detection, monitoring, and compliance-notification orchestration. While the framework successfully propagates regulator-side alerts and institutional investigation notifications, the system presently does not implement automated transactional intervention mechanisms such as account freezing, transaction blocking, document-lock enforcement, or adaptive compliance-trigger execution directly within the banking workflow. Such operational controls would require deeper integration with core banking infrastructure and institutional authorization pipelines.
+The current implementation is primarily focused on fraud detection, monitoring, and compliance-notification workflows. While the framework successfully supports regulator-side alert propagation and institutional investigation coordination, automated intervention mechanisms such as transaction blocking, account freezing, document-lock enforcement, and adaptive compliance-trigger execution are not directly integrated within the banking workflow. Such operational controls would require deeper integration with core banking infrastructure and institutional authorization pipelines.
 
 %========================================================
 \section{Future Scope}
 %========================================================
 
-Several opportunities remain for extending the proposed framework toward more advanced and production-ready distributed financial crime-monitoring ecosystems. Future work can focus on validating the framework using larger institutionally verified TBML datasets containing real-world laundering annotations, cross-border trade behaviors, and dynamically evolving financial crime topologies. Such datasets would further improve analytical robustness and operational generalization across large-scale banking environments.
+Several opportunities remain for extending the proposed framework toward more scalable and production-ready financial crime-monitoring ecosystems. Future work can focus on validating the framework using larger institutionally verified TBML datasets containing real-world laundering annotations, cross-border trade behaviors, and dynamically evolving financial crime topologies. Such datasets can further improve analytical robustness and operational generalization across large-scale banking environments.
 
-Future extensions may additionally investigate transformer-based document intelligence frameworks capable of extracting semantic feature representations from unstructured trade documentation including invoices, shipping declarations, customs forms, and letters of credit. The extracted contextual embeddings can subsequently be integrated into the graph-learning pipeline to improve semantic anomaly detection and trade-document verification workflows.
+Future extensions may additionally explore transformer-based document intelligence frameworks capable of extracting semantic representations from unstructured trade documents including invoices, customs declarations, shipping records, and letters of credit. These contextual embeddings can subsequently be integrated into the graph-learning pipeline to strengthen semantic anomaly detection and trade-document verification workflows. The federated learning environment may also be extended toward geographically distributed banking ecosystems involving larger decentralized institutional participation.
 
-The federated learning environment can also be extended toward larger decentralized banking ecosystems involving geographically distributed institutional participation. Future implementations may incorporate advanced secure aggregation mechanisms such as Fully Homomorphic Encryption (FHE), Secure Multi-Party Computation (SMPC), and differential privacy techniques to further strengthen protection against gradient-leakage and model-inversion attacks during distributed parameter synchronization workflows.
+Future implementations can additionally incorporate advanced secure aggregation mechanisms such as Fully Homomorphic Encryption (FHE), Secure Multi-Party Computation (SMPC), and differential privacy techniques to strengthen protection against gradient-leakage and model-inversion attacks during distributed parameter synchronization operations. Further research may also investigate Continuous-Time Dynamic Graph (CTDG) architectures and explainable graph neural network (XGNN) mechanisms to improve temporal topology tracking and graph-level interpretability for institutional compliance analysts.
 
-Future research may additionally explore Continuous-Time Dynamic Graph (CTDG) architectures and explainable graph neural network (XGNN) mechanisms to improve temporal topology tracking and provide interpretable fraud-inference explanations for institutional compliance analysts. Such extensions can significantly improve adaptive risk calibration, graph-level interpretability, and analyst-driven compliance decision support during large-scale financial monitoring operations.
-
-The current implementation can further be evolved into a fully integrated end-to-end institutional banking compliance platform. Beyond fraud detection and notification propagation, future deployments may incorporate automated compliance-response orchestration including transactional freezing, adaptive risk-trigger execution, institutional document verification workflows, regulator-approved intervention pipelines, and policy-driven account restriction mechanisms directly integrated with core banking infrastructure. Such enhancements would enable the framework to transition from a monitoring-oriented analytical platform into a complete operational financial crime prevention ecosystem.
+The proposed framework can further evolve into a fully integrated end-to-end banking compliance platform. Beyond fraud detection and notification propagation, future deployments may support automated compliance-response orchestration including transaction freezing, adaptive risk-trigger execution, institutional document verification workflows, regulator-approved intervention pipelines, and policy-driven account restriction mechanisms directly integrated with core banking infrastructure.
+```
 
 %========================================================
 \section{Learning Outcomes of the Project}
 %========================================================
 
-\begin{itemize}
+% \begin{itemize}
 
-\item Acquired practical experience in designing and deploying heterogeneous graph-learning architectures for large-scale financial fraud-detection workflows.
+% \item Acquired practical experience in designing and deploying heterogeneous graph-learning architectures for large-scale financial fraud-detection workflows.
 
-\item Developed understanding of federated learning environments, distributed parameter synchronization, and privacy-preserving collaborative analytical inference across institutional systems.
+% \item Developed understanding of federated learning environments, distributed parameter synchronization, and privacy-preserving collaborative analytical inference across institutional systems.
 
-\item Gained hands-on exposure to real-time streaming architectures using Apache Kafka, asynchronous backend synchronization, and distributed event-driven monitoring workflows.
+% \item Gained hands-on exposure to real-time streaming architectures using Apache Kafka, asynchronous backend synchronization, and distributed event-driven monitoring workflows.
 
-\item Learned implementation and optimization of graph neural networks, temporal sequence modeling, and multi-modal feature fusion for fraud-classification tasks.
+% \item Learned implementation and optimization of graph neural networks, temporal sequence modeling, and multi-modal feature fusion for fraud-classification tasks.
 
-\item Developed expertise in PostgreSQL database optimization, concurrent API scalability analysis, connection pooling, and distributed compliance-management synchronization workflows.
+% \item Developed expertise in PostgreSQL database optimization, concurrent API scalability analysis, connection pooling, and distributed compliance-management synchronization workflows.
 
-\item Acquired experience in full-stack system integration involving Next.js dashboards, Prisma ORM synchronization, authentication workflows, and regulator-facing monitoring environments.
+% \item Acquired experience in full-stack system integration involving Next.js dashboards, Prisma ORM synchronization, authentication workflows, and regulator-facing monitoring environments.
 
-\item Gained understanding of operational AML workflows including STR lifecycle management, compliance orchestration, fraud-notification propagation, and institutional investigation coordination.
+% \item Gained understanding of operational AML workflows including STR lifecycle management, compliance orchestration, fraud-notification propagation, and institutional investigation coordination.
 
-\item Learned experimental benchmarking, model-performance evaluation, Precision--Recall analysis, confusion-matrix interpretation, and distributed scalability validation for real-time analytical systems.
+% \item Learned experimental benchmarking, model-performance evaluation, Precision--Recall analysis, confusion-matrix interpretation, and distributed scalability validation for real-time analytical systems.
 
-\end{itemize}
+% \end{itemize}
+
+The proposed TBML detection framework provided practical exposure to heterogeneous graph-learning architectures, federated learning environments, and real-time financial fraud-detection workflows. The project enabled hands-on experience with Graph Neural Networks, temporal sequence modeling, distributed parameter synchronization, and privacy-preserving analytical inference across institutional systems. In addition, expertise was developed in Apache Kafka-based streaming, PostgreSQL optimization, concurrent API scalability analysis, and full-stack integration using Next.js, Prisma ORM, and FastAPI. The implementation further strengthened understanding of AML compliance workflows, STR lifecycle management, fraud-monitoring operations, Precision--Recall evaluation, and distributed scalability validation within real-time analytical environments.
