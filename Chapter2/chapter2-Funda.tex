@@ -18,6 +18,9 @@ Trade-Based Money Laundering primarily involves the manipulation of internationa
 
 In many TBML operations, colluding buyers and sellers intentionally manipulate the declared value of traded goods to transfer illegal financial assets across borders. Techniques such as over invoicing, under invoicing, phantom shipments, and multiple invoicing are commonly used to conceal the movement of illicit proceeds. Such laundering mechanisms exploit the complexity and high transactional volume of international trade systems, making traditional rule-based Anti-Money Laundering approaches comparatively ineffective in detecting hidden financial relationships.
 
+
+Figure~\ref{fig:tbml_cycle} illustrates a typical Trade-Based Money Laundering workflow involving collusion between exporters and importers across different jurisdictions \cite{tbml-researchgate}.
+
 \vspace{0.4cm}
 \begin{figure}[H]
 \centering
@@ -30,13 +33,12 @@ In many TBML operations, colluding buyers and sellers intentionally manipulate t
 
 \vspace{-0.2cm}
 
-\noindent
-\textit{Source: Adapted from ``The Role of Misinvoicing in the Money Laundering Cycle,'' 
-\href{https://www.researchgate.net/figure/TBML-through-Open-Account-Transactions_fig1_370021180}{ResearchGate}.}
+% \noindent
+% % \textit{Source: Adapted from ``The Role of Misinvoicing in the Money Laundering Cycle,'' 
+% \href{https://www.researchgate.net/figure/TBML-through-Open-Account-Transactions_fig1_370021180}{ResearchGate}.}
 
-\vspace{0.3cm}
+% \vspace{0.3cm}
 
-Figure~\ref{fig:tbml_cycle} illustrates a typical Trade-Based Money Laundering workflow involving collusion between exporters and importers across different jurisdictions.
 
 %========================================================
 \subsection[Common Techniques Used in TBML]{\textbf{Common Techniques Used in TBML}}
@@ -336,7 +338,7 @@ Federated Learning (FL) is a decentralized machine learning approach where multi
 
 Traditional machine learning systems rely on centralized training, where data from multiple users or organizations is collected and stored on a central server for model development. Although effective, this approach raises significant concerns related to data privacy, security, and regulatory compliance. Federated Learning addresses these challenges by enabling collaborative model training without sharing confidential or sensitive data.
 
-In Trade-Based Money Laundering (TBML) detection systems, organizations such as banks and financial institutions can locally train models using transaction records and suspicious trade patterns while sharing only model parameters with a central server. Introduced by Google in 2016 for Gboard applications, Federated Learning has emerged as an important privacy-preserving approach for distributed machine learning systems.
+In Trade-Based Money Laundering (TBML) detection systems, organizations such as banks and financial institutions can locally train models using transaction records and suspicious trade patterns while sharing only model parameters with a central server. Introduced by Google in 2016 for Gboard applications, Federated Learning has emerged as an important privacy-preserving approach for distributed machine learning systems .
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{Figures/FL_0.png}
@@ -344,10 +346,10 @@ In Trade-Based Money Laundering (TBML) detection systems, organizations such as 
     \label{fig:fl_overview}
 \end{figure}
 
-\textit{Source: Adapted from ``Principles and Components of Federated Learning Architectures" 
-\href{https://arxiv.org/html/2502.05273v1}{Arxiv}.}
+% \textit{Source: Adapted from ``Principles and Components of Federated Learning Architectures" 
+% \href{https://arxiv.org/html/2502.05273v1}{Arxiv}.}
 
-Federated Learning also reduces communication overhead because only compact model updates are exchanged instead of complete datasets. This makes FL suitable for large-scale distributed environments involving mobile devices, IoT systems, edge devices, and financial institutions.
+Federated Learning also reduces communication overhead because only compact model updates are exchanged instead of complete datasets. This makes FL suitable for large-scale distributed environments involving mobile devices, IoT systems, edge devices, and financial institutions \cite{federated-arxiv}.
 
 \subsection{Working of Federated Learning}
 
@@ -360,8 +362,6 @@ Federated Learning operates through iterative client-server interactions known a
     \label{fig:fl_general_process}
 \end{figure}
 
-\textit{Source: Adapted from ``Federated Learning" 
-\href{https://en.wikipedia.org/wiki/Federated_learning}{Wikipedia}.}
 
 \paragraph{Step 1: Initialization}
 
@@ -394,7 +394,7 @@ The federated training process continues iteratively until the desired accuracy,
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{Figures/FL_1.png}
-    \caption{Federated Learning Workflows}
+    \caption{Federated Learning Workflows showing (a) FL-Aggregation Server, (b) FL-Peer-to-Peer, and (c) Centralized Training architectures.}
     \label{fig:fl_workflow}
 \end{figure}
 
@@ -483,9 +483,4 @@ This work conceptualizes financial monitoring and fraud visualization through a 
 Modern visualization systems additionally support analytical filtering, export functionalities, and alert management services that assist investigators and compliance officers in conducting financial analysis and generating compliance reports for further examination. The detailed implementation and integration of these visualization technologies within the proposed TBML detection framework are discussed further in the system implementation chapter.
 
 \section{Summary}
-
-In this chapter, the theoretical foundations required for understanding the proposed Trade-Based Money Laundering detection framework were presented. The chapter began with an introduction to Trade-Based Money Laundering mechanisms and common laundering techniques, establishing the financial and transactional context in which illicit fund movement occurs within international trade ecosystems.
-
-The chapter further explored the challenges associated with detecting suspicious trade activities using conventional Anti-Money Laundering approaches. Concepts related to graph-based financial modeling, heterogeneous graph representation, Graph Neural Networks, Graph Attention mechanisms, and federated learning were discussed to provide the analytical and computational foundation required for intelligent and privacy-preserving fraud detection systems.
-
-Finally, the chapter introduced the concepts associated with modern financial monitoring interfaces, reactive web architectures, and real-time data visualization systems used for fraud analytics and compliance monitoring. The theoretical concepts discussed throughout this chapter provide the foundation for understanding the system architecture, implementation methodologies, and analytical workflows presented in the subsequent chapters.
+In this chapter, the theoretical foundations associated with Trade-Based Money Laundering (TBML) detection were presented, including laundering methodologies, limitations of conventional Anti-Money Laundering systems, graph-based financial modeling, heterogeneous Graph Neural Networks, Graph Attention mechanisms, and federated learning concepts. The chapter additionally discussed real-time financial monitoring architectures and visualization systems used for fraud analytics and compliance operations. These concepts collectively establish the analytical and computational foundation for the proposed privacy-preserving TBML detection framework presented in the subsequent chapters.
