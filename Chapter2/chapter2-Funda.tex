@@ -256,8 +256,19 @@ At each time step, the current input and previous hidden state are used to compu
     \label{fig:lstm_gates}
 \end{figure}
 
-The gates are mathematically represented as:
+\vspace{-2.0cm}
+Where,
 
+\vspace{-0.2cm}
+
+\noindent
+\makebox[\textwidth][c]{%
+    \includegraphics[width=0.85\textwidth]{Figures/LSTM_0_des}
+}
+
+\vspace{-0.3cm}
+
+The gates are mathematically represented as:
 \begin{equation}
 \begin{aligned}
 \mathbf{I}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{xi} + \mathbf{H}_{t-1}\mathbf{W}_{hi} + \mathbf{b}_i)\\
@@ -265,7 +276,6 @@ The gates are mathematically represented as:
 \mathbf{O}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{xo} + \mathbf{H}_{t-1}\mathbf{W}_{ho} + \mathbf{b}_o)
 \end{aligned}
 \end{equation}
-
 where \(\mathbf{I}_t\), \(\mathbf{F}_t\), and \(\mathbf{O}_t\) represent the input, forget, and output gates respectively, while \(\mathbf{X}_t\) and \(\mathbf{H}_{t-1}\) denote the current input and previous hidden state.
 
 \subsubsection{Input Node}
@@ -285,6 +295,15 @@ where \(\tilde{\mathbf{C}}_t\) represents the candidate memory state.
     \label{fig:lstm_input_node}
 \end{figure}
 
+Where,
+
+\vspace{0.1cm}
+
+\noindent
+\makebox[\textwidth][c]{%
+    \includegraphics[width=0.85\textwidth]{Figures/LSTM_1_des}
+}
+
 \subsubsection{Memory Cell Internal State}
 
 The memory cell state is updated using the forget gate and input gate as:
@@ -301,6 +320,15 @@ where \(\mathbf{C}_t\) represents the updated memory cell state and \(\odot\) de
     \caption{Computing the memory cell internal state in an LSTM model}
     \label{fig:lstm_memory_cell}
 \end{figure}
+Where,
+
+\vspace{0.1cm}
+
+\noindent
+\makebox[\textwidth][c]{%
+    \includegraphics[width=0.85\textwidth]{Figures/LSTM_2_des}
+}
+
 
 \subsubsection{Hidden State}
 
@@ -318,6 +346,15 @@ where \(\mathbf{H}_t\) represents the hidden state at time step \(t\). The outpu
     \caption{Computing the hidden state in an LSTM model}
     \label{fig:lstm_hidden_state}
 \end{figure}
+Where,
+
+\vspace{0.1cm}
+
+\noindent
+\makebox[\textwidth][c]{%
+    \includegraphics[width=0.85\textwidth]{Figures/LSTM_3_des}
+}
+
 
 \subsubsection{Advantages of LSTM}
 
@@ -353,11 +390,12 @@ Federated Learning also reduces communication overhead because only compact mode
 
 Federated Learning operates through iterative client-server interactions known as federated rounds. During each round, the central server distributes the current global model to selected clients, local training is performed independently on local datasets, and the updated model parameters are aggregated to generate an improved global model.
 
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\linewidth]{Figures/FL_2.png}
-    \caption{Federated Learning General Process in Central Orchestrator Setup}
-    \label{fig:fl_general_process}
+    \includegraphics[width=\linewidth]{Figures/FL_1.png}
+    \caption{Federated Learning Workflows}
+    \label{fig:fl_workflow}
 \end{figure}
 
 \textit{Source: Adapted from ``Federated Learning" 
@@ -390,13 +428,6 @@ where \(w_{t+1}\) represents the updated global model, \(w_k^{(t+1)}\) denotes t
 \paragraph{Step 5: Termination}
 
 The federated training process continues iteratively until the desired accuracy, convergence criteria, or maximum communication rounds are achieved.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{Figures/FL_1.png}
-    \caption{Federated Learning Workflows}
-    \label{fig:fl_workflow}
-\end{figure}
 
 \subsection{Advantages of Federated Learning}
 
