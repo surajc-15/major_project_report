@@ -1,14 +1,14 @@
 \chapter{Theory and Fundamentals of Project}
 
-Developing an intelligent framework for Trade-Based Money Laundering detection requires a strong foundation in financial crime analysis, graph theory, and machine learning techniques. This chapter presents the fundamental concepts associated with Trade-Based Money Laundering, Graph Neural Networks, Graph Attention mechanisms, heterogeneous graph representation, and federated learning. The chapter further discusses the computational principles involved in relational transaction modeling, privacy-preserving learning, and real-time fraud analytics. These concepts collectively form the theoretical foundation for the proposed fraud detection framework.
+Building an intelligent framework for Trade-Based Money Laundering detection requires a solid understanding of financial crime analysis, graph theory, and machine learning. This chapter introduces the core ideas behind Trade-Based Money Laundering, Graph Neural Networks, Graph Attention mechanisms, heterogeneous graph representation, and federated learning. It also explains the computational ideas behind relational transaction modeling, privacy-preserving learning, and real-time fraud analytics. Together, these concepts provide the theoretical base for the proposed fraud detection framework.
 
 %========================================================
 \section[Trade-Based Money Laundering ]{\textbf{Trade-Based Money Laundering }}
 %========================================================
 
-\gls{tbml} is a sophisticated form of financial crime in which illicit funds are transferred and concealed through seemingly legitimate international trade activities. Unlike conventional laundering methods that primarily depend on direct financial transactions, TBML exploits import-export systems, trade invoices, shipping documents, and cross-border commercial operations to disguise the movement of illegal funds. Due to the increasing implementation of strict \gls{aml} regulations and \gls{kyc} policies, criminal organizations have increasingly shifted toward trade-oriented laundering mechanisms that are comparatively difficult to detect using traditional monitoring systems.
+\gls{tbml} is a form of financial crime in which illicit value is moved and concealed through apparently legitimate international trade activity. Unlike traditional laundering methods that rely mainly on direct financial transfers, TBML makes use of import-export systems, trade invoices, shipping documents, and cross-border commercial operations to disguise the movement of illegal funds. As \gls{aml} regulations and \gls{kyc} requirements have become stricter, criminal groups have increasingly moved toward trade-based methods that are harder to detect with conventional monitoring systems.
 
-The complexity of modern global trade ecosystems, combined with the involvement of multiple financial entities and transactional relationships, has made TBML detection a major challenge for financial institutions and regulatory agencies. Consequently, intelligent analytical techniques capable of identifying hidden transactional dependencies and suspicious financial behavior have become increasingly important in modern Anti-Money Laundering systems.
+Because global trade is complex and involves many financial entities and transaction relationships, TBML remains difficult to detect for both financial institutions and regulatory agencies. This makes analytical methods that can reveal hidden dependencies and suspicious financial behavior especially important in modern Anti-Money Laundering systems.
 
 %========================================================
 \subsection[Introduction to TBML]{\textbf{Introduction to TBML}}
@@ -43,45 +43,45 @@ Figure~\ref{fig:tbml_cycle} illustrates a typical Trade-Based Money Laundering w
 \subsection[Common Techniques Used in TBML]{\textbf{Common Techniques Used in TBML}}
 %========================================================
 
-Trade-Based Money Laundering (TBML) involves manipulating trade documents, shipment details, and financial transactions to move illicit funds across borders while making them appear legitimate. Criminal organizations exploit the complexity of international trade systems to avoid detection and conceal illegal financial activities.
+Trade-Based Money Laundering (TBML) works by manipulating trade documents, shipment details, and financial transactions so that illicit funds can be moved across borders while appearing legitimate. Criminal organizations take advantage of the complexity of international trade systems to hide illegal financial activity and make it harder to detect.
 
 %========================================================
 \subsubsection[Over Invoicing]{\textbf{Over Invoicing}}
 %========================================================
 
-Over invoicing occurs when the declared value of goods is intentionally set higher than the actual market price. This allows excess money to be transferred under the appearance of legitimate trade payments.
+Over invoicing happens when the declared value of goods is intentionally set higher than the actual market price. In this way, extra money can be transferred under the appearance of a normal trade payment.
 
 %========================================================
 \subsubsection[Under Invoicing]{\textbf{Under Invoicing}}
 %========================================================
 
-Under invoicing involves declaring goods at a lower value than their actual market price. This technique is commonly used to hide profits, evade taxes, and move funds secretly across borders.
+Under invoicing involves declaring goods at a lower value than their real market price. This technique is commonly used to hide profits, reduce tax liability, and move funds secretly across borders.
 
 %========================================================
 \subsubsection[Multiple Invoicing]{\textbf{Multiple Invoicing}}
 %========================================================
 
-Multiple invoicing refers to using the same trade invoice for several financial transactions related to a single shipment. This helps criminals transfer illicit funds through different banking channels.
+Multiple invoicing refers to using the same trade invoice for several financial transactions linked to a single shipment. This allows criminals to transfer illicit funds through different banking channels.
 
 %========================================================
 \subsubsection[Phantom Shipments]{\textbf{Phantom Shipments}}
 %========================================================
 
-Phantom shipments occur when payments are made for goods that are never actually shipped or delivered. Fake trade and shipping documents are used to create the appearance of legitimate trade activity.
+Phantom shipments occur when payments are made for goods that are never actually shipped or delivered. Fake trade and shipping documents are used to create the appearance of genuine trade activity.
 
 %========================================================
 \subsubsection[Misrepresentation of Goods]{\textbf{Misrepresentation of Goods}}
 %========================================================
 
-Misrepresentation of goods involves providing false information about the type, quantity, or quality of traded products in invoices and trade documents to manipulate trade values and conceal suspicious activities.
+Misrepresentation of goods involves giving false information about the type, quantity, or quality of traded products in invoices and trade documents. This is done to manipulate trade values and conceal suspicious activity.
 
 
 %========================================================
 \subsection[Challenges in Detecting TBML]{\textbf{Challenges in Detecting TBML}}
 %========================================================
-Detecting \gls{tbml} is difficult because modern trade systems are highly complex and interconnected. Unlike traditional financial fraud, TBML activities are often hidden within legitimate business transactions, making suspicious behavior hard to identify. Criminal networks use shell companies, intermediaries, multiple jurisdictions, and layered transactions to move illicit funds while appearing as normal trade operations.
+Detecting \gls{tbml} is difficult because modern trade systems are highly connected and constantly changing. Unlike ordinary financial fraud, TBML activity is usually embedded within legitimate business transactions, which makes suspicious behavior harder to spot. Criminal networks often rely on shell companies, intermediaries, multiple jurisdictions, and layered transactions to move illicit funds while appearing to operate normally.
 
-Traditional \gls{aml} systems mainly rely on rule-based monitoring and isolated transaction analysis. Although these methods can detect predefined suspicious patterns, they often fail to identify hidden relationships between entities involved in large trade networks. In addition, the growing volume of cross-border transactions and evolving laundering techniques make detection even more challenging. Privacy and regulatory restrictions also limit the sharing of sensitive financial data between institutions, creating the need for scalable and privacy-preserving TBML detection frameworks.
+Traditional \gls{aml} systems mostly depend on rule-based monitoring and isolated transaction analysis. These methods can detect known suspicious patterns, but they often miss the hidden relationships between entities in large trade networks. At the same time, the growth of cross-border transactions, changing laundering tactics, and restrictions on sharing sensitive data between institutions make TBML detection even more challenging. These conditions create a strong need for scalable and privacy-preserving detection frameworks.
 
 
 \section{Algorithms Used}
@@ -255,13 +255,7 @@ At each time step, the current input and previous hidden state are used to compu
     \label{fig:lstm_gates}
 \end{figure}
 
-\vspace{-2.0cm}
-
-\vspace{-0.2cm}
-
-
 \vspace{-0.3cm}
-
 The gates are mathematically represented as:
 \begin{equation}
 \begin{aligned}
@@ -423,72 +417,18 @@ Frontend frameworks such as React.js enable the development of reusable and modu
 
 Server-side rendering and hybrid rendering frameworks such as Next.js further enhance modern web application performance by combining client-side interactivity with optimized server-side content delivery. These frameworks support efficient routing, dynamic data fetching, and improved application scalability while reducing rendering overhead for large-scale systems. Consequently, modern web application frameworks have become an essential foundation for building secure, scalable, and real-time financial monitoring platforms.
 
-
 %========================================================
 \subsection[Component Lifecycle and Reactivity]{\textbf{Component Lifecycle and Reactivity}}
 %========================================================
+Modern frontend frameworks like React and Next.js use reactive rendering methods to synchronize user interfaces with changes in application state and backend responses. This methodology enables effective visualization of transaction analytics, fraud alerts, compliance activities, and real-time monitoring information in the proposed TBML detection framework, while providing a responsive and scalable environment for dashboards. The dashboard is server-side pre-rendered to deliver the initial content to the user, improving loading performance and reducing processing overhead on the client.
 
-Modern frontend frameworks such as React and Next.js utilize reactive rendering mechanisms to synchronize user interfaces with continuously changing application states and backend responses. Within the proposed TBML detection framework, this reactive architecture enables efficient visualization of transaction analytics, fraud alerts, compliance activities, and real-time monitoring information without requiring complete interface reloading. The component-based design additionally improves scalability, maintainability, and responsiveness within large-scale financial monitoring environments.
-
-The lifecycle of application components generally involves rendering, state initialization, reactive updates, synchronization, and resource cleanup operations during execution. The major lifecycle stages associated with the proposed dashboard architecture are summarized as follows:
-
-\vspace{0.3cm}
-
-\noindent\textbf{Server-Side Rendering:}  
-Initially, dashboard components are rendered within the server environment where transaction summaries, analytical data, and monitoring information are processed before delivery to the client browser. This approach improves initial loading performance and reduces unnecessary client-side computational overhead.
-
-\vspace{0.2cm}
-
-\noindent\textbf{Hydration and Client Initialization:}  
-After the interface is loaded within the browser, React hydration enables interactive client-side functionalities including event handling, asynchronous API communication, local state initialization, and real-time dashboard services.
-
-\vspace{0.2cm}
-
-\noindent\textbf{Reactive State Updates:}  
-As transaction states, fraud alerts, and analytical outputs change, React selectively updates only the affected interface components using Virtual DOM reconciliation mechanisms instead of re-rendering the complete dashboard.
-
-\vspace{0.2cm}
-
-\noindent\textbf{Dynamic Synchronization:}  
-The framework continuously synchronizes updated transaction information, compliance alerts, and monitoring analytics with the dashboard interface to support real-time fraud visualization and analytical consistency.
-
-\vspace{0.2cm}
-
-\noindent\textbf{Resource Cleanup and Unmounting:}  
-When dashboard components are removed from the active interface, temporary states, subscriptions, and allocated resources are released automatically to maintain application stability and efficient memory utilization.
-
-\vspace{0.2cm}
-
-Such lifecycle management principles are important within modern financial monitoring systems where continuous transactional updates, fraud notifications, and analytical visualizations must be processed efficiently while maintaining scalable and responsive user interaction.
+When the interface is loaded, React hydration kicks in, allowing you to add interactive functionalities like event handling, communication with APIs, and state management. With changes in transactional data and analytics output, React re-renders only the components that are affected using Virtual DOM reconciliation, ensuring efficient rendering and real-time synchronization.
 
 %========================================================
 \subsection[Data Visualization]{\textbf{Data Visualization}}
 %========================================================
+Data visualization is an important tool in analyzing large volumes of financial transactions and in identifying suspicious patterns in real-time monitoring systems. The proposed TBML detection framework is supported with interactive dashboards that allow analysts to monitor fraud alerts, transaction trends, risk distributions, and compliance activities more effectively than conventional tabular approaches. 
 
-Understanding the theoretical aspects of data visualization is important for analyzing large volumes of financial transactions and interpreting suspicious transactional behavior within real-time monitoring systems. Visualization of analytical outputs enables financial institutions and compliance analysts to identify fraud patterns, transaction anomalies, risk distributions, and suspicious entity relationships more efficiently when compared with conventional tabular analysis methods. Interactive monitoring dashboards further improve situational awareness by enabling continuous observation of fraud alerts, transaction flows, and compliance activities without interrupting real-time analytical processes.
-This work utilizes a web-based dashboard architecture for financial monitoring, fraud visualization, and compliance-oriented analytical operations using modern frontend technologies and visualization frameworks.
-
-\noindent\textbf{Frontend Framework:}  
-Next.js is used for developing responsive and modular dashboard interfaces capable of supporting scalable financial monitoring applications. The framework provides server-side rendering, dynamic routing, and smooth integration with backend analytical services operating within the proposed TBML detection environment.
-
-\vspace{0.2cm}
-
-\noindent\textbf{Analytical Visualization Components:}  
-Recharts is utilized to visualize transaction analytics, fraud classifications, risk-score distributions, and temporal financial trends through interactive graphs and dashboard components. These visualizations assist investigators and analysts in interpreting suspicious transactional behavior more efficiently during monitoring operations.
-
-\vspace{0.2cm}
-
-\noindent\textbf{Role-Based Dashboard Interfaces:}  
-The dashboard architecture incorporates role-based access mechanisms to provide controlled access to fraud investigation workflows, Suspicious Transaction Report generation, real-time monitoring services, and institutional compliance operations according to user responsibilities and operational privileges.
-
-\vspace{0.2cm}
-
-\noindent\textbf{Interactive Monitoring Services:}  
-Interactive dashboard panels support continuous monitoring of suspicious transactions, fraud alerts, transaction histories, and prediction results generated by the analytical framework. The monitoring environment additionally supports filtering, notification handling, export functionalities, and compliance-oriented investigation workflows for institutional analysts and regulatory authorities.
-
-\vspace{0.2cm}
-
-The detailed implementation and integration of these visualization technologies within the proposed TBML detection framework are discussed further in the system implementation chapter.
-
+The dashboard is built on Next.js, offering responsive user interfaces, server-side rendering, and seamless integration with backend analytical services. Graph and charts are built using Recharts to visualize transaction analytics, fraud classifications, risk scores, and temporal trends. Also, role-based access control gives secure access to monitoring services, investigation workflows and compliance operations. Interactive dashboard components allow filtering, notifications and real-time transaction monitoring.
 \section{Summary}
-In this chapter, the theoretical foundations associated with Trade-Based Money Laundering (TBML) detection were presented, including laundering methodologies, limitations of conventional Anti-Money Laundering systems, graph-based financial modeling, heterogeneous Graph Neural Networks, Graph Attention mechanisms, and federated learning concepts. The chapter additionally discussed real-time financial monitoring architectures and visualization systems used for fraud analytics and compliance operations. These concepts collectively establish the analytical and computational foundation for the proposed privacy-preserving TBML detection framework presented in the subsequent chapters.
+This chapter presented the theoretical foundations needed for Trade-Based Money Laundering (TBML) detection, including laundering methods, the limits of conventional Anti-Money Laundering systems, graph-based financial modeling, heterogeneous Graph Neural Networks, Graph Attention mechanisms, and federated learning. It also discussed real-time financial monitoring architectures and visualization systems used for fraud analytics and compliance operations. Taken together, these ideas form the analytical and computational base for the proposed privacy-preserving TBML detection framework developed in the later chapters.
