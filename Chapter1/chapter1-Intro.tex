@@ -93,11 +93,14 @@ Zhong Li, Xueting Yang, and Changjun Jiang \cite{Li2025} proposed a Multi-View G
 
 Abdul Haluk Batur Gezici and Emre Sefer \cite{Gezici2025} proposed AMLPD, an unsupervised Anti-Money Laundering detection framework based on Personalized PageRank and graph diffusion. This work is important because it reduces dependence on labeled data, which is often expensive and incomplete in real banking systems. The method was able to capture hidden graph structure in sparse financial networks and demonstrated that unsupervised learning can be practical for anomaly detection. However, the lack of supervised optimization also led to more false positives, which can increase the workload of compliance teams and reduce trust in the system.
 
+Nagaraja and Shreyas \cite{Nagaraja2024} developed an automated financial system using real-time analytics and Pandas to detect cost discrepancies and enhance margins. This framework is relevant to Trade-Based Money Laundering (TBML) as its ability to flag variances between estimated and actual financial figures can identify over- or under-invoicing patterns. While effective for internal financial integrity, the system currently lacks the predictive analytics and cross-institutional data sharing essential for uncovering complex laundering schemes. Future integration of advanced deep learning models could extend this tracking system into a robust TBML anomaly detection tool.
+
+
 Md. Rezaul Karim, Felix Hermsen, Sisay Adugna Chala, Paola De Perthuis, and Avikarsha Mandal \cite{Karim2024} investigated scalable semi-supervised graph learning architectures for large-scale financial transaction monitoring. Their evaluation of SkipGCN and EvolveGCN showed that graph learning can scale to bigger transaction datasets while still preserving useful classification performance. This makes the work relevant for real-world fraud monitoring systems that must handle large volumes of records. Even so, the framework assumed centralized graph access and did not directly solve the privacy and regulatory challenges that arise when multiple institutions need to collaborate.
 
 Kyungmo Koo, Minyoung Park, and Byungun Yoon \cite{Koo2024} introduced an autoencoder-based suspicious transaction detection framework using Risk-Based Approaches (RBA) for banking systems. Their work demonstrated how compact latent representations of transaction data can simplify fraud detection while supporting internal banking surveillance. The study presents a computationally efficient alternative to complex graph-based models. However, the approach mainly focused on detecting isolated account-level anomalies and did not address the interconnected laundering relationships commonly observed in large-scale trade ecosystems.
 
-Overall, recent research shows a gradual transition from traditional rule-based AML systems toward graph-driven and machine learning-based approaches. Despite these advancements, several challenges still remain in areas such as heterogeneous graph modeling, real-time fraud analysis, privacy-preserving collaboration, and scalability in distributed financial environments. In addition, many existing approaches are designed for centralized banking or cryptocurrency datasets and do not fully capture the complex trade relationships associated with TBML. These limitations motivate the need for a unified framework that combines heterogeneous graph learning, federated intelligence, and real-time detection capabilities.
+Although recent studies demonstrate the effectiveness of machine learning and graph-based approaches for Anti-Money Laundering, several important challenges remain unresolved. Most existing solutions either rely on centralized datasets, focus primarily on account-level anomalies, or model only a limited subset of financial relationships. Furthermore, many frameworks lack support for real-time transaction processing, privacy-preserving collaboration across institutions, and integration with operational compliance workflows. Existing graph-learning approaches also tend to focus on banking or blockchain environments and do not adequately capture the heterogeneous relationships among accounts, organizations, invoices, trade documents, and transactional entities that characterize Trade-Based Money Laundering. These limitations highlight the need for a unified framework capable of combining heterogeneous graph intelligence, temporal behavioral analysis, federated learning, and real-time compliance monitoring within a scalable TBML detection ecosystem.
 
 
 %========================================================
@@ -106,7 +109,7 @@ Overall, recent research shows a gradual transition from traditional rule-based 
 
 The work, \textit{``Federated Heterogeneous Graph Neural Networks for Real-Time Detection of Trade-Based Money Laundering''}, was selected to address the growing complexity of financial crime in modern trade ecosystems. Conventional AML systems often rely on rule-based checks and isolated transaction analysis, which makes them less effective at identifying coordinated laundering patterns spread across connected financial networks. In practice, this leads to more false positives, more manual review, and weaker detection of sophisticated TBML activity.
 
-This project addresses those limitations by combining heterogeneous graph learning with federated intelligence to model transaction relationships while preserving institutional privacy. By using graph attention mechanisms and collaborative training across organizations, the framework supports fraud detection without sharing sensitive transactional data directly. It also adds automated Suspicious Transaction Report (STR) generation and dashboard-based monitoring to support real-time compliance analysis.
+This project addresses these limitations by implementing a privacy-preserving TBML detection framework that combines real-time transaction streaming, heterogeneous graph intelligence, and federated learning within a unified architecture. Financial entities and trade transactions are modeled as interconnected graph structures in Memgraph, enabling the HGNN–LSTM model to capture both relational dependencies and temporal transaction behavior. A Flower-based federated learning environment allows participating institutions to collaboratively train fraud-detection models without sharing sensitive transactional data, thereby maintaining regulatory compliance and data confidentiality. The framework further integrates automated Suspicious Transaction Report (STR) generation, role-based compliance dashboards, and real-time monitoring services, providing an end-to-end platform for intelligent fraud detection, investigation, and regulatory reporting.
 %========================================================
 \section[Problem Statement]{\textbf{Problem Statement}}
 %========================================================
@@ -131,8 +134,10 @@ The objectives of the project are
 %========================================================
 \section[Brief Methodology of the project]{\textbf{Brief Methodology of the project}}
 %========================================================
-
 The proposed methodology builds a privacy-preserving graph-based framework for real-time TBML detection. Financial transaction data, trade records, customer information, and entity relationships are first collected and cleaned to create structured analysis datasets. These records are then converted into a heterogeneous graph where accounts, organizations, invoices, and transactions are linked as nodes and edges.
+
+Graph attention mechanisms are used to capture hidden relationships and suspicious behavioral patterns within the financial ecosystem. Federated learning is then added so that institutions can train collaboratively without exposing sensitive local data. The detected suspicious activities are finally used to generate STRs and support real-time monitoring through an interactive dashboard.
+
 \begin{figure}[H]
 \centering
 
@@ -156,7 +161,7 @@ The proposed methodology builds a privacy-preserving graph-based framework for r
 \caption{Proposed Methodology for TBML Detection}
 \label{fig:methodology}
 \end{figure}
-Graph attention mechanisms are used to capture hidden relationships and suspicious behavioral patterns within the financial ecosystem. Federated learning is then added so that institutions can train collaboratively without exposing sensitive local data. The detected suspicious activities are finally used to generate STRs and support real-time monitoring through an interactive dashboard.
+
 
 %========================================================
 \section[Assumptions and Constraints of the Work]{\textbf{Assumptions and Constraints of the Work}}
@@ -186,7 +191,7 @@ Graph attention mechanisms are used to capture hidden relationships and suspicio
     \item The proposed framework is validated primarily under controlled academic and experimental conditions and may require additional optimization for large-scale industrial deployment.
 \end{itemize}
 
-\vspace{4.4cm}
+\newpage
 %========================================================
 \section[Organization of the Report]{\textbf{Organization of the Report}}
 %========================================================
