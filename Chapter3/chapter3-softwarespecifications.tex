@@ -446,17 +446,17 @@ The structure chart makes the modular organization of the framework easier to un
 
 The functional description of the modules explains the internal processing workflow and interaction between the major analytical, monitoring, and compliance-oriented components operating within the proposed TBML detection framework. The framework integrates transaction streaming services, graph construction mechanisms, hybrid HGNN--LSTM analytical models, institutional verification environments, and regulatory reporting systems to support intelligent Trade-Based Money Laundering detection and real-time compliance monitoring.
 
-%========================================================
-\subsection[Module Interaction Workflow]{\textbf{Module Interaction Workflow}}
-%========================================================
+% %========================================================
+% \subsection[Module Interaction Workflow]{\textbf{Module Interaction Workflow}}
+% %========================================================
 
-The module interaction workflow shows how the main services of the proposed framework fit together, starting with transaction intake and ending with regulatory reporting. Financial transactions, KYC records, and trade documents first enter the transaction processing layer, where they are prepared and published to Kafka streaming topics for asynchronous communication between backend services.
+% The module interaction workflow shows how the main services of the proposed framework fit together, starting with transaction intake and ending with regulatory reporting. Financial transactions, KYC records, and trade documents first enter the transaction processing layer, where they are prepared and published to Kafka streaming topics for asynchronous communication between backend services.
 
-Kafka consumers read these transaction streams and pass the processed data to the graph construction and feature extraction module. Here, heterogeneous financial transaction graphs are built from accounts, transactions, trade entities, and document relationships stored in the Memgraph database. The resulting graph embeddings and relational features are then sent to the Hybrid HGNN--LSTM fraud detection module for graph representation learning, temporal transaction analysis, and fraud prediction.
+% Kafka consumers read these transaction streams and pass the processed data to the graph construction and feature extraction module. Here, heterogeneous financial transaction graphs are built from accounts, transactions, trade entities, and document relationships stored in the Memgraph database. The resulting graph embeddings and relational features are then sent to the Hybrid HGNN--LSTM fraud detection module for graph representation learning, temporal transaction analysis, and fraud prediction.
 
-The fraud classifications and monitoring results produced by the analytical engine are stored in PostgreSQL and displayed in the dashboard environment for institutional investigators and banking administrators. Suspicious transactions are reviewed by authorized bank administrators and then marked as clean, suspicious, or confirmed fraudulent.
+% The fraud classifications and monitoring results produced by the analytical engine are stored in PostgreSQL and displayed in the dashboard environment for institutional investigators and banking administrators. Suspicious transactions are reviewed by authorized bank administrators and then marked as clean, suspicious, or confirmed fraudulent.
 
-Transactions confirmed as fraudulent are forwarded to the STR generation environment, where Suspicious Transaction Reports are prepared with support from the Groq API service. These reports are then reviewed by regulatory authorities responsible for investigation, inquiry, and enforcement. At the same time, notification management services coordinate fraud alerts and institutional communication, while the Resend email service delivers notification emails and regulatory messages to the relevant authorities. The overall module interaction workflow of the proposed TBML detection framework is illustrated in Figure~\ref{fig:workflow_interaction}.
+% Transactions confirmed as fraudulent are forwarded to the STR generation environment, where Suspicious Transaction Reports are prepared with support from the Groq API service. These reports are then reviewed by regulatory authorities responsible for investigation, inquiry, and enforcement. At the same time, notification management services coordinate fraud alerts and institutional communication, while the Resend email service delivers notification emails and regulatory messages to the relevant authorities. The overall module interaction workflow of the proposed TBML detection framework is illustrated in Figure~\ref{fig:workflow_interaction}.
 
 \begin{figure}[H]
     \centering
