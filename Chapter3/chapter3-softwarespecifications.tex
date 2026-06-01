@@ -13,123 +13,127 @@ The proposed framework is designed as a privacy-preserving financial monitoring 
 %========================================================
 \subsection[Product Perspective]{\textbf{Product Perspective}}
 %========================================================
+The TBML detection framework is proposed as an intelligent financial monitoring and fraud analysis platform where machine learning based anomaly detection system can be integrated along with interactive compliance monitoring system. The architecture is a unified system environment that integrates heterogeneous graph representation, Graph Neural Network-based analytical models, federated learning mechanisms and modern web-based visualization technologies.
 
-The proposed TBML detection framework functions as an intelligent financial monitoring and fraud analysis platform capable of integrating machine learning-based anomaly detection with interactive compliance monitoring systems. The architecture combines heterogeneous graph representation, Graph Neural Network-based analytical models, federated learning mechanisms, and modern web-based visualization technologies within a unified system environment.
-
-The system represents financial entities such as accounts, organizations, invoices, and transactions as interconnected graph structures for relational analysis. Fraud detection modules analyze these relationships to identify suspicious transactional dependencies and hidden laundering patterns that are difficult to detect using conventional rule-based Anti-Money Laundering systems. The framework additionally integrates role-based dashboards for transaction monitoring, fraud visualization, alert management, and automated compliance reporting within financial institutions.
-
+The system uses graphs of financial entities, such as accounts, organizations, invoices, and transactions, to represent them in a relational way. Fraud detection modules process these relationships and uncover hidden laundering patterns and relationships of suspicious transactions that are hard to spot through traditional rule-based Anti-Money Laundering systems. The framework also incorporates dashboards based on roles for financial institutions to monitor transactions, visualise fraud, manage alerts and report compliance automatically.
 
 %========================================================
 \subsection[Product Functions]{\textbf{Product Functions}}
 %========================================================
 
-The primary functionalities supported by the proposed framework are summarized as follows:
+The main functions offered by the proposed framework are listed below:
 
 \begin{itemize}
+\item \textbf{Financial transaction monitoring:} Monitor and review transactions and trading activity to detect suspicious behavior across large-scale financial ecosystems.
 
-\item \textbf{Transaction Monitoring:}  
-The system continuously monitors financial transactions and trade-related activities to identify suspicious transactional behavior within large-scale financial ecosystems.
+\item \textbf{Graph-based financial analysis:} Represent accounts, organizations, invoices, and transactions as interconnected graph structures to support relational analysis and reveal hidden dependencies.
 
-\item \textbf{Graph-Based Financial Analysis:}  
-Financial entities such as accounts, organizations, invoices, and transactions are represented as interconnected graph structures for relational analysis and hidden dependency detection.
+\item \textbf{Fraud classification and risk prediction:} Classify suspicious transactions and produce fraud-risk scores using Graph Neural Network-based analytical models that leverage transactional relationships and behavioral patterns.
 
-\item \textbf{Fraud Classification and Risk Prediction:}  
-Graph Neural Network-based analytical models classify suspicious transactions and generate fraud risk predictions based on transactional relationships and behavioral patterns.
+\item \textbf{Federated learning support:} Enable collaborative model training across multiple institutions while preserving data privacy, allowing model improvement without sharing raw transactional data.
 
-\item \textbf{Federated Learning Support:}  
-The framework supports collaborative model training across multiple institutional environments while preserving sensitive financial data privacy.
+\item \textbf{Real-time dashboard visualization:} Provide interactive dashboards for transaction analytics, fraud alerts, risk distributions, and investigation workflows for compliance analysts.
 
-\item \textbf{Real-Time Dashboard Visualization:}  
-Interactive monitoring dashboards provide visualization of transaction analytics, fraud alerts, risk distributions, and suspicious activity summaries for compliance analysts.
+\item \textbf{Suspicious Transaction Report (STR) generation:} Automatically generate structured STRs for escalated cases to support regulatory reporting and compliance workflows.
 
-\item \textbf{Suspicious Transaction Report (STR) Generation:}  
-The system automatically generates structured Suspicious Transaction Reports for identified fraudulent transactions to support compliance and regulatory workflows.
-
-\item \textbf{Authentication and Role-Based Access Control:}  
-Secure authentication and controlled access mechanisms are incorporated to manage user privileges and protect sensitive financial information within the monitoring platform.
+\item \textbf{Authentication and role-based access control:} Enforce secure authentication and role-based privileges to protect sensitive information and control user actions within the monitoring platform.
 
 \end{itemize}
+
 
 
 %========================================================
 \subsection[User Characteristics]{\textbf{User Characteristics}}
 %========================================================
 
-The proposed TBML detection framework supports multiple categories of institutional users involved in fraud monitoring, compliance verification, and regulatory supervision activities. Since the system processes sensitive transactional and compliance-related information, role-based access mechanisms are enforced to ensure secure and controlled interaction with the platform. The major user categories associated with the proposed framework are summarized as follows:
 
+The proposed TBML detection framework will enable a number of categories of institutional learning and teaching to be supported.
+Users in fraud monitoring, compliance verification and regulatory supervision.
+activities. The system handles in-sensitive transactional and compliance related information.
+formation, there are role-based access mechanisms in place to provide secure and controlled access to the formation.
+Interactive with the platform. The proposed was assigned to the main users categories.
+The key aspects of the framework are briefly summarized below.
 \begin{itemize}
-
-\item \textbf{Bank Compliance Team:}  
-The bank compliance team represents institutional analysts responsible for monitoring transactional activities and investigating suspicious financial behavior identified by the fraud-detection framework. These users are expected to possess domain knowledge related to Anti-Money Laundering (AML) procedures, transaction analysis, and institutional compliance operations. Authorized compliance personnel interact with analytical dashboards, review suspicious transaction records, verify fraud alerts, and manage institutional STR escalation workflows.
-
-\item \textbf{Regulatory Administrator:}  
-The regulatory administrator functions as a supervisory authority responsible for overseeing fraud-monitoring activities across participating financial institutions. These users typically possess advanced regulatory and compliance expertise associated with financial investigation and institutional auditing operations. Regulatory administrators access consolidated Suspicious Transaction Reports (STRs), monitor institution-level compliance activities, and supervise large-scale suspicious transactional behavior across distributed banking environments.
-
+\item \textbf{Bank Compliance Team:} 
+Analysts that track transactions and investigate suspicious transactions.
+Financial behavior identified by the fraud-detection framework: These users are
+Should be expected to have knowledge of Anti Money Laundering (AML) matters.
+procedures, transaction analysis and institutional compliance procedures. Autho-
+rized compliance staff explore analytical dashboards, and check suspicious
+Capture transaction records, check for fraud alerts, and control institutional STR escalation
+workflows.
+\item \textbf{Regulatory Administrator:} The regulatory administrator is a super-
+visory authority charged with monitoring the fraud monitoring activities of the participating.
+ipating financial institutions. They tend to be users with high regulatory and
+Finance investigation, institutional audit- and compliance expertise; and
+ing operations. For consolidated Suspicious Transac-
+Monitor the institution-level compliance activities and supervise through tion Reports (STRs)
+reports on wide-spread suspicious transactional activity in the distributed banking environ-
+ments.
 \end{itemize}
-
-
-
 
 %========================================================
 \subsection[Constraints]{\textbf{Constraints}}
 %========================================================
 
-The development and deployment of the proposed TBML detection framework are subject to multiple operational, computational, and regulatory constraints associated with financial monitoring systems. These limitations influence the scalability, analytical performance, and real-time operational capabilities of the framework.
+The deployment and development of the proposed TBML detection framework are subject to several operational, computational and regulatory constraints pertaining to financial monitoring systems. These constraints impact the framework's scalability, analytic power, and operational attributes in real-time.
 
-The major constraints associated with the proposed system are summarized as follows:
+The general factors that limit the proposed system are summarized as follows:
 
 \begin{itemize}
 
-\item \textbf{Data Privacy and Regulatory Constraints:}  
-Financial institutions operate under strict privacy regulations and compliance policies that restrict direct sharing of sensitive transactional information across organizations.
+\item \textbf{Financial institutions are subject to data privacy regulations and constraints.}
 
+Under stringent privacy laws and policies that limit direct Sharing of transactional information, which is sensitive, among organisations.
 \item \textbf{Large-Scale Transactional Data Processing:}  
-The system must process large volumes of interconnected financial transactions and graph relationships, which may increase computational complexity and memory utilization during real-time analysis.
-
+The system should be able to handle large-scale transactional data.groups of financial transactions and financial graph relations, whichmay require more computation and memory usage in real-time situations analysis.
 \item \textbf{Availability of Real-World TBML Datasets:}  
-Access to publicly available Trade-Based Money Laundering datasets is limited due to confidentiality and regulatory restrictions, making large-scale real-world experimentation challenging.
-
+Trade-Based Money Laundering datasets is limited due to confidentiality and reg-Many limitations to performing experiments in the real world, due to the laws of the land.
 \item \textbf{Dynamic Fraud Patterns:}  
-Money laundering strategies continuously evolve over time, requiring fraud detection models to adapt to changing transactional behaviors and emerging laundering techniques.
-
+Money laundering patterns are constantly changing over time, fraud detection models must evolve to deal with the evolving transactional habits, and new washing methods are coming out
 \item \textbf{Infrastructure and Computational Limitations:}  
-Training graph-based machine learning models and processing heterogeneous financial networks require significant computational resources, especially for large-scale transactional ecosystems.
-
+Training graph-based many Significant challenges exist for chine learning models and processing heterogeneous financial networks. A considerable amount of computing power, particularly for large distributed transactional systems.
 \end{itemize}
 
 %========================================================
 \section[Specific Requirements]{\textbf{Specific Requirements}}
 %========================================================
 
-The specific requirements of the proposed TBML detection framework define the operational functionalities, performance expectations, software dependencies, and computational resources required for efficient execution of the system. These requirements ensure that the framework can support real-time fraud analysis, scalable transaction monitoring, secure user interaction, and intelligent compliance management within financial institutions.
+The operational functionalities required, performance expectations, software dependencies, and computational resources needed for an efficient system execution are specified by the specific requirements of the proposed detection framework of TBML. These requirements help guarantee that the framework can be implemented in financial institutions to support real-time fraud analysis, scale transaction monitoring, have secure user interactions, and manage compliance effectively.
 
 %========================================================
 \subsection[Functional Requirements]{\textbf{Functional Requirements}}
 %========================================================
 
-The functional requirements define the major operations and services that must be supported by the proposed TBML detection framework. The primary functional requirements of the system are summarized as follows:
-
+The functional requirements specify the main operations and services that should be With the proposed TBML detection framework. The main functional requiremetns are:
 
 \begin{itemize}
 
 
-\item The system shall enforce role-based authorization policies to regulate operational access privileges for compliance analysts and regulatory administrators.
+\item The system shall implement role based authorization policies to control the operation
+Access rights for compliance analysts and regulators.
 
-\item The framework shall support ingestion and preprocessing of transactional datasets for heterogeneous financial graph construction.
+\item The proposed system shall simulate financial entities, transactions and trade rela-
+Relationships as complex and diverse graph structures.
 
-\item The proposed system shall model financial entities, transactions, and trade relationships as interconnected heterogeneous graph structures.
+\item  Analytical engine shall provide fraud classification via graph and generate a
+Risk predictions based on federated learning approaches at the level of transactions.
 
-\item The analytical engine shall perform graph-based fraud classification and generate transaction-level risk predictions using federated learning methodologies.
 
-\item The dashboard infrastructure shall support real-time visualization of suspicious transactions, fraud alerts, analytical summaries, and compliance-monitoring activities.
+\item The dashboard infrastructure shall enable real-time visualization of suspicious activity across all networks.
+\item The dashboard infrastructure shall allow for real-time visualization of suspicious activity on all networks.
+transactions, fraud alerts, analytical summaries and compliance-monitoring activities.
 
-\item The system shall enable institutional compliance teams to review suspicious transactions and perform fraud escalation or clearance procedures.
+\item Suspicious Transaction Reports shall be generated with features provided in the framework.
+Identifying transactions as potentially fraudulent and returning them as (STRs).
 
-\item The framework shall provide features to generate Suspicious Transaction Reports (STRs) for transactions identified as potentially fraudulent.
+\item The system shall provide institutional compliance teams with a capability to check suspicious trans-
+Take actions and conduct fraud escalation and/or clearance.
 
-\item The regulator-side monitoring interface shall support centralized supervision of institutional fraud reports and suspicious financial activities.
 
-\item The analytical interface shall provide transaction-filtering, search, and investigative querying functionalities for fraud-analysis workflows.
+\item The analytical interface shall allow transaction-filtering, search and investigation of transactions,
+Fraud-analysis workflows that include querying functionality!
+
 
 
 \end{itemize}
@@ -138,41 +142,88 @@ The functional requirements define the major operations and services that must b
 \subsection[Non-Functional Requirements]{\textbf{Non-Functional Requirements}}
 %========================================================
 
-The non-functional requirements define the quality attributes, operational constraints, and performance expectations associated with the proposed TBML detection framework. These requirements ensure that the system remains scalable, secure, reliable, and responsive while processing large-scale financial transactions and analytical workloads.
 
-The primary non-functional requirements associated with the proposed system are summarized as follows:
+The non-functional requirements describe the quality attributes, operational requirements,
+and performance requirements of the proposed TBML detection framework
+
+These requirements guarantee the system scalability, security, reliability, and response-
+For large-scale financial transactions and analysis workloads. The main non-functional requirements of the proposed system are:
+
+
+
 
 \begin{itemize}
 
 \item \textbf{Scalability:}  
-The framework should support scalable processing of large transactional datasets and heterogeneous graph structures without significant degradation in analytical performance.
+The framework should be able to handle large transac- processing.
+It can handle nontemporal data sets and different graph topologies rather well without much degradation.
+in analytical performance.
+
 
 \item \textbf{Real-Time Processing:}  
-The system should support low-latency transaction analysis and fraud prediction to enable continuous real-time monitoring of suspicious financial activities.
+The system must be able to handle low latency transaction anal-
+Activity detection, fraud prediction for continuous real-time monitoring of suspicious activity.
+financial activities.
+
 
 \item \textbf{Security and Privacy:}  
-The framework should ensure secure access control, protected communication, and privacy-preserving handling of sensitive financial information and compliance-related data.
+The framework should include and support secure access control, pro-
+It holds the promise of secure, private, and private handling of sensitive financial information, as well as protected communications.
+Data related to mation and compliance
+
 
 \item \textbf{Reliability:}  
-The system should maintain stable analytical performance and continuous monitoring capabilities during prolonged operational workloads and concurrent user access.
+The system should be stable in terms of analytical performance and con-
+Smoothly integrated with the continuous monitoring capabilities during extended operational loads and con-
+current user access.
+
 
 \item \textbf{Availability:}  
-The monitoring platform should provide consistent access to dashboards, fraud analytics, and reporting services for authorized institutional users.
+Ensure that the monitoring platform is always available to display dash-
+Authorized institutional user boards, fraud analytics and reporting services.
 
 \item \textbf{Maintainability:}  
-The system architecture should support modular development, efficient debugging, and simplified integration of additional analytical modules and monitoring functionalities.
+The system architecture must be able to support modular development,
+Efficient bugging and easy integration of further analytical modules and
+monitoring functionalities.
+
 
 \item \textbf{Usability:}  
-The dashboard interfaces and visualization systems should provide intuitive interaction mechanisms for compliance analysts and regulatory administrators during fraud investigation activities.
+The dashboard interfaces and visualization systems should offer intuitive use,
+How compliance analysts and regulatory administrators interact with each other and with other entities in an iterative fashion.
+In the process of fraud investigation activities.
 
 \end{itemize}
+
+
+
+The proposed TBML detection framework needs to be implemented in multiple
+It enables the integration of various software technologies, such as machine learning libraries, backend services, database systems, and.
+visualization frameworks for graph-based fraud detection, federated learning, real-time fraud monitoring and prevention.
+Time transaction monitoring, compliance management functionalities. The proposed
+nation to ensure they work together.Both analytical and monitoring aspects of the framework need to be co-ordinated.
+Integrating frontend dashboards, backend processing services and database.
+Machine Learning Environments and systems. These technologies all assist each other in supporting
+transient fraud patterns, secure transaction management, and easy visualization of transient fraud patterns.
+suspicious financial activities. The software needs for the proposed
+The major points of each system are summarized below in Table 1.1.
 
 
 %========================================================
 \subsection[Software Requirements]{\textbf{Software Requirements}}
 %========================================================
 
-The implementation of the proposed TBML detection framework requires multiple software technologies, machine learning libraries, backend services, database systems, and visualization frameworks to support graph-based fraud detection, federated learning, real-time transaction monitoring, and compliance management functionalities. The proposed framework integrates both analytical and monitoring components that require coordinated interaction between frontend dashboards, backend processing services, database systems, and machine learning environments. These technologies collectively support scalable fraud analysis, secure transaction management, and efficient visualization of suspicious financial activities. The software requirements associated with the proposed system are summarized in Table~\ref{tab:software_requirements}.
+The proposed TBML detection framework needs to be implemented in multiple
+It enables the integration of various software technologies, such as machine learning libraries, backend services, database systems, and.
+visualization frameworks for graph-based fraud detection, federated learning, real-time fraud monitoring and prevention.
+Time transaction monitoring, compliance management functionalities. The proposed
+nation to ensure they work together.Both analytical and monitoring aspects of the framework need to be co-ordinated.
+Integrating frontend dashboards, backend processing services and database.
+Machine Learning Environments and systems. These technologies all assist each other in supporting
+transient fraud patterns, secure transaction management, and easy visualization of transient fraud patterns.
+suspicious financial activities. The software needs for the proposed
+The major points of each system are summarized below in Table \ref{tab:software_requirements}.
+
 \vspace{0.3cm}
 
 \footnotesize
@@ -252,8 +303,11 @@ LLM Integration Service
 \subsection[Hardware Requirements]{\textbf{Hardware Requirements}}
 %========================================================
 
-The implementation of the proposed TBML detection framework requires the following hardware components to support graph processing, machine learning model execution, federated learning coordination, real-time transaction monitoring, and analytical dashboard visualization. The hardware requirements associated with the proposed system are summarized in Table~\ref{tab:hardware_requirements}.
-
+The proposed TBML detection framework must be followed in the implementation.
+ing hardware components to support graph processing, machine learning model execution,
+federated learning coordination, real-time transaction monitoring, and analytical dash-
+board visualization. The hardware needed for the proposed system is
+summarized in Table \ref{tab:hardware_requirements} 
 \vspace{0.3cm}
 
 \footnotesize
