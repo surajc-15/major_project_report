@@ -11,9 +11,14 @@ The structure chart of the proposed TBML detection framework illustrates the hie
 The frontend layer provides dashboard interfaces, transaction monitoring services, risk visualization, and STR management functionalities for institutional users. Backend services coordinate API communication, transaction processing, authentication workflows, and access control operations between frontend interfaces and analytical modules. The fraud detection layer incorporates Hybrid HGNN--LSTM components responsible for graph-based analysis, temporal transaction modeling, feature fusion, and risk classification.
 
 The federated learning layer enables privacy-preserving collaborative model training and global model synchronization between participating institutions. Database services manage transactional storage, graph relationships, audit logs, and compliance-related records, while the compliance layer supports STR generation, regulatory reporting, email notifications, and monitoring operations. The overall structural organization of the proposed TBML detection framework is illustrated in Figure~\ref{fig:structure_chart}.
-\begin{figure}[H]
+\begin{figure}[p]
     \centering
-    \includegraphics[width=\textwidth]{Figures/tbml_academic_structure_chart.png}
+    \includegraphics[
+        angle=90,
+        width=1.3\textheight,
+        height=1.3\textwidth,
+        keepaspectratio
+    ]{Figures/tbml_academic_structure_chart.png}
     \caption{Structure Chart of the Proposed TBML Detection Framework}
     \label{fig:structure_chart}
 \end{figure}
