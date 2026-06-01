@@ -2,56 +2,103 @@
 \chapter{Implementation of the Proposed TBML Detection Framework}
 %========================================================
 
-This chapter provides a comprehensive overview of the implementation of the proposed TBML detection framework, detailing the programming languages, frameworks, platforms, code conventions, system architecture, and the strategies employed to address implementation challenges. The implementation integrates real-time transaction streaming, heterogeneous graph construction, hybrid analytical modeling, federated learning coordination, and compliance monitoring within a unified platform for effective Trade-Based Money Laundering detection and institutional oversight.
+This chapter discusses the implementation details of the proposed TBML detection frame
+work, including programming languages, frameworks, platforms, coding standards, sys
+tem architecture, and techniques used to tackle implementation issues. The implementa
+tion consists of real-time streaming of transaction streams, creation of heterogeneous
+graphs, hybrid modeling analytics, federated learning, coordination, and compliance mo
+nitoring using one platform for successful Trade Based Money Laundering detection
+and regulation.
 
 %========================================================
 \section[Programming Language and Framework Selection]{\textbf{Programming Language and Framework Selection}}
 %========================================================
 
-The implementation primarily uses Python for backend services and model training (PyTorch + PyTorch Geometric — e.g., \texttt{GATv2Conv} for graph attention), Flower for federated orchestration (custom \texttt{FedAvg} strategy), and Apache Kafka for durable streaming. Frontend and UI services use Next.js, TypeScript and Tailwind; FastAPI provides REST endpoints. Memgraph stores heterogeneous transaction graphs and PostgreSQL holds audit logs and STR records. Services are containerized with Docker for reproducible deployment.
+Programming languages and tools include Python as the backbone technology for back
+end services and model training (PyTorch + PyTorch Geometric such as GATv2Con
+v), Flower for federated learning orchestration (custom FedAvg strategy), and Apache
+Kafka for stream processing. Frontend and UI development use technologies such as
+Next.js, TypeScript and Tailwind; FastAPI delivers REST APIs. Memgraph stores het
+erogeneous transaction graphs, PostgreSQL is utilized for audit logs and STR records.
+Containerization with Docker ensures consistent implementations. 
 
 %========================================================
 \section[Platform Selection]{\textbf{Platform Selection}}
 %========================================================
+The proposed TBML detection framework is implemented on a Windows environment
+consisting of interconnected frontend services and backend analytical systems. The front
+end platform supports authentication processes, dashboard presentation, STR genera
+tion, regulatory monitoring activities, and institutional transactions management, whereas
+the backend analytical platform carries out transaction streaming, graph generation,
+fraud inference, and federated model synchronization tasks.
 
-The proposed TBML detection framework is developed within a Windows-based  environment consisting of interconnected frontend monitoring services and backend analytical infrastructures. The frontend platform manages authentication workflows, dashboard visualization, STR generation, regulatory monitoring, and institutional transaction management, while the backend analytical environment performs transaction streaming, graph generation, fraud inference, and federated model synchronization operations.
-
-The implementation utilizes Docker-based isolated runtime environments for Kafka services, graph databases, backend APIs, and federated learning modules to improve deployment consistency and distributed service orchestration. Memgraph is utilized for graph relationship management and transactional connectivity analysis, whereas PostgreSQL functions as the centralized synchronization database between analytical services and dashboard environments. Visual Studio Code and GitHub are utilized for collaborative development, source-code management, debugging, and version control operations throughout the implementation lifecycle.
+Implementation of the design includes the use of Docker isolated runtimes for Kafka
+services, graph databases, backend APIs, and federated learning modules to achieve
+consistency and proper distributed orchestration. Memgraph is used for managing graph
+relationship and transaction connectivity analysis while PostgreSQL acts as the centralization
+synchronization database for analytical services and dashboards. Development
+of collaborative work is done by means of Visual Studio Code and GitHub.
 
 %========================================================
 \section[Code Conventions]{\textbf{Code Conventions}}
 %========================================================
 
-The codebase follows concise, practical conventions to improve readability and maintenance. Python modules and functions use \texttt{snake\_case}; classes and UI components use \texttt{PascalCase}. Examples of graph entities and relationships include \texttt{(:Account)}, \texttt{(:Transaction)}, \texttt{(:Document)} and \texttt{[:SENDS]}, \texttt{[:TO]}, \texttt{[:HAS\_DOC]}. REST endpoints follow clear, resource-oriented naming (e.g., \texttt{/api/transactions/\{id\}/score}). Configuration is managed via \texttt{.env} files, logging uses structured JSON logs, and type hints plus docstrings are used where helpful.
+Consistent code conventions make for a better codebase in terms of readability and maintenance. In the case of Python programming, module and function names use snake
+case whereas class and user interface component names follow PascalCase. Examples
+of the graph elements in our project are (:Account), (:Transaction), (:Document)
+and [:SENDS], [:TO], [:HAS DOC]. Naming of REST endpoints follows the
+convention based on resource-oriented style (for example /api/transactions/{id}/score).
+Environment variables are defined by using .env files while logging follows JSON format.
+Python type hints and docstrings are used where appropriate.
 
 %========================================================
 \subsection[Naming Conventions]{\textbf{Naming Conventions}}
 %========================================================
+In the case of the proposed framework, naming conventions are aimed at maintaining
+the semantic relevance and adherence to the financial monitoring operation domain.
+Python variable, backend utility function, Kafka service, and transaction processing
+module names use the standard snake
+case while analytical classes, federated
+learning module, and frontend component names employ PascalCase convention.
 
-Naming conventions within the proposed framework are designed to remain semantically meaningful and aligned with domain-specific financial monitoring operations. Python variables, backend utility functions, Kafka services, and transaction-processing modules follow \texttt{snake\_case} conventions, whereas analytical classes, federated learning modules, and frontend components utilize \texttt{PascalCase} notation. REST API endpoints, transaction services, and graph-processing utilities are named according to their operational functionality to improve implementation readability and maintainability.
+Consistent naming conventions apply to graph entities, transactional relationships,
+and database schemas as well. Examples of graph entities include (:Account), (:Transaction), and (:Document). The examples of transactional relationships include [:SENDS],
+[:TO], and [:HAS DOC]. Consistent naming conventions are used consistently in
+graph building and fraud analysis processes.
 
-Graph entities, transactional relationships, and database schemas additionally follow consistent naming conventions across graph and relational database environments. Examples include graph entities such as \texttt{(:Account)}, \texttt{(:Transaction)}, and \texttt{(:Document)}, along with transactional relationships including \texttt{[:SENDS]}, \texttt{[:TO]}, and \texttt{[:HAS\_DOC]} utilized throughout graph construction and fraud analysis operations.
+% %========================================================
+% \subsection[File Organization]{\textbf{File Organization}}
+% %========================================================
 
-%========================================================
-\subsection[File Organization]{\textbf{File Organization}}
-%========================================================
+% The proposed TBML detection framework follows a modular project structure where frontend monitoring services and backend analytical environments are maintained as interconnected distributed applications. The frontend environment contains dashboard interfaces, authentication services, STR management workflows, API handlers, reusable UI components, and regulatory monitoring modules implemented using the Next.js App Router architecture and TypeScript-based service organization.
 
-The proposed TBML detection framework follows a modular project structure where frontend monitoring services and backend analytical environments are maintained as interconnected distributed applications. The frontend environment contains dashboard interfaces, authentication services, STR management workflows, API handlers, reusable UI components, and regulatory monitoring modules implemented using the Next.js App Router architecture and TypeScript-based service organization.
-
-The backend analytical environment contains Kafka producers and consumers, graph construction services, Hybrid HGNN--LSTM model implementations, federated learning clients, inference pipelines, and database synchronization utilities responsible for real-time fraud analysis and transaction monitoring operations. Shared configuration files, utility services, logging environments, and centralized database connectors are additionally organized according to functional responsibilities to improve scalability, maintainability, and distributed service coordination across the proposed framework.
+% The backend analytical environment contains Kafka producers and consumers, graph construction services, Hybrid HGNN--LSTM model implementations, federated learning clients, inference pipelines, and database synchronization utilities responsible for real-time fraud analysis and transaction monitoring operations. Shared configuration files, utility services, logging environments, and centralized database connectors are additionally organized according to functional responsibilities to improve scalability, maintainability, and distributed service coordination across the proposed framework.
 
 %========================================================
 \subsection[Environment Configuration and Logging]{\textbf{Environment Configuration and Logging}}
 %========================================================
-
-Environment variables and runtime configurations are securely managed using centralized \texttt{.env} configuration files to prevent direct exposure of API credentials, Kafka broker addresses, database configurations, authentication tokens, and federated learning parameters within the codebase. Backend services including Kafka consumers, Memgraph connectors, PostgreSQL clients, and fraud inference pipelines are initialized during runtime to support centralized service configuration and distributed analytical synchronization.
-
-Logging mechanisms are integrated throughout transaction streaming services, graph-processing environments, federated learning modules, backend APIs, and fraud inference pipelines to support runtime monitoring, debugging, audit traceability, and compliance management operations. Fraud classifications, transaction verdicts, confidence scores, STR generation events, and institutional monitoring activities are additionally logged within PostgreSQL environments for dashboard synchronization and regulatory investigation workflows.
+Environmental variables and configurations are safely managed via central
+ized .env configuration files to ensure that API keys, Kafka broker hosts, database configura
+tions, tokens, and federated learning parameters are not exposed directly in the source code.
+Backend services such as Kafka consumer applications, Memgraph con
+nectors, PostgreSQL clients, and fraud inference pipelines initialize at runtime for the sake of
+centralized service configurations and distributed analytical synchronizations.
+Logging has been integrated into transaction streaming services, graph
+analytic environment, federated learning modules, backend APIs, and fraud inference pi
+pelines for purposes of runtime monitoring, debugging, audit logging, and compliance man
+agement. Fraud classes, transaction results, confidence levels, STR generation actions, and insti
+tutional monitoring efforts have also been logged in PostgreSQL databases for dashboard sync
+and investigations.
 
 %========================================================
 \section[Difficulties Encountered and Strategies Used]{\textbf{Difficulties Encountered and Strategies Used to Tackle}}
 %========================================================
-Implementation challenges included noisy and imbalanced labels, large graph sizes and memory constraints, streaming latency, and privacy-preserving coordination across institutional clients. Mitigations applied in the implementation include class rebalancing and targeted data augmentation for scarce labels, subgraph sampling and mini-batching to control memory, Kafka buffering and asynchronous consumers to reduce end-to-end latency, and Flower with secure aggregation and containerized deployments (Docker) to isolate client environments while enabling federated training.
+Implementation problems include noise and imbalance in label sets, large graphs and
+memory limitations, latency in stream processing, and private collaboration across insti
+tutional clients. Mitigations used in the project include re-balance of classes and data augmen
+tation for rare classes, subgraph sampling and mini-batches for memory management, Kafka
+stream buffering and asynchronous consumers for end-to-end latency reduction, and Flower for
+secure federated learning with Docker containerized client isolation
 
 
 %========================================================
@@ -59,45 +106,88 @@ Implementation challenges included noisy and imbalanced labels, large graph size
 
 %========================================================
 
-The system implementation of the proposed TBML detection framework follows a distributed event-driven architecture integrating Kafka-based transaction streaming, heterogeneous graph generation, Hybrid HGNN--LSTM analytical processing, federated collaborative learning, real-time fraud inference, and dashboard-driven compliance monitoring. Backend analytical services, graph databases, inference pipelines, and frontend monitoring environments communicate through synchronized APIs, Kafka streams, and centralized PostgreSQL audit infrastructures to support scalable real-time Trade-Based Money Laundering detection and institutional monitoring operations.
+The system implementation of the proposed TBML detection framework incorporates
+the following components in a distributed event-driven architecture: transaction steaming,
+Het graph generation, Hybrid HGNN–LSTM analysis, federated collaborative learning, real-
+time inference, and dashboard-based compliance monitoring. The backend services for ana-
+lytical computations, graph storage, inference procedures, and frontend compliance environ-
+ments communicate via synchronized API, Kafka, and PostgreSQL infrastructures.
 
+%========================================================
 \subsection[Synthetic Dataset Synthesis]{\textbf{Methodology of Synthetic Dataset Synthesis}}
-
-The generation of the synthetic dataset is engineered to emulate the multi-modal complexities inherent in international trade finance. The process initializes by constructing a baseline network of financial entities—Accounts, Documents, and Transactions—governed by power-law distributions to simulate realistic institutional transaction volumes. Subsequent stages facilitate the injection of complex temporal patterns, commodity-specific price anomalies, and multi-currency layering effects, creating a high-fidelity environment for model training.
-
-The underlying implementation utilizes a modular pipeline that leverages the Pandas library for vectorized data manipulation and Memgraph for graph-structured persistence. Each transaction record is anchored to its corresponding trade documentation through a schema-aligned bridge, ensuring that the structural connectivity required for Graph Neural Network (GNN) feature extraction is preserved. By integrating temporal constraints and noise-injection modules, the pipeline creates a realistic representation of financial behaviors, ranging from standard legitimate interactions to camouflaged, high-velocity laundering topologies.
+%========================================================
+The creation of a synthetic dataset is designed to reflect the multifaceted nature of
+international trade finance. Initially, an underlying power-law governed network of finan-
+cial entities (Accounts, Documents, and Transactions) with realistic transaction volume dis-
+tributions is constructed as a baseline. Following this, complex temporal structures, anomali-
+es related to commodity prices, and multilevel currency conversion are added to build a fi-
+nancial behaviors environment conducive for model training.
+The underlying implementation involves modular pipeline which relies on Pandas
+library for efficient vectorized data processing and Memgraph for graph storage. Each of
+the transaction instances is bound with the associated document using the schema-defined
+bridge mechanism in order to ensure proper graph representation for GNN feature ex-
+traction. Temporal constraints and injection of noise make the synthetic environment rea-
+listic in terms of the range of behaviors from ordinary legitimate activity to laundered
+high velocity transactions.
 
 \subsubsection[Adversarial Refinement for Dataset Fidelity]{\textbf{Adversarial Refinement for Dataset Fidelity}}
 
-To improve the realism of the synthetic dataset and reduce unintended learning biases, the data-generation pipeline was refined using multiple adversarial and statistically grounded modifications \cite{synthetic-tbml-framework}. These refinements were introduced to ensure that the fraud-detection framework learned meaningful transactional and structural behaviors instead of relying on simple heuristic shortcuts or deterministic patterns.
+The data generation pipeline was enhanced through several different adversarial and statistics-based adjustments [17] to increase the realism of the generated data while avoiding biases in the learning system. The enhancements were added to prevent learning the easy heuristics and determinism.
 
 \begin{enumerate}
 
-    \item \textbf{Price Multiplier Dynamics:} Static pricing rules were replaced with Gaussian Mixture Models (GMMs) and stochastic blending strategies so that a portion of fraudulent trades closely resembled legitimate market pricing behavior, thereby reducing simple threshold-based detection.
+    \item \textbf{Price Multiplier:} 
+Instead of using fixed rules for prices, GMM models and random
+combinations were used to create a subset of the transactions that would behave as normal pricing activities and would not be detected using a threshold approach.
 
-    \item \textbf{Elimination of Feature Bias:} The \textit{port\_log\_status} attribute was removed to avoid direct label leakage and encourage the Graph Neural Network to learn relational and structural dependencies more holistically.
+    \item \textbf{Elimination of Feature Bias:} 
+ The port log status feature was eliminated to avoid the direct use of label features and have the Graph Neural Network learn dependencies between structural patterns without any biases towards them.
 
-    \item \textbf{KYC/Dormancy Engineering:} Overlapping dormancy periods and controlled noise injection were introduced to generate more realistic customer activity distributions rather than binary dormant/active identifiers.
+    \item \textbf{KYC/Dormancy Engineering:}
+    
+Overlaps in dormancy periods and the introduction of controlled noise helped to create a distribution of activities in customers and prevent the usage of binary features such as active/dormant.
 
-    \item \textbf{Universal Topology Injection:} Complex graph structures such as Cycles, Fan-In, and Gather-Scatter patterns were distributed across all transaction classes to prevent structural bias where certain graph shapes directly imply fraud.
+    \item \textbf{Uniform Injection of Topologies: } 
+    
+The complex structures like Cycles, Fan In, and Gather-Scatter were introduced across all types of transactions to prevent biases based on graph topology.
 
-    \item \textbf{Refined Pattern Classification:} Explicit pattern tags such as LEGIT and SUSPICIOUS were removed, and a neutral \textit{No\_Pattern} category was introduced to separate structural topology from fraud labeling.
+    \item \textbf{Class Separation in Patterns:}
+ The pattern categories like LEGIT or SUSPICIOUS
+were dropped in favor of the neutral NO PATTERN category.
 
-    \item \textbf{Temporal Realism:} The dataset generation process was aligned to a realistic one-year operational timeline (Dec 2024--Dec 2025) with transaction durations modeled according to practical financial activity windows.
+    \item \textbf{Temporal Realism:}
+Dataset creation was calibrated to a realistic one year
+operation period (December 2024–December 2025), with transaction timings based on real-time
+financial activity windows
 
-    \item \textbf{Scale-Free Network Topology:} Pareto/Zipf-based node distributions were introduced to simulate high-volume institutional or ``Whale'' entities capable of masking suspicious transactional behavior within dense financial activity.
+    \item \textbf{Scale-Free Network Topology:} 
+Pareto/Zipf distributed nodes were used to create
+representations of high activity volume "institutional" or "Whale" actors that could conceal themselves
+within complex financial activity networks.
 
-    \item \textbf{Log-Normal Transaction Amounts:} Transaction values were generated using Log-Normal distributions to better reflect real-world financial transaction behavior instead of uniformly distributed synthetic amounts.
+    \item \textbf{Log Normal Transaction Value Distribution:} 
+ The creation of transaction values used
+log-normal distribution of transactions instead of artificial uniform value distributions
 
-    \item \textbf{Multi-Hop Structural Integrity:} Rule-based generation constraints were enforced across multi-hop transaction paths to maintain graph consistency and realistic financial relationship propagation.
+    \item \textbf{Multi-Hop Consistency:} 
+  Rule-based transaction generation requirements were enforced
+across multi-hop transaction paths.
 
-    \item \textbf{FX Settlement/Currency-Jump Awareness:} Multi-currency transactional flows and FX spread variations were incorporated to expose the framework to cross-border layering and TBML settlement patterns.
+    \item \textbf{FX Settlment/Currency Jump Awareness:}
+  Multi-currency transaction streams and
+FX spread distributions were included to test the framework against layering patterns associated with TBML.
 
-    \item \textbf{Stochastic Trade Price Blending:} Illicit trade pricing distributions were blended with legitimate transactional behaviors to reduce detectable tabular shortcuts and encourage context-aware inference.
+    \item \textbf{Stochastic Pricing Inference:} 
+ Pricing of illicit trades was included alongside
+regular transactions to discourage the use of table shortcuts by context-based inference.
 
-    \item \textbf{Data Leakage Mitigation:} Auxiliary indicators capable of providing deterministic fraud identification were systematically removed to improve generalization during model training.
+    \item \textbf{Mitigation of Data Leaks:} 
+ Indicators that would enable deterministic fraud detection
+were excluded during data creation in order to reduce leakage and aid model generalization.
 
-    \item \textbf{Endurance-Based Simulation:} Multi-hop transactional cycles were modeled as sustained operational behaviors rather than isolated short-duration activities to improve structural realism within the generated financial graph.
+    \item \textbf{Sustained Operation Simulation:} 
+ Multi-hop transaction cycles were simulated using a
+model of sustained operation, instead of random activity for short periods of time.
 
 \end{enumerate}
 
