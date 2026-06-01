@@ -101,7 +101,7 @@ The primary objective of GATv2 is to generate node embeddings by aggregating inf
 
 \subsubsection{Architecture and Working of GATv2}
 
-The overall architecture and workflow of GATv2 are shown in Figure 2.1.
+The overall architecture and workflow of GATv2 are shown in Figure~\ref{fig:gatv2_architecture}.
 
 \begin{figure}[H]
     \centering
@@ -205,7 +205,7 @@ In GATv2, the order of operations is modified as:
 e_{ij}=a^{T}\text{LeakyReLU}\left(W[h_i \Vert h_j]\right)
 \end{equation}
 
-This modification allows the attention scores to dynamically depend on both source and neighboring nodes, improving feature interaction learning and representation capability.
+This comparison highlights the key differences between the original Graph Attention Network (GAT) and Graph Attention Network v2 (GATv2) in terms of attention mechanism, flexibility, expressiveness, and overall performance. The comparative analysis is presented in Table~\ref{tab:gat_vs_gatv2}.
 
 \begin{table}[H]
 \centering
@@ -245,8 +245,9 @@ The primary objective of LSTM is to preserve important sequential information ov
 The overall workflow of LSTM consists of gate computation, memory cell update, and hidden state generation.
 
 \subsubsection{Input Gate, Forget Gate, and Output Gate}
-
 At each time step, the current input and previous hidden state are used to compute the input, forget, and output gates using sigmoid activation functions. These gates regulate information flow into and out of the memory cell.
+
+The computation of the input gate, forget gate, and output gate within an LSTM cell is illustrated in Figure~\ref{fig:lstm_gates}.
 
 \begin{figure}[H]
     \centering
@@ -280,13 +281,14 @@ The candidate memory information is computed using the \texttt{tanh} activation 
 
 where \(\tilde{\mathbf{C}}_t\) represents the candidate memory state.
 
+The computation of the candidate memory state (input node) in an LSTM model is illustrated in Figure~\ref{fig:lstm_input_node}.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\textwidth]{Figures/LSTM_1}
     \caption{Computing the input node in an LSTM model}
     \label{fig:lstm_input_node}
 \end{figure}
-
 
 \subsubsection{Memory Cell Internal State}
 
@@ -297,6 +299,8 @@ The memory cell state is updated using the forget gate and input gate as:
 \end{equation}
 
 where \(\mathbf{C}_t\) represents the updated memory cell state and \(\odot\) denotes element-wise multiplication. This mechanism helps preserve important long-term information while discarding irrelevant data.
+
+The computation of the memory cell internal state within an LSTM cell is shown in Figure~\ref{fig:lstm_memory_cell}.
 
 \begin{figure}[H]
     \centering
@@ -313,8 +317,9 @@ The hidden state output is computed as:
 \begin{equation}
 \mathbf{H}_t = \mathbf{O}_t \odot \tanh(\mathbf{C}_t)
 \end{equation}
-
 where \(\mathbf{H}_t\) represents the hidden state at time step \(t\). The output gate controls how much information from the memory cell is passed to the next layer.
+
+The computation of the hidden state in an LSTM cell is shown in Figure~\ref{fig:lstm_hidden_state}.
 
 \begin{figure}[H]
     \centering
@@ -338,8 +343,10 @@ Federated Learning (FL) is a decentralized machine learning approach where multi
 \subsection{Introduction}
 
 Traditional machine learning systems rely on centralized training, where data from multiple users or organizations is collected and stored on a central server for model development. Although effective, this approach raises significant concerns related to data privacy, security, and regulatory compliance. Federated Learning addresses these challenges by enabling collaborative model training without sharing confidential or sensitive data.
+In Trade-Based Money Laundering (TBML) detection systems, organizations such as banks and financial institutions can locally train models using transaction records and suspicious trade patterns while sharing only model parameters with a central server. Introduced by Google in 2016 for Gboard applications, Federated Learning has emerged as an important privacy-preserving approach for distributed machine learning systems.
 
-In Trade-Based Money Laundering (TBML) detection systems, organizations such as banks and financial institutions can locally train models using transaction records and suspicious trade patterns while sharing only model parameters with a central server. Introduced by Google in 2016 for Gboard applications, Federated Learning has emerged as an important privacy-preserving approach for distributed machine learning systems .
+The overall architecture and workflow of Federated Learning are illustrated in Figure~\ref{fig:fl_overview}.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{Figures/FL_0.png}
@@ -356,6 +363,7 @@ Federated Learning also reduces communication overhead because only compact mode
 
 Federated Learning operates through iterative client-server interactions known as federated rounds. During each round, the central server distributes the current global model to selected clients, local training is performed independently on local datasets, and the updated model parameters are aggregated to generate an improved global model.
 
+The workflow of the Federated Learning process, including model distribution, local training, parameter aggregation, and global model updates, is illustrated in Figure~\ref{fig:fl_workflow}.
 
 \begin{figure}[H]
     \centering
@@ -363,7 +371,6 @@ Federated Learning operates through iterative client-server interactions known a
     \caption{Federated Learning Workflows}
     \label{fig:fl_workflow}
 \end{figure}
-
 
 \paragraph{Step 1: Initialization}
 
