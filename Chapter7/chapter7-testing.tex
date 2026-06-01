@@ -2,7 +2,10 @@
 \chapter[Software Testing]{\textbf{Software Testing}}
 %========================================================
 
-This chapter presents the software testing and validation procedures carried out for the proposed TBML detection framework including backend analytical services, distributed transaction-processing pipelines, heterogeneous graph-construction environments, federated analytical synchronization, dashboard-based compliance monitoring, authentication workflows, and institutional investigation operations. The chapter discusses the unit testing, integration testing, and end-to-end system validation workflows performed across the implemented analytical and monitoring environments to ensure reliable execution, synchronization stability, and operational consistency within the proposed framework.
+In this chapter, software testing and validation techniques performed on the proposed TBML
+detection framework are discussed. This includes backend analytics, transaction processing pipelines, graph construction techniques in heterogeneous environments, federated
+synchronization, dashboard compliance monitoring, authentication techniques, and institutional investigation operations. In particular, this chapter describes the testing workflow
+conducted in the developed software system that ensures the correct operation and synchronization within the proposed analytical system.
 
 %========================================================
 \section[Testing Environment]{\textbf{Testing Environment}}
@@ -225,15 +228,23 @@ This integration test validated synchronization between fraud-prediction service
 
 \renewcommand{\arraystretch}{1}
 
-As shown in Table~\ref{tab:fraud_prediction_dashboard_integration_test}, Fraud-prediction records, transaction metadata, and institutional risk classifications were successfully synchronized into centralized PostgreSQL audit environments before being rendered through protected dashboard interfaces. Dashboard synchronization workflows maintained consistent fraud-state propagation and real-time transaction visibility across distributed institutional monitoring services. The testing workflow additionally validated backend persistence consistency, dashboard update reliability, and secure rendering of fraud-monitoring data across role-specific compliance environments.
+The integration test ensured proper synchronization of fraud-prediction services,
+PostgreSQL audit environments, and dashboards for role-based monitoring working
+under the TBML architecture. The testing process further confirmed persistence of the
+database, consistency of dashboard synchronization, and rendering of fraud-classified
+transactions.  Integration Testing of Fraud Prediction and Dashboard Synchronization It can be seen from Table~\ref{tab:fraud_prediction_dashboard_integration_test} that records of fraud predictions, transaction data, and
+risk classifications of institutions were synchronized in centralized PostgreSQL audit
+systems and then rendered using secure dashboard applications. The synchronization of the dashboards ensured proper propagation of fraud status and transaction visibility in
+institutional monitoring services.
+
 
 %========================================================
 \subsection[Integration Testing of STR Generation Workflow]{\textbf{Integration Testing of STR Generation Workflow}}
 %========================================================
+This integration test confirmed the full integration from institutional fraud verification, STR generation services, regulator-side synchronization and propagation of compliance notifications in the distributed monitoring environments. The testing process also confirmed that fraud escalation is consistent, reports are persistent, and regulators are seamlessly visible throughout institutional compliance workflows.
 
-This integration test validated the complete workflow between institutional fraud verification, STR generation services, regulator-side synchronization, and compliance-notification propagation operating within distributed monitoring environments. The testing workflow additionally verified fraud escalation consistency, report persistence, and synchronized regulator visibility across institutional compliance pipelines.
+The STR synchronization workflow was successfully tested in institutional monitoring environments for fraud escalation, generation of compliance reports, synchronization of the Regulator side dashboard, and propagation of notifications. Downstream fraud processing compliance operations were consistently able to maintain fraud types, investigation metadata, identifiers for institutions and audit references in generated STR records. The testing workflow also confirmed that compliance data could be propagated successfully to compliance monitoring interfaces and that suspicious transaction reports could be propagated and viewed across banking and regulatory interfaces, as shown in Table~\ref{tab:str_generation_integration_test}.
 
-The STR synchronization workflow successfully validated fraud escalation, compliance-report generation, regulator-side dashboard synchronization, and distributed notification propagation across institutional monitoring environments. Generated STR records consistently preserved fraud classifications, investigation metadata, institutional identifiers, and audit references during downstream compliance-processing operations. The testing workflow additionally verified successful propagation of compliance alerts and synchronized visibility of suspicious transaction reports across banking and regulatory monitoring interfaces, as summarized in Table~\ref{tab:str_generation_integration_test}.
 \renewcommand{\arraystretch}{1.3}
 
 \begin{table}[H]
@@ -299,8 +310,7 @@ System testing was conducted to validate the operational stability, concurrent t
 
 Browser-based end-to-end validation was performed using Playwright automation workflows executed within Chromium testing environments. The testing workflow validated protected dashboard rendering, role-based authentication, STR lifecycle execution, fraud-notification propagation, compliance-action synchronization, and institutional transaction visibility restrictions across distributed frontend and backend services. All automated workflow executions completed successfully without unauthorized access, synchronization failure, or dashboard inconsistency during operational validation.
 
-The Playwright automation workflow successfully validated sequential execution of institutional fraud-monitoring operations across protected dashboard environments. Browser automation additionally verified secure session persistence, API synchronization consistency, workflow-level authorization enforcement, and stable dashboard rendering across \texttt{ADMIN} and \texttt{BANK\_USER} operational environments. The testing workflow further confirmed successful STR generation, fraud escalation, regulator-side compliance synchronization, and distributed notification propagation across automated end-to-end execution workflows. The corresponding workflow validation results are summarized in Table~\ref{tab:browser_automation_test}.
-
+The Playwright automation workflow was able to validate sequential execution of institutional fraud-monitoring operations in protected dashboard environments. Browser automation also validated persistent sessions, API synchronization consistency, authorization level validation at the workflow level, and consistent dashboard rendering for both the \texttt{ADMIN} and \texttt{BANK\_USER} operational environments. The testing workflow also demonstrated successful generation of STR, fraud escalation, compliance synchronization, and propagation of notifications across automated end-to-end workflows. Summary of the workflow validation results for browsers is summarized in Table~\ref{tab:browser_automation_test}.
 \renewcommand{\arraystretch}{1.3}
 
 \begin{table}[H]
@@ -330,15 +340,13 @@ Sign-In Page Smoke Testing & Successful \\ \hline
 %========================================================
 \subsection[Concurrent Database Scalability and API Performance Analysis]{\textbf{Concurrent Database Scalability and API Performance Analysis}}
 %========================================================
+To assess PostgreSQL synchronization stability, dashboard query performance, fraud-filtering latency and the consistency of STR retrieval responses in the presence of growing loads of institutional users, concurrent database scalability testing was performed. To achieve this, the benchmarking workflow has been developed to run on Prisma ORM and Next.js backend services, with each institutional user simulator performing five sequential transactional requests while performing concurrent operations accessing the dashboard. To ensure that the maximum simultaneous connections to the backend will be limited to 15, the controlled concurrency execution used batched asynchronous request propagation with pooled PostgreSQL database connections in order to control the synchronization of transactions, avoid backend resource exhaustion and guarantee the behavior of queries being executed during high volume monitoring workloads.
 
-Concurrent database scalability testing was conducted to evaluate PostgreSQL synchronization stability, dashboard query performance, fraud-filtering latency, and STR retrieval response consistency under increasing institutional user loads. The benchmarking workflow was implemented using Prisma ORM and Next.js backend services, where each simulated institutional user executed five continuous transactional requests during concurrent dashboard-access operations. Controlled concurrency execution was implemented using batched asynchronous request propagation with pooled PostgreSQL database connections and a maximum limit of 15 active concurrent connections to regulate transactional synchronization, prevent backend resource exhaustion, and maintain stable query-execution behavior during high-volume monitoring workloads.
+Latency benchmarking was done by taking the time taken to initiate a request and time taken to receive the response while running concurrent execution of the API. The benchmarking workflow captured the time of the request call with \texttt{startTime = performance.now()}, then asynchronous API call was executed and the backend response was synchronized. The response-completion timestamp was marked as startTime = performance.now() in the transactional request and endTime = performance.now() after successful completion of the transactional request and the operational latency computed as latency = endTime - startTime. The software included concurrent workload execution, achieved via parallel asynchronous request propagation, which involved multiple simulated institutional users running concurrent operations on dashboard and compliance-query applications at a controlled concurrency level.
 
-Latency benchmarking was performed by capturing request-initiation and response-completion timestamps during concurrent API execution workflows. For each transactional request, the benchmarking workflow first recorded the request initiation timestamp using \texttt{startTime = performance.now()}, followed by asynchronous API request execution and backend-response synchronization. Upon successful completion of the transactional request, the response-completion timestamp was recorded using \texttt{endTime = performance.now()}, and the operational latency was computed using \texttt{latency = endTime - startTime}. Concurrent workload execution was implemented using parallel asynchronous request propagation, where multiple simulated institutional users executed simultaneous dashboard and compliance-query operations under controlled concurrency constraints.
+Average latency data was measured as the average response time of all the successful transactional calls, and P95 latency data was measured as the upper bound latency response when the synchronization is at its peak. The benchmarking workflow also tested distantly deployed compliance-monitoring environments for request throughput, API synchronization consistency, transaction persistence reliability, and consistent PostgreSQL query execution.
 
-Average latency measurements represented the mean response time observed across all successful transactional requests, while P95 latency measurements captured upper-bound response behavior experienced by 95\% of requests during peak synchronization conditions. The benchmarking workflow additionally evaluated request throughput, API synchronization consistency, transaction persistence reliability, and stable PostgreSQL query execution across distributed compliance-monitoring environments.
-
-The benchmarking metrics were computed using the following operational latency equations:
-
+These operational latency equations were used to calculate the benchmarking metrics:
 \begin{equation}
 L_{\text{avg}} =
 \frac{1}{N}
@@ -478,14 +486,13 @@ The evaluation results demonstrated stable multi-class classification performanc
 \end{table}
 
 
-Fraud-class predictions achieved Precision values between $0.96$ and $0.98$, validating reliable identification of high-risk transactional activity with limited false fraud escalation. Although Fraud Recall stabilized near $0.73$, the framework preserved strong fraud-discrimination capability despite highly imbalanced transactional distributions and complex multi-hop laundering structures. The obtained F1-scores further indicate a balanced trade-off between fraud detection accuracy and classification consistency across all participating institutions. The relatively consistent performance observed across BANKA, BANKB, and BANKC demonstrates the effectiveness of the federated training strategy in learning generalized fraud patterns from distributed transactional environments. Overall, the results validate stable federated generalization and robust analytical performance without requiring centralized sharing of sensitive financial datasets, thereby supporting privacy-preserving and collaborative TBML detection.
+The accuracy of fraud predictions was between $0.96$ and $0.98$; this result is good to know, since transactional activity that is identified as fraud is identified correctly, and only a small number of false fraud escalations occur. The framework maintained robust fraud-discrimination capability while Facepoker's Recall remained near $0.73$ despite very skewed distributions of transactions and complicated multi-hop laundering structures. The resulting F1-scores also confirm that there is a good balance between the accuracy of fraud detection and the consistency of classification for all the participating institutions. The results of BANKA, BANKB and BANKC are fairly similar, showing that the federated training method is effective in learning generalised fraud patterns in distributed transactional environments. In sum, the results confirm stable federated generalization and strong analytical capabilities without the need for centralized access to sensitive financial data to detect TBML, thus enabling privacy-preserving and collaborative TBML detection.
 
 %========================================================
 \subsection[Federated Convergence Analysis]{\textbf{Federated Convergence Analysis}}
 %========================================================
 
-The federated convergence workflow was evaluated using longitudinal Accuracy, Precision, and Recall progression analysis across iterative federated aggregation rounds. The convergence curves were generated independently for all participating institutional clients to validate distributed synchronization consistency and global-weight stabilization during federated optimization workflows.
-
+Longitudinal Accuracy, Precision and Recall progression analysis was used to evaluate the federated convergence workflow in the iterative federated aggregation rounds. The convergence curves were generated independently for all the institutional clients to validate the consistency of distributed synchronization and global-weight stabilization in the federated optimization workflows.
 %--------------------------------------------------------
 \subsection{BANKA Federated Convergence}
 %--------------------------------------------------------
@@ -521,7 +528,7 @@ The federated convergence workflow was evaluated using longitudinal Accuracy, Pr
 \label{fig:banka_progression}
 \end{figure}
 
-As illustrated in Figure~\ref{fig:banka_progression}, the BANKA institutional client exhibited a consistent improvement in classification performance across successive federated aggregation rounds. Although minor fluctuations were observed during the initial synchronization stages, the Accuracy, Precision, and Recall metrics demonstrated an overall upward trend as federated training progressed. Accuracy increased steadily from approximately 94.8\% to 96.5\%, while Precision and Recall improved from 89.8\% to 91.5\% and 85.0\% to 90.0\%, respectively. Following the fifth aggregation round, the performance metrics exhibited reduced variation and greater stability, indicating effective convergence of the federated learning process. The observed progression validates the ability of distributed parameter aggregation to enhance model generalization and maintain consistent analytical performance across institutional training environments without centralized data sharing.
+The BANKA institutional client showed a steady increase in classification performance from round to round of federated aggregation as shown in Figure~\ref{fig:banka_progression}. The Accuracy, Precision and Recall values showed a general improvement with the going on of federated training, though minor changes were noted as it started. The accuracy rose steadily from 94.8\% to 96.5\%, and the Precision and Recall rose from 89.8\% to 91.5\% and 85.0\% to 90.0\%, respectively. The performance metrics showed less variance and more stability after the fifth aggregation round, suggesting successful convergence during the federated learning process. The observed evolution confirms the capability of distributed parameter aggregation to improve the generalization of the model and to ensure the same analytical performance in different institutional training context, without sharing any data at a central point.
 
 
 %--------------------------------------------------------
@@ -565,7 +572,7 @@ As illustrated in Figure~\ref{fig:banka_progression}, the BANKA institutional cl
 \label{fig:bankb_progression}
 \end{figure}
 
-As illustrated in Figure~\ref{fig:bankb_progression}, the BANKB institutional client exhibited progressive improvement in classification performance throughout successive federated aggregation rounds. Accuracy, Precision, and Recall demonstrated an overall upward trend despite moderate fluctuations observed during intermediate communication rounds. Accuracy increased from approximately 94.8\% to 96.4\%, while Precision and Recall improved from 90.5\% to 91.5\% and 85.3\% to 89.9\%, respectively. Temporary performance variations observed during later rounds were effectively recovered through subsequent federated updates, indicating stable parameter synchronization and continued model refinement. The final aggregation rounds achieved consistently strong analytical performance, demonstrating effective federated convergence and successful knowledge sharing across distributed institutional training environments without centralized data exchange.
+he progressive improvement in classification performance of the BANKB institutional client can be seen in the successive rounds of federated aggregation (as shown in Figure~\ref{fig:bankb_progression}). Although there were some fluctuations in intermediate communication rounds, there was an overall increase in Accuracy, Precision, and Recall. The accuracy rose from ~94.8\% to 96.4\%, while Precision and Recall were improved from 90.5\% to 91.5\%, 85.3\% to 89.9\%, respectively. Stable parameter synchronization and subsequent updates were demonstrated as additional federated updates were applied to recover temporary performance fluctuations seen in later rounds of the experiment.Stable parameter synchronization and further model development was evidenced by additional federated updates in subsequent rounds of the experiment, which recovered temporary performance variations observed in earlier rounds. The final aggregation rounds delivered very robust analytical results with a level of federated convergence and knowledge sharing between distributed institutional training environments that did not provide any centralised data exchange.
 
 %--------------------------------------------------------
 \subsection{BANKC Federated Convergence}
@@ -606,13 +613,14 @@ As illustrated in Figure~\ref{fig:bankb_progression}, the BANKB institutional cl
 \caption{BANKC Federated Accuracy, Precision, and Recall Progression Across Federated Aggregation Rounds}
 \label{fig:bankc_progression}
 \end{figure}
-As illustrated in Figure~\ref{fig:bankc_progression}, the BANKC institutional client exhibited highly stable federated convergence behavior across successive aggregation rounds. The Accuracy, Precision, and Recall metrics demonstrated a consistent upward trend during the initial communication stages and subsequently maintained stable performance with only minor fluctuations throughout the remaining federated rounds. Accuracy improved from approximately 95.7\% to 96.9\%, while Precision and Recall converged to nearly 92.2\% and 90.6\%, respectively. Although slight performance variations were observed during intermediate synchronization stages, the metrics rapidly recovered and remained within a narrow range, indicating effective distributed parameter aggregation and robust model generalization. The observed convergence characteristics validate stable federated optimization and demonstrate the framework's ability to maintain consistent analytical performance across heterogeneous institutional transaction environments without centralized data sharing.
-
+The BANKC institutional client showed a very consistent federated convergence behaviour for successive aggregation rounds as shown in Figure~\ref{fig:bankc_progression}. The metrics of Accuracy (ACC), Precision (PRC), and Recall (RCL) all showed a gradual increase in the first few rounds of the initial communication phase, but afterwards, the data for the rest of the federated rounds were relatively stable with only slight variations. The accuracy elevates from about 95.7% to 96.9%, Precision and Recall reaches almost 92.2% and 90.6% respectively. Minimal performance fluctuations were noted at intermediate synchronization phases, although the metrics quickly stabilized and stayed in a small range, suggesting the successful distributed parameter aggregation and good model generalization. The observed convergence characteristics confirm the stable federated optimization and the framework's capability to keep the analytical performance stable in a heterogeneous institutional transaction environment while keeping the data out of the central repository.
 %========================================================
 \subsection[Precision--Recall and Confusion Matrix Validation]{\textbf{Precision--Recall and Confusion Matrix Validation}}
 %========================================================
 
-Precision--Recall analytical validation and confusion-matrix evaluation were performed to analyze fraud-discrimination capability, minority-class detection behavior, and false-positive propagation across distributed institutional environments. Since fraudulent transactional behavior represented a significantly smaller proportion of the overall institutional transaction distribution, Precision--Recall evaluation provided a more operationally reliable assessment than standalone classification accuracy metrics.
+Precision-Recall analytical validation and confusion matrix analysis was performed to test for discrimination capabilities against fraud, minority class recognition behavior, and false positive propagation within distributed institutional settings. As fraudulent transactional activity accounted for only a small percentage of all transactional activity within institutions, Precision-Recall validation offered a more practical test than pure classification accuracy.
+BANKA Precision-Recall and Confusion Matrix Validation
+
 
 %--------------------------------------------------------
 \subsubsection{BANKA Precision--Recall and Confusion Matrix Validation}
@@ -635,7 +643,16 @@ Precision--Recall analytical validation and confusion-matrix evaluation were per
 \label{fig:banka_validation}
 \end{figure}
 
-As illustrated in Figure~\ref{fig:banka_validation}, the BANKA institutional environment achieved strong fraud-classification performance, with the Precision--Recall curve yielding an Average Precision (AP) score of approximately 0.92. The curve maintained high precision across a broad range of recall values, indicating effective identification of fraudulent transactions under class-imbalanced operating conditions. The confusion matrix further demonstrated perfect classification of Clean transactions, with all legitimate transactional records correctly identified and no clean-to-fraud misclassifications observed. Watchlist transactions were also classified with high accuracy, with only a small number of instances being assigned to the Fraud class. The primary classification overlap occurred between Fraud and Watchlist transaction categories, where a subset of fraudulent transactions was predicted as suspicious activity. Despite this overlap, the model preserved strong fraud-detection capability and demonstrated effective discrimination between legitimate, suspicious, and fraudulent transactional behaviors within the institutional monitoring environment.
+As illustrated in Figure~\ref{fig:banka_validation}, the institutional environment of BANKA showed a highly
+effective fraud-classification capacity, as measured by the Precision-Recall curve,
+wherein the calculated Average Precision (AP) value amounted to about 0.92. The
+curve showed highly precise detection at various levels of recall, reflecting an efficient
+identification of the fraudulent transactional behavior even under class-imbalanced operational conditions. Additionally, the classification of Clean transactions proved perfect, as
+no false positives were observed, and none of the transactions of this category was misclassified as fraud. Similarly, the classification of Watchlist transactions also showed a
+high level of effectiveness, except for some instances that were classified as Fraud. In
+addition, there was significant overlap between Fraud and Watchlist transactions,
+where some of the transactions of the former category were classified as suspicious.
+Nevertheless, the model kept its fraud-detection efficiency intact.
 
 %--------------------------------------------------------
 \subsection{BANKB Precision--Recall and Confusion Matrix Validation}
@@ -658,7 +675,18 @@ As illustrated in Figure~\ref{fig:banka_validation}, the BANKA institutional env
 \label{fig:bankb_validation}
 \end{figure}
 
-As illustrated in Figure~\ref{fig:bankb_validation}, the BANKB institutional environment achieved strong fraud-classification performance, with the Precision--Recall curve yielding an Average Precision (AP) score of approximately 0.93. The curve maintained high precision across a broad range of recall values, indicating effective identification of fraudulent transactions under class-imbalanced operating conditions. The confusion matrix further demonstrated perfect classification of Clean transactions, with all legitimate transactional records correctly identified and no clean-to-fraud misclassifications observed. Watchlist transactions were also classified with high accuracy, with only a small number of instances being assigned to the Fraud class. The primary classification overlap occurred between Fraud and Watchlist transaction categories, where a subset of fraudulent transactions was predicted as suspicious activity. Despite this overlap, the model preserved strong fraud-detection capability and demonstrated effective discrimination between legitimate, suspicious, and fraudulent transactional behaviors within the institutional monitoring environment.
+As illustrated in Figure~\ref{fig:bankb_validation}, there was good fraud-classification ability within
+the operational institutional environment of BANKB, because the generated Precision–Recall
+curve resulted in a score of Average Precision (AP) that was equal to around 0.93.
+The curve had kept high levels of precision for a wide range of the recall values,
+thus, reflecting successful identification of fraud under conditions of class imbalance.
+In its turn, the confusion matrix reflected excellent performance by showing perfectly
+clean transaction class identification without making any false clean-to-fraud classification
+errors. Transactions marked as "watchlist" were classified with high precision, while
+only a few cases were mistakenly put into the Fraud class. As for the classification
+overlap, it happened only for Fraud and Watchlist transaction classes, where some
+transactions were classified as suspicious transactions. In spite of the overlap, fraud
+detection ability remained sufficiently high. 
 
 
 
@@ -683,7 +711,18 @@ As illustrated in Figure~\ref{fig:bankb_validation}, the BANKB institutional env
 \label{fig:bankc_validation}
 \end{figure}
 
-As illustrated in Figure~\ref{fig:bankc_validation}, the BANKC institutional environment achieved strong fraud-classification performance, with the Precision--Recall curve yielding an Average Precision (AP) score of approximately 0.93. The curve maintained high precision across a broad range of recall values, indicating effective identification of fraudulent transactions under class-imbalanced operating conditions. The confusion matrix further demonstrated perfect classification of Clean transactions, with all legitimate transactional records correctly identified and no clean-to-fraud misclassifications observed. Watchlist transactions were also classified with high accuracy, with only a small number of instances being assigned to the Fraud class. The primary classification overlap occurred between Fraud and Watchlist transaction categories, where a subset of fraudulent transactions was predicted as suspicious activity. Despite this overlap, the model preserved strong fraud-detection capability and demonstrated effective discrimination between legitimate, suspicious, and fraudulent transactional behaviors within the institutional monitoring environment.
+As illustrated in Figure~\ref{fig:bankc_validation}, 
+the precision-recall analysis shows that the BANKC
+institutional environment exhibited great success in terms of classification of fraudulent
+transactions, with the obtained Average Precision (AP) value amounting to roughly 0.93.
+Furthermore, the graph showed excellent precision for various levels of recall, which is
+indicative of the ability to detect fraudulent transactions under conditions of imbalanced
+operating class environments. Additionally, perfect results for clean transactions can be
+noted, as well as correct assignment of all suspicious transactions into their respective
+transaction categories with no clean-to-fraud transactions. Finally, although there was
+overlapping classification between watchlist and fraud categories (with some fraudulent
+activities recognized as suspicious), the model successfully distinguished between the three
+types of transactions in question.
 
 
 \newpage
