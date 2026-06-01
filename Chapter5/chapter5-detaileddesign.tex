@@ -2,15 +2,24 @@
 \chapter{Detailed Design of the Proposed TBML Framework}
 %========================================================
 
-The detailed design of the proposed TBML detection framework focuses on the internal organization, analytical workflow, and module-level interaction associated with graph-based fraud detection and real-time financial monitoring. The framework integrates transaction processing services, heterogeneous graph construction, hybrid HGNN--LSTM analytical models, federated learning mechanisms, and compliance reporting modules within a unified monitoring environment. This chapter presents the structure chart, detailed module design, database schema organization, and monitoring workflow associated with the proposed TBML detection framework.
+The proposed TBML detection framework is detailed, and centered on the in-
+The analytical workflow and the interaction between modules that are related to the analysis were part of the process of ternal organization.
+Fraud detection, real-time financial monitoring and a graph-based approach. The framework inte-
+Learn how to process transactions, build heterogeneous graphs and hybrid HGNN–
+The LSTM analytical models, federated learning mechanisms, and compliance reporting mod-
+Within an integrated monitoring system. The structure chart is presented in this chapter,
+The detailed module design, database schema organization and monitoring workflow associ-
+Combined with the proposed TBML detection framework.
 %========================================================
 \section[Structure Chart]{\textbf{Structure Chart}}
 %========================================================
-The structure chart of the proposed TBML detection framework illustrates the hierarchical organization of the major functional modules operating within the system. The framework is divided into frontend, backend, fraud detection, federated learning, database, and compliance layers to support scalable financial monitoring and intelligent fraud analysis within distributed Anti-Money Laundering environments.
+The structure chart of the proposed TBML Detection Framework represents the hierarchical arrangement of the main functional modules of the system. It's organized into four layers: frontend, backend, fraud detection, federated learning, database, and compliance, to enable robust financial monitoring and intelligent fraud analysis in distributed Anti-Money Laundering environments.
 
-The frontend layer provides dashboard interfaces, transaction monitoring services, risk visualization, and STR management functionalities for institutional users. Backend services coordinate API communication, transaction processing, authentication workflows, and access control operations between frontend interfaces and analytical modules. The fraud detection layer incorporates Hybrid HGNN--LSTM components responsible for graph-based analysis, temporal transaction modeling, feature fusion, and risk classification.
+The frontend layer offers dashboard interfaces, transaction monitoring services, risk visualization and STR management functionality to institutional users. Backend services manage the interaction between the APIs, transaction processing, authentication flows and access control operations between the frontend interfaces and analytical modules. The fraud detection layer includes Hybrid HGNN--LSTM modules which handle the graph analysis, temporal transaction modeling, feature fusion, and risk classification.
 
-The federated learning layer enables privacy-preserving collaborative model training and global model synchronization between participating institutions. Database services manage transactional storage, graph relationships, audit logs, and compliance-related records, while the compliance layer supports STR generation, regulatory reporting, email notifications, and monitoring operations. The overall structural organization of the proposed TBML detection framework is illustrated in Figure~\ref{fig:structure_chart}.
+The federated learning layer empowers privacy-preserving collaborative model training and synchronizing the model across participating institutions. The database services handle transactional storage, graph relationships, audit logs, and compliance-related records, and the compliance layer has the ability to generate STR and report to regulatory authorities, send email notifications, and conduct monitoring operations. The proposed TBML framework of detection is overall structurally organized as shown in Figure~\ref{fig:structure_chart}
+
+
 \begin{figure}[p]
     \centering
     \includegraphics[
@@ -23,8 +32,7 @@ The federated learning layer enables privacy-preserving collaborative model trai
     \label{fig:structure_chart}
 \end{figure}
 
-The structure chart illustrates the modular organization and interaction between analytical, monitoring, storage, and compliance-oriented services within the proposed framework. This modular design approach improves scalability, maintainability, service integration, and efficient coordination between frontend interfaces, backend analytical services, and distributed fraud detection environments.
-
+The structure chart is intended to show the modular structure and interactions between the analytical, monitoring, storage and compliance services of the proposed framework. This modular design approach enhances scalability, maintainability, service integration and efficient coordination among the various front-end interfaces, back-end analytical services and distributed fraud detection environments.
 %========================================================
 \section[Functional Description of the Modules]{\textbf{Functional Description of the Modules}}
 %========================================================
@@ -55,12 +63,12 @@ The workflow interaction diagram illustrates the coordinated interaction between
 %========================================================
 \subsection[Transaction Processing Module]{\textbf{Transaction Processing Module}}
 %========================================================
+The transaction processing Module is the first ingestion environment in the proposed TBML detection framework. This Module gathers financial transactions, KYC information, trade documents, and institutional monitoring events from banking systems and financial environments.
 
-The transaction processing Module acts as the initial ingestion environment within the proposed TBML detection framework. This Module collects financial transactions, KYC records, trade documents, and institutional monitoring events originating from banking systems and external financial environments.
+Data entered into this Module are the names of the sending and receiving accounts, the value of the transactions, the nature of the goods involved, the quantity of goods traded, the value of the product traded, invoice information, the time of the transaction, and the institutional monitoring attributes of the financial operations. The gathered data from the transactions is processed, cleaned, and standardized into transaction records for accurate analytical processing in the downstream processes.
 
-The input data processed within this Module includes sender and receiver account identifiers, transaction amounts, commodity types, trade quantities, trade values, invoice details, transaction timestamps, and institutional monitoring attributes associated with financial activities. The collected transactional data is validated, normalized, and converted into structured transaction records to support reliable downstream analytical processing.
+Asynchronous communication between backend services and analytical modules is achieved using the Kafka streaming topics for the processed transaction events. Within the proposed framework, the generated transaction streams are the main input for the construction of the graph, for feature extraction and for fraud detection operations based on the graph.
 
-The processed transaction events are published into Kafka streaming topics to enable asynchronous communication between backend services and analytical modules. The generated transaction streams serve as the primary input for graph construction, feature extraction, and graph-based fraud detection operations within the proposed framework.
 %========================================================
 \subsubsection[Graph Construction Module]{\textbf{Graph Construction Module}}
 %========================================================
@@ -206,19 +214,45 @@ The framework utilizes the Federated Averaging (\texttt{FedAvg}) strategy to agg
 \subsection[STR Generation and Notification Module]{\textbf{STR Generation and Notification Module}}
 %========================================================
 
-The STR generation and notification module is responsible for compliance reporting and fraud alert management within the proposed TBML detection framework. Transactions verified as fraudulent by authorized banking administrators are forwarded to this module for Suspicious Transaction Report (STR) generation and regulatory processing. The module generates STR reports containing transaction details, fraud classifications, trade metadata, institutional information, and investigation summaries associated with suspicious financial activities.
+This module caters to regulatory reporting and fraud alert monitoring within the
+TBML detection system architecture. Transactions flagged as fraudulent by authorized
+banking administrators are sent to the STR generation and notification module for gen
+eration of suspicious transaction reports and subsequent compliance regulation. This
+module generates STR reports comprising transaction data, fraud classifications, trade
+metadata, organizational information, and investigation summaries related to suspicious
+financial transactions.
+Groq API services are used for analytical summary generation and automation dur
+ing documentation of compliance reports. STR reports generated in this process are
+subsequently sent to relevant regulatory authorities for investigation and compliance
+regulations. Fraud alerts and notification management are handled by the notification
+management environment, whereas notification emails, fraud investigation alerts, and regu
+latory enforcement notifications are sent using the Resend email service.
 
-The Groq API service is utilized for analytical summarization and automated assistance during compliance documentation generation. Generated STR reports are subsequently forwarded to regulatory monitoring authorities for investigation and enforcement procedures. The notification management environment coordinates fraud alerts and institutional communication workflows, while the Resend email service delivers notification emails, investigation alerts, and regulatory enforcement messages to banking institutions and regulatory authorities.
 %========================================================
 \subsection[Dashboard and Regulatory Monitoring Module]{\textbf{Dashboard and Regulatory Monitoring Module}}
 %========================================================
+Dashboard and regulatory monitoring module caters to transaction visualization, fraud
+monitoring, and institutional investigations within the proposed TBML detection sys
+tem architecture. Dashboard environment provides visualization of transaction classifi
+cations, fraud alerts, risk score assessments, STR reports, and fraud analytics produced by
+the fraud detection environment. Two different dashboard environments are maintained for
+banking administrators and regulatory authorities.
 
-The dashboard and regulatory monitoring module provides real-time transaction visualization, fraud monitoring, and institutional investigation functionalities within the proposed TBML detection framework. The monitoring dashboard displays transaction classifications, fraud alerts, risk scores, STR records, and analytical monitoring information generated by the fraud detection environment. Separate dashboard environments are maintained for banking administrators and regulatory authorities to support institution-level monitoring and centralized compliance management operations.
 
-Authorized banking administrators can view suspicious and fraudulent transactions identified by the analytical model and perform institutional verification procedures before categorizing transactions as \texttt{CLEAN}, \texttt{WATCHLIST}, or \texttt{FRAUD}. Suspicious transactions can either be escalated as fraudulent transactions or marked as clean after institutional verification procedures, thereby reducing false positive classifications within the monitoring environment. Transactions verified as fraudulent are subsequently forwarded for Suspicious Transaction Report (STR) generation and regulatory reporting.
-
-Regulatory authorities monitor generated STR reports and institution-level fraud cases through centralized monitoring dashboards. The regulatory environment supports compliance monitoring, document verification requests, inquiry procedures, and account freeze operations associated with suspicious financial activities and the workflow is illustrated in Figure~\ref{fig:realtime_workflow_final}.
-
+The authorized banking administrators are allowed to view the suspicious and fraudu
+lent transactions that have been identified using the analytics model and verify such
+transactions using institutional verification procedure before classifying such transac
+tions as being CLEAN, WATCHLIST, or FRAUD. In cases where the transaction is sus
+picious, it may either be escalated to be a fraud transaction or declared as a clean tran
+saction after performing institutional verification procedures. In addition, when the tran
+sactions are declared to be fraud transactions, they will then be sent for SUSPICIOUS
+TRANSACTION REPORT (STR) generation and reporting purposes. Regulators will then
+monitor the generation of STR reports and fraud cases per institution using central
+ized monitoring dashboards. In the regulatory environment, the workflow involves
+activities like compliance monitoring, document verification request, inquiry proce
+dures, and account freeze actions in relation to suspicious financial transactions and
+as illustrated in Figure
+~\ref{fig:realtime_workflow_final}.
 \begin{figure}[H]
 \centering
 \resizebox{0.98\columnwidth}{!}{
@@ -285,7 +319,13 @@ Regulatory authorities monitor generated STR reports and institution-level fraud
 %========================================================
 \section[Summary]{\textbf{Summary}}
 %========================================================
+This chapter has described the detailed design of the proposed TBML detection frame
+work in terms of structure design, interactions of modules, functionality of analytics
+modules, federated learning framework, and database management environment for the
+System.
 
-This chapter presented the detailed design of the proposed TBML detection framework including the structural organization, module interaction workflow, functional description of analytical modules, federated learning architecture, and database management environment associated with the system. The chapter discussed the interaction between transaction processing services, graph construction mechanisms, hybrid HGNN--LSTM analytical modules, dashboard monitoring environments, and compliance reporting systems operating within the proposed framework.
+This design provides more insights into how streaming transactions, graph based fraud
+analysis, federated machine learning, institutional verification, STR generation and regulatory
+monitoring have been designed to operate within the Anti-Money Laundering framework. The
+following chapter examines the implementation issues, back-end operations and dashboards in the context of TBML detection framework.
 
-The detailed design further illustrated how streaming-based transaction processing, graph-based fraud analysis, federated collaborative learning, institutional verification, STR generation, and regulatory monitoring are integrated within a unified Anti-Money Laundering environment. The subsequent chapter discusses the implementation details, backend integration and dashboard development associated with the proposed TBML detection framework.
