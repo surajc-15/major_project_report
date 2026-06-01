@@ -1,25 +1,29 @@
 \chapter{Theory and Fundamentals of Project}
 
-Developing an intelligent framework for Trade-Based Money Laundering detection requires a strong foundation in financial crime analysis, graph theory, and machine learning techniques. This chapter presents the fundamental concepts associated with Trade-Based Money Laundering, Graph Neural Networks, Graph Attention mechanisms, heterogeneous graph representation, and federated learning. The chapter further discusses the computational principles involved in relational transaction modeling, privacy-preserving learning, and real-time fraud analytics. These concepts collectively form the theoretical foundation for the proposed fraud detection framework.
-
+An effective framework for detecting TBML necessitates sound knowledge in financial crimes, graph theory, and machine learning techniques. The current chapter introduces the basic ideas concerning Trade-Based Money Laundering, Graph Neural Networks, Graph Attention mechanism, heterogeneous graphs, and Federated learning. The computational concepts related to transactional data modeling, privacy-preserving learning, and online fraud detection are also discussed in detail in this chapter. These concepts are the building blocks of the fraud detection framework proposed in this study. 
 %========================================================
 \section[Trade-Based Money Laundering ]{\textbf{Trade-Based Money Laundering }}
 %========================================================
-
-\gls{tbml} is a sophisticated form of financial crime in which illicit funds are transferred and concealed through seemingly legitimate international trade activities. Unlike conventional laundering methods that primarily depend on direct financial transactions, TBML exploits import-export systems, trade invoices, shipping documents, and cross-border commercial operations to disguise the movement of illegal funds. Due to the increasing implementation of strict \gls{aml} regulations and \gls{kyc} policies, criminal organizations have increasingly shifted toward trade-oriented laundering mechanisms that are comparatively difficult to detect using traditional monitoring systems.
-
-The complexity of modern global trade ecosystems, combined with the involvement of multiple financial entities and transactional relationships, has made TBML detection a major challenge for financial institutions and regulatory agencies. Consequently, intelligent analytical techniques capable of identifying hidden transactional dependencies and suspicious financial behavior have become increasingly important in modern Anti-Money Laundering systems.
+Trade-Based Money Laundering (TBML) represents a complicated form of financial crime that entails moving and hiding illegally obtained funds through the use of legitimate trade activities across international borders. In contrast to traditional laundering techniques, which rely on transactions, TBML utilizes import and export systems, trade documents, shipping documents, and cross-border business operations to conceal the flow of illegally obtained money. With the growing use of AML and KYC laws, criminals have been increasingly adopting trade-based techniques due to their relative anonymity.
+Complexity involved in global trade ecosystems along with involvement of many
+financial bodies and transactional relationship between these bodies has made the
+detection of Trade Based Money Laundering very hard for financial institutions.
+Therefore, intelligent analytics that can detect hidden transactional relationships
+and suspicious financial activity have become essential in Anti-Money Laundering
 
 %========================================================
 \subsection[Introduction to TBML]{\textbf{Introduction to TBML}}
 %========================================================
+Trade based money laundering typically refers to any act by which criminal
+organizations manipulate international transactions of trade through their documentations, invoice values, shipping volumes, etc. so as to move illegal funds through
+them but in such a way that looks legitimate in the eyes of global financial
+systems. Such laundering being carried out as a part of regular importing/ exporting
+operations makes the detection process very difficult.
+In many TBML schemes, the collusion between the buyer and seller results in deliberate misrepresentation of the price of traded products to launder illegally acquired finances into the other country. The methods used by launderers include over invoicing, under invoicing, phony shipments, and double invoicing. Such laundering schemes leverage the complicated nature and huge volume of transactions involved in the international trading system, resulting in rule-based Anti-Money Laundering policies being ineffective in identifying any concealed financial relationships.
 
-Trade-Based Money Laundering primarily involves the manipulation of international trade transactions to illegally transfer value between entities located across different countries. Criminal organizations often misuse trade documentation, invoice values, shipment quantities, and commercial agreements to move illicit funds while making the transactions appear legitimate within global financial systems. Since these laundering activities are embedded within regular import-export operations, identifying suspicious behavior becomes highly challenging for financial institutions and regulatory agencies.
 
-In many TBML operations, colluding buyers and sellers intentionally manipulate the declared value of traded goods to transfer illegal financial assets across borders. Techniques such as over invoicing, under invoicing, phantom shipments, and multiple invoicing are commonly used to conceal the movement of illicit proceeds. Such laundering mechanisms exploit the complexity and high transactional volume of international trade systems, making traditional rule-based Anti-Money Laundering approaches comparatively ineffective in detecting hidden financial relationships.
-
-
-Figure~\ref{fig:tbml_cycle} illustrates a typical Trade-Based Money Laundering workflow involving collusion between exporters and importers across different jurisdictions \cite{tbml-researchgate}.
+Figure~\ref{fig:tbml_cycle} 
+presents a usual process flow in which trade-based money laundering takes place via the collusion of exporters and importers of products from various parts of the world\cite{tbml-researchgate}
 
 \vspace{0.4cm}
 \begin{figure}[H]
@@ -33,29 +37,25 @@ Figure~\ref{fig:tbml_cycle} illustrates a typical Trade-Based Money Laundering w
 
 \vspace{-0.2cm}
 
-% \noindent
-% % \textit{Source: Adapted from ``The Role of Misinvoicing in the Money Laundering Cycle,'' 
-% \href{https://www.researchgate.net/figure/TBML-through-Open-Account-Transactions_fig1_370021180}{ResearchGate}.}
-
-% \vspace{0.3cm}
 
 %========================================================
 \subsection[Common Techniques Used in TBML]{\textbf{Common Techniques Used in TBML}}
 %========================================================
 
-Trade-Based Money Laundering (TBML) involves manipulating trade documents, shipment details, and financial transactions to move illicit funds across borders while making them appear legitimate. Criminal organizations exploit the complexity of international trade systems to avoid detection and conceal illegal financial activities.
-
+Trade-Based Money Laundering (TBML) is a scheme used to launder illegally obtained money using trade documentation, shipping information, and financial transactions to make the laundered funds seem like legitimate trade payments. International trade systems are manipulated by criminal organizations to ensure concealment and protection from being detected for conducting illicit financial activities. 
 %========================================================
 \subsubsection[Over Invoicing]{\textbf{Over Invoicing}}
 %========================================================
 
-Over invoicing occurs when the declared value of goods is intentionally set higher than the actual market price. This allows excess money to be transferred under the appearance of legitimate trade payments.
+Over invoicing refers to the act where the value of goods is deliberately raised
+above the actual market value.
 
 %========================================================
 \subsubsection[Under Invoicing]{\textbf{Under Invoicing}}
 %========================================================
 
-Under invoicing involves declaring goods at a lower value than their actual market price. This technique is commonly used to hide profits, evade taxes, and move funds secretly across borders.
+Under invoicing entails presenting goods at prices lower than their real market values. The method is employed in cases where one seeks to cover up their income,
+avoid paying tax duties and secretly shift money across national boundaries
 
 %========================================================
 \subsubsection[Multiple Invoicing]{\textbf{Multiple Invoicing}}
@@ -67,41 +67,54 @@ Multiple invoicing refers to using the same trade invoice for several financial 
 \subsubsection[Phantom Shipments]{\textbf{Phantom Shipments}}
 %========================================================
 
-Phantom shipments occur when payments are made for goods that are never actually shipped or delivered. Fake trade and shipping documents are used to create the appearance of legitimate trade activity.
+Multiple invoicing entails using the same trade invoice to conduct many financial dealings within the context of a single ship. This enables criminals to shift money
+illegally through different banks.
 
 %========================================================
 \subsubsection[Misrepresentation of Goods]{\textbf{Misrepresentation of Goods}}
 %========================================================
 
-Misrepresentation of goods involves providing false information about the type, quantity, or quality of traded products in invoices and trade documents to manipulate trade values and conceal suspicious activities.
+Misrepresentation of goods involves lying about what has really been done in terms of trade and its values.
 
 
 %========================================================
 \subsection[Challenges in Detecting TBML]{\textbf{Challenges in Detecting TBML}}
 %========================================================
-Detecting \gls{tbml} is difficult because modern trade systems are highly complex and interconnected. Unlike traditional financial fraud, TBML activities are often hidden within legitimate business transactions, making suspicious behavior hard to identify. Criminal networks use shell companies, intermediaries, multiple jurisdictions, and layered transactions to move illicit funds while appearing as normal trade operations.
-
-Traditional \gls{aml} systems mainly rely on rule-based monitoring and isolated transaction analysis. Although these methods can detect predefined suspicious patterns, they often fail to identify hidden relationships between entities involved in large trade networks. In addition, the growing volume of cross-border transactions and evolving laundering techniques make detection even more challenging. Privacy and regulatory restrictions also limit the sharing of sensitive financial data between institutions, creating the need for scalable and privacy-preserving TBML detection frameworks.
+TBML detection is very challenging due to the complexity and connectedness of current trade networks. TBML is different from ordinary financial fraud as the fraudulent actions are concealed within legitimate trade transactions making it difficult to differentiate the two. Organized criminal syndicates have learned to conceal their actions by using shell companies, intermediaries,
+different countries, and multi-layered transaction structures which are characteristic of TBML. Traditional AML techniques depend solely on rule-based detection and single transaction analysis. The methods may be able to detect any suspicious pattern but they cannot uncover the relationship of entities participating in large scale trading networks.
+Furthermore, an increased number of transactions combined with sophisticated laundering processes poses even more challenges in detecting TBML transactions. There are also legal limitations in terms of sharing sensitive financial information among organizations.
 
 
 \section{Algorithms Used}
-This section presents the major algorithms and deep learning techniques used in the proposed system for traffic prediction and autonomous vehicle navigation. The project combines graph-based learning and sequential modeling approaches to effectively analyze complex traffic patterns and temporal dependencies. Graph Attention Network v2 (GATv2) is utilized to capture spatial relationships between connected road networks through dynamic attention mechanisms, while Long Short-Term Memory (LSTM) is employed to learn temporal traffic variations and long-term sequential dependencies. Together, these algorithms improve traffic prediction accuracy, congestion analysis, and intelligent decision-making within the proposed framework.
+This part introduces the core algorithms and deep learning methods employed in the proposed
+approach for predicting traffic and navigating autonomous vehicles. The project adopts a combination of graph-based and sequence-based techniques for better traffic prediction and intelligent decision-making. 
+
 
 \subsection{Graph Attention Network v2 (GATv2)}
 
-Graph Attention Network v2 (GATv2) is a Graph Neural Network (GNN) architecture that uses a dynamic attention mechanism to learn relationships between connected nodes in graph data. It improves feature aggregation by automatically identifying the importance of neighboring nodes. GATv2 is widely used in applications such as traffic prediction, recommendation systems, and autonomous vehicle navigation.
+Graph Attention Network version 2 (GATv2) is adopted for capturing the spatial relations of connected roads via dynamic attention, while Long Short-Term Memory (LSTM) is utilized to detect temporal changes and sequential patterns in traffic dynamics. Both methods enhance traffic predictions, analysis, and decision-making process.
 
 \subsubsection{Introduction}
 
-Graph Attention Network v2 (GATv2) is an advanced Graph Neural Network (GNN) architecture designed for learning on graph-structured data using a dynamic attention mechanism. It improves upon the original GAT model by overcoming the limitation of static attention and enabling better learning of relationships between connected nodes. GATv2 automatically identifies the importance of neighboring nodes during feature aggregation, making it highly effective for applications such as traffic prediction, recommendation systems, social network analysis, fraud detection, and autonomous vehicle navigation.
+Graph Attention Network version 2 (GATv2) is an intelligent Graph Neural Network (GNN)
+architecture that can learn on graphs through the use of dynamic attention mechanism.
+This architecture has been developed to address the problem of static attention that was
+prevalent in the earlier versions of GAT. Through its ability to dynamically identify the
+importance of neighboring nodes when aggregating features, GATv2 is ideal for tasks
+such as traffic prediction, recommendation system, social networks, fraud detection, and
+navigation for autonomous vehicles. 
 
 \subsubsection{Fundamental Concept of GATv2}
 
-The primary objective of GATv2 is to generate node embeddings by aggregating information from neighboring nodes using a dynamic attention mechanism. For each node, the model learns which neighboring nodes are important and assigns suitable attention weights before combining their features.
+The fundamental concept behind GATv2 is the generation of node embeddings by
+dynamically aggregating features from the neighboring nodes. In this process, the model
+learns about which neighboring nodes are important and how best they should be
+weighted to extract their features.
 
 \subsubsection{Architecture and Working of GATv2}
 
-The overall architecture and workflow of GATv2 are shown in Figure~\ref{fig:gatv2_architecture}.
+The overall architecture and working process of GATv2 is illustrated in 
+ Figure~\ref{fig:gatv2_architecture}.
 
 \begin{figure}[H]
     \centering
@@ -110,7 +123,8 @@ The overall architecture and workflow of GATv2 are shown in Figure~\ref{fig:gatv
     \label{fig:gatv2_architecture}
 \end{figure}
 
-The architecture of GATv2 consists of graph input processing, feature transformation, attention computation, normalization, neighbor aggregation, multi-head attention, and prediction generation.
+GATv2 architecture involves graph inputs, feature transformation, attention mechanism, normalization,
+neighbor aggregation, multi-head attention mechanism, and predictions generation.
 
 \paragraph{Step 1: Input Graph:}
 
@@ -183,15 +197,26 @@ The final node embeddings are passed to the output layer for tasks such as node 
 
 \subsubsection{Advantages of GATv2}
 
-GATv2 provides a dynamic attention mechanism that improves feature aggregation and representation learning compared to the original GAT architecture. It automatically identifies important neighboring nodes, performs effectively on irregular graph data, and improves robustness through multi-head attention, making it highly suitable for traffic prediction and autonomous navigation applications.
+GATv2 introduces a dynamic attention mechanism that enhances feature
+aggregation and representation learning as compared to the original GAT model. The
+model automatically detects important neighboring nodes, works efficiently with irregular
+graphs, and improves robustness through multi-head attention, making it appropriate for
+traffic prediction and autonomous driving purposes.
 
 \subsubsection{Limitations of GATv2}
 
-Despite its advantages, GATv2 requires high computational and memory resources due to attention computations on large graphs. Training time increases with graph size, and deep GATv2 architectures may suffer from over-smoothing and scalability issues for extremely large datasets.
+Although the model offers numerous benefits, it uses significant computational
+resources and memory due to attention mechanisms on big graphs. GATv2 models
+require more time to train as compared to the smaller graph size and deep models of
+GATv2 face challenges of over-smoothing and scaling issues with extremely large
+databases.
 
 \subsubsection{GATv2 vs GAT}
 
-Graph Attention Network v2 (GATv2) was introduced as an improvement over the original Graph Attention Network (GAT) to overcome the limitation of static attention mechanisms. While both architectures use attention-based aggregation for graph representation learning, GATv2 provides a more expressive and adaptive attention mechanism.
+Graph Attention Network v2 (GATv2) is a more improved version of the
+previous Graph Attention Network (GAT), addressing the challenge of static attention
+mechanisms. Both architectures involve the usage of attention-based aggregations in the
+representation learning of graphs
 
 In the original GAT architecture, the attention mechanism is defined as:
 
@@ -205,8 +230,7 @@ In GATv2, the order of operations is modified as:
 e_{ij}=a^{T}\text{LeakyReLU}\left(W[h_i \Vert h_j]\right)
 \end{equation}
 
-This comparison highlights the key differences between the original Graph Attention Network (GAT) and Graph Attention Network v2 (GATv2) in terms of attention mechanism, flexibility, expressiveness, and overall performance. The comparative analysis is presented in Table~\ref{tab:gat_vs_gatv2}.
-
+Comparison of GAT and GATv2 in terms of their key aspects, including attention mechanism, flexibility, expressiveness, and performance, is provided here. The comparative table is included in Table \ref{tab:gat_vs_gatv2} below. GATv2 is chosen instead of GAT due to the ability of its dynamic attention mechanism to learn complicated relationships between elements within the graph structure, which results in more efficient feature aggregation, representation learning, and prediction in graph-based applications.
 \begin{table}[H]
 \centering
 \caption{Comparison Between GAT and GATv2}
@@ -236,15 +260,17 @@ GATv2 is preferred over GAT because its dynamic attention mechanism enables bett
 
 \subsubsection{Introduction to LSTM}
 
-Long Short-Term Memory (LSTM) is an advanced Recurrent Neural Network (RNN) architecture designed to learn long-term dependencies in sequential data. It was introduced to overcome the vanishing gradient problem faced by traditional RNNs through the use of memory cells and gating mechanisms. LSTM can selectively remember, update, and forget information, making it highly effective for applications such as traffic prediction, speech recognition, natural language processing, and time-series forecasting.
+Long Short-Term Memory (LSTM) represents a sophisticated design of Recurrent Neural Networks (RNN) that allows learning long-term dependencies within sequential data. This architecture was created specifically to deal with the issue of vanishing gradients experienced in conventional RNN architectures. LSTM has an ability to selectively remember, update, and forget information, which makes it suitable for traffic predictions, speech recognition, natural language processing, and other areas related to time series analysis.
 
 \subsubsection{Fundamental Concept of LSTM}
 
-The primary objective of LSTM is to preserve important sequential information over long time intervals using memory cells and gating mechanisms. The architecture controls information flow through input, forget, and output gates, enabling efficient learning of temporal dependencies.
+Main goal of LSTM lies in storing the essential sequential data for long periods of
+time via using of memory cells and gate mechanisms.
 
 \subsubsection{Architecture and Working of LSTM}
 
-The overall workflow of LSTM consists of gate computation, memory cell update, and hidden state generation.
+The entire process of LSTM involves gate calculation, memory cell calculation, and hidden
+state calculation
 
 \subsubsection{Input Gate, Forget Gate, and Output Gate}
 At each time step, the current input and previous hidden state are used to compute the input, forget, and output gates using sigmoid activation functions. These gates regulate information flow into and out of the memory cell.
@@ -332,20 +358,17 @@ The computation of the hidden state in an LSTM cell is shown in Figure~\ref{fig:
 
 \subsubsection{Advantages of LSTM}
 
-LSTM effectively solves the vanishing gradient problem and learns long-term sequential dependencies using memory cells and gating mechanisms. It performs efficiently on sequential and time-series data and is widely used in applications such as traffic prediction, speech recognition, machine translation, and forecasting.
-
+LSTM is able to effectively tackle the vanishing gradient problem and to capture long-term sequential dependencies through memory cells and gating mechanisms. It works well on sequential and time-series data and is employed in such fields as traffic prediction, speech recognition, machine translation and forecasting.
 \subsubsection{Limitations of LSTM}
 
-Despite its advantages, LSTM is computationally expensive due to multiple gates and memory operations. Training requires higher computational resources and longer execution time, and performance may decrease for extremely long sequences or insufficient training data.
-
+Although beneficial, LSTM is a costly algorithm for computations involving more than one gate and memory operation. It is more expensive to train and takes longer to run, and it may be less accurate when the number of frames is very large or is too small to train.
 
 \section{Federated Learning}
 
-Federated Learning (FL) is a decentralized machine learning approach where multiple devices or organizations collaboratively train a shared model without exchanging raw data. Each client performs local training on its own dataset and shares only model parameters with a central server, enabling privacy-preserving collaborative learning across distributed environments.
-\subsection{Introduction}
+Federated Learning (FL) is a decentralized machine learning technique that involves multiple devices or organizations training a shared model without sharing raw data. Local training is done on each client's data, and only model parameters are shared with a central server to provide privacy-preserving collaborative learning in distributed environments.
 
-Traditional machine learning systems rely on centralized training, where data from multiple users or organizations is collected and stored on a central server for model development. Although effective, this approach raises significant concerns related to data privacy, security, and regulatory compliance. Federated Learning addresses these challenges by enabling collaborative model training without sharing confidential or sensitive data.
-In Trade-Based Money Laundering (TBML) detection systems, organizations such as banks and financial institutions can locally train models using transaction records and suspicious trade patterns while sharing only model parameters with a central server. Introduced by Google in 2016 for Gboard applications, Federated Learning has emerged as an important privacy-preserving approach for distributed machine learning systems.
+\subsection{Introduction}
+raditional machine learning systems rely on centralized training, where data from multiple users or organizations is collected and stored on a central server for model development. Although effective, this approach raises significant concerns related to data privacy, security, and regulatory compliance. Federated Learning addresses these challenges by enabling collaborative model training without sharing confidential or sensitive data. In Trade-Based Money Laundering (TBML) detection systems, organizations such as banks and financial institutions can locally train models using transaction records and suspicious trade patterns while sharing only model parameters with a central server. Introduced by Google in 2016 for Gboard applications, Federated Learning has emerged as an important privacy-preserving approach for distributed machine learning systems.
 
 The overall architecture and workflow of Federated Learning are illustrated in Figure~\ref{fig:fl_overview}.
 
@@ -359,13 +382,18 @@ The overall architecture and workflow of Federated Learning are illustrated in F
 % \textit{Source: Adapted from ``Principles and Components of Federated Learning Architectures" 
 % \href{https://arxiv.org/html/2502.05273v1}{Arxiv}.}
 
-Federated Learning also reduces communication overhead because only compact model updates are exchanged instead of complete datasets. This makes FL suitable for large-scale distributed environments involving mobile devices, IoT systems, edge devices, and financial institutions \cite{federated-arxiv}.
+ Federated Learning decreases communication overhead since
+communication happens through model updates rather than full datasets. Thus, federated learning is ideal for large-scale distributed settings such as mobile
+devices, Internet of Things systems, edge devices, and financial institution\cite{federated-arxiv}.
 
 \subsection{Working of Federated Learning}
 
-Federated Learning operates through iterative client-server interactions known as federated rounds. During each round, the central server distributes the current global model to selected clients, local training is performed independently on local datasets, and the updated model parameters are aggregated to generate an improved global model.
+Federated Learning uses an iterative client-server protocol where both client and
+server perform rounds of interaction, commonly referred to as federated rounds. In each round, the central server sends the existing global model to chosen
+clients, who train independently on their local data. Then, model parameters are aggregated to produce a new improved global model
 
-The workflow of the Federated Learning process, including model distribution, local training, parameter aggregation, and global model updates, is illustrated in Figure~\ref{fig:fl_workflow}.
+Figure~\ref{fig:fl_workflow} illustrates the federated
+learning working procedure, including global model distribution, independent local training, model parameters aggregation, and generation of global model improvements.
 
 \begin{figure}[H]
     \centering
@@ -376,11 +404,13 @@ The workflow of the Federated Learning process, including model distribution, lo
 
 \paragraph{Step 1: Initialization}
 
-An initial machine learning model is selected and initialized at the central server. Client devices or institutional servers are then prepared to participate in local training.
+A preliminary machine learning model is chosen and trained at the central server, while other client machines or institutional servers
+are ready for local training.
 
 \paragraph{Step 2: Client Selection}
 
-During each federated round, only a subset of clients is selected for training. These clients receive the latest global model parameters from the server.
+Client Selection Only a subset of clients is selected during each federated
+round and provided with updated global model parameters sent by the central server.
 
 \paragraph{Step 3: Local Training}
 
@@ -400,68 +430,73 @@ where \(w_{t+1}\) represents the updated global model, \(w_k^{(t+1)}\) denotes t
 
 \paragraph{Step 5: Termination}
 
-The federated training process continues iteratively until the desired accuracy, convergence criteria, or maximum communication rounds are achieved.
+The federated training process continues iteratively until the desired accuracy, convergence criteria, or maximum communication rounds are achieved
 
 \subsection{Advantages of Federated Learning}
 
-Federated Learning improves data privacy and security by ensuring that raw data remains within local devices or organizations. It supports regulatory compliance, enables collaborative intelligence without direct data sharing, reduces communication overhead, and improves model generalization using diverse distributed datasets. FL is also scalable and supports real-time learning on edge devices and organizational servers.
+Federated Learning improves data privacy and security by ensuring that raw data remains within local devices or organizations. It supports regulatory compliance, enables collaborative intelligence without direct data sharing, reduces communication overhead, and improves model generalization using diverse distributed datasets. FL is also scalable and supports real-time learning on edge devices and organizational servers. 
 
 \subsection{Limitations of Federated Learning}
 
-Despite its advantages, Federated Learning introduces challenges such as communication delays, high computational requirements, non-i.i.d. data distributions, client failures, synchronization issues, and security threats such as model poisoning and backdoor attacks. Variations in client hardware capabilities and unstable network connections can also affect training efficiency and global model convergence.
+Despite its advantages, Federated Learning introduces challenges such as communication delays, high computational requirements, non-i.i.d. data distributions, client failures, synchronization issues, and security threats such as model poisoning and backdoor attacks. Variations in client hardware capabilities and unstable network connections can also affect training efficiency and global model convergence. 
 
 
 %========================================================
 \section{User Interface}
 %========================================================
 
-Modern financial monitoring platforms increasingly rely on scalable web application technologies to support real-time transaction analysis, fraud monitoring, and interactive visualization of financial activities. The rapid growth of digital banking and online financial services has significantly increased the demand for responsive, secure, and data-driven monitoring systems capable of handling large volumes of transactional information efficiently. Consequently, modern Anti-Money Laundering systems employ component-based web architectures and client-server communication models to provide efficient user interaction and real-time analytical capabilities.
-
-Advanced frontend frameworks and backend service architectures play a critical role in enabling modular application development, dynamic rendering, secure authentication, and seamless integration with fraud detection engines. Such technologies support the visualization of suspicious transactional activities, alert generation, role-based access control, and automated compliance workflows within financial institutions. The integration of scalable user interface technologies with intelligent analytical systems further enhances operational efficiency and supports real-time financial crime investigation processes.
+Contemporary financial monitoring solutions use the rapidly evolving web application technologies as their basis. Increasing demand for responsive, scalable and data-driven monitoring solutions in the face of growing popularity of digital banking and financial services led to creation of scalable web application technologies designed to provide an efficient and fast transaction analysis, fraud monitoring and visual presentation of financial activities. As such, contemporary anti-money laundering solutions leverage component-based web architecture and client-server communication technology as a basis for providing efficient and scalable interaction and analytics. Frontend frameworks and backend service architectures enable the development of modular software solutions capable of supporting dynamic rendering, authentication and integration with the underlying fraud detection engine. This approach allows to visualize suspicious activities, generate alerts, provide access control based on user roles as well as automate compliance tasks.
 
 %========================================================
 \subsection[Modern Web Application Frameworks]{\textbf{Modern Web Application Frameworks}}
 %========================================================
 
-Modern web application frameworks provide the architectural foundation required for developing scalable, responsive, and interactive software systems. Traditional web applications primarily relied on static page rendering and tightly coupled server-side architectures, which limited dynamic user interaction and real-time data processing capabilities. In contrast, modern frameworks adopt component-based and asynchronous rendering approaches that improve application scalability, maintainability, and user experience within large-scale distributed systems.
+Modern web application frameworks represent architectural foundations for developing responsive, scalable and interactive applications. Contrary to traditional web applications which were predominantly built using static pages and tightly-coupled server-side architecture, modern web application frameworks utilize component-based architecture and asynchronous rendering approaches in order to increase the scalability, maintainability and efficiency of user interface in distributed environment. 
 
-Frontend frameworks such as React.js enable the development of reusable and modular user interface components capable of dynamically updating application states without requiring complete page reloads. Such frameworks employ virtual Document Object Model (DOM) mechanisms and state-driven rendering principles to efficiently manage user interactions and real-time data visualization. This architectural approach significantly improves responsiveness and enables scalable dashboard development for data-intensive applications such as financial monitoring systems.
+The use of frontend frameworks like React.js allows creating reusable and modular user
+interface elements that can change their state without reloading the entire web page. The
+virtual DOM is the key principle behind these frameworks, allowing for fast and smooth user
+interaction and visualization of real-time data. This approach ensures that applications
+respond quickly to any changes and improves their performance. Thus, such frameworks
+allow scalable dashboard implementation for data heavy apps like financial monitoring.
 
-Server-side rendering and hybrid rendering frameworks such as Next.js further enhance modern web application performance by combining client-side interactivity with optimized server-side content delivery. These frameworks support efficient routing, dynamic data fetching, and improved application scalability while reducing rendering overhead for large-scale systems. Consequently, modern web application frameworks have become an essential foundation for building secure, scalable, and real-time financial monitoring platforms.
+The combination of client-side interaction and server-side content generation in
+hybrid web frameworks such as Next.js helps to make web applications highly performant.
+These frameworks ensure optimal routing and data fetching and allow improving
+application scalability. Therefore, modern frameworks became a basis for creating secure,
+scalable, and real-time financial monitoring platforms
 
 
 %========================================================
 \subsection[Component Lifecycle and Reactivity]{\textbf{Component Lifecycle and Reactivity}}
 %========================================================
-
-Modern frontend frameworks such as React and Next.js utilize reactive rendering mechanisms to synchronize user interfaces with continuously changing application states and backend responses. Within the proposed TBML detection framework, this reactive architecture enables efficient visualization of transaction analytics, fraud alerts, compliance activities, and real-time monitoring information without requiring complete interface reloading. The component-based design additionally improves scalability, maintainability, and responsiveness within large-scale financial monitoring environments.
-
-The lifecycle of application components generally involves rendering, state initialization, reactive updates, synchronization, and resource cleanup operations during execution. The major lifecycle stages associated with the proposed dashboard architecture are summarized as follows:
+Reactive rendering techniques are employed by contemporary frontend frameworks like React and Next.js in order to keep user interfaces synchronized with the constantly changing state and backend response of applications. In the case of the proposed TBML detection framework, it allows for effective visualization of transaction analysis data, fraud alerts, compliance operations, and real-time monitoring data without the need to reload the entire interface. Component-based architecture also provides enhanced scalability, maintainability, and responsiveness when dealing with large-scale financial monitoring systems.
+Component lifecycle typically includes rendering, initializing state, reactivity, synchronization, and cleanup procedures while performing. Major stages in the lifecycle related to the proposed dashboard architecture include the following:
 
 \vspace{0.3cm}
 
 \noindent\textbf{Server-Side Rendering:}  
-Initially, dashboard components are rendered within the server environment where transaction summaries, analytical data, and monitoring information are processed before delivery to the client browser. This approach improves initial loading performance and reduces unnecessary client-side computational overhead.
-
+First, the rendering of dashboard components is performed at the server side, which processes transactions summaries, analysis data, and monitoring information for further transmission to the client's web browser. This approach allows for faster initial load times and improved search engine optimization (SEO) for the financial monitoring application.
 \vspace{0.2cm}
 
 \noindent\textbf{Hydration and Client Initialization:}  
-After the interface is loaded within the browser, React hydration enables interactive client-side functionalities including event handling, asynchronous API communication, local state initialization, and real-time dashboard services.
+Once the interface is rendered in the browser, React's hydration mechanism allows the creation of responsive client-side functionality such as events handling, asynchronous API communication, initial state setup, and real-time dashboard services.
 
 \vspace{0.2cm}
 
 \noindent\textbf{Reactive State Updates:}  
-As transaction states, fraud alerts, and analytical outputs change, React selectively updates only the affected interface components using Virtual DOM reconciliation mechanisms instead of re-rendering the complete dashboard.
+In accordance with changes that take place in transaction states, fraud alerts, and analytics, React updates only those parts of the interface that have been altered by employing the Virtual DOM reconciliation approach, as opposed to redrawing the whole dashboard.
 
 \vspace{0.2cm}
 
-\noindent\textbf{Dynamic Synchronization:}  
-The framework continuously synchronizes updated transaction information, compliance alerts, and monitoring analytics with the dashboard interface to support real-time fraud visualization and analytical consistency.
+\noindent\textbf{Synchronizing Dynamically:}
+ React continually synchronizes changes to transactions, compliance alerts, and monitoring analytics for use in fraud visualizations and consistent analytics on the dashboard.
 
 \vspace{0.2cm}
 
-\noindent\textbf{Resource Cleanup and Unmounting:}  
-When dashboard components are removed from the active interface, temporary states, subscriptions, and allocated resources are released automatically to maintain application stability and efficient memory utilization.
+\noindent\textbf{ Cleanup and Unmounting:}  
+As components are unmounted from the interface, temporary states, subscriptions, and allocated resources will be freed up automatically.
+This is critical in a world of constantly changing transactional data, fraud alerts, and analysis visualizations.
 
 \vspace{0.2cm}
 
@@ -470,34 +505,44 @@ Such lifecycle management principles are important within modern financial monit
 %========================================================
 \subsection[Data Visualization]{\textbf{Data Visualization}}
 %========================================================
-
-Understanding the theoretical aspects of data visualization is important for analyzing large volumes of financial transactions and interpreting suspicious transactional behavior within real-time monitoring systems. Visualization of analytical outputs enables financial institutions and compliance analysts to identify fraud patterns, transaction anomalies, risk distributions, and suspicious entity relationships more efficiently when compared with conventional tabular analysis methods. Interactive monitoring dashboards further improve situational awareness by enabling continuous observation of fraud alerts, transaction flows, and compliance activities without interrupting real-time analytical processes.
-This work utilizes a web-based dashboard architecture for financial monitoring, fraud visualization, and compliance-oriented analytical operations using modern frontend technologies and visualization frameworks.
+Theoretical aspects of data visualization must be understood when it comes to large amounts
+of financial transaction data and the analysis of suspicious transaction behavior in a
+real-time monitoring system. The visualization of the output of analytics allows for
+finer fraud pattern identification, transaction abnormalities, risk score distribution,
+and suspicious entity relationship identification compared to traditional table-based analytics. The use of a monitoring dashboard further increases the situational awareness
+provided by continuously monitoring fraud alerts, transaction streams, and compliance
+efforts without hindering the analytical process carried out in real time. This research employs a web-based dashboard design for the financial monitoring, fraud visualization,
+and compliance analysis based on recent frontend frameworks and visualization libraries.
 
 \noindent\textbf{Frontend Framework:}  
-Next.js is used for developing responsive and modular dashboard interfaces capable of supporting scalable financial monitoring applications. The framework provides server-side rendering, dynamic routing, and smooth integration with backend analytical services operating within the proposed TBML detection environment.
+Next.js framework is used for creating responsive dashboard interfaces for the creation of scalable financial monitoring platforms. The
+framework supports server-side rendering, dynamic routing, and seamless connection with
+backend analytical services running in the TBML detection environment.
 
 \vspace{0.2cm}
 
 \noindent\textbf{Analytical Visualization Components:}  
-Recharts is utilized to visualize transaction analytics, fraud classifications, risk-score distributions, and temporal financial trends through interactive graphs and dashboard components. These visualizations assist investigators and analysts in interpreting suspicious transactional behavior more efficiently during monitoring operations.
+Recharts framework is used for visualizing
+financial transaction analytics, fraud classification, risk score distribution, and financial time series trends through graphs and dashboard components.
+
 
 \vspace{0.2cm}
 
 \noindent\textbf{Role-Based Dashboard Interfaces:}  
-The dashboard architecture incorporates role-based access mechanisms to provide controlled access to fraud investigation workflows, Suspicious Transaction Report generation, real-time monitoring services, and institutional compliance operations according to user responsibilities and operational privileges.
+The dashboard design utilizes role-based access control capabilities to allow restricted access to fraud investigation workflow procedures,
+Suspicious Transaction Reports generation, monitoring facilities, and compliance operations within institutions depending on user roles and permissions.
 
 \vspace{0.2cm}
 
 \noindent\textbf{Interactive Monitoring Services:}  
-Interactive dashboard panels support continuous monitoring of suspicious transactions, fraud alerts, transaction histories, and prediction results generated by the analytical framework. The monitoring environment additionally supports filtering, notification handling, export functionalities, and compliance-oriented investigation workflows for institutional analysts and regulatory authorities.
+Interactive dashboards enable continuous monitoring of suspicious transactions, fraud notifications, transaction records, and predictions made
+by the analytical framework. The monitoring process includes filtering, notification processing, exporting facilities, and compliance-related investigative procedures for both institutional
+analysts and supervisory agencies.
 
 \vspace{0.2cm}
 
 
-
-The detailed implementation and integration of these visualization technologies within the proposed TBML detection framework are discussed further in the system implementation chapter. The implementation focuses on real-time dashboard synchronization, fraud alert visualization, transaction investigation workflows, and Suspicious Transaction Report (STR) management functionalities.
-
+Implementation details of visualization tools within the proposed TBML detection model will be further discussed in the following chapter related to system implementation. The implementation process emphasizes real-time dashboard updating, fraud notifications visualization, transaction investigation processes, and Suspicious Transaction Report generation features. 
 
 \section{Summary}
-In this chapter, the theoretical foundations associated with Trade-Based Money Laundering (TBML) detection were presented, including laundering methodologies, limitations of conventional Anti-Money Laundering systems, graph-based financial modeling, heterogeneous Graph Neural Networks, Graph Attention mechanisms, and federated learning concepts. The chapter additionally discussed real-time financial monitoring architectures and visualization systems used for fraud analytics and compliance operations. These concepts collectively establish the analytical and computational foundation for the proposed privacy-preserving TBML detection framework presented in the subsequent chapters.
+This chapter introduced the theory relevant to Trade-Based Money Laundering (TBML) detection techniques, including TBML methods, drawbacks of traditional AML systems, graphical models of finance, Heterogeneous Graph Neural Networks, Graph Attention Networks, and federated learning frameworks. This chapter also provided an insight into real-time financial monitoring models and visualization techniques applied for fraud analysis and compliance purposes.
