@@ -232,9 +232,7 @@ tabsize=2
 
 import numpy as numpy
 import flwr as flwr
-
 from model import TBML_DetectionModel
-
 
 class modelStrategy(flwr.server.strategy.FedAvg):
 
@@ -286,7 +284,6 @@ if __name__ == "__main__":
     )
 
     # Initialize server-side model
-
     model = TBML_DetectionModel(
         kyc_dim=3,
         swift_dim=1,
@@ -297,7 +294,6 @@ if __name__ == "__main__":
     )
 
     # Convert model weights to Flower parameters
-
     ndarrays = [
 
         val.cpu().numpy()
@@ -313,7 +309,6 @@ if __name__ == "__main__":
     )
 
     # Federated aggregation strategy
-
     strategy = modelStrategy(
 
         fraction_fit=1.0,
@@ -781,3 +776,109 @@ if __name__ == "__main__":
     )
 
 \end{tcblisting}
+
+
+%========================================================
+\section{Round-wise Federated Convergence Data}
+\label{sec:federated_convergence_data}
+%========================================================
+
+The numerical values corresponding to the convergence plots presented for the participating institutional clients are summarized in this section. These values represent the Accuracy, Precision, and Recall metrics obtained during successive federated aggregation rounds and were utilized to generate the convergence graphs discussed previously. The tabulated results provide quantitative evidence regarding the convergence characteristics of the proposed Hybrid HGNN--LSTM federated learning framework across distributed banking environments.
+
+%--------------------------------------------------------
+\subsection{BANKA Round-wise Convergence Metrics}
+%--------------------------------------------------------
+
+Table~\ref{tab:banka_round_metrics} presents the round-wise performance progression observed for the BANKA institutional client during federated training.
+
+\begin{table}[H]
+\centering
+\caption{BANKA Round-wise Federated Convergence Metrics}
+\label{tab:banka_round_metrics}
+\renewcommand{\arraystretch}{1.2}
+\vspace{0.2cm}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Round} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} \\
+\hline
+1 & 0.9480 & 0.8981 & 0.8502 \\
+2 & 0.9586 & 0.9090 & 0.8814 \\
+3 & 0.9547 & 0.8755 & 0.8694 \\
+4 & 0.9593 & 0.8992 & 0.8832 \\
+5 & 0.9654 & 0.9168 & 0.9004 \\
+6 & 0.9607 & 0.8949 & 0.8869 \\
+7 & 0.9607 & 0.9152 & 0.8870 \\
+8 & 0.9627 & 0.9172 & 0.8928 \\
+9 & 0.9640 & 0.9216 & 0.8965 \\
+10 & 0.9654 & 0.9153 & 0.9003 \\
+\hline
+\end{tabular}
+\end{table}
+
+The BANKA client exhibited a gradual improvement in all evaluation metrics throughout the federated aggregation process. Although minor fluctuations were observed during intermediate synchronization rounds, the overall upward trend indicates effective convergence and improved analytical performance resulting from collaborative model optimization.
+
+%--------------------------------------------------------
+\subsection{BANKB Round-wise Convergence Metrics}
+%--------------------------------------------------------
+
+Table~\ref{tab:bankb_round_metrics} summarizes the round-wise performance metrics obtained for the BANKB institutional client during federated training.
+
+\begin{table}[H]
+\centering
+\caption{BANKB Round-wise Federated Convergence Metrics}
+\label{tab:bankb_round_metrics}
+\renewcommand{\arraystretch}{1.2}
+\vspace{0.2cm}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Round} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} \\
+\hline
+1 & 0.9480 & 0.9049 & 0.8533 \\
+2 & 0.9580 & 0.9068 & 0.8823 \\
+3 & 0.9620 & 0.8991 & 0.8929 \\
+4 & 0.9587 & 0.9017 & 0.8842 \\
+5 & 0.9607 & 0.9106 & 0.8900 \\
+6 & 0.9660 & 0.9156 & 0.9045 \\
+7 & 0.9540 & 0.9018 & 0.8714 \\
+8 & 0.9567 & 0.9060 & 0.8790 \\
+9 & 0.9554 & 0.9039 & 0.8750 \\
+10 & 0.9640 & 0.9148 & 0.8993 \\
+\hline
+\end{tabular}
+\end{table}
+
+The BANKB client demonstrated stable federated convergence across successive aggregation rounds. Performance improvements became increasingly evident after the fifth aggregation cycle, illustrating the effectiveness of distributed parameter sharing and global model synchronization within the federated learning environment.
+
+%--------------------------------------------------------
+\subsection{BANKC Round-wise Convergence Metrics}
+%--------------------------------------------------------
+
+Table~\ref{tab:bankc_round_metrics} presents the round-wise convergence statistics obtained for the BANKC institutional client.
+
+\begin{table}[H]
+\centering
+\caption{BANKC Round-wise Federated Convergence Metrics}
+\label{tab:bankc_round_metrics}
+\renewcommand{\arraystretch}{1.2}
+\vspace{0.2cm}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Round} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} \\
+\hline
+1 & 0.9567 & 0.9190 & 0.8661 \\
+2 & 0.9640 & 0.9188 & 0.8900 \\
+3 & 0.9647 & 0.9000 & 0.8910 \\
+4 & 0.9686 & 0.9228 & 0.9044 \\
+5 & 0.9680 & 0.9240 & 0.9021 \\
+6 & 0.9693 & 0.9182 & 0.9061 \\
+7 & 0.9627 & 0.9128 & 0.8862 \\
+8 & 0.9667 & 0.9220 & 0.8984 \\
+9 & 0.9667 & 0.9220 & 0.8984 \\
+10 & 0.9693 & 0.9224 & 0.9063 \\
+\hline
+\end{tabular}
+\end{table}
+
+The BANKC client achieved the strongest convergence characteristics among the participating institutions. The observed progression demonstrates consistently high Accuracy, Precision, and Recall values throughout the federated training process. The convergence behavior confirms that the proposed Hybrid HGNN--LSTM framework successfully adapts to heterogeneous institutional transaction distributions while preserving privacy through decentralized model training.
+
+The overall convergence results obtained across BANKA, BANKB, and BANKC validate the effectiveness of the federated learning strategy in improving model generalization, maintaining stable analytical performance, and enabling collaborative fraud detection without centralized data sharing. The gradual reduction in metric fluctuations observed during later aggregation rounds further indicates successful stabilization of the global model and effective knowledge transfer between participating institutional clients.
