@@ -67,7 +67,7 @@ The generation of the synthetic dataset is engineered to emulate the multi-modal
 
 The underlying implementation utilizes a modular pipeline that leverages the Pandas library for vectorized data manipulation and Memgraph for graph-structured persistence. Each transaction record is anchored to its corresponding trade documentation through a schema-aligned bridge, ensuring that the structural connectivity required for Graph Neural Network (GNN) feature extraction is preserved. By integrating temporal constraints and noise-injection modules, the pipeline creates a realistic representation of financial behaviors, ranging from standard legitimate interactions to camouflaged, high-velocity laundering topologies.
 
-\subsubsection[Adversarial Refinement for Dataset Fidelity]{\textbf{Adversarial Refinement for Dataset Fidelity}}
+\subsection[Adversarial Refinement for Dataset Fidelity]{\textbf{Adversarial Refinement for Dataset Fidelity}}
 
 To improve the realism of the synthetic dataset and reduce unintended learning biases, the data-generation pipeline was refined using multiple adversarial and statistically grounded modifications \cite{synthetic-tbml-framework}. These refinements were introduced to ensure that the fraud-detection framework learned meaningful transactional and structural behaviors instead of relying on simple heuristic shortcuts or deterministic patterns.
 
