@@ -17,32 +17,63 @@ The testing workflow additionally utilized Playwright-based browser automation f
 %========================================================
 
 Each backend analytical service, dashboard workflow, authentication mechanism, and database synchronization component was independently tested to validate correctness, boundary handling, synchronization stability, and operational consistency before integration into the complete TBML detection framework.
+
 %========================================================
 \subsection[Unit Testing of Authentication and RBAC Module]{\textbf{Unit Testing of Authentication and RBAC Module}}
 %========================================================
 
-The authentication and role-based access control environment was independently validated to ensure secure user authentication, authorization management, middleware-driven route protection, credential verification, and institutional role isolation across banking and regulatory dashboard interfaces. The testing workflow additionally verified protected API access, invalid credential handling, unauthorized route restrictions, and role-specific dashboard rendering across distributed monitoring environments.
+The authentication and role-based access control environment was independently validated to ensure secure user authentication, authorization management, JWT token generation, cookie persistence, middleware-driven route protection, credential verification, and institutional role isolation across banking and regulatory dashboard interfaces. The testing workflow additionally verified login-session management, token storage mechanisms, unauthorized route restrictions, and role-specific dashboard rendering across distributed monitoring environments.
+
 \renewcommand{\arraystretch}{1.3}
+
+%========================================================
+% Failed Test Case
+%========================================================
 
 \begin{table}[H]
 \centering
-\caption{TC-001: Unit Testing of Authentication and RBAC Module}
-\label{tab:auth_rbac_test}
+\caption{TC-001: Failed Authentication Session Validation}
+\label{tab:auth_failed_test}
 \vspace{0.2cm}
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
 \hline
 \textbf{Serial Number of Test Case} & TC-001 \\ \hline
-\textbf{Name of Test Case} & Protected Dashboard Access Validation \\ \hline
-\textbf{Feature being Tested} & Authentication and Authorization Validation \\ \hline
-\textbf{Description} & Validate protected route access, JWT verification, and role-based authorization \\ \hline
-\textbf{Sample Input} & Invalid JWT session and unauthorized user request \\ \hline
-\textbf{Expected Output} & Unauthorized access denied with authentication error response \\ \hline
-\textbf{Actual Output} & Invalid sessions blocked and unauthorized users redirected successfully \\ \hline
+\textbf{Name of Test Case} & User Login and Session Persistence Validation \\ \hline
+\textbf{Feature being Tested} & JWT Token Generation and Cookie Storage Mechanism \\ \hline
+\textbf{Description} & Validate successful authentication and automatic login session creation after credential verification \\ \hline
+\textbf{Sample Input} & Valid username and password credentials \\ \hline
+\textbf{Expected Output} & User authenticated successfully and JWT token stored in browser cookies for protected dashboard access \\ \hline
+\textbf{Actual Output} & Authentication completed but JWT token was not persisted in cookies, causing automatic session validation failure \\ \hline
+\textbf{Remarks} & Failed test \\ \hline
+\end{tabular}
+\end{table}
+
+As shown in Table~\ref{tab:auth_failed_test}, the initial authentication workflow successfully validated user credentials and generated a JWT access token. However, the generated token was not properly persisted within browser cookies because of a cookie-configuration issue in the authentication middleware. Consequently, the session validation mechanism failed during protected route verification, causing users to be redirected back to the login interface despite successful credential authentication. The test identified shortcomings in cookie storage configuration and session persistence handling that prevented seamless authentication across protected dashboard environments.
+
+%========================================================
+% Successful Test Case
+%========================================================
+
+\begin{table}[H]
+\centering
+\caption{TC-002: Successful Authentication and JWT Session Validation}
+\label{tab:auth_success_test}
+\vspace{0.2cm}
+\begin{tabular}{|p{4.2cm}|p{9cm}|}
+\hline
+\textbf{Serial Number of Test Case} & TC-002 \\ \hline
+\textbf{Name of Test Case} & User Login and Protected Dashboard Access Validation \\ \hline
+\textbf{Feature being Tested} & Authentication, JWT Session Management, and RBAC Authorization \\ \hline
+\textbf{Description} & Validate complete login workflow including credential verification, JWT generation, cookie persistence, and protected route authorization \\ \hline
+\textbf{Sample Input} & Valid username and password credentials \\ \hline
+\textbf{Expected Output} & User authenticated successfully, JWT stored correctly, and role-based dashboard access granted \\ \hline
+\textbf{Actual Output} & JWT generated and persisted successfully, session validated correctly, and authorized dashboard rendered without errors \\ \hline
 \textbf{Remarks} & Successful test \\ \hline
 \end{tabular}
 \end{table}
 
-As shown in Table~\ref{tab:auth_rbac_test}, middleware-driven session validation successfully enforced protected route isolation and role-specific dashboard authorization across institutional monitoring environments. The testing workflow validated JWT token verification, session-expiration handling, credential validation, protected API access control, and middleware-based authorization checks across banking and regulator dashboards. Invalid credentials, unauthorized API requests, expired authentication sessions, and direct access attempts to protected routes were correctly rejected using backend access-control policies before protected resources were rendered. The authentication workflow additionally verified successful role mapping for \texttt{BANK\_USER} and \texttt{ADMIN} entities to ensure secure dashboard isolation and controlled access to institutional fraud-monitoring operations.
+As shown in Table~\ref{tab:auth_success_test}, the authentication workflow was retested after correcting the cookie persistence and session-management configuration. The revised implementation successfully generated and stored JWT tokens within secure browser cookies, enabling middleware-driven session validation across protected routes. The testing workflow verified successful authentication, automatic session restoration, role mapping for \texttt{BANK\_USER} and \texttt{ADMIN} entities, protected API authorization, and secure dashboard rendering. All protected resources remained accessible only to authorized users, thereby confirming the reliability of the authentication and RBAC infrastructure within the proposed framework.
+
 %========================================================
 \subsection[Unit Testing of Kafka Transaction Streaming]{\textbf{Unit Testing of Kafka Transaction Streaming}}
 %========================================================
@@ -52,13 +83,13 @@ The Kafka transaction streaming environment was independently tested to validate
 
 \begin{table}[H]
 \centering
-\caption{TC-002: Unit Testing of Kafka Transaction Streaming}
+\caption{TC-003: Unit Testing of Kafka Transaction Streaming}
 \label{tab:kafka_test}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
 \hline
-\textbf{Serial Number of Test Case} & TC-002 \\ \hline
+\textbf{Serial Number of Test Case} & TC-003 \\ \hline
 \textbf{Name of Test Case} & Publish Valid SWIFT Transaction \\ \hline
 \textbf{Feature being Tested} & Kafka Event Streaming and Message Synchronization \\ \hline
 \textbf{Description} & Validate transaction publishing and topic-based event synchronization \\ \hline
@@ -79,13 +110,13 @@ The heterogeneous graph-construction environment was independently tested to val
 
 \begin{table}[H]
 \centering
-\caption{TC-003: Unit Testing of Graph Construction Module}
+\caption{TC-004: Unit Testing of Graph Construction Module}
 \label{tab:graph_construction_test}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
 \hline
-\textbf{Serial Number of Test Case} & TC-003 \\ \hline
+\textbf{Serial Number of Test Case} & TC-004 \\ \hline
 \textbf{Name of Test Case} & Heterogeneous Graph Entity Generation \\ \hline
 \textbf{Feature being Tested} & Memgraph Graph Construction and Relationship Mapping \\ \hline
 \textbf{Description} & Validate transactional node generation and graph relationship synchronization \\ \hline
@@ -107,13 +138,13 @@ The STR generation workflow was independently tested to validate suspicious tran
 
 \begin{table}[H]
 \centering
-\caption{TC-004: Unit Testing of STR Generation Workflow}
+\caption{TC-005: Unit Testing of STR Generation Workflow}
 \label{tab:str_generation_test}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
 \hline
-\textbf{Serial Number of Test Case} & TC-004 \\ \hline
+\textbf{Serial Number of Test Case} & TC-005 \\ \hline
 \textbf{Name of Test Case} & Suspicious Transaction Report Generation \\ \hline
 \textbf{Feature being Tested} & STR Generation and Compliance Synchronization \\ \hline
 \textbf{Description} & Validate fraud escalation and regulator-side STR synchronization workflow \\ \hline
@@ -136,13 +167,13 @@ The notification synchronization environment was independently tested to validat
 
 \begin{table}[H]
 \centering
-\caption{TC-005: Unit Testing of Notification Workflow}
+\caption{TC-006: Unit Testing of Notification Workflow}
 \label{tab:notification_workflow_test}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
 \hline
-\textbf{Serial Number of Test Case} & TC-005 \\ \hline
+\textbf{Serial Number of Test Case} & TC-006 \\ \hline
 \textbf{Name of Test Case} & Fraud Alert and Compliance Notification Propagation \\ \hline
 \textbf{Feature being Tested} & Notification Synchronization and Alert Delivery \\ \hline
 \textbf{Description} & Validate fraud-alert propagation across banking and regulator monitoring environments \\ \hline
@@ -174,13 +205,13 @@ This integration test validated end-to-end synchronization between Kafka-based t
 
 \begin{table}[H]
 \centering
-\caption{TC-006: Integration Testing of Kafka and Memgraph Pipeline}
-\label{tab:kafka_memgraph_integration_test}`'
+\caption{TC-007: Integration Testing of Kafka and Memgraph Pipeline}
+\label{tab:kafka_memgraph_integration_test}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
 \hline
-\textbf{Serial Number of Test Case} & TC-006 \\ \hline
+\textbf{Serial Number of Test Case} & TC-007 \\ \hline
 \textbf{Name of Test Case} & Transaction Stream and Graph Synchronization Workflow \\ \hline
 \textbf{Feature being Tested} & Kafka Event Propagation and Memgraph Synchronization \\ \hline
 \textbf{Description} & Validate transaction-stream synchronization and heterogeneous graph generation \\ \hline
@@ -206,13 +237,13 @@ This integration test validated synchronization between fraud-prediction service
 
 \begin{table}[H]
 \centering
-\caption{TC-007: Integration Testing of Fraud Prediction and Dashboard Synchronization}
+\caption{TC-008: Integration Testing of Fraud Prediction and Dashboard Synchronization}
 \label{tab:fraud_prediction_dashboard_integration_test}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
 \hline
-\textbf{Serial Number of Test Case} & TC-007 \\ \hline
+\textbf{Serial Number of Test Case} & TC-008 \\ \hline
 \textbf{Name of Test Case} & Fraud Prediction and Dashboard Rendering Workflow \\ \hline
 \textbf{Feature being Tested} & PostgreSQL Synchronization and Dashboard Visualization \\ \hline
 \textbf{Description} & Validate fraud-prediction synchronization into institutional monitoring dashboards \\ \hline
@@ -238,13 +269,13 @@ The STR synchronization workflow successfully validated fraud escalation, compli
 
 \begin{table}[H]
 \centering
-\caption{TC-008: Integration Testing of STR Generation Workflow}
+\caption{TC-009: Integration Testing of STR Generation Workflow}
 \label{tab:str_generation_integration_test}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
 \hline
-\textbf{Serial Number of Test Case} & TC-008 \\ \hline
+\textbf{Serial Number of Test Case} & TC-009 \\ \hline
 \textbf{Name of Test Case} & Fraud Escalation and STR Compliance Workflow \\ \hline
 \textbf{Feature being Tested} & STR Lifecycle Management and Compliance Synchronization \\ \hline
 \textbf{Description} & Validate fraud escalation and regulator-side STR synchronization workflow \\ \hline
@@ -268,13 +299,13 @@ Middleware-driven authentication workflows successfully validated session author
 
 \begin{table}[H]
 \centering
-\caption{TC-009: Integration Testing of Authentication and Protected Dashboard Rendering}
+\caption{TC-010: Integration Testing of Authentication and Protected Dashboard Rendering}
 \label{tab:auth_dashboard_integration_test}
 \vspace{0.2cm}
 
 \begin{tabular}{|p{4.2cm}|p{9cm}|}
 \hline
-\textbf{Serial Number of Test Case} & TC-009 \\ \hline
+\textbf{Serial Number of Test Case} & TC-010 \\ \hline
 \textbf{Name of Test Case} & Authenticated Dashboard Access and Rendering Workflow \\ \hline
 \textbf{Feature being Tested} & Session Validation and Role-Based Dashboard Authorization \\ \hline
 \textbf{Description} & Validate authenticated dashboard rendering and protected route authorization \\ \hline
@@ -522,6 +553,7 @@ The federated convergence workflow was evaluated using longitudinal Accuracy, Pr
 \end{figure}
 
 As illustrated in Figure~\ref{fig:banka_progression}, the BANKA institutional client exhibited a consistent improvement in classification performance across successive federated aggregation rounds. Although minor fluctuations were observed during the initial synchronization stages, the Accuracy, Precision, and Recall metrics demonstrated an overall upward trend as federated training progressed. Accuracy increased steadily from approximately 94.8\% to 96.5\%, while Precision and Recall improved from 89.8\% to 91.5\% and 85.0\% to 90.0\%, respectively. Following the fifth aggregation round, the performance metrics exhibited reduced variation and greater stability, indicating effective convergence of the federated learning process. The observed progression validates the ability of distributed parameter aggregation to enhance model generalization and maintain consistent analytical performance across institutional training environments without centralized data sharing.
+The detailed round-wise convergence metrics corresponding to the graphs presented in Figure~\ref{fig:banka_progression} are provided in Appendix~\ref{tab:banka_round_metrics}.
 
 
 %--------------------------------------------------------
@@ -566,7 +598,7 @@ As illustrated in Figure~\ref{fig:banka_progression}, the BANKA institutional cl
 \end{figure}
 
 As illustrated in Figure~\ref{fig:bankb_progression}, the BANKB institutional client exhibited progressive improvement in classification performance throughout successive federated aggregation rounds. Accuracy, Precision, and Recall demonstrated an overall upward trend despite moderate fluctuations observed during intermediate communication rounds. Accuracy increased from approximately 94.8\% to 96.4\%, while Precision and Recall improved from 90.5\% to 91.5\% and 85.3\% to 89.9\%, respectively. Temporary performance variations observed during later rounds were effectively recovered through subsequent federated updates, indicating stable parameter synchronization and continued model refinement. The final aggregation rounds achieved consistently strong analytical performance, demonstrating effective federated convergence and successful knowledge sharing across distributed institutional training environments without centralized data exchange.
-
+The detailed round-wise convergence metrics corresponding to the graphs presented in Figure~\ref{fig:bankb_progression} are provided in Appendix~\ref{tab:bankb_round_metrics}.
 %--------------------------------------------------------
 \subsection{BANKC Federated Convergence}
 %--------------------------------------------------------
@@ -607,6 +639,7 @@ As illustrated in Figure~\ref{fig:bankb_progression}, the BANKB institutional cl
 \label{fig:bankc_progression}
 \end{figure}
 As illustrated in Figure~\ref{fig:bankc_progression}, the BANKC institutional client exhibited highly stable federated convergence behavior across successive aggregation rounds. The Accuracy, Precision, and Recall metrics demonstrated a consistent upward trend during the initial communication stages and subsequently maintained stable performance with only minor fluctuations throughout the remaining federated rounds. Accuracy improved from approximately 95.7\% to 96.9\%, while Precision and Recall converged to nearly 92.2\% and 90.6\%, respectively. Although slight performance variations were observed during intermediate synchronization stages, the metrics rapidly recovered and remained within a narrow range, indicating effective distributed parameter aggregation and robust model generalization. The observed convergence characteristics validate stable federated optimization and demonstrate the framework's ability to maintain consistent analytical performance across heterogeneous institutional transaction environments without centralized data sharing.
+The detailed round-wise convergence metrics corresponding to the graphs presented in Figure~\ref{fig:bankc_progression} are provided in Appendix~\ref{tab:bankc_round_metrics}.
 
 %========================================================
 \subsection[Precision--Recall and Confusion Matrix Validation]{\textbf{Precision--Recall and Confusion Matrix Validation}}
