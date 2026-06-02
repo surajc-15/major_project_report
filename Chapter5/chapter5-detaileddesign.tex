@@ -61,8 +61,10 @@ The transaction processing Module acts as the initial ingestion environment with
 The input data processed within this Module includes sender and receiver account identifiers, transaction amounts, commodity types, trade quantities, trade values, invoice details, transaction timestamps, and institutional monitoring attributes associated with financial activities. The collected transactional data is validated, normalized, and converted into structured transaction records to support reliable downstream analytical processing.
 
 The processed transaction events are published into Kafka streaming topics to enable asynchronous communication between backend services and analytical modules. The generated transaction streams serve as the primary input for graph construction, feature extraction, and graph-based fraud detection operations within the proposed framework.
+
+
 %========================================================
-\subsubsection[Graph Construction Module]{\textbf{Graph Construction Module}}
+\subsection[Graph Construction Module]{\textbf{Graph Construction Module}}
 %========================================================
 
 The graph construction module transforms processed transaction streams into heterogeneous financial transaction graphs for downstream graph-based analytical processing. The module receives validated transaction events from Kafka consumer services and models financial interactions between accounts, transactions, and trade documents within a connected graph environment.
