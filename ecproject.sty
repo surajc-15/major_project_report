@@ -625,12 +625,21 @@
 
     \ifPG
     \fancyfoot[C] {\@mastersInSF\, in \@PGprgName, Department of \@departmentSF,\space\@acadYear}%
-    \fancyfoot[R] {}%
     \else
-    \fancyfoot[L] {\ifMinor UG Minor Project \else \ifIDP Interdisciplinary Project \else \ifDTL Design Thinking Lab \else \ifINT UG Internship \else UG Major Project \fi\fi\fi\fi  Report}%
-    \fancyfoot[C] {\ifIDP \else Department of \@departmentSF\fi}%
-    \fancyfoot[R] {\@acadYear}%
+    \ifIDP
+    \fancyfoot[L] {RV College of Engineering\textsuperscript{\small\textregistered}}%
+    \fancyfoot[C] {\@acadYear}%
+    \else
+    \ifINT
+    \fancyfoot[L] {\ifPG PG\else UG\fi\space Internship Report} 
+    \fancyfoot[C] {Department of \@departmentSF, \@acadYear}% 
+    \else
+    \fancyfoot[L] {\ifMinor UG Minor Project Report\else \ifDTL Design Thinking Lab Report\else Department of \@departmentSF \fi\fi }%
+    \fancyfoot[C] {\ifDTL \hspace{2cm}\else \fi \@acadYear}%
     \fi
+    \fi
+    \fi
+    \fancyfoot[R]{\thepage}%
     \ifIDP
     \else
 %    \fancyhead[C] {RV College of Engineering\textsuperscript{\small\textregistered}, Bengaluru - 560059}%
