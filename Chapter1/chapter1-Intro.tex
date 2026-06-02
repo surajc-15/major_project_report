@@ -2,14 +2,14 @@
 
 International trade and digital finance have made global transactions faster, but also harder to monitor. Criminals increasingly exploit this complexity to move illicit value through legitimate trade activity, exposing the limits of conventional Anti-Money Laundering (AML) systems. Trade-Based Money Laundering (TBML) is especially difficult to detect because the suspicious activity is hidden inside normal commercial exchanges. This creates a clear need for intelligent, scalable, and privacy-preserving methods that can uncover hidden transactional relationships in real time.
 
-\begin{quote}
-\itshape
-``For financial institutions, TBML is uniquely challenging because illicit funds are embedded within legitimate trade transactions, leaving traditional AML controls blind to the risks.''
+% \begin{quote}
+% \itshape
+% ``For financial institutions, TBML is uniquely challenging because illicit funds are embedded within legitimate trade transactions, leaving traditional AML controls blind to the risks.''
 
-\vspace{0.2cm}
+% \vspace{0.2cm}
 
-\hfill -- Dr. Sebastian Hetzler, IMTF Co-CEO \cite{imtf_tbml_scale}
-\end{quote}
+% \hfill -- Dr. Sebastian Hetzler, IMTF Co-CEO \cite{imtf_tbml_scale}
+% \end{quote}
 
 TBML works by blending illicit financial flows into ordinary trade transactions, which reduces the effectiveness of rule-based compliance checks and isolated transaction monitoring.
 
@@ -108,7 +108,7 @@ Although recent studies demonstrate the effectiveness of machine learning and gr
 \section[Motivation]{\textbf{Motivation}}
 %========================================================
 
-The work, \textit{``Federated Heterogeneous Graph Neural Networks for Real-Time Detection of Trade-Based Money Laundering''}, was selected to address the growing complexity of financial crime in modern trade ecosystems. Conventional AML systems often rely on rule-based checks and isolated transaction analysis, which makes them less effective at identifying coordinated laundering patterns spread across connected financial networks. In practice, this leads to more false positives, more manual review, and weaker detection of sophisticated TBML activity.
+The work, Federated Heterogeneous Graph Neural Networks for Real-Time Detection of Trade-Based Money Laundering, was selected to address the growing complexity of financial crime in modern trade ecosystems. Conventional AML systems often rely on rule-based checks and isolated transaction analysis, which makes them less effective at identifying coordinated laundering patterns spread across connected financial networks. In practice, this leads to more false positives, more manual review, and weaker detection of sophisticated TBML activity.
 
 This project addresses these limitations by implementing a privacy-preserving TBML detection framework that combines real-time transaction streaming, heterogeneous graph intelligence, and federated learning within a unified architecture. Financial entities and trade transactions are modeled as interconnected graph structures in Memgraph, enabling the HGNN–LSTM model to capture both relational dependencies and temporal transaction behavior. A Flower-based federated learning environment allows participating institutions to collaboratively train fraud-detection models without sharing sensitive transactional data, thereby maintaining regulatory compliance and data confidentiality. The framework further integrates automated Suspicious Transaction Report (STR) generation, role-based compliance dashboards, and real-time monitoring services, providing an end-to-end platform for intelligent fraud detection, investigation, and regulatory reporting.
 %========================================================
@@ -168,29 +168,31 @@ Graph attention mechanisms are used to capture hidden relationships and suspicio
 \section[Assumptions and Constraints of the Work]{\textbf{Assumptions and Constraints of the Work}}
 %========================================================
 
-\subsection*{Assumptions}
+\subsection{Assumptions}
 
-\begin{itemize}
+{\renewcommand{\theenumi}{\roman{enumi}}\renewcommand{\labelenumi}{(\theenumi)}%
+\begin{enumerate}
     \item The financial transaction records, trade invoices, and customer-related information used for analysis are assumed to be sufficiently structured, consistent, and preprocessed for effective model training and evaluation.
-    
+
     \item It is assumed that participating financial institutions maintain similar transactional formats and standardized trade-related attributes required for graph construction and suspicious activity analysis.
-    
+
     \item The generated financial datasets are assumed to contain sufficient normal and suspicious transactional patterns necessary for learning hidden behavioral relationships associated with Trade-Based Money Laundering activities.
-    
+
     \item It is assumed that heterogeneous graph representations can effectively model relationships among accounts, organizations, transactions, invoices, and trade entities for identifying suspicious financial behavior.
-\end{itemize}
+\end{enumerate}}
 
-\subsection*{Constraints}
+\subsection{Constraints}
 
-\begin{itemize}
+{\renewcommand{\theenumi}{\roman{enumi}}\renewcommand{\labelenumi}{(\theenumi)}%
+\begin{enumerate}
     \item Limited access to real-world Trade-Based Money Laundering datasets due to institutional privacy regulations and confidentiality policies may affect the diversity of transactional data used for evaluation.
-    
+
     \item Large-scale graph construction and real-time transaction analysis may increase computational complexity and memory requirements during fraud detection operations.
-    
+
     \item The performance of the proposed framework depends significantly on the quality, completeness, and accuracy of the financial data available for model training and testing.
-    
+
     \item The proposed framework is validated primarily under controlled academic and experimental conditions and may require additional optimization for large-scale industrial deployment.
-\end{itemize}
+\end{enumerate}}
 
 \newpage
 %========================================================
