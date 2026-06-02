@@ -1,4 +1,4 @@
-\chapter{Theory and Fundamentals of Project}
+\chapter{Theory and Concepts of the Proposed TBML Detection Framework}
 
 Developing an intelligent framework for Trade-Based Money Laundering detection requires a strong foundation in financial crime analysis, graph theory, and machine learning techniques. This chapter presents the fundamental concepts associated with Trade-Based Money Laundering, Graph Neural Networks, Graph Attention mechanisms, heterogeneous graph representation, and federated learning. The chapter further discusses the computational principles involved in relational transaction modeling, privacy-preserving learning, and real-time fraud analytics. These concepts collectively form the theoretical foundation for the proposed fraud detection framework.
 
@@ -45,36 +45,20 @@ Figure~\ref{fig:tbml_cycle} illustrates a typical Trade-Based Money Laundering w
 
 Trade-Based Money Laundering (TBML) involves manipulating trade documents, shipment details, and financial transactions to move illicit funds across borders while making them appear legitimate. Criminal organizations exploit the complexity of international trade systems to avoid detection and conceal illegal financial activities.
 
-%========================================================
-\subsubsection[Over Invoicing]{\textbf{Over Invoicing}}
-%========================================================
-
+\paragraph{\textbf{(i) Over Invoicing}}
 Over invoicing occurs when the declared value of goods is intentionally set higher than the actual market price. This allows excess money to be transferred under the appearance of legitimate trade payments.
 
-%========================================================
-\subsubsection[Under Invoicing]{\textbf{Under Invoicing}}
-%========================================================
-
+\paragraph{\textbf{(ii) Under Invoicing}}
 Under invoicing involves declaring goods at a lower value than their actual market price. This technique is commonly used to hide profits, evade taxes, and move funds secretly across borders.
 
-%========================================================
-\subsubsection[Multiple Invoicing]{\textbf{Multiple Invoicing}}
-%========================================================
-
+\paragraph{\textbf{(iii) Multiple Invoicing}}
 Multiple invoicing refers to using the same trade invoice for several financial transactions related to a single shipment. This helps criminals transfer illicit funds through different banking channels.
 
-%========================================================
-\subsubsection[Phantom Shipments]{\textbf{Phantom Shipments}}
-%========================================================
-
+\paragraph{\textbf{(iv) Phantom Shipments}}
 Phantom shipments occur when payments are made for goods that are never actually shipped or delivered. Fake trade and shipping documents are used to create the appearance of legitimate trade activity.
 
-%========================================================
-\subsubsection[Misrepresentation of Goods]{\textbf{Misrepresentation of Goods}}
-%========================================================
-
+\paragraph{\textbf{(v) Misrepresentation of Goods}}
 Misrepresentation of goods involves providing false information about the type, quantity, or quality of traded products in invoices and trade documents to manipulate trade values and conceal suspicious activities.
-
 
 %========================================================
 \subsection[Challenges in Detecting TBML]{\textbf{Challenges in Detecting TBML}}
@@ -91,15 +75,15 @@ This section presents the major algorithms and deep learning techniques used in 
 
 Graph Attention Network v2 (GATv2) is a Graph Neural Network (GNN) architecture that uses a dynamic attention mechanism to learn relationships between connected nodes in graph data. It improves feature aggregation by automatically identifying the importance of neighboring nodes. GATv2 is widely used in applications such as traffic prediction, recommendation systems, and autonomous vehicle navigation.
 
-\subsubsection{Introduction}
+\subsubsection{A.   Introduction}
 
 Graph Attention Network v2 (GATv2) is an advanced Graph Neural Network (GNN) architecture designed for learning on graph-structured data using a dynamic attention mechanism. It improves upon the original GAT model by overcoming the limitation of static attention and enabling better learning of relationships between connected nodes. GATv2 automatically identifies the importance of neighboring nodes during feature aggregation, making it highly effective for applications such as traffic prediction, recommendation systems, social network analysis, fraud detection, and autonomous vehicle navigation.
 
-\subsubsection{Fundamental Concept of GATv2}
+\subsubsection{B.   Fundamental Concept of GATv2}
 
 The primary objective of GATv2 is to generate node embeddings by aggregating information from neighboring nodes using a dynamic attention mechanism. For each node, the model learns which neighboring nodes are important and assigns suitable attention weights before combining their features.
 
-\subsubsection{Architecture and Working of GATv2}
+\subsubsection{C.   Architecture and Working of GATv2}
 
 The overall architecture and workflow of GATv2 are shown in Figure~\ref{fig:gatv2_architecture}.
 
@@ -181,15 +165,15 @@ where \(K\) represents the number of attention heads and \(\Vert\) denotes conca
 
 The final node embeddings are passed to the output layer for tasks such as node classification, graph classification, link prediction, and regression.
 
-\subsubsection{Advantages of GATv2}
+\subsubsection{D.   Advantages of GATv2}
 
 GATv2 provides a dynamic attention mechanism that improves feature aggregation and representation learning compared to the original GAT architecture. It automatically identifies important neighboring nodes, performs effectively on irregular graph data, and improves robustness through multi-head attention, making it highly suitable for traffic prediction and autonomous navigation applications.
 
-\subsubsection{Limitations of GATv2}
+\subsubsection{E.   Limitations of GATv2}
 
 Despite its advantages, GATv2 requires high computational and memory resources due to attention computations on large graphs. Training time increases with graph size, and deep GATv2 architectures may suffer from over-smoothing and scalability issues for extremely large datasets.
 
-\subsubsection{GATv2 vs GAT}
+\subsubsection{ F.   GATv2 vs GAT}
 
 Graph Attention Network v2 (GATv2) was introduced as an improvement over the original Graph Attention Network (GAT) to overcome the limitation of static attention mechanisms. While both architectures use attention-based aggregation for graph representation learning, GATv2 provides a more expressive and adaptive attention mechanism.
 

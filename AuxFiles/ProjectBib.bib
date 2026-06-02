@@ -1,10 +1,20 @@
-% Encoding: UTF-8
+% Refactored BibLaTeX file
+% - Converted multi-author lists to use " and " separators
+% - Normalized author names to "Last, First" where unambiguous
+% - Preserved citation keys and other metadata
+% NOTE: The following entries/authors were marked as potentially ambiguous or malformed and should be reviewed manually:
+%  - Jensen2023: original authors field combined two authors without clear separator; reviewed to "Jensen, Rasmus Ingemann Tuffveson and Iosifidis, Alexandros"
+%  - Karim2024: multi-part names (Md. Rezaul Karim, Paola De Perthuis, Sisay Adugna Chala) may require manual confirmation of family names
+%  - Balaji2025: "Navin Balaji E, Ganesh P, M Sindhuja" left as best-effort: "Balaji, Navin E and Ganesh, P and Sindhuja, M" — please verify ordering
+%  - Subakanth2025 / Shah2025 / Yu2024 / Paula2016 / Nagaraja2024: some entries contain initials or prefixes; please check family/given name splits
+%  - Any entries with corporate authors kept inside double braces (to preserve capitalization)
+
 @misc{unodc_ml_overview,
   author  = {{United Nations Office on Drugs and Crime}},
   date    = {2024},
   title   = {Money Laundering and {Illicit} Financial Flows Overview},
   url     = {https://unodc.org},
-  urldate = {2026-06-02}
+  urldate = {2026-06-02},
 }
 
 @misc{europol_financial_crime,
@@ -12,7 +22,7 @@
   date    = {2024},
   title   = {Criminal Finances, Money Laundering and Asset Recovery},
   url     = {https://europa.eu},
-  urldate = {2026-06-02}
+  urldate = {2026-06-02},
 }
 
 @techreport{fatf_tbml_2020,
@@ -22,7 +32,7 @@
   title       = {Trade-Based Money Laundering: Trends and Developments},
   address     = {Paris, France},
   url         = {https://fatf-gafi.org},
-  urldate     = {2026-06-02}
+  urldate     = {2026-06-02},
 }
 
 @article{gfi_illicit_flows,
@@ -33,7 +43,7 @@
   number       = {2},
   pages        = {112--128},
   volume       = {18},
-  publisher    = {Charles Sturt University Research Output}
+  publisher    = {Charles Sturt University Research Output},
 }
 
 @misc{imtf_tbml_scale,
@@ -41,8 +51,7 @@
   date    = {2024},
   title   = {When Trade Becomes a Cover: Unpacking Trade-Based Money Laundering},
   url     = {https://imtf.com/blog/when-trade-becomes-a-cover-unpacking-trade-based-money-laundering/},
-  urldate = {2026-06-02}
-}
+  urldate = {2026-06-02},
 }
 
 @techreport{cleareye_tbml_2025,
@@ -51,12 +60,11 @@
   institution = {Trade, Treasury \& Payments Advisory Group},
   title       = {The State of Trade-Based Money Laundering 2025: Insights and Operational Compliance},
   url         = {https://tradetreasurypayments.com},
-  urldate     = {2026-06-02}
+  urldate     = {2026-06-02},
 }
 
-
 @article{Koo2024,
-  author       = {Kyungmo Koo and Minyoung Park and Byungun Yoon},
+  author       = {Koo, Kyungmo and Park, Minyoung and Yoon, Byungun},
   date         = {2024},
   journaltitle = {IEEE Access},
   title        = {A Suspicious Financial Transaction Detection Model Using Autoencoder and Risk-Based Approach},
@@ -64,11 +72,11 @@
   issn         = {2169-3536},
   pages        = {68926--68939},
   volume       = {12},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
 }
 
 @article{Cheng2023,
-  author       = {Dawei Cheng and Yujia Ye and Sheng Xiang and Zhenwei Ma and Ying Zhang and Changjun Jiang},
+  author       = {Cheng, Dawei and Ye, Yujia and Xiang, Sheng and Ma, Zhenwei and Zhang, Ying and Jiang, Changjun},
   date         = {2023},
   journaltitle = {IEEE Transactions on Knowledge and Data Engineering},
   title        = {Anti-Money Laundering by Group-Aware Deep Graph Learning},
@@ -76,12 +84,11 @@
   issn         = {1041-4347},
   pages        = {12444--12457},
   volume       = {35},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
-}  
-
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
+}
 
 @article{Fan2026,
-  author       = {Jiani Fan and Lwin Khin Shar and Ruichen Zhang and Ziyao Liu and Wenzhuo Yang and Dusit Niyato and Kwok-Yan Lam},
+  author       = {Fan, Jiani and Shar, Lwin Khin and Zhang, Ruichen and Liu, Ziyao and Yang, Wenzhuo and Niyato, Dusit and Lam, Kwok-Yan},
   date         = {2026},
   journaltitle = {IEEE Internet of Things Journal},
   title        = {Deep Learning Approaches for Anti-Money Laundering on Mobile Transactions: Review, Framework, and Directions},
@@ -89,11 +96,11 @@
   issn         = {2327-4662},
   pages        = {10407--10428},
   volume       = {13},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
-} 
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
+}
 
 @article{Song2026,
-  author       = {Jie Song and Sijia Zhang and Junghoon Park and Yu Gu and Ge Yu},
+  author       = {Song, Jie and Zhang, Sijia and Park, Junghoon and Gu, Yu and Yu, Ge},
   date         = {2026},
   journaltitle = {IEEE Transactions on Computational Social Systems},
   title        = {Dimension Expansion for Learning Money Laundering Activities Hidden in Transaction Network},
@@ -101,11 +108,11 @@
   issn         = {2329-924X},
   pages        = {251--262},
   volume       = {13},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
-} 
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
+}
 
 @article{Jensen2023,
-  author       = {Rasmus Ingemann Tuffveson Jensen, Alexandros Iosifidis},
+  author       = {Jensen, Rasmus Ingemann Tuffveson and Iosifidis, Alexandros},
   date         = {2023},
   journaltitle = {IEEE Access},
   title        = {Fighting Money Laundering With Statistics and Machine Learning},
@@ -113,11 +120,11 @@
   issn         = {2169-3536},
   pages        = {8889--8903},
   volume       = {11},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
-} 
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
+}
 
 @article{Li2025,
-  author       = {Zhong Li and Xueting Yang and Changjun Jiang},
+  author       = {Li, Zhong and Yang, Xueting and Jiang, Changjun},
   date         = {2025},
   journaltitle = {IEEE Transactions on Information Forensics and Security},
   title        = {Multi-View Graph-Based Hierarchical Representation Learning for Money Laundering Group Detection},
@@ -125,11 +132,11 @@
   issn         = {1556-6021},
   pages        = {2035--2050},
   volume       = {20},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
-} 
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
+}
 
 @article{Gezici2025,
-  author       = {Abdul Haluk Batur Gezici and Emre Sefer},
+  author       = {Gezici, Abdul Haluk Batur and Sefer, Emre},
   date         = {2025},
   journaltitle = {IEEE Access},
   title        = {PageRank-Based Unsupervised Deep Vertex Representations for Anti-Money Laundering Detection},
@@ -137,11 +144,11 @@
   issn         = {2169-3536},
   pages        = {196935--196950},
   volume       = {13},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
-} 
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
+}
 
 @article{Illicit2025,
-  author       = {Jie Song and Sijia Zhang and Pengyi Zhang and Junghoon Park and Yu Gu and Ge Yu},
+  author       = {Song, Jie and Zhang, Sijia and Zhang, Pengyi and Park, Junghoon and Gu, Yu and Yu, Ge},
   date         = {2025},
   journaltitle = {IEEE Transactions on Information Forensics and Security},
   title        = {Illicit Social Accounts? Anti-Money Laundering for Transactional Blockchains},
@@ -149,11 +156,11 @@
   issn         = {1556-6021},
   pages        = {391--404},
   volume       = {20},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
 }
 
 @article{Karim2024,
-  author       = {Md. Rezaul Karim and Felix Hermsen and Sisay Adugna Chala and Paola De Perthuis and Avikarsha Mandal},
+  author       = {Karim, Md. Rezaul and Hermsen, Felix and Chala, Sisay Adugna and Perthuis, Paola De and Mandal, Avikarsha},
   date         = {2024},
   journaltitle = {IEEE Access},
   title        = {Scalable Semi-Supervised Graph Learning Techniques for Anti Money Laundering},
@@ -161,137 +168,134 @@
   issn         = {2169-3536},
   pages        = {50012--50029},
   volume       = {12},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
-} 
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
+}
 
 @article{Subakanth2025,
-  author       = {Subakanth R and Ricky Jasper K and Reeba Rose L},
+  author       = {Subakanth, R. and Jasper, Ricky K. and Reeba, Rose L.},
   date         = {2025},
   journaltitle = {2025 10th IEEE International Conference on Smart Structures and Systems (ICSSS25)},
   title        = {A Graph-Based Semi-Supervised Model for Flagging Suspicious Accounts in Anti-Money Laundering Systems},
   doi          = {10.1109/ICSSS66939.2025.11346434},
   pages        = {1--6},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
 }
 
 @article{Shah2025,
-  author       = {Sagar Bharat Shah},
+  author       = {Shah, Sagar Bharat},
   date         = {2025},
   journaltitle = {2025 1st International Conference on Secure IoT, Assured and Trusted Computing (SATC)},
   title        = {Advanced Machine Learning Models for Anti-Money Laundering (AML): Improving Detection Accuracy and Efficiency},
   doi          = {10.1109/SATC65530.2025.11137255},
   pages        = {1--6},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
 }
 
 @article{Anaroch2025,
-  author       = {Chayawat Anaroch and Waruntorn Tosakulvong and Naruemon Wattanapongsakorn},
+  author       = {Anaroch, Chayawat and Tosakulvong, Waruntorn and Wattanapongsakorn, Naruemon},
   date         = {2025},
   journaltitle = {2025 6th International Conference on Big Data Analytics and Practices (IBDAP)},
   title        = {Anti-Money Laundering Detection Using Traditional, Deep, and Hybrid Machine Learning: A Performance Comparison},
   doi          = {10.1109/IBDAP65587.2025.11145847},
   pages        = {239--244},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
 }
 
 @article{Yu2024,
-  author       = {Qian Yu, Zhen Xu, Zong Ke},
+  author       = {Yu, Qian and Xu, Zhen and Ke, Zong},
   date         = {2024},
   journaltitle = {2024 6th International Conference on Machine Learning, Big Data and Business Intelligence (MLBDBI)},
   title        = {Deep Learning for Cross-Border Transaction Anomaly Detection in Anti-Money Laundering Systems},
   doi          = {10.1109/MLBDBI63974.2024.10823769},
   pages        = {244--248},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
 }
 
 @article{Balaji2025,
-  author       = {Navin Balaji E, Ganesh P, M Sindhuja},
+  author       = {Balaji, Navin E. and Ganesh, P. and Sindhuja, M.},
   date         = {2025},
   journaltitle = {2025 International Conference on Sustainability, Innovation & Technology (ICSIT)},
   title        = {Improved Detection of Anti-Money Laundering in Bank Transactions using Graph Neural Networks},
   doi          = {10.1109/ICSIT65336.2025.11294874},
   pages        = {1--6},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
-} 
-
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
+}
 
 @article{Raj2024,
-  author       = {Mahima Raj and Yerrolla Chanti and Hadiya Khan and Mansi Sahu and Samta Kathuria},
+  author       = {Raj, Mahima and Chanti, Yerrolla and Khan, Hadiya and Sahu, Mansi and Kathuria, Samta},
   date         = {2024},
   journaltitle = {2024 3rd International Conference on Sentiment Analysis and Deep Learning (ICSADL)},
   title        = {The Use of Artificial Intelligence in Anti-Money Laundering (AML)},
   doi          = {10.1109/ICSADL61749.2024.00050},
   pages        = {1--7},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
 }
 
 @article{Li2024,
-  author       = {Pei-Yi Li and Ting-Ting Chang and Yu-Chiao Kuo and Chia-Yu Lin and Heng-Yu Chang},
+  author       = {Li, Pei-Yi and Chang, Ting-Ting and Kuo, Yu-Chiao and Lin, Chia-Yu and Chang, Heng-Yu},
   date         = {2024},
   journaltitle = {2024 International Conference on Consumer Electronics - Taiwan (ICCE-Taiwan)},
   title        = {Unveiling the Black Box: An XAI-based Anti-Money Laundering Model},
   doi          = {10.1109/ICCE-Taiwan61719.2024.10625345},
   pages        = {293--294},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
-} 
-
-
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
+}
 
 @article{tbml-researchgate,
-  author       = {Adebayo E Iyanda},
+  author       = {Iyanda, Adebayo E.},
   date         = {2023},
   journaltitle = {Journal of Anti-Corruption Law},
   title        = {The Role of Misinvoicing in the Money Laundering Cycle},
   doi          = {10.14426/jacl.v3i1.1294},
   pages        = {144--168},
-  publisher    = {CC BY 4.0 License}
-} 
+  publisher    = {CC BY 4.0 License},
+}
 
 @article{federated-arxiv,
-  author    = {Adebayo E Iyanda},
-  date      = {2023},
-  title     = {Principles and Components of Federated Learning Architectures},
-  doi       = {10.14426/jacl.v3i1.1294},
-  pages     = {144--168},
-  publisher = {arxiv}
-} 
+  author       = {Iyanda, Adebayo E.},
+  date         = {2023},
+  title        = {Principles and Components of Federated Learning Architectures},
+  doi          = {10.14426/jacl.v3i1.1294},
+  pages        = {144--168},
+  publisher    = {arxiv},
+}
 
 @article{synthetic-tbml-framework,
-  author       = {Kamara Sheka and Kalu Victor and Esther Walker},
+  author       = {Sheka, Kamara and Victor, Kalu and Walker, Esther},
   title        = {A Synthetic Data Generation Framework for Money Laundering Detection Using Behavioral Analysis Learning Approach in Mobile Banking Systems},
   journaltitle = {ResearchGate},
   date         = {2024-12},
-  publisher    = {ResearchGate}
+  publisher    = {ResearchGate},
 }
 
-
 @inproceedings{brody2022gatv2,
-  author        = {Shaked Brody and Uri Alon and Eran Yahav},
+  author        = {Brody, Shaked and Alon, Uri and Yahav, Eran},
   title         = {How Attentive are Graph Attention Networks?},
   booktitle     = {International Conference on Learning Representations (ICLR)},
   year          = {2022},
   eprint        = {2105.14491},
-  archiveprefix = {arXiv}
+  archiveprefix = {arXiv},
 }
 
 @inproceedings{kennedy2025federated,
-  author        = {Cade Houston Kennedy and Amr Hilal and Morteza Momeni},
+  author        = {Kennedy, Cade Houston and Hilal, Amr and Momeni, Morteza},
   title         = {The Role of Federated Learning in Improving Financial Security: A Survey},
   booktitle     = {IEEE Global Conference on Artificial Intelligence and Internet of Things (GCAIoT)},
   year          = {2025},
   pages         = {1--8},
   publisher     = {IEEE},
   eprint        = {2510.14991},
-  archiveprefix = {arXiv}
+  archiveprefix = {arXiv},
 }
+
 @inproceedings{Paula2016,
-  author    = {Paula, Ebberth L. and Ladeira, Marcelo and Carvalho, Rommel N. and Marzagao, Thiago},
-  title     = {Deep Learning Anomaly Detection as Support Fraud Investigation in Brazilian Exports and Anti-Money Laundering},
-  booktitle = {2016 15th IEEE International Conference on Machine Learning and Applications (ICMLA)},
-  date      = {2016},
-  pages     = {954--960},
-  doi       = {10.1109/ICMLA.2016.0172},
-  publisher = {IEEE}
+  author        = {Paula, Ebberth L. and Ladeira, Marcelo and Carvalho, Rommel N. and Marzagao, Thiago},
+  title         = {Deep Learning Anomaly Detection as Support Fraud Investigation in Brazilian Exports and Anti-Money Laundering},
+  booktitle     = {2016 15th IEEE International Conference on Machine Learning and Applications (ICMLA)},
+  date          = {2016},
+  pages         = {954--960},
+  doi           = {10.1109/ICMLA.2016.0172},
+  publisher     = {IEEE},
 }
 
 @article{Kute2021,
@@ -303,7 +307,7 @@
   issn         = {2169-3536},
   pages        = {82300--82317},
   volume       = {9},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
 }
 
 @article{Wu2024,
@@ -315,12 +319,11 @@
   issn         = {1556-6021},
   pages        = {1994--2009},
   volume       = {19},
-  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)}
+  publisher    = {Institute of Electrical and Electronics Engineers (IEEE)},
 }
 
-
 @article{Nagaraja2024,
-  author       = {Dr. Nagaraja GS, Shreyas MS},
+  author       = {Nagaraja, GS and Shreyas, MS},
   date         = {2024-10},
   journaltitle = {International Journal of Engineering Research in Computer Science and Engineering (IJERCSE)},
   title        = {Finance Management Implementation and Analysis for Profit Margin Enhancement},
@@ -328,8 +331,6 @@
   issue        = {10},
   pages        = {58--62},
   issn         = {2394-2320},
-  publisher    = {IFERP}
+  publisher    = {IFERP},
 }
 % @Comment{jabref-meta: databaseType:biblatex;}
-
-
