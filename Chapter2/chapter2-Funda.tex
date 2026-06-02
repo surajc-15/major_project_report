@@ -424,28 +424,20 @@ The lifecycle of application components generally involves rendering, state init
 
 \vspace{0.3cm}
 
-\noindent\textbf{Server-Side Rendering:}  
-Initially, dashboard components are rendered within the server environment where transaction summaries, analytical data, and monitoring information are processed before delivery to the client browser. This approach improves initial loading performance and reduces unnecessary client-side computational overhead.
+{%
+\renewcommand{\theenumi}{\arabic{enumi}}%
+\renewcommand{\labelenumi}{\theenumi.}%
+\begin{enumerate}
+    \item \textbf{Rendering and Initialization:}
+        Initially, dashboard components are rendered within the server environment where transaction summaries, analytical data, and monitoring information are processed before delivery to the client browser. After the interface is loaded within the browser, React hydration enables interactive client-side functionalities including event handling, asynchronous API communication, local state initialization, and real-time dashboard services. This combination improves initial loading performance and enables interactive behavior without full page reloads.
 
-\vspace{0.2cm}
+    \item \textbf{Reactive Updates and Synchronization:}
+        As transaction states, fraud alerts, and analytical outputs change, React selectively updates only the affected interface components using Virtual DOM reconciliation mechanisms instead of re-rendering the complete dashboard. The framework continuously synchronizes updated transaction information, compliance alerts, and monitoring analytics with the dashboard interface to support real-time fraud visualization and analytical consistency.
 
-\noindent\textbf{Hydration and Client Initialization:}  
-After the interface is loaded within the browser, React hydration enables interactive client-side functionalities including event handling, asynchronous API communication, local state initialization, and real-time dashboard services.
-
-\vspace{0.2cm}
-
-\noindent\textbf{Reactive State Updates:}  
-As transaction states, fraud alerts, and analytical outputs change, React selectively updates only the affected interface components using Virtual DOM reconciliation mechanisms instead of re-rendering the complete dashboard.
-
-\vspace{0.2cm}
-
-\noindent\textbf{Dynamic Synchronization:}  
-The framework continuously synchronizes updated transaction information, compliance alerts, and monitoring analytics with the dashboard interface to support real-time fraud visualization and analytical consistency.
-
-\vspace{0.2cm}
-
-\noindent\textbf{Resource Cleanup and Unmounting:}  
-When dashboard components are removed from the active interface, temporary states, subscriptions, and allocated resources are released automatically to maintain application stability and efficient memory utilization.
+    \item \textbf{Resource Cleanup and Unmounting:}
+        When dashboard components are removed from the active interface, temporary states, subscriptions, and allocated resources are released automatically to maintain application stability and efficient memory utilization.
+\end{enumerate}%
+}
 
 \vspace{0.2cm}
 
@@ -458,23 +450,23 @@ Such lifecycle management principles are important within modern financial monit
 Understanding the theoretical aspects of data visualization is important for analyzing large volumes of financial transactions and interpreting suspicious transactional behavior within real-time monitoring systems. Visualization of analytical outputs enables financial institutions and compliance analysts to identify fraud patterns, transaction anomalies, risk distributions, and suspicious entity relationships more efficiently when compared with conventional tabular analysis methods. Interactive monitoring dashboards further improve situational awareness by enabling continuous observation of fraud alerts, transaction flows, and compliance activities without interrupting real-time analytical processes.
 This work utilizes a web-based dashboard architecture for financial monitoring, fraud visualization, and compliance-oriented analytical operations using modern frontend technologies and visualization frameworks.
 
-\noindent\textbf{Frontend Framework:}  
-Next.js is used for developing responsive and modular dashboard interfaces capable of supporting scalable financial monitoring applications. The framework provides server-side rendering, dynamic routing, and smooth integration with backend analytical services operating within the proposed TBML detection environment.
+{%
+\renewcommand{\theenumi}{\roman{enumi}}%
+\renewcommand{\labelenumi}{(\theenumi)}%
+\begin{enumerate}
+    \item \textbf{Frontend Framework:}
+        Next.js is used for developing responsive and modular dashboard interfaces capable of supporting scalable financial monitoring applications. The framework provides server-side rendering, dynamic routing, and smooth integration with backend analytical services operating within the proposed TBML detection environment.
 
-\vspace{0.2cm}
+    \item \textbf{Analytical Visualization Components:}
+        Recharts is utilized to visualize transaction analytics, fraud classifications, risk-score distributions, and temporal financial trends through interactive graphs and dashboard components. These visualizations assist investigators and analysts in interpreting suspicious transactional behavior more efficiently during monitoring operations.
 
-\noindent\textbf{Analytical Visualization Components:}  
-Recharts is utilized to visualize transaction analytics, fraud classifications, risk-score distributions, and temporal financial trends through interactive graphs and dashboard components. These visualizations assist investigators and analysts in interpreting suspicious transactional behavior more efficiently during monitoring operations.
+    \item \textbf{Role-Based Dashboard Interfaces:}
+        The dashboard architecture incorporates role-based access mechanisms to provide controlled access to fraud investigation workflows, Suspicious Transaction Report generation, real-time monitoring services, and institutional compliance operations according to user responsibilities and operational privileges.
 
-\vspace{0.2cm}
-
-\noindent\textbf{Role-Based Dashboard Interfaces:}  
-The dashboard architecture incorporates role-based access mechanisms to provide controlled access to fraud investigation workflows, Suspicious Transaction Report generation, real-time monitoring services, and institutional compliance operations according to user responsibilities and operational privileges.
-
-\vspace{0.2cm}
-
-\noindent\textbf{Interactive Monitoring Services:}  
-Interactive dashboard panels support continuous monitoring of suspicious transactions, fraud alerts, transaction histories, and prediction results generated by the analytical framework. The monitoring environment additionally supports filtering, notification handling, export functionalities, and compliance-oriented investigation workflows for institutional analysts and regulatory authorities.
+    \item \textbf{Interactive Monitoring Services:}
+        Interactive dashboard panels support continuous monitoring of suspicious transactions, fraud alerts, transaction histories, and prediction results generated by the analytical framework. The monitoring environment additionally supports filtering, notification handling, export functionalities, and compliance-oriented investigation workflows for institutional analysts and regulatory authorities.
+\end{enumerate}%
+}
 
 \vspace{0.2cm}
 
