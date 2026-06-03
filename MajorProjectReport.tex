@@ -165,9 +165,12 @@
 	\end{spacing}
 	\glsaddall
 	
+	\begin{spacing}{1.4}
+	\renewcommand{\arraystretch}{1.4}
 	\printglossary[type=\acronymtype, title= Abbreviations, toctitle=List of Abbreviations]
 	
 	\printglossary[type=symbolList, title= List of Symbols, toctitle=List of Symbols]
+	\end{spacing}
 	\fi
 	\mainmatter
 	\pagestyle{mplain}
@@ -200,7 +203,7 @@
 		% %Chapter 9
 		\input{./Chapter9/chapter9-conclution}
 
-		\backmatter
+		% \backmatter
 		\ifDrf
 		\else
 		\clearpage
@@ -208,11 +211,13 @@
 		\nocite{*}
 		\printbibliography%
 		\clearpage
+		\fi
+
 		% Appendices (appear after bibliography)
 		\appendix
 		\input{./Appendix/ApndxA}%Appendix Chapter 1
 		\input{./Appendix/ApndxB}%Appendix Chapter 2
 		\input{./Appendix/ApndxC}%Appendix Chapter 3
-		\fi
+		
 	\end{spacing}
 \end{document}
