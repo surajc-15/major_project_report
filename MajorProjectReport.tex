@@ -91,8 +91,8 @@
 \VicePrincipal{Dr. Geetha K S}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%  QRL %%%%%%%%%%%%%%%%%%%%%%%%%%
-\QRurl{}
-%\QRurl{https://drive.google.com/open?id=1jm-POmuq-ZZ1tT5m-xAdCDRnwvLZH8q-}
+% \QRurl{}
+\QRurl{https://drive.google.com/drive/folders/1-vWoRtUH11HeWe4hCGJBgfEN8VHallYE?usp=drive_link}
 
 %%%%%%%%%%%%%%%%%%Draft report%%%%%%%%%%%%%%%%%%
 %\DraftCopy %Not yet implemented, if anyone interested, do contact me at pnarashimaraja@rvce.edu.in (or) narashimaraja@gmail.com
@@ -130,8 +130,13 @@
 	\ifDrf
 	% Remove Certificate, Declaration, Acknowledgement and TOC
 	\else
-	\begin{spacing}{1.5}
-		\input{./CoverPages/Certificate}
+	\begin{spacing}{1.1}
+		\input{./CoverPages/Certificate1}
+		\newpage
+		\input{./CoverPages/Certificate2}
+		
+		\newpage
+		\input{./CoverPages/Certificate3}
 		
 		\newpage
 		\input{./CoverPages/Declaration}
@@ -164,13 +169,15 @@
 		\listoftables	
 	\end{spacing}
 	\glsaddall
-	
+	\cleardoublepage
 	\begin{spacing}{1.4}
-	\renewcommand{\arraystretch}{1.4}
+	\renewcommand{\arraystretch}{1.2}
 	\printglossary[type=\acronymtype, title= Abbreviations, toctitle=List of Abbreviations]
-	
+
 	\printglossary[type=symbolList, title= List of Symbols, toctitle=List of Symbols]
 	\end{spacing}
+	\cleardoublepage
+
 	\fi
 	\mainmatter
 	\pagestyle{mplain}
