@@ -120,15 +120,20 @@ Figure \ref{fig:dfd_level0} illustrates the Level 0 Data Flow Diagram of the pro
 Figure \ref{fig:dfd_level1} presents the Level 1 Data Flow Diagram of the proposed TBML detection framework by decomposing the primary system into multiple functional processes. The architecture consists of modules including Data Collection, Data Preprocessing, Heterogeneous Graph Construction, Federated Learning Engine, HGNN Fraud Detection, and Alert and Monitoring Dashboard. The Data Collection module acquires raw transactional records and customer information from financial institutions, which are subsequently cleaned and transformed within the preprocessing stage to generate structured financial features. These processed features are utilized by the graph construction engine to build heterogeneous graph representations stored within the graph database. The federated learning engine performs distributed collaborative model training using encrypted local updates received from federated client nodes while maintaining institutional data privacy. The trained HGNN model is then employed by the fraud detection engine to identify suspicious transactional patterns, calculate fraud scores, and generate anomaly alerts. Finally, the monitoring dashboard enables AML analysts and compliance teams to perform investigations, visualize transaction graphs, and access risk assessment reports for real-time anti-money laundering operations.
 
 %========================================================
-\subsection[Data Flow Diagram Level 2]{\textbf{Data Flow Diagram Level 2}}
-
 %========================================================
+\subsection[Data Flow Diagram Level 2]{\textbf{Data Flow Diagram Level 2}}
+%========================================================
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/DFD_Level_2.1.png}
     \caption{Level 2 DFD of Data Ingestion Module}
     \label{fig:dfd2_ingestion}
 \end{figure}
+
+Figure \ref{fig:dfd2_ingestion} illustrates the internal workflow of the Data Ingestion Module. The process begins with the collection of raw transaction records, customer information, and trade-related documents from external financial sources. The acquired data undergoes validation, cleansing, and standardization to remove inconsistencies and prepare it for downstream analytical processing. Finally, the processed transaction events are published to the streaming infrastructure, enabling continuous real-time data availability for graph construction and fraud analysis.
+
+%========================================================
 
 \begin{figure}[H]
     \centering
@@ -137,12 +142,20 @@ Figure \ref{fig:dfd_level1} presents the Level 1 Data Flow Diagram of the propos
     \label{fig:dfd2_graph}
 \end{figure}
 
+Figure \ref{fig:dfd2_graph} presents the detailed workflow of the Graph Processing Module. Streaming transaction events are consumed and transformed into graph representations where entities and relationships are modeled as interconnected nodes and edges. Relevant structural and transactional features are extracted from the generated graph, after which the resulting graph structures are stored within the Memgraph database. This module provides the graph-based representations required for heterogeneous graph learning and fraud detection.
+
+%========================================================
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/DFD_Level_2.3.png}
     \caption{Level 2 DFD of Hybrid Detection Module}
     \label{fig:dfd2_detection}
 \end{figure}
+
+Figure \ref{fig:dfd2_detection} depicts the internal operation of the Hybrid Detection Module. Graph embeddings generated through the HGNN branch and temporal embeddings produced by the LSTM branch are combined through feature fusion to create a unified financial representation. The fused feature vector is subsequently analyzed to determine transaction risk levels and classify activities into Clean, Suspicious, or Fraud categories. This module forms the core intelligence engine responsible for identifying complex TBML patterns.
+
+%========================================================
 
 \begin{figure}[H]
     \centering
@@ -151,6 +164,10 @@ Figure \ref{fig:dfd_level1} presents the Level 1 Data Flow Diagram of the propos
     \label{fig:dfd2_federated}
 \end{figure}
 
+Figure \ref{fig:dfd2_federated} illustrates the Federated Learning Module responsible for privacy-preserving collaborative model training. Each participating banking institution performs local model training using its own transaction data and securely transmits encrypted model parameters to the aggregation server. The FedAvg aggregation mechanism combines local updates to generate a global model, which is redistributed to all participating clients for subsequent training rounds. This process enables cross-institutional learning without exposing sensitive customer information.
+
+%========================================================
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/DFD_Level_2.5.png}
@@ -158,16 +175,24 @@ Figure \ref{fig:dfd_level1} presents the Level 1 Data Flow Diagram of the propos
     \label{fig:dfd2_compliance}
 \end{figure}
 
+Figure \ref{fig:dfd2_compliance} illustrates the Compliance and Reporting Module. Risk scores generated by the detection framework are analyzed to identify high-risk cases requiring regulatory attention. The module generates Suspicious Transaction Reports (STRs), maintains detailed audit logs, and prepares regulatory reports for compliance review. Human-in-the-loop verification mechanisms further support investigative decision-making before final report submission.
+
+%========================================================
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/DFD_Level_2.6.png}
     \caption{Level 2 DFD of Notification and Dashboard Module}
     \label{fig:dfd2_dashboard}
 \end{figure}
+
+Figure \ref{fig:dfd2_dashboard} presents the Notification and Dashboard Module. Risk assessments and fraud alerts generated by the detection framework are visualized through interactive dashboards for analyst review. The module manages alert generation, email notifications, administrative monitoring, and system log maintenance. These capabilities provide investigators and compliance teams with real-time visibility into suspicious activities and system operations.
+
 %========================================================
 
-Figures \ref{fig:dfd2_ingestion}--\ref{fig:dfd2_dashboard} collectively illustrate the Level 2 decomposition of the proposed Federated HGNN-based TBML Detection Framework. The Data Ingestion Module captures, validates, transforms, and streams transactional data for downstream processing. The Graph Processing Module constructs heterogeneous financial graphs, extracts structural features, and stores graph representations within the graph database. The Hybrid Detection Module generates graph and temporal embeddings using HGNN and LSTM architectures, performs feature fusion, and classifies transaction risk levels. The Federated Learning Module coordinates local model training, secure parameter exchange, global aggregation using the FedAvg strategy, and model redistribution across participating institutions. The Compliance and Reporting Module analyzes risk scores, generates Suspicious Transaction Reports (STRs), maintains audit trails, and supports regulatory reporting workflows. Finally, the Notification and Dashboard Module manages alert dissemination, dashboard visualization, user monitoring, and notification delivery. Together, these Level 2 DFDs provide a detailed representation of the internal data movement, process interactions, and analytical workflow supporting real-time Trade-Based Money Laundering detection within the proposed federated intelligence framework.
+Collectively, Figures \ref{fig:dfd2_ingestion}--\ref{fig:dfd2_dashboard} provide a detailed Level 2 decomposition of the proposed Federated HGNN-based TBML Detection Framework. The diagrams illustrate how transactional data progresses from ingestion and graph construction to hybrid HGNN-LSTM analysis, federated model optimization, compliance reporting, and real-time alert dissemination. By decomposing the framework into specialized functional modules, the Level 2 DFDs clearly represent the internal data movement, process interactions, and decision-making workflow that enable scalable, privacy-preserving, and real-time Trade-Based Money Laundering detection across distributed financial institutions.
 
+%========================================================
 %========================================================
 \section{Summary}
 %========================================================
