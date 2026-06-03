@@ -306,7 +306,7 @@
 	\vspace{0.25cm}
 	{\large\bfseries MAJOR PROJECT REPORT\unskip\strut\par}
 	{\large\bfseries (\@subCode)\unskip\strut\par}
-	{\Large\bfseries \vspace{0.5cm} Submitted by,\unskip\strut\par}
+	{\Large\bfseries \vspace{0.5cm} Submitted by\unskip\strut\par}
   \end{center}
   \ifGuideNameCUsed\vspace{0.25cm}\else \vspace{0.5cm}\fi
   {\noindent\large\bfseries\@stuNameA\unskip\strut}\hfill{\large\bfseries\@stuUSNA\unskip\strut\par}
@@ -372,6 +372,7 @@
   		{in \unskip\strut\par} %respective departments\fi\par}
 %  		\vspace{0.1cm}
   		{\large\bfseries \@departmentLF\unskip\strut\par}
+      
   		\ifGuideNameCUsed\vspace{0.375cm}\else\vspace{0.5cm}\fi
 %  		{\large\bfseries Department of\space\@departmentSF\unskip\strut\par}
 %  		{\large\bfseries\@acadYear \par}
@@ -387,7 +388,7 @@
  \begin{center}
   {\huge\bfseries\@title\unskip\strut\par}
   \vspace{0.4\pdfpageheight}
-  {\Large\bfseries Submitted by,\unskip\strut\par}
+  {\Large\bfseries Submitted by\unskip\strut\par}
  \end{center}
 \else
 \begin{tikzpicture}[remember picture, overlay]
@@ -418,7 +419,7 @@
 {\Large\itshape \ifINT \vspace{0.5cm} An Internship \else\ifMinor A Minor Project \else \ifDTL A Design Thinking Lab \else \ifIDP An Interdisciplinary Project \else A Major Project \fi\fi\fi\fi  Report\;(\@subCode)\unskip\strut\par}
 % \fi
 \vspace{0.25cm}
-{\Large\bfseries \vspace{0.5cm} Submitted by,\unskip\strut\par}
+{\Large\bfseries \vspace{0.5cm} Submitted by\unskip\strut\par}
 \end{center}
 \fi % Draft
 
@@ -635,6 +636,7 @@
     \fancyfoot[C] {Department of \@departmentSF, \@acadYear}% 
     \else
     \fancyfoot[L] {\ifMinor UG Minor Project Report\else \ifDTL Design Thinking Lab Report\else Department of \@departmentSF \fi\fi }%
+    %\fancyfoot[C] {Department of \@departmentSF \ifIDP \\\@acadYear\else \ifDTL \\\@acadYear\else ,\@acadYear\fi\fi}%
     \fancyfoot[C] {\ifDTL \hspace{2cm}\else \fi \@acadYear}%
     \fi
     \fi
