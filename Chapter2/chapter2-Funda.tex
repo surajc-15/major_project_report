@@ -108,46 +108,50 @@ where \(h_i\) denotes the feature vector of node \(i\) and \(F\) represents the 
 
 \paragraph{Step 2: Linear Transformation:}
 
-The input node features are transformed using a learnable weight matrix:
+The input node features are transformed using a learnable weight matrix. The feature transformation operation is represented by Equation~\eqref{eq:feature_transform}.
 
 \begin{equation}
 z_i = Wh_i
+\label{eq:feature_transform}
 \end{equation}
 where \(W\) is the learnable weight matrix and \(z_i\) is the transformed feature representation. This transformation improves feature learning before attention computation.
 
 \paragraph{Step 3: Attention Score Computation:}
 
-For every connected node pair \((i,j)\), the attention score is computed as:
+For every connected node pair \((i,j)\), the attention score is computed as. The attention coefficient calculation between neighboring nodes is given by Equation~\eqref{eq:attention_score}.
 
 \begin{equation}
 e_{ij}=a^{T}\text{LeakyReLU}\left(W[h_i \Vert h_j]\right)
+\label{eq:attention_score}
 \end{equation}
 
 where \(a\) is the learnable attention vector and \(e_{ij}\) represents the attention score between neighboring nodes.
 
 \paragraph{Step 4: Softmax Normalization:}
 
-The attention scores are normalized using the softmax function:
+The attention scores are normalized using the softmax function. The normalization process that converts raw attention scores into attention coefficients is defined in Equation~\eqref{eq:attention_normalization}.
 
 \begin{equation}
 \alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k \in \mathcal{N}(i)} \exp(e_{ik})}
+\label{eq:attention_normalization}
 \end{equation}
 
 where \(\alpha_{ij}\) denotes the normalized attention coefficient and \(\mathcal{N}(i)\) represents the neighboring nodes of node \(i\).
 
 \paragraph{Step 5: Neighbor Aggregation:}
 
-The neighboring node features are aggregated using weighted summation:
+The neighboring node features are aggregated using weighted summation. The aggregation of neighborhood information based on the computed attention coefficients is represented by Equation~\eqref{eq:feature_aggregation}.
 
 \begin{equation}
 h_i^{\prime} = \sum_{j \in \mathcal{N}(i)} \alpha_{ij}Wh_j
+\label{eq:feature_aggregation}
 \end{equation}
 
 where \(h_i^{\prime}\) is the updated node representation.
 
 \paragraph{Step 6: Multi-Head Attention:}
 
-GATv2 employs multiple attention heads operating in parallel:
+GATv2 employs multiple attention heads operating in parallel. The multi-head attention mechanism used to capture diverse neighborhood representations is expressed by Equation~\eqref{eq:multihead_attention}.
 
 \begin{equation}
 h_i^{\prime} =
@@ -157,6 +161,7 @@ h_i^{\prime} =
 \sum_{j \in \mathcal{N}(i)}
 \alpha_{ij}^{(k)}W^{(k)}h_j
 \right)
+\label{eq:multihead_attention}
 \end{equation}
 
 where \(K\) represents the number of attention heads and \(\Vert\) denotes concatenation. Multi-head attention improves representation learning and robustness.
@@ -177,16 +182,18 @@ Despite its advantages, GATv2 requires high computational and memory resources d
 
 Graph Attention Network v2 (GATv2) was introduced as an improvement over the original Graph Attention Network (GAT) to overcome the limitation of static attention mechanisms. While both architectures use attention-based aggregation for graph representation learning, GATv2 provides a more expressive and adaptive attention mechanism.
 
-In the original GAT architecture, the attention mechanism is defined as:
+In the original GAT architecture, the attention mechanism is defined as. The computation of attention scores between connected nodes in the original GAT model is represented by Equation~\eqref{eq:gat_attention}.
 
 \begin{equation}
 e_{ij} = \text{LeakyReLU}\left(a^{T}[Wh_i \Vert Wh_j]\right)
+\label{eq:gat_attention}
 \end{equation}
 
-In GATv2, the order of operations is modified as:
+In GATv2, the order of operations is modified as. The dynamic attention formulation introduced in GATv2 is represented by Equation~\eqref{eq:gatv2_attention}.
 
 \begin{equation}
 e_{ij}=a^{T}\text{LeakyReLU}\left(W[h_i \Vert h_j]\right)
+\label{eq:gatv2_attention}
 \end{equation}
 
 This comparison highlights the key differences between the original Graph Attention Network (GAT) and Graph Attention Network v2 (GATv2) in terms of attention mechanism, flexibility, expressiveness, and overall performance. The comparative analysis is presented in Table~\ref{tab:gat_vs_gatv2}.
@@ -247,22 +254,25 @@ The computation of the input gate, forget gate, and output gate within an LSTM c
 
 \vspace{-0.3cm}
 
-The gates are mathematically represented as:
+The mathematical formulation of the input, forget, and output gates in an LSTM cell is given by Equation~\eqref{eq:lstm_gates}.
+
 \begin{equation}
 \begin{aligned}
 \mathbf{I}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{xi} + \mathbf{H}_{t-1}\mathbf{W}_{hi} + \mathbf{b}_i)\\
 \mathbf{F}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{xf} + \mathbf{H}_{t-1}\mathbf{W}_{hf} + \mathbf{b}_f)\\
 \mathbf{O}_t &= \sigma(\mathbf{X}_t \mathbf{W}_{xo} + \mathbf{H}_{t-1}\mathbf{W}_{ho} + \mathbf{b}_o)
 \end{aligned}
+\label{eq:lstm_gates}
 \end{equation}
 where \(\mathbf{I}_t\), \(\mathbf{F}_t\), and \(\mathbf{O}_t\) represent the input, forget, and output gates respectively, while \(\mathbf{X}_t\) and \(\mathbf{H}_{t-1}\) denote the current input and previous hidden state.
 
 \subsubsection{Input Node}
 
-The candidate memory information is computed using the \texttt{tanh} activation function as:
+The computation of candidate memory information, which represents newly learned information to be incorporated into the memory cell, is defined in Equation~\eqref{eq:candidate_memory}.
 
 \begin{equation}
 \tilde{\mathbf{C}}_t = \tanh(\mathbf{X}_t\mathbf{W}_{xc} + \mathbf{H}_{t-1}\mathbf{W}_{hc} + \mathbf{b}_c)
+\label{eq:candidate_memory}
 \end{equation}
 
 where \(\tilde{\mathbf{C}}_t\) represents the candidate memory state.
@@ -278,10 +288,11 @@ The computation of the candidate memory state (input node) in an LSTM model is i
 
 \subsubsection{Memory Cell Internal State}
 
-The memory cell state is updated using the forget gate and input gate as:
+The update mechanism of the memory cell state, which combines retained past information with newly learned information, is defined in Equation~\eqref{eq:cell_state_update}.
 
 \begin{equation}
 \mathbf{C}_t = \mathbf{F}_t \odot \mathbf{C}_{t-1} + \mathbf{I}_t \odot \tilde{\mathbf{C}}_t
+\label{eq:cell_state_update}
 \end{equation}
 
 where \(\mathbf{C}_t\) represents the updated memory cell state and \(\odot\) denotes element-wise multiplication. This mechanism helps preserve important long-term information while discarding irrelevant data.
@@ -298,10 +309,11 @@ The computation of the memory cell internal state within an LSTM cell is shown i
 
 \subsubsection{Hidden State}
 
-The hidden state output is computed as:
+The computation of the hidden state, which represents the output of the LSTM cell at the current time step, is defined in Equation~\eqref{eq:hidden_state}.
 
 \begin{equation}
 \mathbf{H}_t = \mathbf{O}_t \odot \tanh(\mathbf{C}_t)
+\label{eq:hidden_state}
 \end{equation}
 where \(\mathbf{H}_t\) represents the hidden state at time step \(t\). The output gate controls how much information from the memory cell is passed to the next layer.
 
@@ -374,10 +386,11 @@ Each selected client trains the received model locally using its private dataset
 
 After local training, clients send only model parameters or gradients to the aggregation server. The server combines these updates using aggregation algorithms such as Federated Averaging (FedAvg).
 
-The Federated Averaging process is represented as:
+The aggregation of locally trained model parameters into a global model is performed using the Federated Averaging (FedAvg) algorithm, as defined in Equation~\eqref{eq:fedavg}.
 
 \begin{equation}
 w_{t+1} = \sum_{k=1}^{K} \frac{n_k}{n} w_k^{(t+1)}
+\label{eq:fedavg}
 \end{equation}
 
 where \(w_{t+1}\) represents the updated global model, \(w_k^{(t+1)}\) denotes the local model of client \(k\), \(n_k\) represents the number of training samples at client \(k\), and \(n\) denotes the total number of training samples across all clients.
