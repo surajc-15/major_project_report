@@ -225,19 +225,19 @@ GATv2 is preferred over GAT because its dynamic attention mechanism enables bett
 
 \subsection{Long Short-Term Memory (LSTM)}
 
-\subsubsection{Introduction to LSTM}
+\subsubsection{A.   Introduction to LSTM}
 
 Long Short-Term Memory (LSTM) is an advanced Recurrent Neural Network (RNN) architecture designed to learn long-term dependencies in sequential data. It was introduced to overcome the vanishing gradient problem faced by traditional RNNs through the use of memory cells and gating mechanisms. LSTM can selectively remember, update, and forget information, making it highly effective for applications such as traffic prediction, speech recognition, natural language processing, and time-series forecasting.
 
-\subsubsection{Fundamental Concept of LSTM}
+\subsubsection{B.   Fundamental Concept of LSTM}
 
 The primary objective of LSTM is to preserve important sequential information over long time intervals using memory cells and gating mechanisms. The architecture controls information flow through input, forget, and output gates, enabling efficient learning of temporal dependencies.
 
-\subsubsection{Architecture and Working of LSTM}
+\subsubsection{C.   Architecture and Working of LSTM}
 
 The overall workflow of LSTM consists of gate computation, memory cell update, and hidden state generation.
 
-\subsubsection{Input Gate, Forget Gate, and Output Gate}
+\subsubsection{(i). Input Gate, Forget Gate, and Output Gate}
 At each time step, the current input and previous hidden state are used to compute the input, forget, and output gates using sigmoid activation functions. These gates regulate information flow into and out of the memory cell.
 
 The computation of the input gate, forget gate, and output gate within an LSTM cell is illustrated in Figure~\ref{fig:lstm_gates}.
@@ -266,7 +266,7 @@ The mathematical formulation of the input, forget, and output gates in an LSTM c
 \end{equation}
 where \(\mathbf{I}_t\), \(\mathbf{F}_t\), and \(\mathbf{O}_t\) represent the input, forget, and output gates respectively, while \(\mathbf{X}_t\) and \(\mathbf{H}_{t-1}\) denote the current input and previous hidden state.
 
-\subsubsection{Input Node}
+\subsubsection{(ii). Input Node}
 
 The computation of candidate memory information, which represents newly learned information to be incorporated into the memory cell, is defined in Equation~\eqref{eq:candidate_memory}.
 
@@ -286,7 +286,7 @@ The computation of the candidate memory state (input node) in an LSTM model is i
     \label{fig:lstm_input_node}
 \end{figure}
 
-\subsubsection{Memory Cell Internal State}
+\subsubsection{(iii). Memory Cell Internal State}
 
 The update mechanism of the memory cell state, which combines retained past information with newly learned information, is defined in Equation~\eqref{eq:cell_state_update}.
 
@@ -307,7 +307,7 @@ The computation of the memory cell internal state within an LSTM cell is shown i
 \end{figure}
 
 
-\subsubsection{Hidden State}
+\subsubsection{(iv). Hidden State}
 
 The computation of the hidden state, which represents the output of the LSTM cell at the current time step, is defined in Equation~\eqref{eq:hidden_state}.
 
@@ -326,11 +326,11 @@ The computation of the hidden state in an LSTM cell is shown in Figure~\ref{fig:
     \label{fig:lstm_hidden_state}
 \end{figure}
 
-\subsubsection{Advantages of LSTM}
+\subsubsection{D.   Advantages of LSTM}
 
 LSTM effectively solves the vanishing gradient problem and learns long-term sequential dependencies using memory cells and gating mechanisms. It performs efficiently on sequential and time-series data and is widely used in applications such as traffic prediction, speech recognition, machine translation, and forecasting.
 
-\subsubsection{Limitations of LSTM}
+\subsubsection{E.   Limitations of LSTM}
 
 Despite its advantages, LSTM is computationally expensive due to multiple gates and memory operations. Training requires higher computational resources and longer execution time, and performance may decrease for extremely long sequences or insufficient training data.
 
