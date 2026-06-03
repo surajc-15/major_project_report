@@ -130,7 +130,7 @@
 	\ifDrf
 	% Remove Certificate, Declaration, Acknowledgement and TOC
 	\else
-	\begin{spacing}{1.1}
+	\begin{spacing}{1.5}
 		\input{./CoverPages/Certificate1}
 		\newpage
 		\input{./CoverPages/Certificate2}
@@ -169,14 +169,12 @@
 		\listoftables	
 	\end{spacing}
 	\glsaddall
-	\cleardoublepage
 	\begin{spacing}{1.4}
-	\renewcommand{\arraystretch}{1.2}
+	\renewcommand{\arraystretch}{1.4}
 	\printglossary[type=\acronymtype, title= Abbreviations, toctitle=List of Abbreviations]
 
 	\printglossary[type=symbolList, title= List of Symbols, toctitle=List of Symbols]
 	\end{spacing}
-	\cleardoublepage
 
 	\fi
 	\mainmatter
